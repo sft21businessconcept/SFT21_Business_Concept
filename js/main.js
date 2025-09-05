@@ -405,6 +405,8 @@ if (cursor && body) {
                 if (menu) menu.style.display = 'none';
             });
         });
+
+        
         document.querySelectorAll('.nav-menu a:not([id*="lang-trigger"]):not(.mobile-dropdown-toggle)').forEach(link => {
             link.addEventListener('click', () => {
                 if (hamburger.classList.contains('active')) {
@@ -415,32 +417,100 @@ if (cursor && body) {
         });
     }
     
-    mobileDropdownToggles.forEach(toggle => {
-        if (toggle.id === 'mobile-lang-trigger') return;
-        toggle.addEventListener('click', (e) => {
+    // =======================================================
+// KONAČNA I ISPRAVNA LOGIKA ZA SVE DROPDOWNE (PREUZETO IZ REGISTER.HTML)
+// =======================================================
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // === LOGIKA ZA DROPDOWN NA DESKTOPU ===
+    const desktopPlatformTrigger = document.getElementById('desktop-platform-trigger');
+    const desktopPlatformMenu = document.getElementById('desktop-platform-menu');
+    const desktopLangTrigger = document.getElementById('desktop-lang-trigger');
+    const desktopLangDropdown = document.getElementById('desktop-lang-dropdown');
+
+    // Funkcija za zatvaranje svih desktop menija
+    function closeAllDesktopMenus() {
+        if (desktopPlatformMenu) desktopPlatformMenu.classList.remove('active');
+        if (desktopLangDropdown) desktopLangDropdown.classList.remove('active');
+    }
+
+    if (desktopPlatformTrigger && desktopPlatformMenu) {
+        desktopPlatformTrigger.addEventListener('click', function(e) {
             e.preventDefault();
-            const dropdownItem = toggle.closest('.sft21-nav-item.dropdown');
-            const dropdownMenu = dropdownItem?.querySelector('.dropdown-menu');
-            if (dropdownItem && dropdownMenu) {
-                document.querySelectorAll('.nav-menu .sft21-nav-item.dropdown.open:not(.mobile-language-selector)').forEach(openDropdown => {
-                    if (openDropdown !== dropdownItem) {
-                        openDropdown.classList.remove('open');
-                        const otherIcon = openDropdown.querySelector('.mobile-dropdown-toggle i');
-                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                        const otherMenu = openDropdown.querySelector('.dropdown-menu');
-                        if (otherMenu) otherMenu.style.display = 'none';
-                    }
-                });
-                dropdownItem.classList.toggle('open');
-                dropdownMenu.style.display = dropdownItem.classList.contains('open') ? 'block' : 'none';
-                const icon = toggle.querySelector('i.fas');
-                if (icon) {
-                    icon.style.transform = dropdownItem.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-                closeAllLanguageDropdowns();
+            e.stopPropagation();
+            if (desktopLangDropdown) desktopLangDropdown.classList.remove('active'); // Zatvori drugi meni
+            desktopPlatformMenu.classList.toggle('active');
+        });
+    }
+
+    if (desktopLangTrigger && desktopLangDropdown) {
+        desktopLangTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (desktopPlatformMenu) desktopPlatformMenu.classList.remove('active'); // Zatvori drugi meni
+            desktopLangDropdown.classList.toggle('active');
+        });
+    }
+
+    // === LOGIKA ZA DROPDOWN NA MOBILNOM ===
+    const mobilePlatformToggle = document.querySelector('.nav-menu .mobile-dropdown-toggle');
+    const mobileLangTrigger = document.getElementById('mobile-lang-trigger');
+    
+    // Klik na "Platforme" u mobilnom meniju
+    if (mobilePlatformToggle) {
+        mobilePlatformToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdownItem = this.closest('.sft21-nav-item.dropdown');
+            dropdownItem.classList.toggle('open');
+            const dropdownMenu = dropdownItem.querySelector('.dropdown-menu');
+            dropdownMenu.style.display = dropdownItem.classList.contains('open') ? 'block' : 'none';
+        });
+    }
+
+    // Klik na "Jezik" u mobilnom meniju
+    if (mobileLangTrigger) {
+        mobileLangTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdownItem = this.closest('.sft21-nav-item.dropdown');
+            dropdownItem.classList.toggle('open');
+            const dropdownMenu = dropdownItem.querySelector('.language-dropdown-mobile');
+            dropdownMenu.classList.toggle('active');
+        });
+    }
+    
+    // Zatvori sve menije ako se klikne bilo gdje drugdje
+    window.addEventListener('click', function() {
+        closeAllDesktopMenus();
+    });
+});
+    
+    // --- NOVI KOD - Logika SAMO za "Platforme" dropdown ---
+document.addEventListener('DOMContentLoaded', function() {
+    // Pronađi SAMO gumb za Platforme
+    const platformToggle = document.querySelector('.nav-menu .mobile-dropdown-toggle:not(.mobile-language-trigger)');
+    
+    if (platformToggle) {
+        platformToggle.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const dropdownItem = this.closest('.sft21-nav-item.dropdown');
+            if (!dropdownItem) return;
+
+            const dropdownMenu = dropdownItem.querySelector('.dropdown-menu');
+            if (!dropdownMenu) return;
+            
+            // Otvori ili zatvori SAMO ovaj izbornik
+            const isOpen = dropdownItem.classList.toggle('open');
+            dropdownMenu.style.display = isOpen ? 'block' : 'none';
+
+            // Rotiraj SAMO ovu ikonu
+            const icon = this.querySelector('i.fas');
+            if (icon) {
+                icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
             }
         });
-    });
+    }
+});
 
     // Accordion
     if (accordionItems.length > 0) {

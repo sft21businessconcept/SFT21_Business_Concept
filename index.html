@@ -283,6 +283,76 @@ body.light-mode .nav-link.active::after {
     }
 }
 
+/* ======================================================= */
+/* NOVO: Stilovi za uljepšavanje polja "Poslovni koncept" */
+/* ======================================================= */
+
+/* Glavni stil za kutiju s ikonom */
+.icon-box {
+    border: 1px solid rgba(128, 255, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efekt sjaja na hover mišem */
+.icon-box:hover {
+    border-color: rgba(128, 255, 0, 0.5);
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.3); /* Neonski zeleni sjaj */
+}
+
+/* Kontejner za ikonu kako bi se primijenio neonski tekstualni sjaj */
+.icon-glow i {
+    color: var(--fluorescent-green);
+    /* Neonski sjaj za samu ikonu */
+    text-shadow:
+        0 0 7px rgba(57, 255, 20, 0.5),
+        0 0 10px rgba(57, 255, 20, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+.icon-box:hover .icon-glow i {
+    text-shadow:
+        0 0 10px rgba(57, 255, 20, 0.8),
+        0 0 20px rgba(57, 255, 20, 0.6);
+}
+
+/* Prilagodba za light mode */
+body.light-mode .icon-box {
+    border-color: rgba(106, 27, 154, 0.15);
+}
+body.light-mode .icon-box:hover {
+    border-color: rgba(106, 27, 154, 0.5);
+    box-shadow: 0 0 25px rgba(106, 27, 154, 0.2); /* Ljubičasti sjaj */
+}
+body.light-mode .icon-glow i {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(106, 27, 154, 0.4); /* Ljubičasti sjaj za ikonu */
+}
+body.light-mode .icon-box:hover .icon-glow i {
+    text-shadow: 0 0 15px rgba(106, 27, 154, 0.6);
+}
+
+/* ======================================================= */
+/* NOVO: Rješenje za stabilan hover efekt (bez nestajanja) */
+/* ======================================================= */
+.hover-card-stable {
+    border-color: transparent !important; /* Sakrijemo originalni border */
+    outline: 1px solid rgba(128, 255, 0, 0.2); /* Kreiramo outline koji izgleda kao border */
+    outline-offset: 0px;
+    transition: outline-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card-stable:hover {
+    outline-color: rgba(128, 255, 0, 0.5);
+}
+
+/* Light mode prilagodba */
+body.light-mode .hover-card-stable {
+    outline-color: rgba(106, 27, 154, 0.2);
+}
+body.light-mode .hover-card-stable:hover {
+    outline-color: rgba(106, 27, 154, 0.5);
+}
+
 </style>
 </head>
 
@@ -522,8 +592,8 @@ body.light-mode .nav-link.active::after {
              <a href="#startni-paketi" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Startni paketi</a>
              <a href="#kontakt" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Kontakt</a>
              <div class="sft21-nav-item dropdown">
-                <a href="#" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300 sft21-nav-link mobile-dropdown-toggle"> Platforme <i class="fas fa-chevron-down ml-1"></i> </a>
-                <div class="dropdown-menu">
+                   <a href="#" id="mobile-platform-trigger" class="block py-3 ... mobile-dropdown-toggle"> Platforme ... </a>
+                <div id="mobile-platform-menu" class="dropdown-menu">
                     <a href="sfured.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFured</a>
                     <a href="sfalgoritam.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFalgoritam</a>
                     <a href="video_player.html?from=index.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">Video player</a>
@@ -627,14 +697,50 @@ body.light-mode .nav-link.active::after {
                         <div class="glass-card p-8 relative overflow-hidden">
                             <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-purple-500 opacity-20 rounded-full"></div>
                             <div class="absolute -right-5 -bottom-5 w-24 h-24 bg-purple-600 opacity-30 rounded-full"></div>
-                            <div class="grid grid-cols-2 gap-8 items-stretch">
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-users text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Društvena Mreža</h4></div>
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-shopping-cart text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Online Trgovina</h4></div>
-                                 <div class="col-span-2 flex justify-center py-4"><div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2"><i class="fas fa-sync-alt text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Integracija</h4></div></div>
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-sitemap text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Mrežni Marketing</h4></div>
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-handshake text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Franšizno Poslovanje</h4></div>
-                            </div>
-                        </div>
+<div class="grid grid-cols-2 gap-8 items-stretch">
+
+    <!-- Društvena Mreža -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-users text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Društvena Mreža</h4>
+    </div>
+    
+    <!-- Online Trgovina -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-shopping-cart text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Online Trgovina</h4>
+    </div>
+    
+    <!-- Integracija -->
+    <div class="col-span-2 flex justify-center py-4">
+        <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
+            <div class="icon-glow mb-5">
+                <i class="fas fa-sync-alt text-6xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-center text-white mt-auto">Integracija</h4>
+        </div>
+    </div>
+    
+    <!-- Mrežni Marketing -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-sitemap text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Mrežni Marketing</h4>
+    </div>
+    
+    <!-- Franšizno Poslovanje -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-handshake text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Franšizno Poslovanje</h4>
+    </div>
+</div>
                     </div>
                 </div>
         </section>
@@ -743,8 +849,9 @@ body.light-mode .nav-link.active::after {
 </section>
 <section id="ecosystem-details" class="pt-0 pb-24 relative overflow-hidden">
     <div class="container mx-auto px-6 relative z-10">
-        <div class="glass-card p-8 md:p-12 fade-in max-w-4xl mx-auto">
-                <p class="text-lg leading-relaxed mb-6 text-center" style="color: var(--fluorescent-green);"><strong>InFace Invest Group poslovni ekosustav temelji se na integraciji nekoliko ključnih komponenti:</strong></p>                        <ul class="space-y-4 mb-8">
+    <div class="glass-card p-8 md:p-12 fade-in max-w-4xl mx-auto interactive-card mb-4">
+                <p class="text-lg leading-relaxed mb-6 text-center" style="color: var(--fluorescent-green);"><strong>InFace Invest Group poslovni ekosustav temelji se na integraciji nekoliko ključnih komponenti:</strong></p>                        
+                <ul class="space-y-4 mb-8">
                 <li class="flex items-start"><i class="fas fa-cogs text-purple-400 mr-3 mt-1 flex-shrink-0"></i><div><span class="font-semibold text-white">SFured (kontrolna ploča)</span> - <span class="text-gray-300">Jedinstvena platforma za nadzor i vođenje poslovanja. </span></div></li>
                 <li class="flex items-start"><i class="fas fa-users text-purple-400 mr-3 mt-1 flex-shrink-0"></i><div><span class="font-semibold text-white">SFnet (društvena mreža)</span> - <span class="text-gray-300">Jedinstvena poslovno-društvena mreža za povezivanje članova zajednice.</span></div></li>
                 <li class="flex items-start"><i class="fas fa-shopping-cart text-purple-400 mr-3 mt-1 flex-shrink-0"></i><div><span class="font-semibold text-white">SFshop (webshop)</span> - <span class="text-gray-300">Online trgovina s raznovrsnim proizvodima i uslugama naših poslovnih partnera.</span></div></li>
@@ -795,31 +902,31 @@ body.light-mode .nav-link.active::after {
              <p class="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">Zašto se pridružiti SFT21 zajednici?</p>
          </div>
          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.1s;">
-                 <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-rocket text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Pristupačna cijena Licence</h4><p class="text-gray-300">Postanite dio ekosustava kupnjom Licencnog paketa po početnoj cijeni od samo 100 €.</p></div>
-             </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.2s;">
-                 <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-handshake text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Timski rad</h4><p class="text-gray-300">Sinergijski rad i zajedništvo omogućuju brži rast i veći potencijal za sve članove zajednice.</p></div>
-             </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.3s;">
-                 <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-chart-line text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Potencijal za bonus zaradu</h4><p class="text-gray-300">Kroz sudjelovanje u bonus programu imate priliku ostvariti dodatne prihode.</p></div>
-             </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.4s;">
-                 <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-globe text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Globalni doseg</h4><p class="text-gray-300">Pristup globalnom tržištu i mogućnost izgradnje međunarodne mreže suradnika.</p></div>
-             </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.5s;">
-                 <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-shield-alt text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Sigurnost i transparentnost</h4><p class="text-gray-300">Poslovanje temeljeno na transparentnosti, sigurnosti i zaštiti osobnih podataka.</p></div>
-             </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.6s;">
-                 <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-desktop text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Digitalni alati</h4><p class="text-gray-300">Pristup naprednim digitalnim alatima za upravljanje vašim poslovanjem i praćenje rezultata.</p></div>
-             </div>
-         </div>
+    <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.1s;">
+        <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-rocket text-3xl text-purple-300"></i></div></div>
+        <div><h4 class="text-xl font-bold mb-2 text-white">Pristupačna cijena Licence</h4><p class="text-gray-300">Postanite dio ekosustava kupnjom Licencnog paketa po početnoj cijeni od samo 100 €.</p></div>
+    </div>
+    <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.2s;">
+        <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-handshake text-3xl text-purple-300"></i></div></div>
+        <div><h4 class="text-xl font-bold mb-2 text-white">Timski rad</h4><p class="text-gray-300">Sinergijski rad i zajedništvo omogućuju brži rast i veći potencijal za sve članove zajednice.</p></div>
+    </div>
+    <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.3s;">
+        <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-chart-line text-3xl text-purple-300"></i></div></div>
+        <div><h4 class="text-xl font-bold mb-2 text-white">Potencijal za bonus zaradu</h4><p class="text-gray-300">Kroz sudjelovanje u bonus programu imate priliku ostvariti dodatne prihode.</p></div>
+    </div>
+    <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.4s;">
+        <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-globe text-3xl text-purple-300"></i></div></div>
+        <div><h4 class="text-xl font-bold mb-2 text-white">Globalni doseg</h4><p class="text-gray-300">Pristup globalnom tržištu i mogućnost izgradnje međunarodne mreže suradnika.</p></div>
+    </div>
+    <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.5s;">
+        <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-shield-alt text-3xl text-purple-300"></i></div></div>
+        <div><h4 class="text-xl font-bold mb-2 text-white">Sigurnost i transparentnost</h4><p class="text-gray-300">Poslovanje temeljeno na transparentnosti, sigurnosti i zaštiti osobnih podataka.</p></div>
+    </div>
+    <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.6s;">
+        <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-desktop text-3xl text-purple-300"></i></div></div>
+        <div><h4 class="text-xl font-bold mb-2 text-white">Digitalni alati</h4><p class="text-gray-300">Pristup naprednim digitalnim alatima za upravljanje vašim poslovanjem i praćenje rezultata.</p></div>
+    </div>
+</div>
      </div>
 </section>
 
@@ -945,7 +1052,7 @@ body.light-mode .nav-link.active::after {
             <h2 class="text-3xl md:text-5xl font-bold mb-4">Objašnjenje bonus programa za vlasnike Licenci</h2>
             <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
         </div>
-            <div class="glass-card p-8 md:p-12 fade-in">
+            <div class="glass-card p-8 md:p-12 fade-in interactive-card">
             <div class="text-gray-300 space-y-4 text-justify leading-relaxed">
                 <h4 class="text-xl font-semibold text-fluorescent-green mt-6 mb-3">BONUS FAZE 1 i BONUS FAZE 2</h4>                        
                 <p><strong>Kupnjom jednog ili više odabranih Licencnih paketa stječete pravo na sudjelovanje u Bonus Programu, što vam otvara mogućnost ostvarivanja bonusa u dvije faze, sukladno uspjehu poslovanja Kompanije.</strong></p>
@@ -1081,38 +1188,41 @@ body.light-mode .nav-link.active::after {
              <div class="ip-card-footer"><a href="#" class="btn-primary open-investment-details-popup" data-package-value="2100" data-package-name="LP6">Odaberi paket</a></div>
          </div>
      </div>
-     <div id="individual-package" class="container mx-auto px-6 relative z-10 mt-12 fade-in" style="animation-delay: 0.7s;">
-            <div class="glass-card max-w-5xl mx-auto ip-wide-card overflow-hidden interactive-card">
-            <div class="ip-wide-card-header"> <h3 class="ip-wide-card-header-title">LP7: Individualni paket</h3> </div>
-            <div class="p-8 md:p-12">
-                <p class="text-gray-300 text-center leading-relaxed mb-6"> Odaberite opciju kupnje licence koja vam najviše odgovara. </p>
-                <div class="btn-group flex justify-center gap-4"> 
-                    <button id="ip7-do-10k" class="btn-primary">Do 10.000 €</button>
-                    <button id="ip7-veci-iznos" class="btn-primary">Veći iznos</button>
+<div id="individual-package" class="container mx-auto px-6 relative z-10 mt-12 fade-in" style="animation-delay: 0.7s;">
+    <!-- OVDJE JE PROMJENA - max-width: 500px -->
+    <div class="glass-card mx-auto ip-wide-card overflow-hidden interactive-card" style="max-width: 500px;">
+        <div class="ip-wide-card-header">
+            <h3 class="ip-wide-card-header-title">LP7: Individualni paket</h3>
+        </div>
+        <div class="p-8 md:p-12">
+            <p class="text-gray-300 text-center leading-relaxed mb-6"> Odaberite opciju kupnje licence koja vam najviše odgovara. </p>
+            <div class="btn-group flex justify-center gap-4"> 
+                <button id="ip7-do-10k" class="btn-primary">Do 10.000 €</button>
+                <button id="ip7-veci-iznos" class="btn-primary">Veći iznos</button>
+            </div>
+            <div id="ip7-amount-input-container" class="amount-input-container">
+               <label for="ip7-amount-input">Unesite iznos za kupnju licence:</label>
+                <div class="amount-input-wrapper">
+                   <input type="number" id="ip7-amount-input" class="amount-input" placeholder="Min. 5000 €" step="1" min="5000" max="10000">
+                    <span class="currency-symbol">€</span>
                 </div>
-                <div id="ip7-amount-input-container" class="amount-input-container">
-                   <label for="ip7-amount-input">Unesite iznos za kupnju licence:</label>
-                    <div class="amount-input-wrapper">
-                       <input type="number" id="ip7-amount-input" class="amount-input" placeholder="Min. 5000 €" step="1" min="5000" max="10000">
-                        <span class="currency-symbol">€</span>
-                    </div>
-                     <div class="input-buttons flex justify-center gap-4 mt-4">
-                       <button id="ip7-amount-confirm" class="btn-primary">POTVRDI</button>
-                       <button id="ip7-amount-cancel" class="btn-outline">OTKAŽI</button>
-                    </div>
+                 <div class="input-buttons flex justify-center gap-4 mt-4">
+                   <button id="ip7-amount-confirm" class="btn-primary">POTVRDI</button>
+                   <button id="ip7-amount-cancel" class="btn-outline">OTKAŽI</button>
                 </div>
-                <div class="text-gray-300 text-center mt-6 leading-relaxed">
-                    <p>Potencijalni bonus u periodu od 2 god: <strong class="text-white">100% na cijenu licence</strong></p>
-                    <p>Maksimalni Ukupni Bonus: vaša cijena x7, kroz neodređeni vremenski period</p>
-                    <p><span class="value"><strong>NADOGRADNJA</strong></span></p>
-                    <p><span class="label">Limit zarade:</span> <span class="value"><strong>2100 €</strong></span></p>
-                    <p><span class="label">Broj SFbodova:</span> <span class="value"><strong>Cijena licence x 2</strong> </span></p>
-                    <p><span class="value"><strong>21 SFkod</strong></span></p>
-                </div>
+            </div>
+            <div class="text-gray-300 text-center mt-6 leading-relaxed">
+                <p>Potencijalni bonus u periodu od 2 god: <strong class="text-white">100% na cijenu licence</strong></p>
+                <p>Maksimalni ukupni bonus: vaša cijena x7, kroz neodređeni vremenski period</p>
+                <p><span class="value"><strong>NADOGRADNJA</strong></span></p>
+                <p><span class="label">Limit zarade:</span> <span class="value"><strong>2100 €</strong></span></p>
+                <p><span class="label">Broj SFbodova:</span> <span class="value"><strong>Cijena licence x 2</strong> </span></p>
+                <p><span class="value"><strong>21 SFkod</strong></span></p>
             </div>
         </div>
     </div>
-    </section>
+</div>
+</section>
 
             <section id="prednosti-vlasnika-licenci" class="py-16 relative overflow-hidden">
         <div class="container mx-auto px-6 relative z-10">
@@ -1190,43 +1300,42 @@ body.light-mode .nav-link.active::after {
                 <div class="animated-background" style="display:none;">
                     <div class="bg-dots"></div><div class="glow" style="top: 70%; left: 80%; opacity: 0.08;"></div>
                 </div>
-                <div class="fade-in glass-card p-8 md:p-12 mb-12">
+                    <div class="fade-in glass-card p-8 md:p-12 mb-12 interactive-card hover-card-stable w-full md:w-5/6 mx-auto">
                     <h2 class="text-xl md:text-2xl mb-6 text-purple-300 text-center">U trenutnoj fazi izgradnje osnovne infrastrukture što uključuje razvoj ključnih platformi (SFured, SFnet, SFshop), pristup našoj zajednici s ovim pogodnostima moguć je isključivo kupnjom jednog ili više Licencnih paketa.<br></br>Završetkom nadogradnje i puštanjem u rad temeljnog softvera, započinjemo s franšiznim poslovanjem te će mogućnost kupnje Licencnih paketa pod ovim uvjetima biti ukinuta.<br></br>Nakon toga, poslovanje nastavljamo uz mogućnost kupovine Startnih paketa za aktivne članove ili besplatnom registracijom za sve korisnike naše društvene mreže i webshopa. </h2>
                     <div class="text-gray-300 space-y-4 text-justify leading-relaxed"></div>
                 </div>
             </section>
-            </div> <!-- Kraj grupe za Licencni paketi -->
         
-            <div id="startni-paketi"></div>
-            <section class="pt-10 pb-12 relative overflow-hidden">
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="text-center mb-16 fade-in">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Startni paketi</h2>
-                    <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
-                </div>
-                <div class="overflow-x-auto fade-in">
-                    <table class="pricing-table">
-                        <thead><tr><th>Startni paket</th><th>Cijena (€)</th><th>Pretplatnički periodi</th><th>Limit max. zarade / Max. mogući limit</th><th>SFbodovi</th><th>SFkodovi</th><th>Akcija</th></tr></thead>
-                        <tbody>
-                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP1</td><td>50</td><td>1</td><td>50 SFC / 1050 SFC</td><td>50</td><td>1</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP2</td><td>200</td><td>4</td><td>400 SFC / 1250 SFC</td><td>200</td><td>4</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP3</td><td>350</td><td>7</td><td>700 SFC / 1400 SFC</td><td>350</td><td>7</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP4</td><td>500</td><td>10</td><td>1000 SFC / 1550 SFC</td><td>500</td><td>10</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP5</td><td>650</td><td>13</td><td>1300 SFC / 1700 SFC</td><td>650</td><td>13</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP6</td><td>1050</td><td>17</td><td>1700 SFC / 1900 SFC</td><td>1050</td><td>17</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP7</td><td>1450</td><td>21</td><td>2100 SFC</td><td>1450</td><td>21</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-        </section>
-        
-        <section id="paket-info" class="py-4 relative overflow-hidden">
-            <div class="container mx-auto px-6 relative z-10">
-            <div class="glass-card p-8 md:p-12 fade-in">
-                    <p class="text-gray-200 text-lg leading-relaxed mb-6 text-center font-bold">Startni paket je aktivacijski modul korisničkog računa prema kojemu se određuje broj uplaćenih pretplatničkih perioda, limit maksimalne zarade, najveći mogući limit, broj SFbodova i broj SFKodova.</p>
-                    <p class="text-gray-200 text-lg leading-relaxed text-justify">Cijena SFT21 franšize iznosi 1.450 €. Plaćanje će biti moguće putem platnih procesora ili prebacivanjem sredstava sa računa drugog korisnika. Platiti se može jednokratno uplatom SP7, što vam donosi najbolje pogodnosti ili uplatom manjih Startnih paketa. Uplatom manjih Startnih paketa preostali dio pretplatničkih perioda imati ćete mogućnost naknadno nadoplaćivati ili će ih sistem s vremenom uplatiti novcem od zarade. Uplatom posljednjeg 21. pretplatničkog perioda smatra se da je SFT21 franšiza uplaćena u potpunosti.</p>
-                </div>
-                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<section id="startni-paketi" class="pt-10 pb-12 relative overflow-hidden">
+<div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4">Startni paketi</h2>
+        <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
+    </div>
+    <div class="overflow-x-auto fade-in">
+        <table class="pricing-table mx-auto"> 
+    <thead><tr><th>Startni paket</th><th class="px-2">Cijena (€)</th><th class="px-2">Pretplatnički periodi</th><th>Limit max. zarade / Max. mogući limit</th><th class="px-2">SFbodovi</th><th class="px-2">SFkodovi</th><th>Akcija</th></tr></thead>
+            <tbody>
+                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP1</td><td>50</td><td>1</td><td>50 SFC / 1050 SFC</td><td>50</td><td>1</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP2</td><td>200</td><td>4</td><td>400 SFC / 1250 SFC</td><td>200</td><td>4</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP3</td><td>350</td><td>7</td><td>700 SFC / 1400 SFC</td><td>350</td><td>7</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP4</td><td>500</td><td>10</td><td>1000 SFC / 1550 SFC</td><td>500</td><td>10</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP5</td><td>650</td><td>13</td><td>1300 SFC / 1700 SFC</td><td>650</td><td>13</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP6</td><td>1050</td><td>17</td><td>1700 SFC / 1900 SFC</td><td>1050</td><td>17</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP7</td><td>1450</td><td>21</td><td>2100 SFC</td><td>1450</td><td>21</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+</section>
+
+
+<section id="paket-info" class="py-4 relative overflow-hidden">
+    <div class="container mx-auto px-6 relative z-10">
+     <div class="glass-card p-8 md:p-12 fade-in interactive-card max-w-7xl w-full mx-auto">
+            <p class="text-gray-200 text-lg leading-relaxed mb-6 text-center font-bold">Startni paket je aktivacijski modul korisničkog računa prema kojemu se određuje broj uplaćenih pretplatničkih perioda, limit maksimalne zarade, najveći mogući limit, broj SFbodova i broj SFKodova.</p>
+            <p class="text-gray-200 text-lg leading-relaxed text-justify">Cijena SFT21 franšize iznosi 1.450 €. Plaćanje će biti moguće putem platnih procesora ili prebacivanjem sredstava sa računa drugog korisnika. Platiti se može jednokratno uplatom SP7, što vam donosi najbolje pogodnosti ili uplatom manjih Startnih paketa. Uplatom manjih Startnih paketa preostali dio pretplatničkih perioda imati ćete mogućnost naknadno nadoplaćivati ili će ih sistem s vremenom uplatiti novcem od zarade. Uplatom posljednjeg 21. pretplatničkog perioda smatra se da je SFT21 franšiza uplaćena u potpunosti.</p>
+        </div>
+                         <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <div class="glass-card p-8 fade-in feature-card interactive-card" style="animation-delay: 0.1s;">
                         <div class="text-purple-400 text-4xl mb-6"><i class="fas fa-star"></i></div>
                         <h3 class="text-2xl font-bold mb-4">Prednosti</h3>
@@ -1248,21 +1357,19 @@ body.light-mode .nav-link.active::after {
             </div>
         </section>
         
-        <section id="vazna-napomena" class="py-12 relative overflow-hidden">
-        <div class="glass-card p-8 md:p-12 fade-in">
-                <div class="glass-card p-8 md:p-12 fade-in max-w-5xl mx-auto">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-300 uppercase">Važna napomena</h3>
-                    <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
-                        <p>Uplatom odabranog Startnog paketa određuje vam se limit maksimalne zarade koju možete ostvariti unutar jednog pretplatničkog perioda.</p>
-                        <p>Od 50 € ukoliko odaberete SP1 do maksimalnih 2.100 € odabirom SP7, što je ujedno najveći mogući limit maksimalne zarade koju možete ostvariti uplatom Startnog paketa ili uplatom Licencnog paketa.</p>
-                        <p>Međutim, bez obzira sa kojim Startnim paketom započeli poslovanje limit maksimalne zarade uvijek možete povećavati nadoplatama pretplatničkih perioda ili gradeći karijerni status, registracijom novih članova - SFstartera i SFfranšizera.</p>
-                        <p>Upravo je to činjenica, koju kada ljudi shvate, nikoga ne ostavlja ravnodušnim jer ovaj projekt za razliku od ostalih nudi istu mogućnost napredovanja i ostvarivanja maksimalnih zarada bez obzira na početni iznos uplate Licencnog ili Startnog paketa.</p>
-                        <p>Limit maksimalne zarade dobiven na osnovi karijernog statusa može biti od minimalnih 2.200 €, do maksimalnih 100.000 €, što se određuje prema broju direktnih i indirektnih članova. </p>
-                        <p>Izgradnja karijere nije obavezna, što znači da korisnik ukoliko ne želi, ne mora raditi na registraciji novih korisnika.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section id="vazna-napomena" class="py-12 relative overflow-hidden">
+    <div class="glass-card p-8 md:p-12 fade-in max-w-5xl mx-auto interactive-card">
+        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-300 uppercase">Važna napomena</h3>
+        <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
+            <p>Uplatom odabranog Startnog paketa određuje vam se limit maksimalne zarade koju možete ostvariti unutar jednog pretplatničkog perioda.</p>
+            <p>Od 50 € ukoliko odaberete SP1 do maksimalnih 2.100 € odabirom SP7, što je ujedno najveći mogući limit maksimalne zarade koju možete ostvariti uplatom Startnog paketa ili uplatom Licencnog paketa.</p>
+            <p>Međutim, bez obzira sa kojim Startnim paketom započeli poslovanje limit maksimalne zarade uvijek možete povećavati nadoplatama pretplatničkih perioda ili gradeći karijerni status, registracijom novih članova - SFstartera i SFfranšizera.</p>
+            <p>Upravo je to činjenica, koju kada ljudi shvate, nikoga ne ostavlja ravnodušnim jer ovaj projekt za razliku od ostalih nudi istu mogućnost napredovanja i ostvarivanja maksimalnih zarada bez obzira na početni iznos uplate Licencnog ili Startnog paketa.</p>
+            <p>Limit maksimalne zarade dobiven na osnovi karijernog statusa može biti od minimalnih 2.200 €, do maksimalnih 100.000 €, što se određuje prema broju direktnih i indirektnih članova. </p>
+            <p>Izgradnja karijere nije obavezna, što znači da korisnik ukoliko ne želi, ne mora raditi na registraciji novih korisnika.</p>
+        </div>
+    </div>
+</section>
 
         <section id="vasa-odluka" class="pt-8 pb-24 relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
@@ -1289,7 +1396,7 @@ body.light-mode .nav-link.active::after {
                 </div>
             </div>
         </section>
-        </div> <!-- Kraj grupe za Startni paketi -->
+        </div> 
 
         <section id="faq" class="pt-24 pb-12 relative overflow-hidden">
              <div class="container mx-auto px-6 relative z-10">
@@ -1309,7 +1416,7 @@ body.light-mode .nav-link.active::after {
                      </div>
                       <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.3s;">
                          <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">Zašto bi se uopće registrirao u vašu zajednicu?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
-                         <div class="accordion-content"><div><p>Razlozi zbog kojih bi se registrirali u našu zajednicu su mnogi pa ćemo Vam navesti samo one najvažnije i za naše članove najbitnije;</p><p>-	Kao osnovni cilj i svrha našeg poslovnog koncepta i zajednice potrošaća koju stvaramo je povezivanje najbitnijih elemenata u procesu trgovine – proizvođaće, trgovce i potrošaće. Naša je misija ujediniti što veći broj prvenstveno domaćih proizvođača i trgovaca sa vjernim potrošaćima kako bi prije svega omogućili našoj djeci i svima nama domaće i po mogućnosti što zdravije i kvalitetnije proizvode i usluge </p><p>-	Donosimo projekt i poslovnu ponudu koja našim korisnicima pruža mogućnost  ostvarivanja dodatne zarade kao i stvaranje novog izvora prihoda </p><p>-	Dajemo besplatno na korištenje stranice društvene mreže za povezivanje i komunikaciju korisnika kao i stranice online trgovine uz mnoge pogodnosti koje idu uz to</p><p>-	Nudimo Vam mogućnost sudjelovanja u mnogim nagradnim igrama</p><p>-	Nudimo Vam mogućnost educiranja u raznim aspektima internet poslovanja što će se stalno razvijati i širiti prateći globalni razvoj na tim poljima</p><p>-	Upoznati ćete se sa novim ljudima, steći nova prijateljstva...</p><p> Nitko Vas ničim ne prisiljava, ne želimo nikoga nagovarati niti posebno uvjeravati ali bi Vas voljeli navesti da si odvojite malo svog vremena te da u miru svog doma detaljnije proučite što radimo, naš poslovni koncep i poslovnu ponudu. Uvjereni smo da ćete zasigurno pronaći dobre razloge zbog kojih ćete poželjeti biti dio naše zajednice, dio SFtima. Na vama je da proučite sve što vas interesira, da pitate, razgovarate i istražujete te da u konačnici svojom glavom i zdravog razuma donesete najbolju odluku za sebe.</p></div></div>
+                         <div class="accordion-content"><div><p>Razlozi zbog kojih bi se registrirali u našu zajednicu su mnogi pa ćemo Vam navesti samo one najvažnije i za naše članove najbitnije;</p><p>-	Kao osnovni cilj i svrha našeg poslovnog koncepta i zajednice potrošaća koju stvaramo je povezivanje najbitnijih elemenata u procesu trgovine – proizvođaće, trgovce i potrošaće. Naša je misija ujediniti što veći broj prvenstveno domaćih proizvođača i trgovaca sa vjernim potrošaćima kako bi prije svega omogućili našoj djeci i svima nama domaće i po mogućnosti što zdravije i kvalitetnije proizvode i usluge </p><p>-	Donosimo projekt i poslovnu ponudu koja našim korisnicima pruža mogućnost  ostvarivanja dodatne zarade kao i stvaranje novog izvora prihoda </p><p>- Dajemo besplatno na korištenje stranice društvene mreže za povezivanje i komunikaciju korisnika, kao i stranice online trgovine uz mnoge pogodnosti koje idu uz to</p><p>-	Nudimo Vam mogućnost sudjelovanja u mnogim nagradnim igrama</p><p>-	Nudimo Vam mogućnost educiranja u raznim aspektima internet poslovanja što će se stalno razvijati i širiti prateći globalni razvoj na tim poljima</p><p>-	Upoznati ćete se sa novim ljudima, steći nova prijateljstva...</p><p> Nitko Vas ničim ne prisiljava, ne želimo nikoga nagovarati niti posebno uvjeravati ali bi Vas voljeli navesti da si odvojite malo svog vremena te da u miru svog doma detaljnije proučite što radimo, naš poslovni koncep i poslovnu ponudu. Uvjereni smo da ćete zasigurno pronaći dobre razloge zbog kojih ćete poželjeti biti dio naše zajednice, dio SFtima. Na vama je da proučite sve što vas interesira, da pitate, razgovarate i istražujete te da u konačnici svojom glavom i zdravog razuma donesete najbolju odluku za sebe.</p></div></div>
                       </div>
                       <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.4s;">
                            <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">Po čemu je SFT21 Business Concept poseban u odnosu na slične projekte?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
@@ -1472,8 +1579,8 @@ body.light-mode .nav-link.active::after {
                     <p class="text-xl text-gray-300 mb-10 leading-relaxed"> 
                         Sa Vama želimo podijeliti našu viziju kako bi i Vi prepoznali priliku koja se pruža jednom u životu – priliku da zajedno izgradimo <strong class="text-white">TEHNOLOŠKU KOMPANIJU</strong> i <strong class="text-white">ONLINE ZAJEDNICU</strong> u vlasništvu njenih investitora, članova korisnika i franšizera.
                     </p>
-                    <a href="#" class="btn-primary inline-block text-lg px-8 py-4 mb-12 trigger-choose-investor-type-popup"> 
-                        DONESI ODLUKU
+                    <a href="#" class="btn-primary inline-block text-2xl px-12 py-6 mb-12 trigger-choose-investor-type-popup"> 
+                                        DONESI ODLUKU
                     </a>
                     <h3 class="text-2xl md:text-7xl font-bold text-fluorescent-green mt-12"> 
                         Dobrodošli u SFteam!
@@ -1489,7 +1596,7 @@ body.light-mode .nav-link.active::after {
                     <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
                     <p class="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">Imate pitanja o SFT21 poslovnom konceptu? <br>Kontaktirajte nas, rado ćemo Vam pomoći.</p>
                 </div>
-                <div class="flex flex-col md:flex-row space-y-12 md:space-y-0 md:space-x-12">
+                  <div class="flex flex-col md:flex-row space-y-12 md:space-y-0 md:space-x-12 md:px-12">
                     <div class="md:w-1/2 fade-in">
                         <h3 class="text-2xl font-bold mb-8">Pošaljite nam poruku</h3>
 <form class="space-y-6">
@@ -1514,8 +1621,8 @@ body.light-mode .nav-link.active::after {
     </div>
 </form>
                     </div>
-                    <div class="md:w-1/2 fade-in" style="animation-delay: 0.3s;">
-                        <div class="glass-card p-8 h-full flex flex-col">
+                         <div class="md:w-1/2 fade-in" style="animation-delay: 0.3s;">
+                         <div class="glass-card p-8 h-full flex flex-col interactive-card">
                             <h3 class="text-2xl font-bold mb-8">Kontakt informacije</h3>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="bg-gray-800 bg-opacity-30 rounded-lg p-4 flex items-start">
@@ -1568,35 +1675,31 @@ body.light-mode .nav-link.active::after {
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto"> Upoznajte SemFi-a našeg naprednog AI agenta koji je tu da vam pomogne na svakom koraku vašeg putovanja kroz SFT21 zajednicu. SemFi je dizajniran da pruži personaliziranu podršku, odgovori na vaša pitanja i pomogne vam da maksimalno iskoristite sve mogućnosti koje nudi naša platforma. </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 fade-in" style="animation-delay: 0.2s;">
-                <div class="glass-card p-6 text-center">
-                    <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-user-check"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Personalizirana podrška</h4>
-                    <p class="text-gray-300 text-sm">Prilagođeni savjeti i pomoć temeljeni na vašim aktivnostima i ciljevima.</p>
-                </div>
-                <div class="glass-card p-6 text-center">
-                    <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-bolt"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Brzi odgovori</h4>
-                    <p class="text-gray-300 text-sm">Trenutni odgovori na često postavljana pitanja i upite o platformi.</p>
-                </div>
-                <div class="glass-card p-6 text-center">
-                    <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-lightbulb"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Proaktivni prijedlozi</h4>
-                    <p class="text-gray-300 text-sm">Prijedlozi za optimizaciju vašeg poslovanja i korištenja SFT21 alata.</p>
-                </div>
-                <div class="glass-card p-6 text-center">
-                    <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-shield-alt"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Sigurnost i privatnost</h4>
-                    <p class="text-gray-300 text-sm">Vaši razgovori su povjerljivi i sigurni, uz poštivanje najviših standarda.</p>
-                </div>
-            </div>
-            <div class="max-w-2xl mx-auto fade-in" style="animation-delay: 0.4s;">
-                 <div class="ai-chat-input-container glass-card p-4 flex items-center gap-3">
-                     <button class="ai-chat-button text-gray-400 hover:text-white text-xl flex-shrink-0"> <i class="fas fa-paperclip"></i> </button>
-                     <input type="text" placeholder="Kako Vam mogu pomoći?" class="ai-chat-input flex-grow bg-transparent border-none focus:outline-none focus:ring-0 text-white placeholder-gray-500">
-                     <button class="ai-chat-button text-purple-400 hover:text-purple-300 text-xl flex-shrink-0"> <i class="fas fa-paper-plane"></i> </button>
-                 </div>
-            </div>
-        </div>
+    <!-- Personalizirana podrška -->
+    <div class="glass-card p-6 text-center interactive-card">
+        <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-user-check"></i></div>
+        <h4 class="text-lg font-semibold mb-2 text-white">Personalizirana podrška</h4>
+        <p class="text-gray-300 text-sm">Prilagođeni savjeti i pomoć temeljeni na vašim aktivnostima i ciljevima.</p>
+    </div>
+    <!-- Brzi odgovori -->
+    <div class="glass-card p-6 text-center interactive-card">
+        <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-bolt"></i></div>
+        <h4 class="text-lg font-semibold mb-2 text-white">Brzi odgovori</h4>
+        <p class="text-gray-300 text-sm">Trenutni odgovori na često postavljana pitanja i upite o platformi.</p>
+    </div>
+    <!-- Proaktivni prijedlozi -->
+    <div class="glass-card p-6 text-center interactive-card">
+        <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-lightbulb"></i></div>
+        <h4 class="text-lg font-semibold mb-2 text-white">Proaktivni prijedlozi</h4>
+        <p class="text-gray-300 text-sm">Prijedlozi za optimizaciju vašeg poslovanja i korištenja SFT21 alata.</p>
+    </div>
+    <!-- Sigurnost i privatnost -->
+    <div class="glass-card p-6 text-center interactive-card">
+        <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-shield-alt"></i></div>
+        <h4 class="text-lg font-semibold mb-2 text-white">Sigurnost i privatnost</h4>
+        <p class="text-gray-300 text-sm">Vaši razgovori su povjerljivi i sigurni, uz poštivanje najviših standarda.</p>
+    </div>
+</div>
     </section>
 
     <section id="cta-section" class="py-24 bg-gradient-to-r from-purple-900 to-purple-800 relative overflow-hidden">
@@ -1986,11 +2089,7 @@ body.light-mode .nav-link.active::after {
             desktopLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); });
             desktopLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); });
         }
-        if (mobileLangTrigger && mobileLangDropdown) {
-            mobileLangTrigger.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); toggleLanguageDropdown(mobileLangDropdown, desktopLangDropdown, mobileLangIcon); });
-            mobileLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); });
-            mobileLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); });
-        }
+
 
         if (hamburger && navMenu && body) {
             hamburger.addEventListener('click', () => {

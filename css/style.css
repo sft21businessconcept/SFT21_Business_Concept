@@ -2698,3 +2698,13 @@ html.light-mode body.register-page nav a.btn-outline {
     border: 0; /* Uklanja defaultni border od iframe-a */
 }
 
+/* --- Stil za aktivne mobilne dropdown menije --- */
+.nav-menu .dropdown-menu,
+.nav-menu .language-dropdown-mobile {
+    display: none;
+}
+
+.nav-menu .dropdown-menu.active,
+.nav-menu .language-dropdown-mobile.active {
+    display: block;
+}

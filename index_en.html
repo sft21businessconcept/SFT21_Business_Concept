@@ -293,6 +293,76 @@ nav .logo-nav, /* Ciljamo omotač loga */
             transform: scale(1.03);
         }
 
+/* ======================================================= */
+/* NOVO: Stilovi za uljepšavanje polja "Poslovni koncept" */
+/* ======================================================= */
+
+/* Glavni stil za kutiju s ikonom */
+.icon-box {
+    border: 1px solid rgba(128, 255, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efekt sjaja na hover mišem */
+.icon-box:hover {
+    border-color: rgba(128, 255, 0, 0.5);
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.3); /* Neonski zeleni sjaj */
+}
+
+/* Kontejner za ikonu kako bi se primijenio neonski tekstualni sjaj */
+.icon-glow i {
+    color: var(--fluorescent-green);
+    /* Neonski sjaj za samu ikonu */
+    text-shadow:
+        0 0 7px rgba(57, 255, 20, 0.5),
+        0 0 10px rgba(57, 255, 20, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+.icon-box:hover .icon-glow i {
+    text-shadow:
+        0 0 10px rgba(57, 255, 20, 0.8),
+        0 0 20px rgba(57, 255, 20, 0.6);
+}
+
+/* Prilagodba za light mode */
+body.light-mode .icon-box {
+    border-color: rgba(106, 27, 154, 0.15);
+}
+body.light-mode .icon-box:hover {
+    border-color: rgba(106, 27, 154, 0.5);
+    box-shadow: 0 0 25px rgba(106, 27, 154, 0.2); /* Ljubičasti sjaj */
+}
+body.light-mode .icon-glow i {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(106, 27, 154, 0.4); /* Ljubičasti sjaj za ikonu */
+}
+body.light-mode .icon-box:hover .icon-glow i {
+    text-shadow: 0 0 15px rgba(106, 27, 154, 0.6);
+}
+
+/* ======================================================= */
+/* NOVO: Rješenje za stabilan hover efekt (bez nestajanja) */
+/* ======================================================= */
+.hover-card-stable {
+    border-color: transparent !important; /* Sakrijemo originalni border */
+    outline: 1px solid rgba(128, 255, 0, 0.2); /* Kreiramo outline koji izgleda kao border */
+    outline-offset: 0px;
+    transition: outline-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card-stable:hover {
+    outline-color: rgba(128, 255, 0, 0.5);
+}
+
+/* Light mode prilagodba */
+body.light-mode .hover-card-stable {
+    outline-color: rgba(106, 27, 154, 0.2);
+}
+body.light-mode .hover-card-stable:hover {
+    outline-color: rgba(106, 27, 154, 0.5);
+}
+
 </style>
 </head>
 
@@ -527,12 +597,12 @@ nav .logo-nav, /* Ciljamo omotač loga */
         </div>
              <a href="#pocetna" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Home</a>
              <a href="#poslovni-koncept" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Business Concept</a>
-             <a href="#startni-paketi" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Starter Packages</a>
              <a href="#license-packages" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">License Packages</a>
+             <a href="#startni-paketi" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Starter Packages</a>
              <a href="#kontakt" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Contact</a>
-             <div class="sft21-nav-item dropdown">
-                <a href="#" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300 sft21-nav-link mobile-dropdown-toggle"> Platforms <i class="fas fa-chevron-down ml-1"></i> </a>
-                <div class="dropdown-menu">
+        <div class="sft21-nav-item dropdown">
+            <a href="#" id="mobile-platform-trigger" class="block py-3 ... mobile-dropdown-toggle"> Platforme ... </a>
+        <div id="mobile-platform-menu" class="dropdown-menu">
                     <a href="sfured_en.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFoffice</a>
                     <a href="sfalgoritam_en.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFalgorithm</a>
                     <a href="video_player_en.html?from=index_en.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">Video Player</a>
@@ -633,17 +703,51 @@ nav .logo-nav, /* Ciljamo omotač loga */
                         <div class="glass-card p-8 relative overflow-hidden">
                             <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-purple-500 opacity-20 rounded-full"></div>
                             <div class="absolute -right-5 -bottom-5 w-24 h-24 bg-purple-600 opacity-30 rounded-full"></div>
-                            <div class="grid grid-cols-2 gap-8 items-stretch">
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-users text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Social Network</h4></div>
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-shopping-cart text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Online Store</h4></div>
-                                 <div class="col-span-2 flex justify-center py-4"><div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2"><i class="fas fa-sync-alt text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Integration</h4></div></div>
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-sitemap text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Network Marketing</h4></div>
-                                 <div class="flex flex-col items-center justify-center p-8 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transition-all duration-300 transform hover:scale-105 icon-box shadow-lg"><i class="fas fa-handshake text-5xl text-purple-300 mb-5"></i><h4 class="text-xl font-bold text-center text-white">Franchise Business</h4></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
+<div class="grid grid-cols-2 gap-8 items-stretch">
+    <!-- Društvena Mreža -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-users text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Social Network</h4>
+    </div>
+    
+    <!-- Online Trgovina -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-shopping-cart text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Online Store</h4>
+    </div>
+    
+    <!-- Integracija -->
+    <div class="col-span-2 flex justify-center py-4">
+        <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
+            <div class="icon-glow mb-5">
+                <i class="fas fa-sync-alt text-6xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-center text-white mt-auto">Integration</h4>
+        </div>
+    </div>
+    
+    <!-- Mrežni Marketing -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-sitemap text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Network Marketing</h4>
+    </div>
+    
+    <!-- Franšizno Poslovanje -->
+    <div class="flex flex-col items-center justify-center p-4 bg-purple-900 bg-opacity-50 rounded-lg hover:bg-opacity-60 transform hover:scale-105 icon-box shadow-lg">
+        <div class="icon-glow mb-5">
+            <i class="fas fa-handshake text-6xl"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center text-white mt-auto">Franchise Business</h4>
+    </div>
+</div>
+</div>
+</section>
 
         <section id="fransizni-model" class="pt-4 pb-12 relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
@@ -750,7 +854,7 @@ nav .logo-nav, /* Ciljamo omotač loga */
 
     <section id="ecosystem-details" class="pt-0 pb-24 relative overflow-hidden">
     <div class="container mx-auto px-6 relative z-10">
-        <div class="glass-card p-8 md:p-12 fade-in max-w-4xl mx-auto">
+    <div class="glass-card p-8 md:p-12 fade-in max-w-4xl mx-auto interactive-card mb-4">
                 <p class="text-lg leading-relaxed mb-6 text-center" style="color: var(--fluorescent-green);"><strong>The InFace Invest Group business ecosystem is based on the integration of several key components:</strong></p>
                 <ul class="space-y-4 mb-8">
                 <li class="flex items-start"><i class="fas fa-cogs text-purple-400 mr-3 mt-1 flex-shrink-0"></i><div><span class="font-semibold text-white">SFoffice (dashboard)</span> - <span class="text-gray-300">A unique platform for monitoring and managing your business.</span></div></li>
@@ -801,28 +905,34 @@ nav .logo-nav, /* Ciljamo omotač loga */
              <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
              <p class="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">Why join the SFT21 community?</p>
          </div>
+             <div class="container mx-auto px-6 relative z-10">
+         <div class="text-center mb-16 fade-in">
+             <h2 class="text-3xl md:text-5xl font-bold mb-4">Advantages</h2>
+             <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
+             <p class="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">Why join the SFT21 community?</p>
+         </div>
          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.1s;">
+             <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.1s;">
                  <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-rocket text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Affordable License Price</h4><p class="text-gray-300">Become part of the ecosystem by purchasing a License Package starting from just €100.</p></div>
+                 <div><h4 class="text-xl font-bold mb-2 text-white">Affordable License Price</h4><p class="text-gray-300">Become part of the ecosystem by purchasing a License package starting from just €100.</p></div>
              </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.2s;">
+             <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.2s;">
                  <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-handshake text-3xl text-purple-300"></i></div></div>
                  <div><h4 class="text-xl font-bold mb-2 text-white">Teamwork</h4><p class="text-gray-300">Synergistic work and unity enable faster growth and greater potential for all community members.</p></div>
              </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.3s;">
+             <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.3s;">
                  <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-chart-line text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Potential for Bonus Earnings</h4><p class="text-gray-300">Through participation in the bonus program, you have the opportunity to earn additional income.</p></div>
+                 <div><h4 class="text-xl font-bold mb-2 text-white">Potential for Bonus Earnings</h4><p class="text-gray-300">By participating in the bonus program, you have the opportunity to generate additional income.</p></div>
              </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.4s;">
+             <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.4s;">
                  <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-globe text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Global Reach</h4><p class="text-gray-300">Access to a global market and the ability to build an international network of associates.</p></div>
+                 <div><h4 class="text-xl font-bold mb-2 text-white">Global Reach</h4><p class="text-gray-300">Access to the global market and the ability to build an international network of associates.</p></div>
              </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.5s;">
+             <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.5s;">
                  <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-shield-alt text-3xl text-purple-300"></i></div></div>
-                 <div><h4 class="text-xl font-bold mb-2 text-white">Security and Transparency</h4><p class="text-gray-300">Business based on transparency, security, and personal data protection.</p></div>
+                 <div><h4 class="text-xl font-bold mb-2 text-white">Security and Transparency</h4><p class="text-gray-300">Business operations based on transparency, security, and personal data protection.</p></div>
              </div>
-             <div class="flex items-start space-x-4 fade-in" style="animation-delay: 0.6s;">
+             <div class="flex items-start space-x-4 fade-in interactive-card" style="animation-delay: 0.6s;">
                  <div class="flex-shrink-0"><div class="w-16 h-16 rounded-full bg-purple-800 bg-opacity-70 flex items-center justify-center shadow-lg"><i class="fas fa-desktop text-3xl text-purple-300"></i></div></div>
                  <div><h4 class="text-xl font-bold mb-2 text-white">Digital Tools</h4><p class="text-gray-300">Access to advanced digital tools for managing your business and tracking results.</p></div>
              </div>
@@ -951,7 +1061,7 @@ nav .logo-nav, /* Ciljamo omotač loga */
             <h2 class="text-3xl md:text-5xl font-bold mb-4">Explanation of the Bonus Program for License Owners</h2>
             <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
         </div>
-            <div class="glass-card p-8 md:p-12 fade-in">
+            <div class="glass-card p-8 md:p-12 fade-in interactive-card">
             <div class="text-gray-300 space-y-4 text-justify leading-relaxed">
                 <h4 class="text-xl font-semibold text-fluorescent-green mt-6 mb-3">PHASE 1 BONUS and PHASE 2 BONUS</h4>                        
                 <p><strong>By purchasing one or more selected License Packages, you gain the right to participate in the Bonus Program, which opens up the possibility of earning bonuses in two phases, depending on the company's business success.</strong></p>
@@ -1089,7 +1199,7 @@ nav .logo-nav, /* Ciljamo omotač loga */
  </div>
 </div>
 <div id="individual-package" class="container mx-auto px-6 relative z-10 mt-12 fade-in" style="animation-delay: 0.7s;">
-        <div class="glass-card max-w-5xl mx-auto ip-wide-card overflow-hidden interactive-card">
+<div class="glass-card mx-auto ip-wide-card overflow-hidden interactive-card" style="max-width: 500px;">
         <div class="ip-wide-card-header"> <h3 class="ip-wide-card-header-title">LP7: Individual Package</h3> </div>
         <div class="p-8 md:p-12">
             <p class="text-gray-300 text-center leading-relaxed mb-6"> Choose the license purchase option that suits you best. </p>
@@ -1197,22 +1307,22 @@ nav .logo-nav, /* Ciljamo omotač loga */
             <div class="animated-background" style="display:none;">
                 <div class="bg-dots"></div><div class="glow" style="top: 70%; left: 80%; opacity: 0.08;"></div>
             </div>
-            <div class="fade-in glass-card p-8 md:p-12 mb-12">
+                <div class="fade-in glass-card p-8 md:p-12 mb-12 interactive-card hover-card-stable w-full md:w-5/6 mx-auto">
                 <h2 class="text-xl md:text-2xl mb-6 text-purple-300 text-center">In the current phase of building the core infrastructure, including the development of key platforms (SFoffice, SFnet, SFshop), accessing our community with these benefits is exclusively possible by purchasing one or more License Packages.<br></br>Upon completion of the upgrade and the launch of the core software, we will begin franchise operations, and the opportunity to purchase License Packages under these terms will be discontinued.<br></br>After that, business will continue with the option to purchase Starter Packages for active members or through free registration for all users of our social network and webshop.</h2>
                 <div class="text-gray-300 space-y-4 text-justify leading-relaxed"></div>
             </div>
         </section>
 
 <section id="startni-paketi" class="pt-10 pb-12 relative overflow-hidden">
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16 fade-in">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4">Starter Packages</h2>
-            <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
-        </div>
-        <div class="overflow-x-auto fade-in">
-            <table class="pricing-table">
-                <thead><tr><th>Starter Package</th><th>Price (€)</th><th>Subscription Periods</th><th>Max Earnings Limit / Max Possible Limit</th><th>SFpoints</th><th>SFcodes</th><th>Action</th></tr></thead>
-                <tbody>
+<div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4">Starter Packages</h2>
+        <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
+    </div>
+    <div class="overflow-x-auto fade-in">
+        <table class="pricing-table mx-auto"> 
+            <thead><tr><th>Starter Package</th><th>Price (€)</th><th>Subscription Periods</th><th>Max Earnings Limit / Max Possible Limit</th><th>SFpoints</th><th>SFcodes</th><th>Action</th></tr></thead>
+            <tbody>
                     <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP1</td><td>50</td><td>1</td><td>50 SFC / 1050 SFC</td><td>50</td><td>1</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Select</a></td></tr>
                     <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP2</td><td>200</td><td>4</td><td>400 SFC / 1250 SFC</td><td>200</td><td>4</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Select</a></td></tr>
                     <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP3</td><td>350</td><td>7</td><td>700 SFC / 1400 SFC</td><td>350</td><td>7</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Select</a></td></tr>
@@ -1228,7 +1338,7 @@ nav .logo-nav, /* Ciljamo omotač loga */
 
 <section id="paket-info" class="py-4 relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
-            <div class="glass-card p-8 md:p-12 fade-in">
+             <div class="glass-card p-8 md:p-12 fade-in interactive-card max-w-7xl w-full mx-auto">
                     <p class="text-gray-200 text-lg leading-relaxed mb-6 text-center font-bold">A Starter Package is an activation module for a user account that determines the number of paid subscription periods, the maximum earnings limit, the highest possible limit, the number of SFpoints, and the number of SFcodes.</p>
                     <p class="text-gray-200 text-lg leading-relaxed text-justify">The price of the SFT21 franchise is €1,450. Payment will be possible via payment processors or by transferring funds from another user's account. It can be paid in a single installment by purchasing SP7, which offers the best benefits, or by purchasing smaller Starter packages. With smaller Starter packages, the remaining subscription periods can be paid for later, or the system will eventually pay for them with earnings. Upon payment of the final 21st subscription period, the SFT21 franchise is considered fully paid.</p>
                 </div>
@@ -1254,21 +1364,19 @@ nav .logo-nav, /* Ciljamo omotač loga */
             </div>
         </section>
         
-        <section id="vazna-napomena" class="py-12 relative overflow-hidden">
-        <div class="glass-card p-8 md:p-12 fade-in">
-                <div class="glass-card p-8 md:p-12 fade-in max-w-5xl mx-auto">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-300 uppercase">Important Note</h3>
-                    <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
-                        <p>By purchasing a selected Starter or License Package, your maximum earnings limit for one subscription period is determined.</p>
-                        <p>This ranges from €50 if you choose SP1 to a maximum of €2,100 by selecting SP7 or purchasing a corresponding License Package.</p>
-                        <p>However, regardless of which Starter package you begin with, you can always increase your maximum earnings limit by purchasing additional subscription periods or by building your career status through the registration of new members - SFstarters and SFfranchisees.</p>
-                        <p>This is a fact that, once understood, leaves no one indifferent, because this project, unlike others, offers the same opportunity for advancement and achieving maximum potential income regardless of the initial package price.</p>
-                        <p>The maximum earnings limit obtained through career status can range from a minimum of €2,200 to a maximum of €100,000, determined by the number of direct and indirect members.</p>
-                        <p> Building a career is not mandatory, meaning a user does not have to work on registering new users if they do not wish to.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section id="vazna-napomena" class="py-12 relative overflow-hidden">
+    <div class="glass-card p-8 md:p-12 fade-in max-w-5xl mx-auto interactive-card">
+        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-300 uppercase">Important Note</h3>
+        <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
+            <p>By purchasing a selected Starter or License Package, your maximum earnings limit for one subscription period is determined.</p>
+            <p>This ranges from €50 if you choose SP1 to a maximum of €2,100 by selecting SP7 or purchasing a corresponding License Package.</p>
+            <p>However, regardless of which Starter package you begin with, you can always increase your maximum earnings limit by purchasing additional subscription periods or by building your career status through the registration of new members - SFstarters and SFfranchisees.</p>
+            <p>This is a fact that, once understood, leaves no one indifferent, because this project, unlike others, offers the same opportunity for advancement and achieving maximum potential income regardless of the initial package price.</p>
+            <p>The maximum earnings limit obtained through career status can range from a minimum of €2,200 to a maximum of €100,000, determined by the number of direct and indirect members.</p>
+            <p>Building a career is not mandatory, meaning a user does not have to work on registering new users if they do not wish to.</p>
+        </div>
+    </div>
+</section>
 
                  <section id="vasa-odluka" class="pt-8 pb-24 relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
@@ -1314,7 +1422,7 @@ nav .logo-nav, /* Ciljamo omotač loga */
                      </div>
                       <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.3s;">
                          <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">Why should I register in your community at all?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
-                         <div class="accordion-content"><div class="px-6"><p>There are many reasons why you should register in our community, so we will list only the most important and significant ones for our members:</p><p>- The primary goal and purpose of our business concept and the consumer community we are creating is to connect the most important elements in the trade process – producers, traders, and consumers. Our mission is to unite as many domestic producers and traders as possible with loyal consumers to provide our children and all of us with domestic and, if possible, healthier and higher quality products and services.</p><p>- We offer a project and business proposal that provides our users with the opportunity to earn additional income as well as create a new source of income.</p><p>- We provide free use of social network pages for user connection and communication, as well as online store pages with many associated benefits.</p><p>- We offer you the opportunity to participate in many prize draws.</p><p>- We offer you the opportunity to educate yourself in various aspects of internet business, which will constantly develop and expand, following global developments in these fields.</p><p>- You will meet new people, make new friends...</p><p>No one is forcing you to do anything; we do not want to persuade or particularly convince anyone, but we would like to encourage you to take some time and, in the peace of your home, study in more detail what we do, our business concept, and our business offer. We are confident that you will surely find good reasons why you will want to be part of our community, part of the SFteam. It is up to you to study everything that interests you, to ask, discuss, and research, and ultimately, with your own mind and sound judgment, make the best decision for yourself.</p></div></div>
+                         <div class="accordion-content"><div class="px-6"><p>There are many reasons why you should register in our community, so we will list only the most important and significant ones for our members:</p><p>- The primary goal and purpose of our business concept and the consumer community we are creating is to connect the most important elements in the trade process – producers, traders, and consumers. Our mission is to unite as many domestic producers and traders as possible with loyal consumers to provide our children and all of us with domestic and, if possible, healthier and higher quality products and services.</p><p>- We offer a project and business proposal that provides our users with the opportunity to earn additional income as well as create a new source of income.</p><p>- We provide free use of our social network pages for user connection and communication, as well as our online store pages, along with the many benefits that come with them.</p><p>- We offer you the opportunity to participate in many prize draws.</p><p>- We offer you the opportunity to educate yourself in various aspects of internet business, which will constantly develop and expand, following global developments in these fields.</p><p>- You will meet new people, make new friends...</p><p>No one is forcing you to do anything; we do not want to persuade or particularly convince anyone, but we would like to encourage you to take some time and, in the peace of your home, study in more detail what we do, our business concept, and our business offer. We are confident that you will surely find good reasons why you will want to be part of our community, part of the SFteam. It is up to you to study everything that interests you, to ask, discuss, and research, and ultimately, with your own mind and sound judgment, make the best decision for yourself.</p></div></div>
                       </div>
                       <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.4s;">
                            <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">What makes the SFT21 Business Concept special compared to similar projects?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
@@ -1468,18 +1576,18 @@ nav .logo-nav, /* Ciljamo omotač loga */
             </div>
          </section>
     
-         <section id="odluka-na-vama" class="pt-12 pb-20 relative overflow-hidden">
+               <section id="odluka-na-vama" class="pt-12 pb-20 relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10 text-center"> 
                 <div class="fade-in max-w-3xl mx-auto"> 
                     <h2 class="text-3xl md:text-5xl font-bold mb-8 text-fluorescent-green">The Decision is Yours</h2> 
                     <p class="text-xl text-gray-300 mb-6 leading-relaxed"> 
-                        We have launched the SFT21 project with the best intentions, honorably, fairly, and above all, transparently...<br>
+                        We started the SFT21 project with the best intentions, honorably, fairly, and above all, transparently...<br>
                         We know and believe in the potential and power of the community we are creating, as well as its social value.
                     </p>
                     <p class="text-xl text-gray-300 mb-10 leading-relaxed"> 
-                        We want to share our vision with you so that you too can recognize the opportunity of a lifetime – the chance to build together a <strong class="text-white">TECHNOLOGY COMPANY</strong> and an <strong class="text-white">ONLINE COMMUNITY</strong> owned by its partners, members, users, and franchisees.
+                        We want to share our vision with you so that you too can recognize this once-in-a-lifetime opportunity – the chance to build a <strong class="text-white">TECHNOLOGY COMPANY</strong> and an <strong class="text-white">ONLINE COMMUNITY</strong> owned by its investors, members, users, and franchisees together.
                     </p>
-                    <a href="#" class="btn-primary inline-block text-lg px-8 py-4 mb-12 trigger-choose-investor-type-popup"> 
+                    <a href="#" class="btn-primary inline-block text-2xl px-12 py-6 mb-12 trigger-choose-investor-type-popup"> 
                         MAKE YOUR DECISION
                     </a>
                     <h3 class="text-2xl md:text-7xl font-bold text-fluorescent-green mt-12"> 
@@ -1494,35 +1602,35 @@ nav .logo-nav, /* Ciljamo omotač loga */
                 <div class="text-center mb-16 fade-in">
                     <h2 class="text-3xl md:text-5xl font-bold mb-4">Contact Us</h2>
                     <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
-                    <p class="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">Do you have questions about the SFT21 business concept? <br>Contact us, we will be happy to help you.</p>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">Do you have questions about the SFT21 business concept? <br>Contact us, we'll be happy to help.</p>
                 </div>
                 <div class="flex flex-col md:flex-row space-y-12 md:space-y-0 md:space-x-12">
                     <div class="md:w-1/2 fade-in">
                         <h3 class="text-2xl font-bold mb-8">Send us a message</h3>
-<form class="space-y-6">
-    <div>
-        <label for="name" class="block text-gray-300 mb-2">Your Name</label>
-        <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name">
-    </div>
-    <div>
-        <label for="email" class="block text-gray-300 mb-2">Email Address</label>
-        <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address">
-    </div>
-    <div>
-        <label for="subject" class="block text-gray-300 mb-2">Subject</label>
-        <input type="text" id="subject" name="subject" class="form-input" placeholder="Enter the subject of your message">
-    </div>
-    <div>
-        <label for="message" class="block text-gray-300 mb-2">Your Message</label>
-        <textarea id="message" name="message" rows="5" class="form-input" placeholder="Enter your message"></textarea>
-    </div>
-    <div>
-        <button type="submit" class="btn-primary w-full">Send Message</button>
-    </div>
-</form>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-gray-300 mb-2">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-300 mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-300 mb-2">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input" placeholder="Enter the subject of your message">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-300 mb-2">Your Message</label>
+                                <textarea id="message" name="message" rows="5" class="form-input" placeholder="Enter your message"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn-primary w-full">Send Message</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="md:w-1/2 fade-in" style="animation-delay: 0.3s;">
-                        <div class="glass-card p-8 h-full flex flex-col">
+                        <div class="glass-card p-8 h-full flex flex-col interactive-card">
                             <h3 class="text-2xl font-bold mb-8">Contact Information</h3>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="bg-gray-800 bg-opacity-30 rounded-lg p-4 flex items-start">
@@ -1539,32 +1647,26 @@ nav .logo-nav, /* Ciljamo omotač loga */
                                         <p class="text-gray-300 text-sm">office@infaceinvestgroup.com</p>
                                     </div>
                                 </div>
-                                <!--<div class="bg-gray-800 bg-opacity-30 rounded-lg p-4 flex items-start">
-                                    <div class="text-purple-400 text-xl mr-4 mt-1 flex-shrink-0"><i class="fas fa-phone-alt"></i></div>
-                                    <div>
-                                        <h4 class="text-lg font-bold mb-2 text-white">Phone</h4>
-                                        <p class="text-gray-300 text-sm">+1XXXXXXXXX</p>
-                                        <p class="text-gray-400 text-xs mt-1">Working hours: Mon-Fri, 9:00-17:00</p>
-                                    </div>
-                                </div>-->
                                 <div class="bg-gray-800 bg-opacity-30 rounded-lg p-4 flex items-start">
                                     <div class="text-purple-400 text-xl mr-4 mt-1 flex-shrink-0"><i class="fas fa-share-alt"></i></div>
                                     <div>
                                         <h4 class="text-lg font-bold mb-2 text-white">Social Media</h4>
-<div class="flex space-x-4 social-icons">
-    <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-facebook-f text-lg"></i></a>
-    <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-x-twitter text-lg"></i></a>
-    <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-instagram text-lg"></i></a>
-    <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-linkedin-in text-lg"></i></a>
-</div>
+                                        <div class="flex space-x-4 social-icons">
+                                            <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-facebook-f text-lg"></i></a>
+                                            <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-x-twitter text-lg"></i></a>
+                                            <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-instagram text-lg"></i></a>
+                                            <a href="#" class="text-gray-300 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-linkedin-in text-lg"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-8 rounded-lg overflow-hidden shadow-lg">
-                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.559881880479!2d-104.819771684346!3d41.1444199792873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876f3d100388a10b%3A0x628c117b12d78779!2s2120%20Carey%20Ave%2C%20Cheyenne%2C%20WY%2082001%2C%20USA!5e0!3m2!1shr!2shr!4v1715886488339!5m2!1shr!2shr" class="w-full h-64 md:h-80 border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Map - Wyoming Location"></iframe>                            </div>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.559881880479!2d-104.819771684346!3d41.1444199792873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876f3d100388a10b%3A0x628c117b12d78779!2s2120%20Carey%20Ave%2C%20Cheyenne%2C%20WY%2082001%2C%20USA!5e0!3m2!1shr!2shr!4v1715886488339!5m2!1shr!2shr" class="w-full h-64 md:h-80 border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Map - Wyoming Location"></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </section>    
 
       <section id="semfiai" class="py-24 relative overflow-hidden">
@@ -1572,27 +1674,27 @@ nav .logo-nav, /* Ciljamo omotač loga */
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-5xl font-bold mb-4">SemFi</h2>
                 <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto"> Meet SemFi, our advanced AI agent here to help you every step of the way on your journey through the SFT21 community. SemFi is designed to provide personalized support, answer your questions, and help you make the most of all the opportunities our platform offers. </p>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto"> Meet SemFi, our advanced AI agent, here to assist you at every step of your journey through the SFT21 community. SemFi is designed to provide personalized support, answer your questions, and help you make the most of all the opportunities our platform offers. </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 fade-in" style="animation-delay: 0.2s;">
-                <div class="glass-card p-6 text-center">
+                <div class="glass-card p-6 text-center interactive-card">
                     <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-user-check"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Personalized Support</h4>
-                    <p class="text-gray-300 text-sm">Customized advice and assistance based on your activities and goals.</p>
+                    <h4 class="text-lg font-semibold mb-2 text-white">Personalized support</h4>
+                    <p class="text-gray-300 text-sm">Tailored advice and help based on your activities and goals.</p>
                 </div>
-                <div class="glass-card p-6 text-center">
+                <div class="glass-card p-6 text-center interactive-card">
                     <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-bolt"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Quick Answers</h4>
+                    <h4 class="text-lg font-semibold mb-2 text-white">Quick responses</h4>
                     <p class="text-gray-300 text-sm">Instant answers to frequently asked questions and inquiries about the platform.</p>
                 </div>
-                <div class="glass-card p-6 text-center">
+                <div class="glass-card p-6 text-center interactive-card">
                     <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-lightbulb"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Proactive Suggestions</h4>
+                    <h4 class="text-lg font-semibold mb-2 text-white">Proactive suggestions</h4>
                     <p class="text-gray-300 text-sm">Suggestions for optimizing your business and using SFT21 tools.</p>
                 </div>
-                <div class="glass-card p-6 text-center">
+                <div class="glass-card p-6 text-center interactive-card">
                     <div class="mb-4 text-4xl text-purple-400"><i class="fas fa-shield-alt"></i></div>
-                    <h4 class="text-lg font-semibold mb-2 text-white">Security and Privacy</h4>
+                    <h4 class="text-lg font-semibold mb-2 text-white">Security and privacy</h4>
                     <p class="text-gray-300 text-sm">Your conversations are confidential and secure, respecting the highest standards.</p>
                 </div>
             </div>
@@ -1615,7 +1717,6 @@ nav .logo-nav, /* Ciljamo omotač loga */
             </div>
         </div>
     </section>
-
     </main>
 
     <footer class="py-16 bg-gray-900 border-t border-gray-800">
@@ -1984,11 +2085,7 @@ nav .logo-nav, /* Ciljamo omotač loga */
             desktopLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); });
             desktopLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); });
         }
-        if (mobileLangTrigger && mobileLangDropdown) {
-            mobileLangTrigger.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); toggleLanguageDropdown(mobileLangDropdown, desktopLangDropdown, mobileLangIcon); });
-            mobileLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); });
-            mobileLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); });
-        }
+
 
         if (hamburger && navMenu && body) {
             hamburger.addEventListener('click', () => {
