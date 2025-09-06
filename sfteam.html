@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SFteam - A Proud Community | SFT21</title>
+    <title>SFteam - Ponosna Zajednica | SFT21</title>
 
-    <!-- SEO and Social Media Meta Tags -->
-    <meta name="description" content="Meet SFteam, the proud community of good people behind the SFT21 concept. See our management, members with career statuses, and their experiences.">
-    <meta property="og:title" content="SFteam - The Heart of the SFT21 Community">
-    <meta property="og:description" content="Discover the faces and stories that make up our community. From management to our most successful members, this is SFteam.">
+    <!-- SEO i Social Media Meta Tagovi -->
+    <meta name="description" content="Upoznajte SFteam, ponosnu zajednicu dobrih ljudi koja stoji iza SFT21 koncepta. Pogledajte naš menadžment, članove s karijernim statusima i njihova iskustva.">
+    <meta property="og:title" content="SFteam - Srce SFT21 Zajednice">
+    <meta property="og:description" content="Otkrijte lica i priče koje čine našu zajednicu. Od menadžmenta do najuspješnijih članova, ovo je SFteam.">
     <meta property="og:image" content="https://infaceinvestgroup.github.io/SFT21_Business_Concept/img/sfteam_og.png">
-    <meta property="og:url" content="https://infaceinvestgroup.github.io/SFT21_Business_Concept/sfteam_en.html">
+    <meta property="og:url" content="https://infaceinvestgroup.github.io/SFT21_Business_Concept/sfteam.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- ============================================= -->
-    <!-- UNIVERSAL SCRIPT FOR THEME INITIALIZATION -->
+    <!-- UNIVERZALNA SKRIPTA ZA INICIJALIZACIJU TEME -->
     <!-- ============================================= -->
     <script>
         function applySft21Theme() {
@@ -24,7 +24,7 @@
                 document.documentElement.classList.toggle('light-mode', theme === 'light');
                 document.body.classList.toggle('light-mode', theme === 'light');
             } catch (e) {
-                console.error('Error applying theme:', e);
+                console.error('Greška pri primjeni teme:', e);
             }
         }
 
@@ -44,34 +44,34 @@
         });
     </script>
     
-    <!-- Main Styles -->
+    <!-- Glavni Stilovi -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- STYLES FOR SFTEAM.HTML -->
+    <!-- STILOVI ZA SFTEAM.HTML -->
     <style>
-        .hero-media-container {
+.hero-media-container {
             width: 100%;
-            height: 90vh; /* <-- ADJUST FRAME HEIGHT HERE */
+            height: 90vh; /* <-- OVDJE PODEŠAVATE VISINU OKVIRA */
             min-height: 500px;
             
-            /* === NEW CODE FOR BACKGROUND IMAGE === */
+            /* === NOVI KOD ZA POZADINSKU SLIKU === */
             background-image: url('img/sfteam.png');
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center 40%; /* <-- ADJUST POSITION HERE */
+            background-position: center 40%; /* <-- OVDJE PODEŠAVATE POLOŽAJ */
         }
 
         .hero-media-container img.hero-image {
             width: 100%;
-            height: auto; /* <-- IMAGE MAINTAINS ITS RATIO */
-            position: absolute; /* <-- ABSOLUTE POSITIONING */
-            top: 50%; /* <-- INITIAL POSITION IS THE MIDDLE */
+            height: auto; /* <-- SLIKA ZADRŽAVA SVOJ OMJER */
+            position: absolute; /* <-- APSOLUTNO POZICIONIRANJE */
+            top: 50%; /* <-- POČETNA POZICIJA JE SREDINA */
             left: 0;
-            transform: translateY(-60%); /* <-- VERTICAL CENTERING */
+            transform: translateY(-60%); /* <-- VERTIKALNO CENTRIRANJE */
         }
 
         .team-subtitle { color: #d1d5db; }
@@ -88,7 +88,7 @@
         .career-status-section {
          padding: 2rem 0;
          border-bottom: 1px solid rgba(128, 255, 0, 0.1);
-         text-align: center;
+         text-align: center; /* Ovo centrira SVE inline i inline-block elemente, uključujući naslov */
         }
 
         body.light-mode .career-status-section {
@@ -98,9 +98,10 @@
             border-bottom: none;
         }
 
+        /* === IZMJENA: Centriran naslov i povećan font === */
         .career-status-title {
             text-align: center;
-            font-size: 1.75rem;
+            font-size: 1.75rem; /* Povećano sa 1.5rem */
             font-weight: 700;
             margin-bottom: 2.5rem;
             text-transform: uppercase;
@@ -115,8 +116,8 @@
          display: grid; 
          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
          gap: 1.5rem; 
-         width: 100%;
-         padding: 0 1rem;
+         width: 100%; /* Osigurava da se privremeni tekst "Uskoro..." ispravno centrira */
+         padding: 0 1rem; /* Mali padding da se ne zalijepi za rubove na mobilnom */
         }
 
         .career-members-grid > .text-center {
@@ -133,34 +134,14 @@
         .status-zlato img { border-color: #ffd700; }
         .status-srebro img { border-color: #c0c0c0; }
 
-        /* Slider (Swiper.js) Styles */
+        /* Slider (Swiper.js) Stilovi */
         .testimonials-slider { position: relative; padding: 0 50px; }
         .swiper-button-next, .swiper-button-prev { color: var(--fluorescent-green) !important; }
         body.light-mode .swiper-button-next, body.light-mode .swiper-button-prev { color: var(--primary-color) !important; }
         .swiper-pagination-bullet-active { background: var(--fluorescent-green) !important; }
         body.light-mode .swiper-pagination-bullet-active { background: var(--primary-color) !important; }
 
-        /* === START OF CHANGE === */
-        .swiper-slide .testimonial-card { 
-            height: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-        }
-        .testimonial-card {
-            background-color: rgba(13, 1, 24, 0.4);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(128, 255, 0, 0.1);
-        }
-        body.light-mode .testimonial-card {
-            background-color: rgba(255, 255, 255, 0.6);
-            border-color: rgba(106, 27, 154, 0.1);
-        }
-        /* === END OF CHANGE === */
-        
+        .testimonial-card { height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
         .testimonial-card blockquote { font-style: italic; font-size: 1.1rem; line-height: 1.6; position: relative; padding-left: 2rem; border-left: 4px solid var(--fluorescent-green); }
          body.light-mode .testimonial-card blockquote { border-left-color: var(--primary-color); }
         .testimonial-card .author-info { display: flex; align-items: center; margin-top: 1.5rem; }
@@ -170,13 +151,14 @@
         body.light-mode .testimonial-card .author-info cite span { color: #64748b; }
 
         body.light-mode #career-status {
-            background-color: transparent;
+            background-color: transparent; /* Postavljeno na prozirno da se vidi animacija */
         }
 
         body.light-mode .career-members-grid .text-gray-400 {
-            color: #64748b;
+            color: #64748b; /* Malo tamnija siva za bolju čitljivost (Tailwind slate-500) */
         }
 
+        /* === STIL ZA ANIMIRANU POZADINU === */
         canvas#network-canvas {
             display: block;
             position: fixed;
@@ -184,12 +166,12 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-            background-color: #1d012e;
+            z-index: -1; /* Postavlja ga iza svog sadržaja */
+            pointer-events: none; /* Da ne ometa klikanje */
+            background-color: #1d012e; /* Tamna pozadina kao fallback */
         }
         body.light-mode canvas#network-canvas {
-            background-color: transparent;
+            background-color: transparent; /* U light modu je pozadina canvasa prozirna */
         }
     
 </style>
@@ -203,7 +185,7 @@
      <nav class="fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="index_en.html" class="flex items-center">
+                <a href="index.html" class="flex items-center">
                     <img src="img/IFIG-logo.png" alt="InFace Invest Group logo" id="site-logo" class="h-auto w-12 mr-4">
                      <div class="flex flex-col logo-nav"> 
                          <span class="small-text">InFace Invest Group</span>
@@ -211,8 +193,8 @@
                     </div>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="index_en.html" class="nav-link transition-colors duration-300">Home</a>
-                    <a href="register_en.html" class="btn-primary text-xs">Registration</a>
+                    <a href="index.html" class="nav-link transition-colors duration-300">Početna stranica</a>
+                    <a href="register.html" class="btn-primary text-xs">Registracija</a>
                 </div>
                 <div class="md:hidden">
                     <div class="hamburger">
@@ -222,10 +204,10 @@
             </div>
         </div>
         <div class="nav-menu md:hidden">
-             <a href="index_en.html" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Home</a>
+             <a href="index.html" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Početna stranica</a>
              <div class="flex flex-col space-y-3 mt-5 px-6">
-                <a href="login_en.html" class="btn-primary text-center">Login</a>
-                <a href="register_en.html" class="btn-primary text-center">Registration</a>
+                <a href="login.html" class="btn-primary text-center">Prijava</a>
+                <a href="register.html" class="btn-primary text-center">Registracija</a>
             </div>
         </div>
     </nav>
@@ -237,155 +219,154 @@
         <section class="py-16 text-center">
             <div class="container mx-auto px-6">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">SFteam</h1>
-                <p class="text-xl md:text-2xl text-gray-300 font-light">A proud community of good people</p>
+                <p class="text-xl md:text-2xl text-gray-300 font-light">Ponosna zajednica dobrih ljudi</p>
             </div>
         </section>
 
         <section id="management" class="py-16">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Company Management</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Menadžment kompanije</h2>
                     <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <div class="glass-card p-6 member-card">
                     <img src="img/mladen-pejic.png" alt="Mladen Pejic" class="w-100 h-100 rounded-full border-2 border-green-400 mr-4">
                         <h3>Mladen Pejić</h3>
-                        <p>Co-owner and Founder</p>
+                        <p>Suvlasnik i osnivač</p>
                     </div>
                     <div class="glass-card p-6 member-card">
                     <img src="img/zoran-lazarevic.png" alt="Zoran Lazarevic" class="w-100 h-100 rounded-full border-2 border-green-400 mr-4">
                         <h3>Zoran Lazarević</h3>
-                        <p>Co-owner and Founder</p>
+                        <p>Suvlasnik i osnivač</p>
                     </div>
                 </div>
 
                 <div class="text-center mt-24 mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 team-subtitle">Core Team</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 team-subtitle">Glavni tim</h2>
                 </div>
                  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
                     <div class="glass-card p-6 member-card">
-                        <img src="https://via.placeholder.com/400x400.png?text=Photo" alt="Member Name 1">
-                        <h3>Member Name 1</h3>
-                        <p>Member Position</p>
+                        <img src="https://via.placeholder.com/400x400.png?text=Slika" alt="Ime Člana 1">
+                        <h3>Ime Člana 1</h3>
+                        <p>Pozicija člana</p>
                     </div>
                     <div class="glass-card p-6 member-card">
-                        <img src="https://via.placeholder.com/400x400.png?text=Photo" alt="Member Name 2">
-                        <h3>Member Name 2</h3>
-                        <p>Member Position</p>
+                        <img src="https://via.placeholder.com/400x400.png?text=Slika" alt="Ime Člana 2">
+                        <h3>Ime Člana 2</h3>
+                        <p>Pozicija člana</p>
                     </div>
                     <div class="glass-card p-6 member-card">
-                        <img src="https://via.placeholder.com/400x400.png?text=Photo" alt="Member Name 3">
-                        <h3>Member Name 3</h3>
-                        <p>Member Position</p>
+                        <img src="https://via.placeholder.com/400x400.png?text=Slika" alt="Ime Člana 3">
+                        <h3>Ime Člana 3</h3>
+                        <p>Pozicija člana</p>
                     </div>
                     <div class="glass-card p-6 member-card">
-                        <img src="https://via.placeholder.com/400x400.png?text=Photo" alt="Member Name 4">
-                        <h3>Member Name 4</h3>
-                        <p>Member Position</p>
+                        <img src="https://via.placeholder.com/400x400.png?text=Slika" alt="Ime Člana 4">
+                        <h3>Ime Člana 4</h3>
+                        <p>Pozicija člana</p>
                     </div>
                 </div>
             </div>
         </section>
         
         <!-- Career Status Section -->
-        <section id="career-status" class="py-16 bg-gray-900 bg-opacity-50">
+        <section id="career-status" class="py-16">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4">SFteam – Career Statuses</h2>
-                    <p class="text-lg text-gray-400 max-w-3xl mx-auto">We are proud of our members who achieve the highest levels of success through their work.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">SFteam – Karijerni statusi</h2>
+                    <p class="text-lg text-gray-400 max-w-3xl mx-auto">Ponosni smo na članove koji svojim radom dostižu najviše razine uspjeha.</p>
                 </div>
                 
-                <div class="career-status-section">
-                    <h3 class="career-status-title">SFT DIAMOND</h3>
-                    <div class="career-members-grid" id="sft-dijamant-grid">
-                        <div class="text-center py-8">
-                            <img src="img/sftdijamant.png" alt="SFT Diamond" class="w-20 h-20 mx-auto mb-4 opacity-70">
-                            <p class="text-gray-400">There are currently no members with this status.</p>
-                        </div>
-                    </div>
-                </div>
+<div class="career-status-section">
+    <h3 class="career-status-title">SFT DIJAMANT</h3>
+    <div class="career-members-grid" id="sft-dijamant-grid">
+        <div class="text-center py-8">
+            <img src="img/sftdijamant.png" alt="SFT Dijamant" class="w-20 h-20 mx-auto mb-4 opacity-70">
+            <p class="text-gray-400">Trenutno nemamo članova s ovim statusom</p>
+        </div>
+    </div>
+</div>
 
-                <div class="career-status-section">
-                    <h3 class="career-status-title">BLUE DIAMOND</h3>
-                    <div class="career-members-grid" id="plavi-dijamant-grid">
-                        <div class="text-center py-8">
-                            <img src="img/plavi dijamant.png" alt="Blue Diamond" class="w-20 h-20 mx-auto mb-4 opacity-70">
-                            <p class="text-gray-400">There are currently no members with this status.</p>
-                        </div>
-                    </div>
-                </div>
+<div class="career-status-section">
+    <h3 class="career-status-title">PLAVI DIJAMANT</h3>
+    <div class="career-members-grid" id="plavi-dijamant-grid">
+        <div class="text-center py-8">
+            <img src="img/plavi dijamant.png" alt="Plavi Dijamant" class="w-20 h-20 mx-auto mb-4 opacity-70">
+            <p class="text-gray-400">Trenutno nemamo članova s ovim statusom</p>
+        </div>
+    </div>
+</div>
                 
-                <div class="career-status-section">
-                    <h3 class="career-status-title">DIAMOND</h3>
-                    <div class="career-members-grid" id="dijamant-grid">
-                        <div class="text-center py-8">
-                            <img src="img/dijamant.png" alt="Diamond" class="w-20 h-20 mx-auto mb-4 opacity-70">
-                            <p class="text-gray-400">There are currently no members with this status.</p>
-                        </div>
-                    </div>
-                </div>
+<div class="career-status-section">
+    <h3 class="career-status-title">DIJAMANT</h3>
+    <div class="career-members-grid" id="dijamant-grid">
+        <div class="text-center py-8">
+            <img src="img/dijamant.png" alt="Dijamant" class="w-20 h-20 mx-auto mb-4 opacity-70">
+            <p class="text-gray-400">Trenutno nemamo članova s ovim statusom</p>
+        </div>
+    </div>
+</div>
 
-                <div class="career-status-section">
-                    <h3 class="career-status-title">EMERALD</h3>
-                    <div class="career-members-grid" id="smaragd-grid">
-                        <div class="text-center py-8">
-                            <img src="img/smaragd.png" alt="Emerald" class="w-20 h-20 mx-auto mb-4 opacity-70">
-                            <p class="text-gray-400">There are currently no members with this status.</p>
-                        </div>
-                    </div>
-                </div>
+<div class="career-status-section">
+    <h3 class="career-status-title">SMARAGD</h3>
+    <div class="career-members-grid" id="smaragd-grid">
+        <div class="text-center py-8">
+            <img src="img/smaragd.png" alt="Smaragd" class="w-20 h-20 mx-auto mb-4 opacity-70">
+            <p class="text-gray-400">Trenutno nemamo članova s ovim statusom</p>
+        </div>
+    </div>
+</div>
 
-                <div class="career-status-section">
-                    <h3 class="career-status-title">RUBY</h3>
-                    <div class="career-members-grid" id="rubin-grid">
-                        <div class="text-center py-8">
-                            <img src="img/rubin.png" alt="Ruby" class="w-20 h-20 mx-auto mb-4 opacity-70">
-                            <p class="text-gray-400">There are currently no members with this status.</p>
-                        </div>
-                    </div>
-                </div>
+<div class="career-status-section">
+    <h3 class="career-status-title">RUBIN</h3>
+    <div class="career-members-grid" id="rubin-grid">
+        <div class="text-center py-8">
+            <img src="img/rubin.png" alt="Rubin" class="w-20 h-20 mx-auto mb-4 opacity-70">
+            <p class="text-gray-400">Trenutno nemamo članova s ovim statusom</p>
+        </div>
+    </div>
+</div>
 
-                <div class="career-status-section">
-                    <h3 class="career-status-title">GOLD</h3>
-                    <div class="career-members-grid" id="zlato-grid">
-                        <div class="text-center py-8">
-                            <img src="img/zlato.png" alt="Gold" class="w-20 h-20 mx-auto mb-4 opacity-70">
-                            <p class="text-gray-400">There are currently no members with this status.</p>
-                        </div>
-                    </div>
-                </div>
+ <div class="career-status-section">
+    <h3 class="career-status-title">ZLATO</h3>
+    <div class="career-members-grid" id="zlato-grid">
+        <div class="text-center py-8">
+            <img src="img/zlato.png" alt="Zlato" class="w-20 h-20 mx-auto mb-4 opacity-70">
+            <p class="text-gray-400">Trenutno nemamo članova s ovim statusom</p>
+        </div>
+    </div>
+</div>
 
-                <div class="career-status-section">
-                    <h3 class="career-status-title">SILVER</h3>
-                    <div class="career-members-grid" id="srebro-grid">
-                        <div class="text-center py-8">
-                            <img src="img/srebro.png" alt="Silver" class="w-20 h-20 mx-auto mb-4 opacity-70">
-                            <p class="text-gray-400">There are currently no members with this status.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="career-status-section">
+    <h3 class="career-status-title">SREBRO</h3>
+    <div class="career-members-grid" id="srebro-grid">
+        <div class="text-center py-8">
+            <img src="img/srebro.png" alt="Srebro" class="w-20 h-20 mx-auto mb-4 opacity-70">
+            <p class="text-gray-400">Trenutno nemamo članova s ovim statusom</p>
+        </div>
+    </div>
+</div>
         </section>
 
 <section id="testimonials" class="py-24">
     <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4">Voice of the Community</h2>
-            <p class="text-lg text-gray-400 max-w-3xl mx-auto">The experiences of our members are our greatest strength!</p>
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Glas zajednice</h2>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">Iskustva naših članova su naša najveća snaga!</p>
         </div>
 
-        <!-- Slider with the first testimonials -->
+        <!-- Slider s prva dva svjedočanstva -->
         <div class="swiper testimonials-slider">
             <div class="swiper-wrapper">
                 
                 <!-- Slide 1: Ana Marković -->
                 <div class="swiper-slide">
                     <div class="glass-card p-8 testimonial-card">
-                        <blockquote>"SFT21 changed my perspective on online business and gave me an opportunity I couldn't have imagined. I believe that together we can achieve anything we set our minds to. I love SFteam!"</blockquote>
+                        <blockquote>"SFT21 mi je promijenio pogled na online poslovanje i pružio priliku kakvu nisam mogla ni zamisliti. Vjerujem da zajedno možemo postići sve što si zamislimo. Volim SFteam!"</blockquote>
                         <div class="author-info">
                             <img src="img/ana-markovic.png" alt="Ana Marković">
-                            <cite>Ana Marković <span>SFgold</span></cite>
+                            <cite>Ana Marković <span>SFzlato</span></cite>
                         </div>
                     </div>
                 </div>
@@ -393,38 +374,38 @@
                 <!-- Slide 2: Leon Božac -->
                 <div class="swiper-slide">
                    <div class="glass-card p-8 testimonial-card">
-                        <blockquote>"The community is incredible. The support you receive from other members is key to success. I feel like part of one big family. I am a proud License owner because I believe in this business project."</blockquote>
+                        <blockquote>"Zajednica je nevjerojatna. Podrška koju dobivate od drugih članova je ključna za uspjeh. Osjećam se kao dio jedne velike obitelji. Ponosni sam vlasnik Licence jer vjerujem u ovaj poslovni projekt."</blockquote>
                         <div class="author-info">
                             <img src="img/leon-bozac.png" alt="Leon Božac">
-                            <cite>Leon Božac <span>SFemerald</span></cite>
+                            <cite>Leon Božac <span>SFsmaragd</span></cite>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 3: Maja Novak -->
+                <!-- Slide 3: Maja Novak (dodano radi boljeg slidera) -->
                  <div class="swiper-slide">
                     <div class="glass-card p-8 testimonial-card">
-                        <blockquote>"Finally, a project that combines digital technology with support for the local economy! I'm excited about the idea of supporting and helping small producers and retailers from my region while building my own business."</blockquote>
+                        <blockquote>"Konačno projekt koji spaja digitalnu tehnologiju s podrškom lokalnoj ekonomiji! Veselim se ideji da podržim i pomognem male proizvođače i trgovce iz svoje regije, a istovremeno gradim vlastiti posao."</blockquote>
                         <div class="author-info">
                             <img src="img/maja-novak.png" alt="Maja Novak">
-                            <cite>Maja Novak <span>SFteam Community Member</span></cite>
+                            <cite>Maja Novak <span>Član SFteam zajednice</span></cite>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 4: Antonio Tesla -->
+                <!-- Slide 4: Antonio Tesla (dodano radi boljeg slidera) -->
                  <div class="swiper-slide">
                     <div class="glass-card p-8 testimonial-card">
-                        <blockquote>"Joining SFT21 is more than a business decision; it's an investment in a game-changing vision. Being part of creating something this innovative and global from the very beginning is incredibly inspiring."</blockquote>
+                        <blockquote>"Pridružiti se SFT21 je više od poslovne odluke; to je ulaganje u viziju koja mijenja pravila igre. Biti dio stvaranja nečeg ovako inovativnog i globalnog od samog početka je nevjerojatno inspirativno."</blockquote>
                         <div class="author-info">
                             <img src="img/antonio-tesla.png" alt="Antonio Tesla">
-                            <cite>Antonio Tesla <span>SFteam Community Member</span></cite>
+                            <cite>Antonio Tesla <span>Član SFteam zajednice</span></cite>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <!-- Slider Navigation -->
+            <!-- Navigacija za Slider -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -445,13 +426,13 @@
             </div>
             <div class="flex-1">
                 <p class="text-gray-300 text-lg mb-4 italic">
-                 "As someone who has been looking for the right business opportunity for a long time, the SFT21 concept amazed me with its transparency and potential. The fair distribution of profits through the SFalgorithm isn't just a promise, but the foundation of a system that rewards effort. This is the future of franchise business." 
+                 "Kao netko tko je dugo tražio pravu poslovnu priliku, SFT21 koncept me oduševio svojom transparentnošću i potencijalom. Pravična raspodjela profita kroz SFalgoritam nije samo obećanje, već temelj sustava koji nagrađuje trud. Ovo je budućnost franšiznog poslovanja." 
                 </p>
                 <div class="flex items-center">
                     <img src="img/mario-peteh.png" alt="Mario Peteh" class="w-12 h-12 rounded-full border-2 border-green-400 mr-4">
                     <div>
                         <h4 class="text-white font-semibold">Mario Peteh</h4>
-                        <p class="text-gray-400 text-sm">SFteam Community Member</p>
+                        <p class="text-gray-400 text-sm">Član SFteam zajednice</p>
                     </div>
                 </div>
             </div>
@@ -469,13 +450,13 @@
             </div>
             <div class="flex-1">
                 <p class="text-gray-300 text-lg mb-4 italic">
-                    "What makes SFT21 special isn't just the business opportunities, but the people who make up this community. That energy, togetherness, and willingness to help each other is something I haven't experienced anywhere else. Here, you don't feel like a number, but a valued member of the SFteam family."                                
+                    "Ono što SFT21 čini posebnim nisu samo poslovne mogućnosti, već ljudi koji čine ovu zajednicu. Ta energija, zajedništvo i spremnost da si međusobno pomažemo je nešto što nisam doživjela nigdje drugdje. Ovdje se ne osjećate kao broj, već kao cijenjeni član SFteam obitelji."                                
                 </p>
                 <div class="flex items-center">
                     <img src="img/natali-zubak.png" alt="Natali Zubak" class="w-12 h-12 rounded-full border-2 border-green-400 mr-4">
                     <div>
                         <h4 class="text-white font-semibold">Natali Zubak</h4>
-                        <p class="text-gray-400 text-sm">SFteam Community Member</p>
+                        <p class="text-gray-400 text-sm">Član SFteam zajednice</p>
                     </div>
                 </div>
             </div>
@@ -491,19 +472,17 @@
     <footer class="py-16 bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-6">
             <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-400">© 2025 InFace Invest Group LLC - All rights reserved.</p>
+                <p class="text-gray-400">© 2025 InFace Invest Group LLC - Sva prava pridržana.</p>
             </div>
         </div>
-    <a href="sfteam_en.html" title="Visit the SFteam page" class="pulsating-circle">
-        <div class="circle-content">
-            <span class="circle-line line-i">I</span>
-            <span class="circle-line heart-symbol">❤️</span>
-            <span class="circle-line line-sfteam">SFteam</span>
-        </div>
-    </a>
+        <a href="sfteam.html" title="Posjetite SFteam stranicu" class="pulsating-circle">
+            <div class="circle-content">
+                <span class="circle-line line-i">I</span><span class="circle-line heart-symbol">❤️</span><span class="circle-line line-sfteam">SFteam</span>
+            </div>
+        </a>
     </footer>
 
-    <!-- LOADING ALL SCRIPTS -->
+    <!-- UČITAVANJE SVIH SKRIPTI -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -511,6 +490,9 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
+        // =========================================================
+        // === KOD ZA ANIMACIJU POZADINE (S PODRŠKOM ZA TEME) ===
+        // =========================================================
         (function() {
             const canvas = document.getElementById('network-canvas');
             if (!canvas) return;
@@ -541,6 +523,7 @@
                     if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
                     if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
                 }
+                // Prima boju kao argument
                 draw(color) {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -557,6 +540,7 @@
             }
             initParticles();
 
+            // Prima osnovnu boju kao argument (npr. '106, 27, 154')
             function connectParticles(lineColorBase) {
                 for (let i = 0; i < particles.length; i++) {
                     for (let j = i + 1; j < particles.length; j++) {
@@ -576,22 +560,29 @@
             }
             
             function animate() {
+                // === POČETAK IZMJENE ===
+                // Provjera teme na početku svakog iscrtavanja
                 const isLightMode = document.documentElement.classList.contains('light-mode');
                 
-                const particleColor = isLightMode ? 'rgba(106, 27, 154, 0.8)' : 'rgba(128, 255, 0, 0.8)';
-                const lineColorBase = isLightMode ? '106, 27, 154' : '128, 255, 0';
+                // Definiranje boja na temelju teme
+                const particleColor = isLightMode ? 'rgba(106, 27, 154, 0.8)' : 'rgba(128, 255, 0, 0.8)'; // Ljubičasta : Zelena
+                const lineColorBase = isLightMode ? '106, 27, 154' : '128, 255, 0'; // Ljubičasta : Zelena (RGB vrijednosti)
+                // === KRAJ IZMJENE ===
 
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 particles.forEach(p => {
                     p.update();
-                    p.draw(particleColor);
+                    p.draw(particleColor); // Prosljeđivanje odabrane boje
                 });
-                connectParticles(lineColorBase);
+                connectParticles(lineColorBase); // Prosljeđivanje odabrane boje
                 requestAnimationFrame(animate);
             }
             animate();
         })();
+        // === KRAJ KODA ZA ANIMACIJU ===
 
+
+        // Ostatak vašeg postojećeg koda...
         const logoImg = document.getElementById('site-logo');
         const body = document.body;
         const cursor = document.querySelector('.custom-cursor');
@@ -623,13 +614,15 @@
             }
         };
 
+        // Ponovno pozovi nakon što se tema promijeni
         const originalApplyTheme = window.applySft21Theme;
         window.applySft21Theme = function() {
             originalApplyTheme();
             applyThemeToLogo();
         };
-        applyThemeToLogo();
+        applyThemeToLogo(); // Inicijalni poziv
 
+        // Inicijalizacija Slidera (Swiper.js)
         const swiper = new Swiper('.testimonials-slider', {
             loop: true,
             slidesPerView: 1,

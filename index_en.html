@@ -404,6 +404,17 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
     color: #475569 !important;
 }
 
+/* === FIX FOR ALL MOBILE MENU BUTTONS ALIGNMENT === */
+        @media (max-width: 768px) {
+            .nav-menu .btn-primary,
+            .nav-menu .btn-outline {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
 </style>
 </head>
 
@@ -648,7 +659,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                 <div id="mobile-platform-menu" class="dropdown-menu" style="display: none;">
                     <a href="sfured.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFured</a>
                     <a href="sfalgoritam.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFalgoritam</a>
-                    <a href="video_player.html?from=index.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">Video player</a>
+                    <a href="video_player_en.html?from=index_en.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">Video player</a>
                     <a href="#" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFnet</a>
                     <a href="#" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFshop</a>
                 </div>

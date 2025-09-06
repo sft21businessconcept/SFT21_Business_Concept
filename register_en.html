@@ -1006,6 +1006,23 @@ html.light-mode #theme-toggle-dark-icon-mobile {
         color: #475569;
         background-color: #f1f5f9;
     }
+
+        /* === PRILAGODBA GUMBA U MOBILNOM MENIJU ZA REGISTER STRANICU === */
+        @media (max-width: 768px) {
+            /* Ciljamo kontejner s gumbima */
+            .nav-menu .flex-col.space-y-3 {
+                margin-top: auto !important; /* Gura gumbe skroz na dno */
+                margin-bottom: 4rem !important; /* Dodaje malo razmaka od dna ekrana */
+                padding-left: 2.5rem !important;  /* Sužava gumbe */
+                padding-right: 2.5rem !important; /* Sužava gumbe */
+            }
+
+            /* Osiguravamo da su gumbi pune širine unutar suženog kontejnera */
+            .nav-menu .btn-primary,
+            .nav-menu .btn-outline {
+                width: 100%;
+            }
+        }
 </style>
 <body class="bg-gray-900 register-page">
 <canvas id="network-canvas"></canvas>
