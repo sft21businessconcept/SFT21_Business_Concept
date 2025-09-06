@@ -3,11 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Registration - SFT21 InFace Invest Group</title>
-<!-- ============================================= -->
-<!-- UNIVERSAL THEME INITIALIZATION SCRIPT (FIXED) -->
-<!-- Solves the "flash" and back-forward cache issue -->
-<!-- ============================================= -->
+<title>Register - SFT21 InFace Invest Group</title>
 <script>
         function applySft21Theme() {
             try {
@@ -16,7 +12,6 @@
                 const lightIcon = document.getElementById('theme-toggle-light-icon');
                 const darkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
                 const lightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
-
                 if (theme === 'light') {
                     document.documentElement.classList.add('light-mode');
                     if (darkIcon) darkIcon.classList.add('hidden');
@@ -36,13 +31,15 @@
                 }
 
             } catch (e) {
-                console.error('Error applying theme:', e);
+                console.error('Greška pri primjeni teme:', e);
             }
         }
+
         applySft21Theme();
+
         window.addEventListener('pageshow', function(event) {
             if (event.persisted) {
-                console.log('Page loaded from bfcache, reapplying theme.');
+                console.log('Stranica učitana iz bfcachea, ponovno primjenjujem temu.');
                 applySft21Theme();
             }
         });
@@ -51,10 +48,9 @@
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Orbitron:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
-        /* --- Basic Variables and Styles --- */
         :root {
-            --primary-color: #6a1b9a; /* Purple */
-            --secondary-color: #ab47bc; /* Lighter Purple */
+            --primary-color: #6a1b9a; 
+            --secondary-color: #ab47bc; 
             --accent-color: #c55bd7;
             --success-color: #7b1fa2;
             --danger-color: #d81b60;
@@ -63,7 +59,7 @@
             --dark-color: #0e076a;
             --gray-color: #5728ac;
             --text-color: #e5e7eb;
-            --fluorescent-green: #80ff00; /* Fluorescent Green */
+            --fluorescent-green: #80ff00; 
         }
 
         body {
@@ -74,16 +70,15 @@
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Orbitron', sans-serif;
-            color: var(--fluorescent-green); /* Main titles green */
+            color: var(--fluorescent-green); 
         }
-        /* --- Navigation --- */
-        nav.fixed { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background-color: rgba(13, 1, 24, 0.8); border-bottom: 1px solid var(--fluorescent-green); box-shadow: 0 2px 10px rgba(128, 255, 0, 0.2); } /* Green border/shadow */
+ 
+        nav.fixed { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background-color: rgba(13, 1, 24, 0.8); border-bottom: 1px solid var(--fluorescent-green); box-shadow: 0 2px 10px rgba(128, 255, 0, 0.2); } /* Zeleni border/shadow */
         .logo-nav { font-size: 1.75rem; line-height: 1; display: flex; flex-direction: column; align-items: center; }
         .logo-nav .small-text { font-size: 0.75rem; color: #d1d5db; font-weight: normal; margin-bottom: -0.2em; }
-        .text-logo-orange { color: var(--fluorescent-green); } /* SFT Logo */
+        .text-logo-orange { color: var(--fluorescent-green); } 
 
 
-        /* Language Menu */
         .language-dropdown { display: none; position: absolute; background-color: #1f2937; border: 1px solid var(--fluorescent-green); border-radius: 0.375rem; margin-top: 0.5rem; padding: 0.25rem 0; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); right: 0; z-index: 60; min-width: 85px; width: auto; }
         .language-dropdown.active { display: block; }
         .language-item { display: flex; align-items: center; padding: 0.6rem 1rem; font-size: 0.875rem; color: #d1d5db; white-space: nowrap; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
@@ -95,7 +90,6 @@
         .language-dropdown-mobile .language-item { justify-content: center; padding: 0.75rem 1.5rem; }
         .language-dropdown-mobile .language-item:hover { background-color: var(--primary-color); }
 
-        /* Mobile Menu */
         .nav-menu { display: none; }
         @media (max-width: 768px) {
             .nav-menu { position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); background-color: #0d0118; flex-direction: column; transition: all 0.5s ease; padding: 20px 0; z-index: 100; border-right: 1px solid var(--fluorescent-green); display: flex; }
@@ -106,24 +100,46 @@
             .hamburger.active .bar:nth-child(2) { opacity: 0; }
             .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
             .nav-menu .mobile-language-selector { padding-left: 1.5rem; padding-right: 1.5rem;}
-            .nav-menu .flex-col.space-y-3 { padding-left: 1.5rem; padding-right: 1.5rem;}
+            .nav-menu .flex-col.space-y-3 { padding-left: 1.5rem; padding-right: 1.5rem;} 
         }
         .hamburger { display: none; } @media (max-width: 768px) { .hamburger { display: block; } }
 
-        /* --- Registration Page --- */
-        .registration-section { padding-top: 10rem; padding-bottom: 4rem; }
+        .registration-section { padding-top: 10rem; padding-bottom: 4rem; } 
         .image-placeholder { background-color: rgba(106, 27, 154, 0.1); border: 1px dashed var(--fluorescent-green); border-radius: 15px; display: flex; align-items: center; justify-content: center; min-height: 300px; color: rgba(255, 255, 255, 0.3); font-style: italic; background-image: url('https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center; }
         .benefits-list li { display: flex; align-items: flex-start; margin-bottom: 0.8rem; color: #e5e7eb; line-height: 1.6; }
         .benefits-list i { color: var(--fluorescent-green); margin-right: 0.8rem; margin-top: 0.25rem; flex-shrink: 0; }
-        .glass-card { background: rgba(106, 27, 154, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--fluorescent-green); border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); padding: 1.5rem; }
+        .glass-card { background: rgba(106, 27, 154, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--fluorescent-green); border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); padding: 1.5rem; } /* Dodan padding za glass-card */
 
-        /* Form Container */
         .registration-form-container { background-color: rgba(106, 27, 154, 0.05); border: 1px solid var(--fluorescent-green); border-radius: 15px; padding: 2rem 2.5rem; color: var(--text-color); }
         
-        .btn-account-type { padding: 0.6rem 1.5rem; border: 1px solid var(--fluorescent-green); border-radius: 50px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background-color 0.3s, color 0.3s; background-color: var(--fluorescent-green); color: #0e076a; }
-        .btn-account-type.active { background-color: transparent; color: var(--fluorescent-green); }
-        .btn-account-type:not(.active):hover { background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%); }
-        .btn-account-type.active:hover { background-color: rgba(128, 255, 0, 0.1); }
+.btn-account-type {
+    padding: 0.6rem 1.5rem;
+    border: 1px solid var(--fluorescent-green);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--fluorescent-green);
+    color: #0e076a;
+}
+.btn-account-type.active {
+    background-color: transparent;
+    color: var(--fluorescent-green);
+}
+.btn-account-type:not(.active):hover {
+    background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%);
+}
+.btn-account-type.active:hover {
+    background-color: rgba(128, 255, 0, 0.1);
+}
+
+        .btn-account-type:not(.active):hover {
+            background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%);
+        }
+        .btn-account-type.active:hover {
+            background-color: rgba(128, 255, 0, 0.1);
+        }
         
         .social-login-button { display: flex; align-items: center; justify-content: center; padding: 0.75rem 1rem; border: 1px solid var(--fluorescent-green); border-radius: 8px; color: #e5e7eb; background-color: rgba(128, 255, 0, 0.05); transition: background-color 0.3s, border-color 0.3s; text-decoration: none; font-weight: 500; }
         .social-login-button:hover { background-color: rgba(128, 255, 0, 0.15); border-color: var(--fluorescent-green); color: white; }
@@ -136,15 +152,47 @@
         #dob-dd, #dob-mm, #dob-yyyy { text-align: center; }
         
         .custom-select-wrapper { position: relative; }
-        .custom-select-trigger { display: flex; align-items: center; width: 100%; padding: 0.75rem 1rem; background-color: rgba(106, 27, 154, 0.1); border: 1px solid var(--fluorescent-green); border-radius: 8px; color: white; cursor: pointer; transition: border-color 0.3s, box-shadow 0.3s; }
-        .custom-select-trigger:hover, .custom-select-trigger.active { border-color: var(--fluorescent-green); box-shadow: 0 0 0 2px rgba(128, 255, 0, 0.2); }
+        .custom-select-trigger {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: rgba(106, 27, 154, 0.1);
+            border: 1px solid var(--fluorescent-green);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .custom-select-trigger:hover, .custom-select-trigger.active {
+             border-color: var(--fluorescent-green); box-shadow: 0 0 0 2px rgba(128, 255, 0, 0.2);
+        }
         .custom-select-trigger .flag-in-select { width: 20px; height: auto; margin-right: 0.75rem; }
         .custom-select-trigger .country-name { flex-grow: 1; }
         .custom-select-trigger::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--fluorescent-green); transition: transform 0.2s ease; }
         .custom-select-trigger.active::after { transform: rotate(180deg); }
-        .custom-select-options { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1f2937; border: 1px solid var(--fluorescent-green); border-radius: 0 0 8px 8px; margin-top: -1px; z-index: 70; max-height: 250px; overflow-y: auto; }
+        .custom-select-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #1f2937;
+            border: 1px solid var(--fluorescent-green);
+            border-radius: 0 0 8px 8px;
+            margin-top: -1px; 
+            z-index: 70;
+            max-height: 250px;
+            overflow-y: auto;
+        }
         .custom-select-options.active { display: block; }
-        .custom-select-options .option { display: flex; align-items: center; padding: 0.75rem 1rem; cursor: pointer; transition: background-color 0.2s ease; }
+        .custom-select-options .option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
         .custom-select-options .option:hover { background-color: var(--primary-color); }
         .custom-select-options .option img { width: 20px; height: 15px; object-fit: cover; margin-right: 0.75rem; }
         
@@ -153,7 +201,7 @@
         .form-radio-register:checked::after { content: ''; display: block; width: 0.5rem; height: 0.5rem; background-color: var(--fluorescent-green); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
         .form-radio-register:focus { box-shadow: 0 0 0 2px rgba(128, 255, 0, 0.2); }
         .phone-input-wrapper { display: flex; align-items: center; border: 1px solid var(--fluorescent-green); border-radius: 8px; background-color: rgba(106, 27, 154, 0.1); overflow: hidden; }
-        .country-code-select { display: flex; align-items: center; padding: 0.75rem; background-color: rgba(106, 27, 154, 0.2); cursor: default; border-right: 1px solid var(--fluorescent-green); color: white; }
+        .country-code-select { display: flex; align-items: center; padding: 0.75rem; background-color: rgba(106, 27, 154, 0.2); cursor: default; /* Nije više klikabilno */ border-right: 1px solid var(--fluorescent-green); color: white; }
         .country-code-select img { width: 20px; height: auto; margin-right: 0.5rem; }
         .country-code-select span { font-weight: 500; margin-right: 0.3rem;}
         .form-input-register-phone { flex-grow: 1; border: none; background: none; padding: 0.75rem 1rem; color: white; }
@@ -165,164 +213,799 @@
         .btn-cancel { background: none; border: 1px solid #6b7280; color: #9ca3af; border-radius: 50px; font-weight: 500; transition: background-color 0.3s, color 0.3s; padding: 0.6rem 1.5rem; font-size: 0.9rem; }
         .btn-cancel:hover { background-color: #4b5563; color: white; }
 
-        .custom-cursor { position: fixed; width: 20px; height: 20px; border-radius: 50%; background-color: var(--fluorescent-green); pointer-events: none; z-index: 9999; mix-blend-mode: difference; left: 0; top: 0; transform: translate(-50%, -50%); transition: background-color 0.2s ease, scale 0.2s ease; }
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--fluorescent-green);
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    left: 0; 
+    top: 0;  
+    transform: translate(-50%, -50%);
+    transition: background-color 0.2s ease, scale 0.2s ease;
+}
+        .cursor-trail-point { position: fixed; width: 12px; height: 12px; background-color: rgb(239, 243, 3); border-radius: 50%; pointer-events: none; left: -50px; top: -50px; z-index: 9998; transition: transform 60ms cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease; transform: translate(-50%, -50%); opacity: 1; }
+       
+        body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, select, textarea {
+            font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif !important;
+        }
         
-        body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, select, textarea { font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif !important; }
-        .glass-card h4 { color: #80ff00 !important; }
-        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #1d012e; }
-        html.light-mode #network-canvas { background-color: transparent !important; }
-        .filename-visible { color: var(--fluorescent-green) !important; font-weight: 500; }
+        .glass-card h4, 
+        div:contains("Dobro došli u SFteam!"),
+        div:contains("Verifikacija identiteta - KYC") {
+            color: #80ff00 !important;
+        }
         
-        .btn-primary { background-color: var(--fluorescent-green); color: #0e076a; padding: 7px 14px; border-radius: 50px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; border: 2px solid transparent; font-size: 0.75rem; }
-        .btn-primary:hover { background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%); transform: translateY(-2px); }
-        .btn-outline { background-color: transparent; color: var(--fluorescent-green); border: 2px solid var(--fluorescent-green); padding: 7px 14px; border-radius: 50px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; font-size: 0.75rem; }
-        .btn-outline:hover { background-color: var(--fluorescent-green); color: #0e076a; transform: translateY(-2px); }
+        div:contains("Verifikacija identiteta - KYC") {
+            margin-top: 2rem !important;
+        }
+        
+        button:contains("Dalje"),
+        .btn-primary,
+        [type="submit"] {
+            background-color: #80ff00 !important;
+            color: #0e076a !important;
+        }
+        
+        div:contains("... ili nastavite popunjavanjem podataka") {
+            text-align: center !important;
+        }
 
-        .btn-kyc-guardian { display: block; width: 100%; padding: 10px; margin-top: 1rem; border: 1px solid var(--fluorescent-green); background-color: transparent; color: var(--fluorescent-green); border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-        .btn-kyc-guardian:hover { background-color: rgba(128, 255, 0, 0.1); }
-        .btn-kyc-guardian.completed { background-color: var(--fluorescent-green); color: #0e076a; border-color: var(--fluorescent-green); cursor: not-allowed; }
-        .btn-kyc-guardian.completed:hover { background-color: var(--fluorescent-green); }
-        .btn-kyc-guardian .fa-check { margin-right: 0.5rem; }
+#network-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    background-color: #1d012e;
+}
 
-        #parental-consent-popup .popup-actions { width: 100%; display: flex; justify-content: center; margin-top: 2rem; }
-        #parental-consent-popup .popup-actions .btn-primary { background-color: var(--fluorescent-green) !important; color: #0e076a !important; padding: 12px 30px !important; border-radius: 50px !important; font-weight: 600 !important; letter-spacing: 1px !important; text-transform: uppercase !important; border: none !important; width: auto; height: auto; min-width: 200px; }
-        #parental-consent-popup .popup-actions .btn-primary:hover { background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%) !important; transform: translateY(-2px); }
+html.light-mode #network-canvas {
+    background-color: transparent !important; 
+}
 
-        html.light-mode .language-dropdown { background-color: #ffffff !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; }
-        html.light-mode .language-dropdown .language-item { color: #475569 !important; }
-        html.light-mode .language-dropdown .language-item:hover { background-color: rgba(106, 27, 154, 0.05) !important; color: var(--primary-color) !important; }
-        footer .fab { color: var(--fluorescent-green) !important; transition: color 0.3s ease; }
-        footer a:hover .fab { color: white !important; }
+.filename-visible {
+    color: var(--fluorescent-green) !important;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--fluorescent-green);
+    color: #0e076a;
+    padding: 7px 14px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 0.75rem;
+}
+.btn-primary:hover {
+    background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%);
+    transform: translateY(-2px);
+}
+.btn-outline {
+    background-color: transparent;
+    color: var(--fluorescent-green);
+    border: 2px solid var(--fluorescent-green);
+    padding: 7px 14px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-size: 0.75rem;
+}
+.btn-outline:hover {
+    background-color: var(--fluorescent-green);
+    color: #0e076a;
+    transform: translateY(-2px);
+}
+
+    .btn-kyc-guardian {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 1rem;
+        border: 1px solid var(--fluorescent-green);
+        background-color: transparent;
+        color: var(--fluorescent-green);
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .btn-kyc-guardian:hover {
+        background-color: rgba(128, 255, 0, 0.1);
+    }
+    .btn-kyc-guardian.completed {
+        background-color: var(--fluorescent-green);
+        color: #0e076a;
+        border-color: var(--fluorescent-green);
+        cursor: not-allowed;
+    }
+    .btn-kyc-guardian.completed:hover {
+        background-color: var(--fluorescent-green);
+    }
+    .btn-kyc-guardian .fa-check {
+        margin-right: 0.5rem;
+    }
+
+
+#parental-consent-popup .popup-actions {
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem; 
+}
+
+#parental-consent-popup .popup-actions .btn-primary {
+    background-color: var(--fluorescent-green) !important;
+    color: #0e076a !important;
+    padding: 12px 30px !important;
+    border-radius: 50px !important; 
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    border: none !important;
+
+    width: auto;
+    height: auto;
+    min-width: 200px; 
+}
+
+#parental-consent-popup .popup-actions .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%) !important;
+    transform: translateY(-2px);
+}
+
+html.light-mode .language-dropdown {
+    background-color: #ffffff !important; 
+    border: 1px solid #e2e8f0 !important; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; 
+}
+
+html.light-mode .language-dropdown .language-item {
+    color: #475569 !important; 
+}
+
+html.light-mode .language-dropdown .language-item:hover {
+    background-color: rgba(106, 27, 154, 0.05) !important; 
+    color: var(--primary-color) !important;
+}
+
+
+html.light-mode .nav-menu {
+    background-color: #ffffff !important; 
+    border-right-color: #e2e8f0 !important; 
+}
+
+
+footer .fab {
+    color: var(--fluorescent-green) !important; 
+    transition: color 0.3s ease;
+}
+
+footer a:hover .fab {
+    color: white !important;
+}
+
     </style>
-<!-- ================================================== -->
-<!-- STYLES FOR LIGHT MODE -->
-<!-- ================================================== -->
+
 <style>
-    html.light-mode body { background-color: #f8fafc !important; color: #334155 !important; }
-    html.light-mode nav.fixed { background-color: rgba(255, 255, 255, 0.9) !important; border-bottom-color: var(--primary-color) !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important; }
-    html.light-mode .logo-nav .small-text, html.light-mode .logo-nav .text-logo-orange, html.light-mode .logo-nav .text-white { color: var(--primary-color) !important; }
-    html.light-mode nav a.btn-primary.register-login-btn { background-color: var(--primary-color) !important; color: white !important; }
-    html.light-mode nav a.btn-primary.register-login-btn:hover { background-color: var(--secondary-color) !important; }
-    html.light-mode nav a.btn-outline.register-register-btn { color: var(--primary-color) !important; border-color: var(--primary-color) !important; }
-    html.light-mode nav a.btn-outline.register-register-btn:hover { background-color: rgba(106, 27, 154, 0.1) !important; color: var(--primary-color) !important; }
-    html.light-mode nav .language-selector .language-trigger i, html.light-mode nav .mobile-language-selector .mobile-language-trigger i, html.light-mode #theme-toggle i, html.light-mode #theme-toggle-mobile i { color: var(--primary-color) !important; }
-    html.light-mode .fa-globe, html.light-mode .language-trigger i, html.light-mode i.fas.fa-globe { color: var(--primary-color) !important; }
-    html.light-mode .hamburger .bar { background-color: var(--primary-color) !important; }
-    html.light-mode h1, html.light-mode h2, html.light-mode h3, html.light-mode h4, html.light-mode h5, html.light-mode h6, html.light-mode .registration-section h1, html.light-mode .glass-card h4 { color: var(--primary-color) !important; }
-    html.light-mode p, html.light-mode span, html.light-mode div { color: #475569; }
-    html.light-mode .text-gray-300 { color: #475569 !important; }
-    html.light-mode .text-gray-400 { color: #64748b !important; }
-    html.light-mode .glass-card, html.light-mode .registration-form-container { background-color: #ffffff !important; border-color: #e2e8f0 !important; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; }
-    html.light-mode .image-placeholder { border-color: #cbd5e1 !important; background-color: #f8fafc !important; }
-    html.light-mode .benefits-list li { color: #334155 !important; }
-    html.light-mode .benefits-list i.fas.fa-check-circle { color: var(--primary-color) !important; }
-    html.light-mode .btn-account-type { background-color: var(--primary-color) !important; color: white !important; border-color: var(--primary-color) !important; }
-    html.light-mode .btn-account-type.active { background-color: transparent !important; color: var(--primary-color) !important; }
-    html.light-mode .btn-account-type:not(.active):hover { background-color: var(--secondary-color) !important; }
-    html.light-mode .btn-account-type.active:hover { background-color: rgba(106, 27, 154, 0.1) !important; color: var(--primary-color) !important; }
-    html.light-mode .social-login-button { border-color: #cbd5e1 !important; background-color: #f8fafc !important; color: #334155 !important; }
-    html.light-mode .social-login-button:hover { background-color: #f1f5f9 !important; }
-    html.light-mode .social-login-button i.fab.fa-apple { color: #334155 !important; }
-    html.light-mode .registration-form-container .border-gray-700 { border-color: #e2e8f0 !important; }
-    html.light-mode .form-label-register { color: #475569 !important; }
-    html.light-mode .form-input-register, html.light-mode .custom-select-trigger, html.light-mode .phone-input-wrapper { background-color: #f1f5f9 !important; border-color: #cbd5e1 !important; color: #1e293b !important; }
-    html.light-mode .form-input-register-phone { color: #1e293b !important; }
-    html.light-mode .form-input-register::placeholder { color: #828d9c !important; }
-    html.light-mode .form-input-register:focus, html.light-mode .custom-select-trigger:hover, html.light-mode .custom-select-trigger.active, html.light-mode .phone-input-wrapper:focus-within { border-color: var(--primary-color) !important; box-shadow: 0 0 0 2px rgba(106, 27, 154, 0.2) !important; }
-    html.light-mode .custom-select-options { background-color: #f1f5f9 !important; border-color: #cbd5e1 !important; }
-    html.light-mode .custom-select-options .option { color: #334155 !important; }
-    html.light-mode .custom-select-options .option:hover { background-color: var(--secondary-color) !important; color: white !important; }
-    html.light-mode .custom-select-trigger::after { color: var(--primary-color) !important; }
-    html.light-mode .country-code-select { background-color: #e2e8f0 !important; border-right-color: #cbd5e1 !important; color: #334155 !important; }
-    html.light-mode .form-radio-register { border-color: #94a3b8 !important; }
-    html.light-mode .form-radio-register:checked { border-color: var(--primary-color) !important; }
-    html.light-mode .form-radio-register:checked::after { background-color: var(--primary-color) !important; }
-    html.light-mode .form-checkbox-register { border-color: #94a3b8 !important; }
-    html.light-mode .form-checkbox-register:checked { background-color: var(--primary-color) !important; border-color: var(--primary-color) !important; }
-    html.light-mode .form-checkbox-register:checked::after { color: white !important; }
-    html.light-mode .space-y-3 span.text-gray-300 { color: #475569 !important; }
-    html.light-mode a.text-fluorescent-green.underline { color: var(--primary-color) !important; }
-    html.light-mode a.text-fluorescent-green.underline:hover { color: var(--secondary-color) !important; }
-    html.light-mode #dalje-button, html.light-mode .btn-primary, html.light-mode [type="submit"] { background-color: var(--primary-color) !important; color: white !important; }
-    html.light-mode #dalje-button:hover, html.light-mode .btn-primary:hover, html.light-mode [type="submit"]:hover { background-color: var(--secondary-color) !important; }
-    html.light-mode footer.bg-gray-900 { background-color: #1e293b !important; border-top-color: #334155 !important; }
-    html.light-mode footer h3, html.light-mode footer h4 { color: white !important; }
-    html.light-mode footer .text-gray-400, html.light-mode footer a { color: #a0aec0 !important; }
-    html.light-mode footer a:hover { color: white !important; }
-    html.light-mode footer .border-t.border-gray-800 { border-color: #334155 !important; }
-    html.light-mode .text-logo-orange { color: var(--primary-color) !important; }
-    html.light-mode nav a.btn-primary { background-color: var(--primary-color) !important; color: white !important; border-color: var(--primary-color) !important; }
-    html.light-mode nav a.btn-primary:hover { background-color: var(--secondary-color) !important; border-color: var(--secondary-color) !important; }
-    html.light-mode nav a.btn-outline { background-color: transparent !important; color: var(--primary-color) !important; border: 2px solid var(--primary-color) !important; }
-    html.light-mode nav a.btn-outline:hover { background-color: rgba(106, 27, 154, 0.1) !important; }
-    html.light-mode .btn-kyc-guardian { border-color: var(--primary-color) !important; color: var(--primary-color) !important; background-color: transparent !important; }
-    html.light-mode .btn-kyc-guardian:hover { background-color: rgba(106, 27, 154, 0.1) !important; }
-    html.light-mode .btn-kyc-guardian.completed { background-color: var(--primary-color) !important; border-color: var(--primary-color) !important; color: white !important; }
-    html.light-mode .btn-kyc-guardian.completed:hover { background-color: var(--secondary-color) !important; }
-    html.light-mode .file-upload-filename.filename-visible { color: var(--primary-color) !important; }
-    html.light-mode footer .fab { color: #a0aec0 !important; } /* Fix for light mode footer icons */
-    html.light-mode footer a:hover .fab { color: white !important; }
+    html.light-mode body {
+        background-color: #f8fafc !important; 
+        color: #334155 !important;
+    }
+
+    html.light-mode nav.fixed {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border-bottom-color: var(--primary-color) !important; 
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    }
+    html.light-mode .logo-nav .small-text,
+    html.light-mode .logo-nav .text-logo-orange,
+    html.light-mode .logo-nav .text-white {
+        color: var(--primary-color) !important; 
+    }
+    html.light-mode nav a.btn-primary.register-login-btn {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+    }
+    html.light-mode nav a.btn-primary.register-login-btn:hover {
+        background-color: var(--secondary-color) !important;
+    }
+    html.light-mode nav a.btn-outline.register-register-btn {
+        color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+    }
+    html.light-mode nav a.btn-outline.register-register-btn:hover {
+        background-color: rgba(106, 27, 154, 0.1) !important;
+        color: var(--primary-color) !important;
+    }
+    html.light-mode nav .language-selector .language-trigger i,
+    html.light-mode nav .mobile-language-selector .mobile-language-trigger i,
+    html.light-mode #theme-toggle i,
+    html.light-mode #theme-toggle-mobile i {
+        color: var(--primary-color) !important; 
+    }
+    html.light-mode .fa-globe,
+    html.light-mode .language-trigger i,
+    html.light-mode i.fas.fa-globe {
+        color: var(--primary-color) !important;
+    }
+    html.light-mode .hamburger .bar {
+        background-color: var(--primary-color) !important; 
+    }
+
+    html.light-mode h1,
+    html.light-mode h2,
+    html.light-mode h3,
+    html.light-mode h4,
+    html.light-mode h5,
+    html.light-mode h6,
+    html.light-mode .registration-section h1,
+    html.light-mode .glass-card h4 {
+        color: var(--primary-color) !important; 
+    }
+
+    html.light-mode p,
+    html.light-mode span,
+    html.light-mode div {
+        color: #475569;
+    }
+    html.light-mode .text-gray-300 {
+        color: #475569 !important;
+    }
+    html.light-mode .text-gray-400 {
+        color: #64748b !important;
+    }
+
+
+html.light-mode .language-dropdown-mobile {
+    background-color: #f1f5f9 !important;
+    border-top-color: #e2e8f0 !important; 
+}
+
+html.light-mode .language-dropdown-mobile .language-item {
+    color: #475569 !important; 
+}
+
+html.light-mode .language-dropdown-mobile .language-item:hover {
+    background-color: rgba(106, 27, 154, 0.1) !important; 
+    color: var(--primary-color) !important; 
+}
+
+
+    html.light-mode .glass-card,
+    html.light-mode .registration-form-container {
+        background-color: #ffffff !important;
+        border-color: #e2e8f0 !important; 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+    }
+    html.light-mode .image-placeholder {
+        border-color: #cbd5e1 !important; 
+        background-color: #f8fafc !important; 
+    } /* <--- ISPRAVAK: OVDJE JE DODANA ZAGRADA KOJA JE NEDOSTAJALA */
+
+    html.light-mode .benefits-list li {
+        color: #334155 !important; 
+    }
+    html.light-mode .benefits-list i.fas.fa-check-circle {
+        color: var(--primary-color) !important; 
+    }
+
+html.light-mode .btn-account-type {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+}
+html.light-mode .btn-account-type.active {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+}
+html.light-mode .btn-account-type:not(.active):hover {
+    background-color: var(--secondary-color) !important;
+}
+html.light-mode .btn-account-type.active:hover {
+    background-color: rgba(106, 27, 154, 0.1) !important;
+    color: var(--primary-color) !important;
+}
+
+    html.light-mode .social-login-button {
+        border-color: #cbd5e1 !important;
+        background-color: #f8fafc !important;
+        color: #334155 !important;
+    }
+    html.light-mode .social-login-button:hover {
+        background-color: #f1f5f9 !important;
+    }
+    html.light-mode .social-login-button i.fab.fa-apple {
+        color: #334155 !important;
+    }
+
+    html.light-mode .registration-form-container .border-gray-700 {
+        border-color: #e2e8f0 !important;
+    }
+    html.light-mode .form-label-register {
+        color: #475569 !important;
+    }
+    html.light-mode .form-input-register,
+    html.light-mode .custom-select-trigger,
+    html.light-mode .phone-input-wrapper {
+        background-color: #f1f5f9 !important;
+        border-color: #cbd5e1 !important;
+        color: #1e293b !important;    
+    }
+
+    html.light-mode .form-input-register-phone {
+        color: #1e293b !important;
+    }
+
+    html.light-mode .form-input-register::placeholder {
+        color: #828d9c !important;
+    }
+    html.light-mode .form-input-register:focus,
+    html.light-mode .custom-select-trigger:hover,
+    html.light-mode .custom-select-trigger.active,
+    html.light-mode .phone-input-wrapper:focus-within {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 2px rgba(106, 27, 154, 0.2) !important;
+    }
+    html.light-mode .custom-select-options {
+        background-color: #f1f5f9 !important;
+        border-color: #cbd5e1 !important;
+    }
+    html.light-mode .custom-select-options .option {
+        color: #334155 !important;
+    }
+    html.light-mode .custom-select-options .option:hover {
+        background-color: var(--secondary-color) !important;
+        color: white !important;
+    }
+    html.light-mode .custom-select-trigger::after {
+        color: var(--primary-color) !important;
+    }
+    html.light-mode .country-code-select {
+        background-color: #e2e8f0 !important;
+        border-right-color: #cbd5e1 !important;
+        color: #334155 !important;
+    }
+
+    html.light-mode .form-radio-register {
+        border-color: #94a3b8 !important;
+    }
+    html.light-mode .form-radio-register:checked {
+        border-color: var(--primary-color) !important;
+    }
+    html.light-mode .form-radio-register:checked::after {
+        background-color: var(--primary-color) !important;
+    }
+    html.light-mode .form-checkbox-register {
+        border-color: #94a3b8 !important;
+    }
+    html.light-mode .form-checkbox-register:checked {
+        background-color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+    }
+    html.light-mode .form-checkbox-register:checked::after {
+        color: white !important;
+    }
+    html.light-mode .space-y-3 span.text-gray-300 {
+        color: #475569 !important;
+    }
+    html.light-mode a.text-fluorescent-green.underline {
+        color: var(--primary-color) !important;
+    }
+    html.light-mode a.text-fluorescent-green.underline:hover {
+        color: var(--secondary-color) !important;
+    }
+
+    html.light-mode #dalje-button,
+    html.light-mode .btn-primary,
+    html.light-mode [type="submit"] {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+    }
+    html.light-mode #dalje-button:hover,
+    html.light-mode .btn-primary:hover,
+    html.light-mode [type="submit"]:hover {
+        background-color: var(--secondary-color) !important;
+    }
+
+    html.light-mode footer.bg-gray-900 {
+        background-color: #1e293b !important;
+        border-top-color: #334155 !important;
+    }
+    html.light-mode footer h3,
+    html.light-mode footer h4 {
+        color: white !important;
+    }
+    html.light-mode footer .text-gray-400,
+    html.light-mode footer a,
+    html.light-mode footer .fab {
+        color: #a0aec0 !important;
+    }
+    html.light-mode footer a:hover {
+        color: white !important;
+    }
+    html.light-mode footer .border-t.border-gray-800 {
+        border-color: #334155 !important;
+    }
+
+    html.light-mode .text-logo-orange,
+    html.light-mode div:contains("Dobro došli u SFteam!"),
+    html.light-mode div:contains("Verifikacija identiteta - KYC") {
+        color: var(--primary-color) !important;
+    }
+
+
+html.light-mode nav a.btn-primary {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+}
+html.light-mode nav a.btn-primary:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+html.light-mode nav a.btn-outline {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color) !important;
+}
+html.light-mode nav a.btn-outline:hover {
+    background-color: rgba(106, 27, 154, 0.1) !important;
+}
+
+    html.light-mode .btn-kyc-guardian {
+        border-color: var(--primary-color) !important;
+        color: var(--primary-color) !important;
+        background-color: transparent !important;
+    }
+    html.light-mode .btn-kyc-guardian:hover {
+        background-color: rgba(106, 27, 154, 0.1) !important;
+    }
+
+    html.light-mode .btn-kyc-guardian.completed {
+        background-color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+        color: white !important;
+    }
+    html.light-mode .btn-kyc-guardian.completed:hover {
+        background-color: var(--secondary-color) !important;
+    }
+
+    html.light-mode .file-upload-filename.filename-visible {
+        color: var(--primary-color) !important;
+    }
 </style>
 <style>
-    #info-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); z-index: 9990; display: none; justify-content: center; align-items: center; }
-    #registration-info-popup { background: #0d0118; border: 1px solid var(--fluorescent-green); border-radius: 15px; padding: 2rem; max-width: 650px; width: 90%; position: relative; box-shadow: 0 8px 32px 0 rgba(128, 255, 0, 0.3); text-align: justify; }
-    #registration-info-popup h4 { color: var(--fluorescent-green) !important; text-align: center; margin-bottom: 1.5rem; font-size: 1.5rem; }
-    #registration-info-popup p { color: #e5e7eb; line-height: 1.6; margin-bottom: 1rem; }
-    #registration-info-popup .popup-close { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 2rem; color: #aaa; cursor: pointer; line-height: 1; transition: color 0.2s ease; }
-    #registration-info-popup .popup-close:hover { color: white; }
-    html.light-mode #info-popup-overlay { background: rgba(248, 250, 252, 0.7); }
-    html.light-mode #registration-info-popup { background: #ffffff; border-color: var(--primary-color); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-    html.light-mode #registration-info-popup h4 { color: var(--primary-color) !important; }
-    html.light-mode #registration-info-popup p { color: #334155; }
-    html.light-mode #registration-info-popup .popup-close { color: #64748b; }
-    html.light-mode #registration-info-popup .popup-close:hover { color: #1e293b; }
-    #theme-toggle-light-icon, #theme-toggle-light-icon-mobile { color: var(--fluorescent-green) !important; }
+    #info-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 9990;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #registration-info-popup {
+        background: #0d0118; 
+        border: 1px solid var(--fluorescent-green);
+        border-radius: 15px;
+        padding: 2rem;
+        max-width: 650px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 8px 32px 0 rgba(128, 255, 0, 0.3);
+        text-align: justify;
+    }
+
+    #registration-info-popup h4 {
+        color: var(--fluorescent-green) !important;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    #registration-info-popup p {
+        color: #e5e7eb;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    #registration-info-popup .popup-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #aaa;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.2s ease;
+    }
+    #registration-info-popup .popup-close:hover {
+        color: white;
+    }
+
+    html.light-mode #info-popup-overlay {
+        background: rgba(248, 250, 252, 0.7);
+    }
+    html.light-mode #registration-info-popup {
+        background: #ffffff;
+        border-color: var(--primary-color);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    html.light-mode #registration-info-popup h4 {
+        color: var(--primary-color) !important;
+    }
+    html.light-mode #registration-info-popup p {
+        color: #334155;
+    }
+    html.light-mode #registration-info-popup .popup-close {
+        color: #64748b;
+    }
+    html.light-mode #registration-info-popup .popup-close:hover {
+        color: #1e293b;
+    }
+
+
+
+#theme-toggle-dark-icon, #theme-toggle-light-icon,
+#theme-toggle-dark-icon-mobile, #theme-toggle-light-icon-mobile {
+    display: none;
+}
+
+html:not(.light-mode) #theme-toggle-light-icon,
+html:not(.light-mode) #theme-toggle-light-icon-mobile {
+    display: inline-block;
+    color: var(--fluorescent-green) !important;
+}
+
+html.light-mode #theme-toggle-dark-icon,
+html.light-mode #theme-toggle-dark-icon-mobile {
+    display: inline-block;
+}
 </style>
 </head>
 <style>
-    body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, select, textarea { font-family: 'Arial Narrow', Arial, sans-serif !important; }
-    .fa-globe, .language-trigger i, i.fas.fa-globe { color: #80ff00 !important; }
-    button i.fas.fa-globe, a i.fas.fa-globe { color: #80ff00 !important; }
-    .form-input-register.border-red-500, .custom-select-trigger.border-red-500, .phone-input-wrapper.border-red-500 { border-color: #ef4444 !important; }
-    .form-input-register.border-red-500:focus, .custom-select-trigger.border-red-500.active, .form-input-register-phone:focus + .phone-input-wrapper.border-red-500 { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3) !important; }
-    label.text-red-500 { color: #ef4444 !important; }
-    #validation-popup-ok { background-color: var(--fluorescent-green) !important; color: #0e076a !important; border: none; border-radius: 50px; font-weight: 600; padding: 8px 24px; transition: background-color 0.3s; }
-    #validation-popup-ok:hover { background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%) !important; }
-    #validation-popup-overlay { z-index: 9999; }
+    body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, select, textarea {
+        font-family: 'Arial Narrow', Arial, sans-serif !important;
+    }
+    .fa-globe, 
+    .language-trigger i,
+    i.fas.fa-globe {
+        color: #80ff00 !important;
+    }
+    
+    button i.fas.fa-globe,
+    a i.fas.fa-globe {
+        color: #80ff00 !important;
+    }
+    .form-input-register.border-red-500,
+    .custom-select-trigger.border-red-500, 
+    .phone-input-wrapper.border-red-500 {
+        border-color: #ef4444 !important; 
+    }
+    .form-input-register.border-red-500:focus,
+    .custom-select-trigger.border-red-500.active, 
+    .form-input-register-phone:focus + .phone-input-wrapper.border-red-500 {
+        box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3) !important; 
+    }
+
+    label.text-red-500 {
+        color: #ef4444 !important;
+    }
+
+    #validation-popup-ok {
+            background-color: var(--fluorescent-green) !important;
+            color: #0e076a !important;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 8px 24px; 
+            transition: background-color 0.3s;
+    }
+    #validation-popup-ok:hover {
+            background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%) !important;
+    }
+
+    #validation-popup-overlay {
+        z-index: 9999; 
+    }
 </style>
-<!-- ============================================= -->
-<!-- STYLES FOR AGE VERIFICATION POPUPS -->
-<!-- ============================================= -->
+
 <style>
-    #age-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; display: none; justify-content: center; align-items: center; padding: 1rem; }
-    .age-popup-container { background: #0d0118; border: 1px solid var(--fluorescent-green); border-radius: 15px; padding: 2.5rem; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 8px 40px 0 rgba(128, 255, 0, 0.35); text-align: left; }
-    .age-popup-container h3 { color: var(--danger-color) !important; text-align: center; margin-bottom: 1.5rem; font-size: 1.75rem; }
-    .age-popup-container h4 { color: var(--fluorescent-green) !important; margin-top: 1.5rem; margin-bottom: 1rem; font-size: 1.25rem; border-bottom: 1px solid rgba(128, 255, 0, 0.2); padding-bottom: 0.5rem; }
-    .age-popup-container p { color: #e5e7eb; line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem; }
-    .age-popup-container .popup-close { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2.2rem; color: #aaa; cursor: pointer; line-height: 1; transition: color 0.2s ease; }
+    #age-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 10000;
+        display: none; /* Inicijalno skriven */
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .age-popup-container {
+        background: #0d0118; 
+        border: 1px solid var(--fluorescent-green);
+        border-radius: 15px;
+        padding: 2.5rem;
+        max-width: 900px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 8px 40px 0 rgba(128, 255, 0, 0.35);
+        text-align: left;
+    }
+    
+    .age-popup-container h3 {
+        color: var(--danger-color) !important;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+    }
+    .age-popup-container h4 {
+        color: var(--fluorescent-green) !important;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        border-bottom: 1px solid rgba(128, 255, 0, 0.2);
+        padding-bottom: 0.5rem;
+    }
+    
+    .age-popup-container p {
+        color: #e5e7eb;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+    .age-popup-container .popup-close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 2.2rem;
+        color: #aaa;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.2s ease;
+    }
     .age-popup-container .popup-close:hover { color: white; }
-    .guardian-form-grid { display: flex; gap: 2rem; flex-wrap: wrap; }
-    .guardian-column { flex: 1; min-width: 280px; }
-    .guardian-column h5 { text-align: center; color: var(--fluorescent-green); margin-bottom: 1rem; font-weight: bold; }
-    .file-upload-wrapper { position: relative; display: inline-block; width: 100%; }
-    .file-upload-label { display: flex; align-items: center; justify-content: center; padding: 0.75rem 1rem; background-color: rgba(106, 27, 154, 0.1); border: 1px solid var(--fluorescent-green); border-radius: 8px; color: var(--fluorescent-green); cursor: pointer; transition: background-color 0.3s; }
-    .file-upload-label:hover { background-color: rgba(128, 255, 0, 0.1); }
-    .file-upload-label i { margin-right: 0.75rem; }
-    .file-upload-filename { display: block; margin-top: 0.5rem; font-size: 0.8rem; color: #9ca3af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .popup-note { font-size: 0.9rem; color: #f4f80b; margin-top: 0.5rem; background-color: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 5px; }
-    .popup-actions { margin-top: 2rem; display: flex; justify-content: center; }
-    .popup-actions .btn-primary { padding: 12px 30px; font-size: 1rem; }
-    #guardian-signature-1, #guardian-signature-2, #court-order-file { display: none; }
-    html.light-mode #age-popup-overlay { background: rgba(248, 250, 252, 0.8); }
-    html.light-mode .age-popup-container { background: #ffffff; border-color: var(--primary-color); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
-    html.light-mode .age-popup-container h3 { color: var(--danger-color) !important; }
-    html.light-mode .age-popup-container h4, html.light-mode .age-popup-container .guardian-column h5 { color: var(--primary-color) !important; border-bottom-color: #e2e8f0; }
-    html.light-mode .age-popup-container p { color: #334155; }
-    html.light-mode .age-popup-container .popup-close { color: #64748b; }
-    html.light-mode .age-popup-container .popup-close:hover { color: #1e293b; }
-    html.light-mode .file-upload-label { background-color: #f1f5f9; border-color: var(--primary-color); color: var(--primary-color); }
-    html.light-mode .file-upload-label:hover { background-color: rgba(106, 27, 154, 0.1); }
-    html.light-mode .popup-note { color: #475569; background-color: #f1f5f9; }
+    
+    .guardian-form-grid {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    .guardian-column {
+        flex: 1;
+        min-width: 280px;
+    }
+    .guardian-column h5 {
+        text-align: center;
+        color: var(--fluorescent-green);
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .file-upload-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+    .file-upload-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        background-color: rgba(106, 27, 154, 0.1);
+        border: 1px solid var(--fluorescent-green);
+        border-radius: 8px;
+        color: var(--fluorescent-green);
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .file-upload-label:hover {
+        background-color: rgba(128, 255, 0, 0.1);
+    }
+    .file-upload-label i {
+        margin-right: 0.75rem;
+    }
+    #guardian-signature-1, #guardian-signature-2 {
+        display: none;
+    }
+    .file-upload-filename {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: #9ca3af;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .popup-note {
+        font-size: 0.9rem;
+        color: #f4f80b;
+        margin-top: 0.5rem;
+        background-color: rgba(0,0,0,0.2);
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+.popup-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+    .popup-actions .btn-primary {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    #guardian-signature-1, #guardian-signature-2, #court-order-file {
+        display: none;
+    }
+
+    html.light-mode #age-popup-overlay {
+        background: rgba(248, 250, 252, 0.8);
+    }
+    html.light-mode .age-popup-container {
+        background: #ffffff;
+        border-color: var(--primary-color);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    html.light-mode .age-popup-container h3 {
+        color: var(--danger-color) !important;
+    }
+    html.light-mode .age-popup-container h4,
+    html.light-mode .age-popup-container .guardian-column h5 {
+        color: var(--primary-color) !important;
+        border-bottom-color: #e2e8f0;
+    }
+    html.light-mode .age-popup-container p {
+        color: #334155;
+    }
+    html.light-mode .age-popup-container .popup-close {
+        color: #64748b;
+    }
+    html.light-mode .age-popup-container .popup-close:hover {
+        color: #1e293b;
+    }
+    html.light-mode .file-upload-label {
+        background-color: #f1f5f9;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+    html.light-mode .file-upload-label:hover {
+        background-color: rgba(106, 27, 154, 0.1);
+    }
+    html.light-mode .popup-note {
+        color: #475569;
+        background-color: #f1f5f9;
+    }
 </style>
 <body class="bg-gray-900 register-page">
 <canvas id="network-canvas"></canvas>
@@ -351,7 +1034,7 @@
 </div>
 </div>
 <a class="btn-primary text-xs" href="login_en.html">Login</a>
-<a class="btn-outline text-xs" href="register_en.html">Register</a>
+<a class="btn-outline text-xs" href="register_en.html">Registration</a>
 </div>
 <div class="md:hidden">
 <div class="hamburger"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </div>
@@ -361,7 +1044,7 @@
 <div class="nav-menu md:hidden">
 <div class="mobile-language-selector mt-4 mb-4 border-t border-b border-gray-700 py-2 px-6">
 <a class="block text-center transition-colors duration-300 sft21-nav-link mobile-language-trigger text-gray-300 hover:text-fluorescent-green" href="#" id="mobile-lang-trigger">
-<i class="fas fa-globe mr-2"></i> Select Language <i class="fas fa-chevron-down ml-1 text-xs"></i>
+<i class="fas fa-globe mr-2"></i> Select language <i class="fas fa-chevron-down ml-1 text-xs"></i>
 </a>
 <button class="text-white hover:text-fluorescent-green transition-colors duration-300 text-2xl p-2 rounded-full" id="theme-toggle-mobile" type="button">
 <i class="fas fa-moon" id="theme-toggle-dark-icon-mobile"></i>
@@ -374,62 +1057,64 @@
 </div>
 <div class="flex flex-col space-y-3 px-6 mt-auto pb-4">
 <a class="btn-primary text-center text-xs" href="login_en.html">Login</a>
-<a class="btn-outline text-center text-xs" href="register_en.html">Register</a>
+<a class="btn-outline text-center text-xs" href="register_en.html">Registration</a>
 </div>
 </div>
 </nav>
 <div id="info-popup-overlay">
+<!-- Info popup content remains the same... -->
 <div id="registration-info-popup">
 <button aria-label="Close notification" class="popup-close" id="close-info-popup-btn">×</button>
 <h4>Information</h4>
-<p>As this is a demo site, registration via Facebook, Google, and Apple is not possible.</p>
-<p>This registration form is currently not connected to a database; it does not collect or store your entered data or photos. Therefore, you can safely use your real or fictional data to familiarize yourself with the registration process... with the registration process for minors (16 to 18)... with choosing a username and password... and with the identity verification process (KYC).</p>
+<p>As this is a demo site, registration via Facebook, Google, or Apple is not possible.</p>
+<p>This registration form is not currently connected to a database; it does not collect or store your entered data or photos. Therefore, you can use real or fictional data without any issues to familiarize yourself with the registration process... with the registration process for minors (16 to 18)... with choosing a username and password... and with the identity verification (KYC) process.</p>
 </div>
 </div>
+<!-- Main page content remains the same... -->
 <main class="registration-section">
 <div class="container mx-auto px-6">
 <div class="text-center mb-12 md:mb-16 fade-in">
 <h1 class="text-3xl md:text-5xl font-bold mb-4">Registration</h1>
 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-<strong>Join the SFT21 community!</strong></p>
-<p class="text-gray-300">Your place for education, inspiration, and new business opportunities.</p>
-<p class="text-gray-300">Meet new people, share ideas, and grow with us.</p>
-</div>
+<strong>Join the SFT21 community!</strong></p><p>
+</p><p>Your place for education, inspiration, and new business opportunities.</p>
+<p>Meet new people, share ideas, and grow with us.</p>
+<p></p></div>
 <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 <div class="w-full lg:w-5/12 fade-in" style="animation-delay: 0.2s;">
 <div class="glass-card p-6 mb-8">
-<h4><strong>REFERRAL</strong></h4> <div class="space-y-3">
+<h4 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif !important;"><strong>RECOMMENDATION</strong></h4> <div class="space-y-3">
 <label class="flex items-center cursor-pointer">
 <input checked="" class="form-radio-register" id="recommender-no" name="recommender_choice" type="radio" value="none"/>
-<span class="ml-2 text-sm text-gray-300">I don't have a referrer</span>
+<span class="ml-2 text-sm text-gray-300">I don't have a recommender</span>
 </label>
 <label class="flex items-center cursor-pointer">
 <input class="form-radio-register" id="recommender-yes" name="recommender_choice" type="radio" value="has_recommender"/>
-<span class="ml-2 text-sm text-gray-300">I have a referrer</span>
+<span class="ml-2 text-sm text-gray-300">My recommender</span>
 </label>
 </div>
 <div class="mt-4 hidden" id="recommender-input-container">
-<input class="form-input-register w-full" id="recommender-details" name="recommender_details" placeholder="Referrer's details" type="text"/>
+<input class="form-input-register w-full" id="recommender-details" name="recommender_details" placeholder="Recommender's details" type="text"/>
 <p class="text-xs text-gray-400 mt-2">
-                                Enter the username, email address, or phone number of the referrer
+                                Enter the recommender's username, email address, or phone number
                             </p>
 </div>
 </div>
 <div class="glass-card p-6">
-<h4 style="color: #61f108 !important;"><strong>Welcome to the SFteam!</strong> </h4> <p class="text-gray-300 mb-4"><strong>Register for free and use our platform's services:</strong></p>
+<h4 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif !important;"><strong>Welcome to SFteam!</strong> </h4> <p class="text-gray-300 mb-4"><strong>Register for free and use the services of our platform:</strong></p>
 <ul class="benefits-list">
 <li><i class="fas fa-check-circle"></i>SFnet - business-social network</li>
 <li><i class="fas fa-check-circle"></i>SFshop - online store</li>
-<li><i class="fas fa-check-circle"></i>SFoffice – unique multifunctional business space</li>
-<li><i class="fas fa-check-circle"></i>SFcode – free code for participating in prize draws</li>
-<li><i class="fas fa-check-circle"></i>Multiple ways to earn</li>
+<li><i class="fas fa-check-circle"></i>SFured – unique multifunctional business space</li>
+<li><i class="fas fa-check-circle"></i>SFkod – free code to participate in prize games</li>
+<li><i class="fas fa-check-circle"></i>Opportunity to earn in multiple ways</li>
 </ul>
 </div>
 <div class="glass-card p-6 mt-8">
-<h4 style="color: #61f108 !important; margin-top: 2rem !important;"><strong>Identity Verification - KYC</strong></h4>
-<p class="text-gray-300 mb-4 text-justify">THE KYC STANDARD IS A PROCESS WHERE CLIENTS ARE REQUIRED TO CONFIRM THEIR IDENTITY TO CONTINUE LEGALLY USING OUR PORTAL'S PAGES. THIS IS PRIMARILY TO PREVENT FAKE OR MULTIPLE REGISTRATIONS, IDENTITY THEFT, FINANCIAL FRAUD, MONEY LAUNDERING, TERRORIST FINANCING, ETC.
+<h4 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif !important; margin-top: 2rem !important;"><strong>Identity Verification - KYC</strong></h4> <p class="text-gray-300 mb-4 text-justify" da="" dokumenta="" fotografije.="" i="" identitet="" identitet,="" li="" molimo="" napomenuti="" ne="" nego="" osobnog="" p="" potvrditi="" prekinete="" prije="" proces="" procesom="" procesu="" registracije="" registracije.<="" sa="" svoj="" trebati="" u="" ukoliko="" unosom="" vam="" vlastite="" započnete="" ćete="" želimo="" želite="">
+</p><p class="text-gray-300 mb-4 text-justify">THE KYC STANDARD IS A PROCESS IN WHICH CLIENTS ARE REQUIRED TO VERIFY THEIR IDENTITY TO CONTINUE THE LEGAL USE OF OUR PORTAL'S PAGES, PRIMARILY TO PREVENT FRAUDULENT OR MULTIPLE REGISTRATIONS, IDENTITY THEFT, FINANCIAL FRAUD, MONEY LAUNDERING, TERRORIST FINANCING, ETC.
                         </p>
-</div>
+<p></p></div>
 <div class="image-placeholder mt-8"></div>
 </div>
 <div class="w-full lg:w-7/12 fade-in" style="animation-delay: 0.4s;">
@@ -456,27 +1141,27 @@
 <div class="form-group">
 <label class="form-label-register" for="country">Country*</label>
 <div class="custom-select-wrapper">
-<input id="country" name="country" required="" type="hidden" value="HR"/>
+<input id="country" name="country" required="" type="hidden" value="GB"/>
 <div class="custom-select-trigger" id="country-select-trigger">
-<img alt="Flag" class="flag-in-select" src="https://flagcdn.com/w20/hr.png"/>
-<span class="country-name">Croatia</span>
+<img alt="Flag" class="flag-in-select" src="https://flagcdn.com/w20/gb.png"/>
+<span class="country-name">United Kingdom</span>
 </div>
 <div class="custom-select-options" id="country-select-options">
 </div>
 </div>
 </div>
 <!-- ============================================= -->
-<!-- FIELDS FOR BUSINESS ACCOUNT (initially hidden) -->
+<!-- === FIELDS FOR BUSINESS ACCOUNT (initially hidden) === -->
 <!-- ============================================= -->
 <div class="hidden space-y-4" id="business-fields-container">
 <div class="form-group">
 <label class="form-label-register" for="business-name">Name of legal entity or business*</label>
-<input class="form-input-register" id="business-name" name="business_name" placeholder="Enter company name" type="text"/>
+<input class="form-input-register" id="business-name" name="business_name" placeholder="Enter the company name" type="text"/>
 </div>
 <h4 class="text-lg font-semibold pt-2 text-fluorescent-green">RESPONSIBLE PERSON</h4>
 </div>
 <!-- ============================================= -->
-<!-- END OF BUSINESS ACCOUNT FIELDS -->
+<!-- === END OF BUSINESS ACCOUNT FIELDS === -->
 <!-- ============================================= -->
 <div class="form-group">
 <label class="form-label-register">Salutation*</label>
@@ -511,8 +1196,8 @@
 <label class="form-label-register" for="mobile-phone">Mobile Phone*</label>
 <div class="flex items-center phone-input-wrapper">
 <div class="country-code-select">
-<img alt="Flag" id="phone-flag" src="https://flagcdn.com/w20/hr.png"/>
-<span id="phone-prefix">+385</span>
+<img alt="Flag" id="phone-flag" src="https://flagcdn.com/w20/gb.png"/>
+<span id="phone-prefix">+44</span>
 </div>
 <input class="form-input-register-phone" id="mobile-phone" name="mobile_phone" placeholder="Your mobile number" required="" type="tel"/>
 </div>
@@ -528,15 +1213,15 @@
 </label>
 <label class="flex items-start cursor-pointer">
 <input class="form-checkbox-register mt-1" name="terms_privacy" required="" type="checkbox"/>
-<span class="ml-2 text-sm text-gray-300">I have read and accept the <a class="text-fluorescent-green underline hover:text-green-400" href="#">Data Protection Statement</a> and <a class="text-fluorescent-green underline hover:text-green-400" href="#">Consent for data forwarding and use</a>.*</span>
+<span class="ml-2 text-sm text-gray-300">I have read and accept the <a class="text-fluorescent-green underline hover:text-green-400" href="#">Data Protection Statement</a> and the <a class="text-fluorescent-green underline hover:text-green-400" href="#">Consent for data forwarding and use</a>.*</span>
 </label>
 <label class="flex items-start cursor-pointer">
 <input class="form-checkbox-register mt-1" name="terms_newsletter" type="checkbox"/>
-<span class="ml-2 text-sm text-gray-300">Yes, I want to receive notifications about the latest information and special offers, as well as vouchers, prize draws, and promotions via email and phone. I can unsubscribe at any time.</span>
+<span class="ml-2 text-sm text-gray-300">Yes, I want to receive notifications about the latest information and special offers, as well as vouchers, prize games, and promotions via email and phone. I can unsubscribe at any time.</span>
 </label>
 </div>
 <div class="mt-6 text-xs text-gray-400 leading-relaxed">
-                              I have the right to revoke this consent for the processing of the mentioned data for future use at any time, in writing, by sending a REVOCATION OF PERSONAL DATA via email to <strong>support@infaceinvestgroup.hr</strong>. The processing of data based on this consent remains valid until the revocation.</div>
+                              I have the right to revoke this consent for the processing of the mentioned data at any time for future use, in written form by sending a REVOCATION OF PERSONAL DATA via email to <strong>support@infaceinvestgroup.hr</strong>. Until the revocation, the data processing carried out based on this consent remains valid.</div>
 <div class="pt-6 space-y-3">
 <button class="btn-primary w-full py-3" id="dalje-button" style="background-color: #80ff00 !important; color: #0e076a !important; border-radius: 50px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 12px 24px; border: none;" type="button">Next</button> </div>
 <p class="text-xs text-gray-400 mt-4">*Required fields</p>
@@ -544,12 +1229,13 @@
 </div> </div> </div>
 
 </main>
+
 <footer class="py-16 bg-gray-900 border-t border-gray-800 mt-16">
 <div class="container mx-auto px-6">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
     <div class="md:col-span-1">
         <h3 class="text-2xl font-bold mb-6 text-white">InFace Invest Group</h3>
-        <p class="text-gray-400 mb-8">On strong local and regional foundations, we create a global online community that connects people in a new, more humane, and fairer way.</p>
+        <p class="text-gray-400 mb-8">On strong local and regional foundations, we are creating a global online community that connects people in a new, more humane, and above all, fairer way.</p>
         <div class="flex space-x-4">
             <a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#"><i class="fab fa-facebook-f text-xl"></i></a>
             <a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#"><i class="fab fa-x-twitter text-xl"></i></a>
@@ -557,18 +1243,18 @@
             <a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#"><i class="fab fa-linkedin-in text-xl"></i></a>
         </div>
     </div>
-    <div>
-        <h4 class="text-lg font-bold mb-6 text-white">Quick Links</h4>
-        <ul class="space-y-3">
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#pocetna">Home</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#poslovni-koncept">Business Concept</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#investicija">License Packages</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#startni-paketi">Starter Packages</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="register_en.html">Registration</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="login_en.html">Login</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#kontakt">Contact</a></li>
-        </ul>
-    </div>
+<div>
+    <h4 class="text-lg font-bold mb-6 text-white">Quick Links</h4>
+    <ul class="space-y-3">
+        <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#home">Home</a></li>
+        <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#business-concept">Business Concept</a></li>
+        <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#investment">License Packages</a></li>
+        <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#starter-packs">Starter Packs</a></li>
+        <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="register_en.html">Registration</a></li>
+        <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="login_en.html">Login</a></li>
+        <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="index_en.html#contact">Contact</a></li>
+    </ul>
+</div>
     <div>
         <h4 class="text-lg font-bold mb-6 text-white">Contact</h4>
                     <ul class="space-y-3">
@@ -585,7 +1271,7 @@
             <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Terms of Use</a></li>
             <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Privacy Policy</a></li>
             <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">GDPR</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Business Rules</a></li>
+            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Business Policy</a></li>
         </ul>
     </div>
 </div>
@@ -594,11 +1280,8 @@
 </div>
 </div>
 </footer>
-<!-- ============================================= -->
-<!-- HTML FOR AGE VERIFICATION POPUPS -->
-<!-- ============================================= -->
+
 <div id="age-popup-overlay">
-<!-- Popup 1: For users under 16 -->
 <div class="age-popup-container" id="age-restriction-popup" style="display: none; max-width: 500px;">
 <h3>Warning!</h3>
 <p style="text-align: center; font-size: 1.1rem;">
@@ -608,16 +1291,15 @@
 <button class="btn-primary" id="age-restriction-ok-btn">OK</button>
 </div>
 </div>
-<!-- Popup 2: For users between 16 and 18 -->
 <div class="age-popup-container" id="parental-consent-popup" style="display: none;">
 <button aria-label="Close" class="popup-close" id="parental-consent-close-btn">×</button>
 <h3>Consent Required</h3>
 <p>
-                Registration for persons aged 16 to 18 is only possible with the consent of a parent or guardian. To continue the registration process, the Parental or Guardian Consent form must be completed.
+                Registration for individuals between the ages of 16 and 18 is possible only with the consent of a parent or guardian. To continue the registration process, the Parent or Guardian Consent form must be completed.
             </p>
 <h4>Business Cooperation with a Minor</h4>
 <p>
-                In accordance with the business rules of InFace Invest Group, the registration and business cooperation with a minor, specifically an older minor (16 to 18 years), is permitted exclusively with the consent of a legal representative – parent, adopter, or guardian.
+                In accordance with the business policies of InFace Invest Group, the company permits the registration and business cooperation with a minor, specifically an older minor (16 to 18 years old), exclusively with the consent of a legal representative – parent, adopter, guardian.
             </p>
 <form id="parental-consent-form">
 <h4 style="text-align: center;">LEGAL REPRESENTATIVE'S CONSENT</h4>
@@ -640,7 +1322,7 @@
 <input class="form-input-register" id="minor-phone" name="minor_phone" readonly="" type="tel" value="+"/>
 </div>
 </div>
-<p class="mt-4">I/We consent to the above-named person (older minor) registering with Inface Invest Group as a full member through the SFT21 system, and as such, I/we agree to the company's terms of use and privacy policy as stated on the portal www.infaceinvestgroup.com.</p>
+<p class="mt-4">I/We agree that the above-mentioned person (older minor) registers with Inface Invest Group as a full member through the SFT21 system, and as such, I/we agree to the company's terms of use and privacy policy stated on the portal www.infaceinvestgroup.com</p>
 
 <div class="guardian-form-grid mt-6">
 <div class="guardian-column space-y-4">
@@ -657,6 +1339,7 @@
 <span class="file-upload-filename" id="filename-1">No file chosen</span>
 </div>
 </div>
+<!-- NEW BUTTON FOR THE FIRST GUARDIAN -->
 <button class="btn-kyc-guardian" id="guardian-kyc-btn-1" type="button">KYC – Identity Verification</button>
 </div>
 <div class="guardian-column space-y-4">
@@ -673,14 +1356,16 @@
 <span class="file-upload-filename" id="filename-2">No file chosen</span>
 </div>
 </div>
+<!-- NEW BUTTON FOR THE SECOND GUARDIAN -->
 <button class="btn-kyc-guardian" id="guardian-kyc-btn-2" type="button">KYC – Identity Verification</button>
 </div>
 <div class="popup-note mt-4">
-<strong>Note:</strong> To upload your handwritten signature, please sign on a piece of white paper identically to the signature on your ID document. Take a photo or scan the signature and upload the image or scan by clicking the field above: "Upload Signature - Choose file".
+<strong>Note:</strong> To upload your handwritten signature, sign on a piece of white paper identically to the signature on your ID document. Take a photo or scan the signature and upload the image or scan by clicking the field above: "Upload Signature - Choose file".
 </div>
 <div class="mt-6" id="court-order-section">
-    <label class="form-label-register" for="court-order">If only one parent or legal guardian has custody, please upload the Custody Decree.</label>
+    <label class="form-label-register" for="court-order">If only one parent or legal representative has custody, upload the Custody Decree.</label>
 
+    <!-- BLOCK FOR UPLOADING THE DECREE -->
     <div class="mt-4">
         <div class="file-upload-wrapper">
             <label class="file-upload-label" for="court-order-file">
@@ -695,6 +1380,7 @@
     </div>
 </div>
 
+<!-- CLEANED DIV FOR THE BUTTON -->
 <div class="popup-actions">
     <button class="btn-primary" id="consent-form-submit-btn" type="button">Save and Continue</button>
 </div>
@@ -703,14 +1389,14 @@
 </div>
 </div>
 
-
-<!-- External libraries -->
+<!-- Učitavanje vanjskih biblioteka -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js"></script>
 
-<!-- Main script -->
 <script>
+    // --- KONAČNA, JEDINSTVENA SKRIPTA ZA REGISTER.HTML (v18 - MAKSIMALNO POJEDNOSTAVLJENO) ---
     document.addEventListener('DOMContentLoaded', () => {
+        // === DEKLARACIJA SVIH ELEMENATA ===
         const body = document.body;
         const cursor = document.querySelector('.custom-cursor');
         const hamburger = document.querySelector('.hamburger');
@@ -732,8 +1418,8 @@
         const guardianKycBtn2 = document.getElementById('guardian-kyc-btn-2');
         const consentSubmitBtn = document.getElementById('consent-form-submit-btn');
 
-                // ==========================================================
-        // === REFERRER FIELD DISPLAY LOGIC ===
+        // ==========================================================
+        // === LOGIKA ZA PRIKAZ POLJA PREPORUČITELJA ===
         // ==========================================================
         const recommenderYesRadio = document.getElementById('recommender-yes');
         const recommenderNoRadio = document.getElementById('recommender-no');
@@ -751,10 +1437,10 @@
             recommenderYesRadio.addEventListener('change', toggleRecommenderField);
             recommenderNoRadio.addEventListener('change', toggleRecommenderField);
         }
-        // === END OF REFERRER LOGIC ===
+        // === KRAJ LOGIKE ZA PREPORUČITELJA ===
 
                 // ==========================================================
-        // === LOGIC FOR COUNTRY SELECTOR ===
+        // === LOGIKA ZA ODABIR ZEMLJE (COUNTRY SELECTOR) ===
         // ==========================================================
         const countryTrigger = document.getElementById('country-select-trigger');
         const countryOptionsContainer = document.getElementById('country-select-options');
@@ -762,8 +1448,10 @@
         const phonePrefixSpan = document.getElementById('phone-prefix');
         const phoneFlagImg = document.getElementById('phone-flag');
         
-        // List of countries (translated to English)
+        // Lista zemalja (možete je proširiti po potrebi)
         const countries = [
+            { code: 'GB', name: 'United Kingdom', prefix: '+44' },
+            { code: 'US', name: 'United States', prefix: '+1' },
             { code: 'HR', name: 'Croatia', prefix: '+385' },
             { code: 'DE', name: 'Germany', prefix: '+49' },
             { code: 'AT', name: 'Austria', prefix: '+43' },
@@ -771,14 +1459,12 @@
             { code: 'SI', name: 'Slovenia', prefix: '+386' },
             { code: 'RS', name: 'Serbia', prefix: '+381' },
             { code: 'BA', name: 'Bosnia and Herzegovina', prefix: '+387' },
-            { code: 'GB', name: 'United Kingdom', prefix: '+44' },
-            { code: 'US', name: 'United States', prefix: '+1' },
         ];
 
-        // Function to populate the list
+        // Funkcija za popunjavanje liste
         function populateCountryOptions() {
             if (!countryOptionsContainer) return;
-            countryOptionsContainer.innerHTML = ''; // Clear existing options
+            countryOptionsContainer.innerHTML = ''; // Očisti postojeće opcije
             countries.forEach(country => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
@@ -792,39 +1478,39 @@
             });
         }
 
-        // Function to handle country selection
+        // Funkcija za odabir zemlje
         function selectCountry(optionElement) {
             const code = optionElement.dataset.code;
             const prefix = optionElement.dataset.prefix;
             const name = optionElement.querySelector('span').textContent;
             const flagSrc = optionElement.querySelector('img').src;
 
-            // Update the trigger display
+            // Ažuriraj prikaz triggera
             countryTrigger.querySelector('.country-name').textContent = name;
             countryTrigger.querySelector('img').src = flagSrc;
             
-            // Update the hidden input and phone prefix
+            // Ažuriraj skriveno polje i telefonski prefiks
             if (countryHiddenInput) countryHiddenInput.value = code;
             if (phonePrefixSpan) phonePrefixSpan.textContent = prefix;
             if (phoneFlagImg) phoneFlagImg.src = flagSrc;
             
-            // Close the dropdown
+            // Zatvori dropdown
             countryTrigger.classList.remove('active');
             countryOptionsContainer.classList.remove('active');
         }
 
         if (countryTrigger && countryOptionsContainer) {
-            // Populate the list on page load
+            // Popuni listu pri učitavanju stranice
             populateCountryOptions();
 
-            // Open/close dropdown on click
+            // Otvori/zatvori dropdown na klik
             countryTrigger.addEventListener('click', (event) => {
                 event.stopPropagation();
                 countryTrigger.classList.toggle('active');
                 countryOptionsContainer.classList.toggle('active');
             });
 
-            // Select a country on click
+            // Odaberi zemlju na klik
             countryOptionsContainer.addEventListener('click', (event) => {
                 const option = event.target.closest('.option');
                 if (option) {
@@ -833,74 +1519,189 @@
             });
         }
 
-        // Close the dropdown if clicking anywhere else on the page
+        // Zatvori dropdown ako se klikne bilo gdje drugdje na stranici
         document.addEventListener('click', (event) => {
             if (countryTrigger && !countryTrigger.contains(event.target)) {
                 countryTrigger.classList.remove('active');
                 countryOptionsContainer.classList.remove('active');
             }
         });
-        // === END OF COUNTRY SELECTOR LOGIC ===
+        // === KRAJ LOGIKE ZA ODABIR ZEMLJE ===
 
-        // Info Popup Logic
+        // === INFO POPUP LOGIKA ===
         const infoPopupOverlay = document.getElementById('info-popup-overlay');
         const closeInfoPopupBtn = document.getElementById('close-info-popup-btn');
-        function closeInfoPopup() { if (infoPopupOverlay) { infoPopupOverlay.style.display = 'none'; sessionStorage.setItem('sft21_info_popup_closed', 'true'); } }
-        if (infoPopupOverlay && sessionStorage.getItem('sft21_info_popup_closed') !== 'true') { infoPopupOverlay.style.display = 'flex'; }
-        if (closeInfoPopupBtn) { closeInfoPopupBtn.addEventListener('click', closeInfoPopup); }
-        if (infoPopupOverlay) { infoPopupOverlay.addEventListener('click', (event) => { if (event.target === infoPopupOverlay) { closeInfoPopup(); } }); }
 
-        // Theme Toggle Logic
+        // Funkcija za zatvaranje, da ne ponavljamo kod
+        function closeInfoPopup() {
+            if (infoPopupOverlay) {
+                infoPopupOverlay.style.display = 'none';
+                sessionStorage.setItem('sft21_info_popup_closed', 'true');
+            }
+        }
+
+        // Pokaži popup ako nije već zatvoren
+        if (infoPopupOverlay && sessionStorage.getItem('sft21_info_popup_closed') !== 'true') {
+            infoPopupOverlay.style.display = 'flex';
+        }
+
+        // Listener za gumb 'X'
+        if (closeInfoPopupBtn) {
+            closeInfoPopupBtn.addEventListener('click', closeInfoPopup);
+        }
+        
+        // NOVI DIO: Listener za klik izvan popupa
+        if (infoPopupOverlay) {
+            infoPopupOverlay.addEventListener('click', (event) => {
+                // Provjeri je li element na koji smo kliknuli SAM overlay (tamna pozadina)
+                // a ne neki od njegovih sadržaja (bijeli okvir, tekst, gumb...)
+                if (event.target === infoPopupOverlay) {
+                    closeInfoPopup();
+                }
+            });
+        }
+        // === KRAJ INFO POPUP LOGIKE ===
+
+        // === LOGIKA ZA PROMJENU TEME ===
         function updateLogoForTheme() { if (!logoImage) return; const isLight = document.documentElement.classList.contains('light-mode'); logoImage.src = isLight ? 'img/IFIG-logo_purple.png' : 'img/IFIG-logo.png'; }
-        function applyThemeClassAndIcons(theme) { if (theme === 'light') { document.documentElement.classList.add('light-mode'); moonIcons.forEach(icon => { if (icon) icon.style.display = 'inline-block'; }); sunIcons.forEach(icon => { if (icon) icon.style.display = 'none'; }); } else { document.documentElement.classList.remove('light-mode'); moonIcons.forEach(icon => { if (icon) icon.style.display = 'none'; }); sunIcons.forEach(icon => { if (icon) icon.style.display = 'inline-block'; }); } }
+        function applyThemeClassAndIcons(theme) {
+            if (theme === 'light') {
+                document.documentElement.classList.add('light-mode');
+                moonIcons.forEach(icon => { if (icon) icon.style.display = 'inline-block'; });
+                sunIcons.forEach(icon => { if (icon) icon.style.display = 'none'; });
+            } else {
+                document.documentElement.classList.remove('light-mode');
+                moonIcons.forEach(icon => { if (icon) icon.style.display = 'none'; });
+                sunIcons.forEach(icon => { if (icon) icon.style.display = 'inline-block'; });
+            }
+        }
         function handleThemeToggle() { const isLight = document.documentElement.classList.contains('light-mode'); const newTheme = isLight ? 'dark' : 'light'; localStorage.setItem('sft21_theme', newTheme); document.documentElement.classList.toggle('light-mode'); applyThemeClassAndIcons(newTheme); updateLogoForTheme(); if (window.setAnimationTheme) { window.setAnimationTheme(newTheme); } }
         const currentTheme = localStorage.getItem('sft21_theme') || 'dark';
         applyThemeClassAndIcons(currentTheme); updateLogoForTheme();
         if (themeToggleBtn) { themeToggleBtn.addEventListener('click', handleThemeToggle); }
         if (themeToggleMobileBtn) { themeToggleMobileBtn.addEventListener('click', handleThemeToggle); }
         
-        // Basic Page Functions (Cursor, Hamburger, Language Menu)
+        // === OSNOVNE FUNKCIJE STRANICE ===
         if (cursor && body) { let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0; const speed = 0.1; const updateCursor = () => { cursorX += (mouseX - cursorX) * speed; cursorY += (mouseY - cursorY) * speed; cursor.style.left = `${cursorX}px`; cursor.style.top = `${cursorY}px`; requestAnimationFrame(updateCursor); }; requestAnimationFrame(updateCursor); window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; }); document.addEventListener('mouseleave', () => cursor.style.opacity = '0'); document.addEventListener('mouseenter', () => cursor.style.opacity = '1'); document.querySelectorAll('a, button, input, [role="button"], label[for]').forEach(el => { el.addEventListener('mouseenter', () => gsap.to(cursor, { duration: 0.3, scale: 1.5 })); el.addEventListener('mouseleave', () => gsap.to(cursor, { duration: 0.3, scale: 1 })); }); }
         if (hamburger && navMenu) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); document.body.classList.toggle('no-scroll'); }); }
+
         const desktopLangTrigger = document.getElementById('desktop-lang-trigger');
         const desktopLangDropdown = document.getElementById('desktop-lang-dropdown');
         const mobileLangTrigger = document.getElementById('mobile-lang-trigger');
         const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
-        if (desktopLangTrigger && desktopLangDropdown) { desktopLangTrigger.addEventListener('click', (event) => { event.stopPropagation(); desktopLangDropdown.classList.toggle('active'); }); }
-        if (mobileLangTrigger && mobileLangDropdown) { mobileLangTrigger.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); mobileLangDropdown.classList.toggle('active'); }); }
-        window.addEventListener('click', (event) => { if (desktopLangDropdown && desktopLangDropdown.classList.contains('active')) { if (!desktopLangTrigger.contains(event.target)) { desktopLangDropdown.classList.remove('active'); } } });
 
-        // Account Type Logic
+        if (desktopLangTrigger && desktopLangDropdown) {
+            desktopLangTrigger.addEventListener('click', (event) => {
+                event.stopPropagation(); // Sprječava da se događaj proširi dalje
+                desktopLangDropdown.classList.toggle('active');
+            });
+        }
+
+        if (mobileLangTrigger && mobileLangDropdown) {
+            mobileLangTrigger.addEventListener('click', (event) => {
+                event.preventDefault(); // Sprječava da link skoči na vrh stranice
+                event.stopPropagation();
+                mobileLangDropdown.classList.toggle('active');
+            });
+        }
+
+        // Dodajemo listener na cijeli prozor da zatvori izbornik ako se klikne izvan njega
+        window.addEventListener('click', (event) => {
+            if (desktopLangDropdown && desktopLangDropdown.classList.contains('active')) {
+                if (!desktopLangTrigger.contains(event.target)) {
+                    desktopLangDropdown.classList.remove('active');
+                }
+            }
+        });
+
+        // === LOGIKA ZA ODABIR TIPA RAČUNA ===
         const personalBtn = document.getElementById('personal-account-btn');
         const businessBtn = document.getElementById('business-account-btn');
         const businessFieldsContainer = document.getElementById('business-fields-container');
         const businessNameInput = document.getElementById('business-name');
-        const socialLoginContainer = document.getElementById('social-login-container');
-        const formSeparator = document.getElementById('form-separator');
+        const socialLoginContainer = document.getElementById('social-login-container'); // Novi element
+        const formSeparator = document.getElementById('form-separator'); // Novi element
+
         if (personalBtn && businessBtn && businessFieldsContainer && businessNameInput && socialLoginContainer && formSeparator) {
-            const switchToPersonal = () => { businessBtn.classList.remove('active'); personalBtn.classList.add('active'); businessFieldsContainer.classList.add('hidden'); businessNameInput.required = false; socialLoginContainer.style.display = 'block'; formSeparator.style.display = 'block'; localStorage.setItem('sft21_account_type', 'personal'); };
-            const switchToBusiness = () => { personalBtn.classList.remove('active'); businessBtn.classList.add('active'); businessFieldsContainer.classList.remove('hidden'); businessNameInput.required = true; socialLoginContainer.style.display = 'none'; formSeparator.style.display = 'none'; localStorage.setItem('sft21_account_type', 'business'); };
+            const switchToPersonal = () => {
+                businessBtn.classList.remove('active');
+                personalBtn.classList.add('active');
+                businessFieldsContainer.classList.add('hidden');
+                businessNameInput.required = false;
+                
+                // Pokaži gumbe za društvene mreže
+                socialLoginContainer.style.display = 'block'; 
+                formSeparator.style.display = 'block';
+
+                localStorage.setItem('sft21_account_type', 'personal');
+            };
+
+            const switchToBusiness = () => {
+                personalBtn.classList.remove('active');
+                businessBtn.classList.add('active');
+                businessFieldsContainer.classList.remove('hidden');
+                businessNameInput.required = true;
+
+                // Sakrij gumbe za društvene mreže
+                socialLoginContainer.style.display = 'none';
+                formSeparator.style.display = 'none';
+
+                localStorage.setItem('sft21_account_type', 'business');
+            };
+            
             personalBtn.addEventListener('click', switchToPersonal);
             businessBtn.addEventListener('click', switchToBusiness);
+            
+            // Inicijalno stanje
             switchToPersonal();
         }
 
-        // Form and Popup Logic
-        function getFormData() { return { firstName: document.getElementById('first-name').value, lastName: document.getElementById('last-name').value, dobDd: document.getElementById('dob-dd').value, dobMm: document.getElementById('dob-mm').value, dobYyyy: document.getElementById('dob-yyyy').value, regEmail: document.getElementById('reg-email').value, mobilePhone: document.getElementById('mobile-phone').value, guardianName1: document.getElementById('guardian-name-1').value, guardianId1: document.getElementById('guardian-id-1').value, guardianEmail1: document.getElementById('guardian-email-1').value, guardianPhone1: document.getElementById('guardian-phone-1').value, guardianName2: document.getElementById('guardian-name-2').value, guardianId2: document.getElementById('guardian-id-2').value, guardianEmail2: document.getElementById('guardian-email-2').value, guardianPhone2: document.getElementById('guardian-phone-2').value, signature1_filename: document.getElementById('filename-1').textContent, signature2_filename: document.getElementById('filename-2').textContent, courtOrder_filename: document.getElementById('court-order-filename').textContent, }; }
+        // === LOGIKA FORME I POPUPA ===
+        function getFormData() {
+             return { firstName: document.getElementById('first-name').value, lastName: document.getElementById('last-name').value, dobDd: document.getElementById('dob-dd').value, dobMm: document.getElementById('dob-mm').value, dobYyyy: document.getElementById('dob-yyyy').value, regEmail: document.getElementById('reg-email').value, mobilePhone: document.getElementById('mobile-phone').value, guardianName1: document.getElementById('guardian-name-1').value, guardianId1: document.getElementById('guardian-id-1').value, guardianEmail1: document.getElementById('guardian-email-1').value, guardianPhone1: document.getElementById('guardian-phone-1').value, guardianName2: document.getElementById('guardian-name-2').value, guardianId2: document.getElementById('guardian-id-2').value, guardianEmail2: document.getElementById('guardian-email-2').value, guardianPhone2: document.getElementById('guardian-phone-2').value, signature1_filename: document.getElementById('filename-1').textContent, signature2_filename: document.getElementById('filename-2').textContent, courtOrder_filename: document.getElementById('court-order-filename').textContent, };
+        }
         function populateFormsFromStorage() { const savedData = sessionStorage.getItem('consentFormData'); if (savedData) { const data = JSON.parse(savedData); document.getElementById('first-name').value = data.firstName || ''; document.getElementById('last-name').value = data.lastName || ''; document.getElementById('dob-dd').value = data.dobDd || ''; document.getElementById('dob-mm').value = data.dobMm || ''; document.getElementById('dob-yyyy').value = data.dobYyyy || ''; document.getElementById('reg-email').value = data.regEmail || ''; document.getElementById('mobile-phone').value = data.mobilePhone || ''; document.getElementById('guardian-name-1').value = data.guardianName1 || ''; document.getElementById('guardian-id-1').value = data.guardianId1 || ''; document.getElementById('guardian-email-1').value = data.guardianEmail1 || ''; document.getElementById('guardian-phone-1').value = data.guardianPhone1 || ''; document.getElementById('guardian-name-2').value = data.guardianName2 || ''; document.getElementById('guardian-id-2').value = data.guardianId2 || ''; document.getElementById('guardian-email-2').value = data.guardianEmail2 || ''; document.getElementById('guardian-phone-2').value = data.guardianPhone2 || ''; if (data.signature1_filename && data.signature1_filename !== 'No file chosen') { const span = document.getElementById('filename-1'); span.textContent = data.signature1_filename; span.classList.add('filename-visible'); } if (data.signature2_filename && data.signature2_filename !== 'No file chosen') { const span = document.getElementById('filename-2'); span.textContent = data.signature2_filename; span.classList.add('filename-visible'); } if (data.courtOrder_filename && data.courtOrder_filename !== 'No file chosen') { const span = document.getElementById('court-order-filename'); span.textContent = data.courtOrder_filename; span.classList.add('filename-visible'); } } }
-        function validateGuardianFieldsForKyc(guardianId) { const name = document.getElementById(`guardian-name-${guardianId}`).value.trim(); const idDoc = document.getElementById(`guardian-id-${guardianId}`).value.trim(); const email = document.getElementById(`guardian-email-${guardianId}`).value.trim(); const phone = document.getElementById(`guardian-phone-${guardianId}`).value.trim(); const signatureFile = document.getElementById(`guardian-signature-${guardianId}`).files; const signatureFilename = document.getElementById(`filename-${guardianId}`).textContent; if (!name || !idDoc || !email || !phone) { alert(`Please fill all required fields for Legal Representative ${guardianId}.`); return false; } if (signatureFile.length === 0 && (signatureFilename === 'No file chosen' || !signatureFilename)) { alert(`Please upload a signature for Legal Representative ${guardianId}.`); return false; } return true; }
-        function startGuardianKyc(guardianId) { if (!validateGuardianFieldsForKyc(guardianId)) { return; } sessionStorage.setItem('consentFormData', JSON.stringify(getFormData())); sessionStorage.setItem('kycProcessForGuardian', guardianId); window.location.href = `office_kyc_en.html?source=guardian_kyc&guardian=${guardianId}`; }
-        function proceedToNextStep() { console.log("Validation successful. Redirecting to userdata_en.html"); sessionStorage.removeItem('consentFormData'); sessionStorage.removeItem('guardian1KycCompleted'); sessionStorage.removeItem('guardian2KycCompleted'); window.location.href = 'userdata_en.html'; }
+        
+        function validateGuardianFieldsForKyc(guardianId) { const name = document.getElementById(`guardian-name-${guardianId}`).value.trim(); const idDoc = document.getElementById(`guardian-id-${guardianId}`).value.trim(); const email = document.getElementById(`guardian-email-${guardianId}`).value.trim(); const phone = document.getElementById(`guardian-phone-${guardianId}`).value.trim(); const signatureFile = document.getElementById(`guardian-signature-${guardianId}`).files; const signatureFilename = document.getElementById(`filename-${guardianId}`).textContent; if (!name || !idDoc || !email || !phone) { alert(`Please fill in all required fields for Legal Representative ${guardianId}.`); return false; } if (signatureFile.length === 0 && (signatureFilename === 'No file chosen' || !signatureFilename)) { alert(`Please upload the signature for Legal Representative ${guardianId}.`); return false; } return true; }
+        
+        function startGuardianKyc(guardianId) { 
+            if (!validateGuardianFieldsForKyc(guardianId)) { return; } 
+            sessionStorage.setItem('consentFormData', JSON.stringify(getFormData()));
+            sessionStorage.setItem('kycProcessForGuardian', guardianId); 
+            window.location.href = `office_kyc_en.html?source=guardian_kyc&guardian=${guardianId}`; 
+        }
+
+        function proceedToNextStep() {
+            console.log("Validation successful. Redirecting to userdata.html"); 
+            sessionStorage.removeItem('consentFormData'); 
+            sessionStorage.removeItem('guardian1KycCompleted'); 
+            sessionStorage.removeItem('guardian2KycCompleted'); 
+            window.location.href = 'userdata_en.html'; 
+        }
+
         function handleReturnAndState() {
             populateFormsFromStorage();
+            
             const urlParams = new URLSearchParams(window.location.search);
             const kycCompleted = urlParams.get('kyc_complete');
             const completedGuardianId = urlParams.get('guardian');
-            if (kycCompleted === 'true' && completedGuardianId) { sessionStorage.setItem(`guardian${completedGuardianId}KycCompleted`, 'true'); }
+
+            if (kycCompleted === 'true' && completedGuardianId) {
+                sessionStorage.setItem(`guardian${completedGuardianId}KycCompleted`, 'true');
+            }
+
             const isGuardian1KycDone = sessionStorage.getItem('guardian1KycCompleted') === 'true';
             const isGuardian2KycDone = sessionStorage.getItem('guardian2KycCompleted') === 'true';
-            if (isGuardian1KycDone) { const btn1 = document.getElementById('guardian-kyc-btn-1'); if(btn1) { btn1.classList.add('completed'); btn1.disabled = true; btn1.innerHTML = '<i class="fas fa-check"></i> KYC Completed'; } }
-            if (isGuardian2KycDone) { const btn2 = document.getElementById('guardian-kyc-btn-2'); if(btn2) { btn2.classList.add('completed'); btn2.disabled = true; btn2.innerHTML = '<i class="fas fa-check"></i> KYC Completed'; } }
+            
+            if (isGuardian1KycDone) { 
+                const btn1 = document.getElementById('guardian-kyc-btn-1'); 
+                if(btn1) { btn1.classList.add('completed'); btn1.disabled = true; btn1.innerHTML = '<i class="fas fa-check"></i> KYC Completed'; } 
+            }
+            if (isGuardian2KycDone) { 
+                const btn2 = document.getElementById('guardian-kyc-btn-2'); 
+                if(btn2) { btn2.classList.add('completed'); btn2.disabled = true; btn2.innerHTML = '<i class="fas fa-check"></i> KYC Completed'; } 
+            }
+            
             const courtOrderSection = document.getElementById('court-order-section');
             if (isGuardian1KycDone && isGuardian2KycDone) {
                 if (courtOrderSection) courtOrderSection.style.display = 'none';
@@ -909,24 +1710,54 @@
                 if (courtOrderSection) courtOrderSection.style.display = 'block';
                 if (consentSubmitBtn) consentSubmitBtn.textContent = 'Save and Continue';
             }
+
             if (kycCompleted === 'true' && completedGuardianId) {
                 if (typeof populateParentalConsentForm === 'function') populateParentalConsentForm();
                 if (typeof showParentalConsentPopup === 'function') showParentalConsentPopup();
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
         }
+        
         function setupFileInputStyling(inputId, displayId) { const fileInput = document.getElementById(inputId); const displaySpan = document.getElementById(displayId); if (fileInput && displaySpan) { fileInput.addEventListener('change', () => { if (fileInput.files.length > 0) { displaySpan.textContent = fileInput.files[0].name; displaySpan.classList.add('filename-visible'); } else { displaySpan.textContent = 'No file chosen'; displaySpan.classList.remove('filename-visible'); } }); } }
         setupFileInputStyling('guardian-signature-1', 'filename-1');
         setupFileInputStyling('guardian-signature-2', 'filename-2');
         setupFileInputStyling('court-order-file', 'court-order-filename');
-        if (consentSubmitBtn) { consentSubmitBtn.addEventListener('click', () => { const isGuardian1KycDone = sessionStorage.getItem('guardian1KycCompleted') === 'true'; const isGuardian2KycDone = sessionStorage.getItem('guardian2KycCompleted') === 'true'; if (isGuardian1KycDone && isGuardian2KycDone) { proceedToNextStep(); return; } const errors = []; const isCourtOrderUploaded = document.getElementById('court-order-filename').textContent !== 'No file chosen'; if (!isGuardian1KycDone) { errors.push('■ KYC process for Legal Representative 1 is not complete.'); } if (!isGuardian2KycDone && !isCourtOrderUploaded) { errors.push('■ You must either complete KYC for Legal Representative 2 OR upload a Custody Decree.'); } if (errors.length > 0) { alert('Cannot proceed:\n\n' + errors.join('\n')); } else { proceedToNextStep(); } }); }
+
+        if (consentSubmitBtn) { 
+            consentSubmitBtn.addEventListener('click', () => { 
+                const isGuardian1KycDone = sessionStorage.getItem('guardian1KycCompleted') === 'true';
+                const isGuardian2KycDone = sessionStorage.getItem('guardian2KycCompleted') === 'true'; 
+                
+                if (isGuardian1KycDone && isGuardian2KycDone) {
+                    proceedToNextStep();
+                    return;
+                }
+
+                const errors = []; 
+                const isCourtOrderUploaded = document.getElementById('court-order-filename').textContent !== 'No file chosen'; 
+                
+                if (!isGuardian1KycDone) { 
+                    errors.push('■ KYC process for Legal Representative 1 is not complete.'); 
+                } 
+                if (!isGuardian2KycDone && !isCourtOrderUploaded) { 
+                    errors.push('■ KYC for Legal Representative 2 must be completed OR a Custody Decree must be uploaded.'); 
+                } 
+                
+                if (errors.length > 0) { 
+                    alert('Cannot proceed:\n\n' + errors.join('\n')); 
+                } else { 
+                    proceedToNextStep();
+                } 
+            }); 
+        }
+
         function calculateAge(day, month, year) { if (isNaN(day) || isNaN(month) || isNaN(year) || year < 1920 || year > new Date().getFullYear()) return -1; const today = new Date(); const birthDate = new Date(year, month - 1, day); let age = today.getFullYear() - birthDate.getFullYear(); const m = today.getMonth() - birthDate.getMonth(); if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--; return age; }
         function showAgeRestrictionPopup() { if (agePopupOverlay) agePopupOverlay.style.display = 'flex'; if (ageRestrictionPopup) ageRestrictionPopup.style.display = 'block'; if (parentalConsentPopup) parentalConsentPopup.style.display = 'none'; }
         function showParentalConsentPopup() { if (agePopupOverlay) agePopupOverlay.style.display = 'flex'; if (ageRestrictionPopup) ageRestrictionPopup.style.display = 'none'; if (parentalConsentPopup) parentalConsentPopup.style.display = 'block'; }
         function hideAllAgePopups() { if (agePopupOverlay) agePopupOverlay.style.display = 'none'; if (ageRestrictionPopup && ageRestrictionPopup.style.display === 'block') { if (dobDay) { dobDay.value = ''; dobMonth.value = ''; dobYear.value = ''; dobDay.focus(); } } }
         function populateParentalConsentForm() { document.getElementById('minor-name').value = `${document.getElementById('first-name').value} ${document.getElementById('last-name').value}`; document.getElementById('minor-dob').value = `${dobDay.value}.${dobMonth.value}.${dobYear.value}`; document.getElementById('minor-email').value = document.getElementById('reg-email').value; document.getElementById('minor-phone').value = `${document.getElementById('phone-prefix').textContent}${document.getElementById('mobile-phone').value}`; }
         function validateRegistrationForm() { if (!registrationForm) return false; let isValid = true; let firstErrorElement = null; registrationForm.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500')); registrationForm.querySelectorAll('.text-red-500').forEach(el => el.classList.remove('text-red-500')); registrationForm.querySelectorAll('input[required]').forEach(field => { const isVisible = field.offsetParent !== null; if (isVisible && !field.value.trim()) { isValid = false; if (!firstErrorElement) firstErrorElement = field; let wrapper = (field.id === 'country') ? document.getElementById('country-select-trigger') : field.closest('.phone-input-wrapper'); if (wrapper) wrapper.classList.add('border-red-500'); else field.classList.add('border-red-500'); const label = registrationForm.querySelector(`label[for="${field.id}"]`); if (label) label.classList.add('text-red-500'); } }); registrationForm.querySelectorAll('input[type="checkbox"][required]').forEach(checkbox => { if (!checkbox.checked) { isValid = false; if (!firstErrorElement) firstErrorElement = checkbox; const label = checkbox.closest('label'); if (label) label.classList.add('text-red-500'); } }); if (!isValid && firstErrorElement) { if (firstErrorElement.id === 'country') { document.getElementById('country-select-trigger').focus(); } else { firstErrorElement.focus(); } } return isValid; }
-        if (daljeButton) { daljeButton.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); if (!validateRegistrationForm()) { alert('Please fill in all required fields marked with an asterisk (*).'); return; } const age = calculateAge(parseInt(dobDay.value), parseInt(dobMonth.value), parseInt(dobYear.value)); if (age < 16) { showAgeRestrictionPopup(); return; } if (age >= 16 && age < 18) { populateParentalConsentForm(); showParentalConsentPopup(); return; } window.location.href = 'userdata_en.html'; }); }
+        if (daljeButton) { daljeButton.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); if (!validateRegistrationForm()) { alert('Please correctly fill in all required fields marked with an asterisk (*).'); return; } const age = calculateAge(parseInt(dobDay.value), parseInt(dobMonth.value), parseInt(dobYear.value)); if (age < 16) { showAgeRestrictionPopup(); return; } if (age >= 16 && age < 18) { populateParentalConsentForm(); showParentalConsentPopup(); return; } window.location.href = 'userdata_en.html'; }); }
         if (ageRestrictionOkBtn) ageRestrictionOkBtn.addEventListener('click', hideAllAgePopups);
         if (parentalConsentCloseBtn) parentalConsentCloseBtn.addEventListener('click', hideAllAgePopups);
         if (agePopupOverlay) agePopupOverlay.addEventListener('click', (e) => { if (e.target === agePopupOverlay) hideAllAgePopups(); });
@@ -937,8 +1768,29 @@
     });
 </script>
 
-<!-- Background Animation Script -->
+<!-- Preostale manje skripte -->
+<div class="modal" id="kycModal" style="display:none;"><div class="modal-content"><iframe frameborder="0" height="600px" id="kycFrame" src="" width="100%"></iframe></div></div>
 <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var btn = document.getElementById("btn-kyc");
+    if (btn) {
+      btn.addEventListener("click", function() {
+        document.getElementById("kycFrame").src = "office_kyc.html";
+        document.getElementById("kycModal").style.display = "block";
+      });
+    }
+    window.addEventListener("message", function(event) {
+      if (event.data === "kycCompleted") {
+        document.getElementById("kycModal").style.display = "none";
+        var consent = document.getElementById("consentModal");
+        if (consent) consent.style.display = "block";
+      }
+    });
+  });
+</script>
+
+<script>
+    // OVA SKRIPTA ZA ANIMACIJU POZADINE OSTAJE KAKVA JEST
     document.addEventListener('DOMContentLoaded', () => {
         const canvas = document.getElementById('network-canvas');
         if (!canvas) return;
@@ -965,5 +1817,25 @@
     });
 </script>
 
+<div class="modal" id="kycModal" style="display:none;"><div class="modal-content"><iframe frameborder="0" height="600px" id="kycFrame" src="" width="100%"></iframe></div></div>
+<script>
+  // OVA MALA SKRIPTA ZA STARI MODAL VIŠE NIJE POTREBNA, ALI NE SMETA
+  document.addEventListener("DOMContentLoaded", function() {
+    var btn = document.getElementById("btn-kyc");
+    if (btn) {
+      btn.addEventListener("click", function() {
+        document.getElementById("kycFrame").src = "office_kyc.html";
+        document.getElementById("kycModal").style.display = "block";
+      });
+    }
+    window.addEventListener("message", function(event) {
+      if (event.data === "kycCompleted") {
+        document.getElementById("kycModal").style.display = "none";
+        var consent = document.getElementById("consentModal");
+        if (consent) consent.style.display = "block";
+      }
+    });
+  });
+</script>
 </body>
 </html>

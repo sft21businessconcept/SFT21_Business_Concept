@@ -171,6 +171,45 @@
         body.light-mode canvas#network-canvas {
             background-color: transparent;
         }
+
+        /* ================================================================= */
+/* NOVO: Popravak za mobilni izbornik na SFTEAM stranici (Light Mode) */
+/* ================================================================= */
+body.light-mode .nav-menu {
+    background-color: #ffffff !important; /* Bijela pozadina */
+    border-right-color: #e2e8f0 !important; /* Svijetlo siva granica */
+}
+
+/* Tekst linkova unutar menija */
+body.light-mode .nav-menu a {
+    color: #475569 !important; /* Tamno siva boja za bolju čitljivost */
+}
+
+/* Hover efekt za linkove */
+body.light-mode .nav-menu a:hover {
+    color: var(--primary-color) !important; /* Ljubičasta na hover */
+}
+
+/* Gumbi "Prijava" i "Registracija" moraju zadržati svoj stil */
+body.light-mode .nav-menu .btn-primary {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important; /* Tekst na gumbima mora ostati bijeli */
+}
+body.light-mode .nav-menu .btn-primary:hover {
+    background-color: var(--secondary-color) !important;
+}
+
+/* ==================================================================== */
+/* NOVO: Popravak boje teksta na gumbima u mobilnom meniju (Dark Mode) */
+/* ==================================================================== */
+body:not(.light-mode) .nav-menu .btn-primary {
+    color: #0e076a !important; /* Tamno ljubičasta/plava boja teksta */
+    background-color: var(--fluorescent-green) !important; /* Osiguravamo zelenu pozadinu */
+}
+
+body:not(.light-mode) .nav-menu .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%) !important; /* Tamnija zelena na hover */
+}
     
 </style>
 </head>
@@ -632,6 +671,35 @@
                 1024: { slidesPerView: 3 }
             }
         });
+    });
+</script>
+<!-- ============================================= -->
+<!-- NOVI KOD ZA FUNKCIONALNOST MOBILNOG IZBORNIKA -->
+<!-- ============================================= -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const body = document.body;
+
+        if (hamburger && navMenu && body) {
+            hamburger.addEventListener('click', () => {
+                const isActive = hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active', isActive);
+                body.classList.toggle('no-scroll', isActive);
+            });
+            
+            // Dodatna logika: zatvori meni ako se klikne na link unutar njega
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (hamburger.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        body.classList.remove('no-scroll');
+                    }
+                });
+            });
+        }
     });
 </script>
 </body>

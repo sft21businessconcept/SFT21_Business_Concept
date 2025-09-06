@@ -442,6 +442,16 @@
             color: #ef4444 !important; /* Osigurava da ostane crvena i u light modu */
         }
 
+        /* ======================================================= */
+/* NOVO: Popravak za prikaz na mobilnim uređajima */
+/* ======================================================= */
+@media (max-width: 767px) {
+    .inner-sfc-box {
+        width: 80% !important;      /* Na mobilnom, zauzmi punu širinu */
+        max-width: none !important;    /* Ukloni ograničenje maksimalne širine */
+    }
+}
+
         /* START: Global Pagination Styles */
 .pagination-wrapper {
     max-width: 800px;

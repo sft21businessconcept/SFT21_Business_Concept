@@ -2674,19 +2674,18 @@ html.light-mode body.register-page nav a.btn-outline {
 /* KONAČNI I JEDINI KOD ZA HERO VIDEO      */
 /* ======================================= */
 .hero-video-wrapper {
-    /* Izgled (iz glass-card) */
+    position: relative;
+    padding-bottom: 56.25%; /* Omjer 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px; /* Za zaobljene rubove videa */
+    
+    /* Opcionalno: dodaje isti "glass" efekt kao na karticama */
     background: rgba(106, 27, 154, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--fluorescent-green);
-    border-radius: 15px; /* Važno za zaobljene rubove */
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    
-    /* Responzivnost (Aspect Ratio) */
-    position: relative;
-    padding-bottom: 56.25%; /* Omjer 16:9 */
-    height: 0;
-    overflow: hidden; /* KLJUČNO: sprječava da video "curi" preko rubova */
 }
 
 .hero-video-wrapper iframe {
@@ -2695,16 +2694,5 @@ html.light-mode body.register-page nav a.btn-outline {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 0; /* Uklanja defaultni border od iframe-a */
-}
-
-/* --- Stil za aktivne mobilne dropdown menije --- */
-.nav-menu .dropdown-menu,
-.nav-menu .language-dropdown-mobile {
-    display: none;
-}
-
-.nav-menu .dropdown-menu.active,
-.nav-menu .language-dropdown-mobile.active {
-    display: block;
+    border: 0;
 }
