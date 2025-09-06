@@ -140,9 +140,30 @@
         .swiper-pagination-bullet-active { background: var(--fluorescent-green) !important; }
         body.light-mode .swiper-pagination-bullet-active { background: var(--primary-color) !important; }
 
-        .testimonial-card { height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        /* Prilagođeno pravilo za kartice u SLIDERU */
+        .swiper-slide .testimonial-card { 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        
+        /* NOVO: Zajednička pravila za SVE testimonial kartice (i u slideru i ispod) */
+        .testimonial-card {
+            background-color: rgba(13, 1, 24, 0.4); /* Tamna, polu-prozirna pozadina */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(128, 255, 0, 0.1);
+        }
+        body.light-mode .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.6); /* Svetla, polu-prozirna pozadina */
+            border-color: rgba(106, 27, 154, 0.1);
+        }
+        
         .testimonial-card blockquote { font-style: italic; font-size: 1.1rem; line-height: 1.6; position: relative; padding-left: 2rem; border-left: 4px solid var(--fluorescent-green); }
-         body.light-mode .testimonial-card blockquote { border-left-color: var(--primary-color); }
+        body.light-mode .testimonial-card blockquote { border-left-color: var(--primary-color); }
         .testimonial-card .author-info { display: flex; align-items: center; margin-top: 1.5rem; }
         .testimonial-card .author-info img { width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover; }
         .testimonial-card .author-info cite { font-style: normal; font-weight: 600; }

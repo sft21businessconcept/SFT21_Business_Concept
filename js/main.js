@@ -29,11 +29,7 @@ async function i18n_init() {
     updateContent(savedLang);
     
    
-    // ===============================================================
-    // #### POKRETANJE APLIKACIJE - OVO MORA OSTATI AKTIVNO! ####
-    // Ova linija pokreće svu ostalu logiku (menije, animacije, itd.).
-    // ===============================================================
-    initializeAppLogic(); 
+
 
     // ===============================================================
     // #### EVENT LISTENERI ZA JEZIK - TAKOĐER ISKLJUČENI ####
@@ -107,11 +103,11 @@ const updateContent = (lang) => {
 function initializeAppLogic() {
     console.log("DOM spreman, pokrećem skripte...");
     const body = document.body;
+    // Pokreni logiku nakon što je definirana
+initializeAppLogic();
 
     // --- Deklaracija svih varijabli ---
-const desktopLangTrigger = document.getElementById('desktop-lang-trigger');
     const desktopLangDropdown = document.getElementById('desktop-lang-dropdown');
-    const mobileLangTrigger = document.getElementById('mobile-lang-trigger');
     const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
     const mobileLangIcon = mobileLangTrigger?.querySelector('i.fas.fa-chevron-down');
     const hamburger = document.querySelector('.hamburger');
@@ -478,7 +474,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Klik na "Jezik" u mobilnom meniju
+
+    // Klik na "Jezik" u mobilnom meniju-->
     if (mobileLangTrigger) {
         mobileLangTrigger.addEventListener('click', function(e) {
             e.preventDefault();
@@ -488,6 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdownMenu.classList.toggle('active');
         });
     }
+
     
     // Zatvori sve menije ako se klikne bilo gdje drugdje
     window.addEventListener('click', function() {
@@ -495,8 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
     
-    // --- NOVI KOD - Logika SAMO za "Platforme" dropdown ---
-document.addEventListener('DOMContentLoaded', function() {
+
     // Pronađi SAMO gumb za Platforme
     const platformToggle = document.querySelector('.nav-menu .mobile-dropdown-toggle:not(.mobile-language-trigger)');
     

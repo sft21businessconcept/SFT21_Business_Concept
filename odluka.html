@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decision - SFT21 - InFace Invest Group</title>
+    <title>Odluka - SFT21 - InFace Invest Group</title>
 
     <!-- ============================================= -->
     <!-- UNIVERSAL THEME INITIALIZATION SCRIPT -->
@@ -77,7 +77,7 @@
 
         .content-box-wrapper {
             display: flex; justify-content: center; align-items: flex-start;
-            min-height: calc(100vh - 80px); padding-top: 100px; padding-bottom: 4rem;
+            min-height: calc(100vh - 80px); padding-top: 120px; padding-bottom: 4rem;
         }
         .content-box {
             background-color: rgba(106, 27, 154, 0.1); backdrop-filter: blur(10px);
@@ -170,6 +170,37 @@
             color: var(--fluorescent-green); border-color: var(--fluorescent-green);
             transform: translate(40%, -40%) scale(1.1);
         }
+
+        /* === ISPRAVAK ZA NASLOV U HEADERU NA MOBILNIM UREĐAJIMA === */
+        @media (max-width: 768px) {
+            /* Povećavamo padding na kontejneru da sve stane */
+            nav .container {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            /* Glavni kontejner headera */
+            .header-container {
+                flex-direction: column; /* Elementi idu jedan ispod drugog */
+                align-items: center;    /* Centrirani su horizontalno */
+                height: auto;           /* Visina je automatska, više nije fiksna */
+                position: static;       /* Ignoriramo 'relative' da naslov ne ovisi o njemu */
+                gap: 0.25rem;           /* Mali razmak između loga i naslova */
+            }
+
+            /* Kontejner s naslovom */
+            .header-title-container {
+                position: static;       /* KLJUČNO: Vraćamo naslov u normalan tok stranice */
+                transform: none;        /* Poništavamo sve transformacije */
+                width: 100%;            /* Neka zauzme punu širinu */
+                padding: 0;
+                pointer-events: auto;
+            }
+
+            .header-title-text {
+                font-size: 0.95rem;     /* Malo smanjujemo font za bolji izgled */
+            }
+        }
     </style>
     <!-- ============================================= -->
     <!-- STYLES FOR LIGHT MODE -->
@@ -186,12 +217,8 @@
         html.light-mode .content-box-close:hover { color: #1e293b !important; }
         html.light-mode h2, html.light-mode p.signature-name { color: var(--primary-color) !important; text-shadow: none !important; }
         html.light-mode .subtitle, html.light-mode p.signature-block, html.light-mode p.final-note { color: #64748b !important; }
-        
-        /* === IZMJENA OVDJE === */
         html.light-mode p, html.light-mode ul { color: #4a0e6c !important; }
-        html.light-mode p strong { color: #3b0a55 !important; } /* Malo tamnija za bold */
-        /* ==================== */
-
+        html.light-mode p strong { color: #3b0a55 !important; }
         html.light-mode ul li::before { color: var(--primary-color) !important; }
         html.light-mode .content-btn { background-color: var(--primary-color) !important; color: white !important; }
         html.light-mode .content-btn:hover { background-color: var(--secondary-color) !important; }
@@ -205,7 +232,7 @@
 
     <nav class="fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center relative h-12">
+            <div class="header-container flex items-center relative h-12">
                 <a href="index.html" title="Return to the homepage" class="flex items-center">
                     <img src="img/IFIG-logo.png" alt="InFace Invest Group logo" id="site-logo" class="h-auto w-12 mr-4">
                     <div class="flex flex-col logo-nav">
@@ -213,7 +240,7 @@
                         <div class="text-white font-bold"> <span class="text-logo-orange">SFT</span>21 </div>
                     </div>
                 </a>
-                <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full px-4 pointer-events-none">
+                <div class="header-title-container absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full px-4 pointer-events-none">
                     <span class="header-title-text font-semibold uppercase tracking-wider">Odluka o nastavku poslovanja</span>
                 </div>
                  <div class="w-auto ml-auto"> </div>

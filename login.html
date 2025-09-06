@@ -70,23 +70,17 @@
             color: var(--text-color);
             overflow-x: hidden;
         }
-        /* ... (Ovdje možete kopirati i ostale osnovne stilove iz style.css ako želite da sve bude u jednom fajlu, npr. za .logo-nav, nav.fixed, .nav-link, .hamburger, .btn-primary, .btn-outline, itd.) ... */
 
-         /* == STILOVI ZA IZBORNIK JEZIKA (PONOVLJENO RADI SIGURNOSTI) == */
+         /* == STILOVI ZA IZBORNIK JEZIKA (SAMO DESKTOP) == */
          .language-dropdown { display: none; position: absolute; background-color: #1f2937; border: 1px solid var(--fluorescent-green); border-radius: 0.375rem; margin-top: 0.5rem; padding: 0.25rem 0; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); right: 0; z-index: 60; min-width: 80px; }
         .language-dropdown.active { display: block; }
         .language-item { display: flex; align-items: center; padding: 0.5rem 0.75rem; font-size: 0.875rem; color: #d1d5db; white-space: nowrap; cursor: pointer; }
         .language-item:hover { background-color: var(--primary-color); color: white; }
         .language-item .flag-image, .language-item .flag-icon { width: 20px; height: auto; margin-right: 0.5rem; flex-shrink: 0; }
         .language-item span:not(.flag-icon) { font-weight: 500; }
-        .language-dropdown-mobile { display: none; background-color: #111827; border-radius: 0.375rem; margin-top: 0.5rem; padding: 0.25rem 0; width: 100%; }
-        .language-dropdown-mobile.active { display: block; }
-        .language-dropdown-mobile .language-item { justify-content: center; padding: 0.5rem 1rem; }
-        .language-dropdown-mobile .language-item:hover { background-color: var(--primary-color); }
-        /* Padajući meni za platforme (ako postoji u headeru) */
-        .sft21-nav-item.dropdown .dropdown-menu:not(.language-dropdown):not(.language-dropdown-mobile) { position: absolute; display: none; /* ... ostali stilovi ... */ }
-        .sft21-nav-item.dropdown:hover .dropdown-menu:not(.language-dropdown):not(.language-dropdown-mobile) { display: block; }
-        .nav-menu .dropdown-menu:not(.language-dropdown-mobile) { display: none; }
+        
+        .sft21-nav-item.dropdown .dropdown-menu:not(.language-dropdown) { position: absolute; display: none; }
+        .sft21-nav-item.dropdown:hover .dropdown-menu:not(.language-dropdown) { display: block; }
 
         /* Stilovi specifični za login stranicu */
         body.login-page {
@@ -120,27 +114,18 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .login-title {
-            color: var(--fluorescent-green);
-        }
-        .login-subtitle {
-            color: var(--fluorescent-green);
-        }
+        .login-title { color: var(--fluorescent-green); }
+        .login-subtitle { color: var(--fluorescent-green); }
         .form-input-login {
             border: 1px solid var(--fluorescent-green);
             background-color: rgba(13, 1, 24, 0.6);
             color: white;
             transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
+            width: 100%; padding: 0.75rem 1rem; border-radius: 0.375rem;
         }
-        .form-input-login::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
+        .form-input-login::placeholder { color: rgba(255, 255, 255, 0.4); }
         .form-input-login:focus {
-            outline: none;
-            border-color: var(--fluorescent-orange);
+            outline: none; border-color: var(--fluorescent-orange);
             background-color: rgba(13, 1, 24, 0.8);
             box-shadow: 0 0 0 3px rgba(128, 255, 0, 0.3);
         }
@@ -149,147 +134,115 @@
             box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.4) !important;
         }
         .error-message {
-            color: var(--error-red);
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 500;
-            min-height: 1.25rem; /* Osigurava prostor i sprječava skakanje layouta */
-            line-height: 1.2;
+            color: var(--error-red); font-size: 0.875rem; margin-top: 0.5rem;
+            font-weight: 500; min-height: 1.25rem; line-height: 1.2;
         }
-
         .login-label {
-            color: var(--text-color);
-            font-weight: 500;
-            display: block;
-            margin-bottom: 0.25rem;
-            font-size: 0.875rem;
+            color: var(--text-color); font-weight: 500; display: block;
+            margin-bottom: 0.25rem; font-size: 0.875rem;
         }
         .login-submit-button {
-            background-color: var(--fluorescent-green);
-            color: #0e076a;
-            border: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background-color: var(--fluorescent-green); color: #0e076a; border: none;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-             cursor: pointer;
-             font-size: 0.875rem;
+            width: 100%; display: flex; justify-content: center;
+            padding: 0.75rem 1rem; border-radius: 0.375rem; cursor: pointer; font-size: 0.875rem;
         }
         .login-submit-button:hover {
             background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%);
             transform: translateY(-2px);
         }
         .form-checkbox-login {
-            color: var(--fluorescent-green);
-            border-color: var(--fluorescent-green);
-            background-color: transparent;
-            height: 1rem; width: 1rem;
-            border-radius: 0.25rem;
-            margin-right: 0.5rem;
-            flex-shrink: 0;
-             cursor: pointer;
+            color: var(--fluorescent-green); border-color: var(--fluorescent-green);
+            background-color: transparent; height: 1rem; width: 1rem;
+            border-radius: 0.25rem; margin-right: 0.5rem; flex-shrink: 0; cursor: pointer;
         }
         .form-checkbox-login:checked {
              background-color: var(--fluorescent-green);
              background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%230d0118' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
              background-size: 100% 100%; background-position: center; background-repeat: no-repeat;
         }
-        .form-checkbox-login:focus {
-            outline: none;
-             box-shadow: 0 0 0 3px rgba(128, 255, 0, 0.3);
-        }
-         .checkbox-label-login {
-            display: block; font-size: 0.875rem; color: var(--text-color); cursor: pointer; line-height: 1rem;
-        }
+        .form-checkbox-login:focus { outline: none; box-shadow: 0 0 0 3px rgba(128, 255, 0, 0.3); }
+        .checkbox-label-login { display: block; font-size: 0.875rem; color: var(--text-color); cursor: pointer; line-height: 1rem; }
         .login-link { color: var(--fluorescent-green); font-weight: 500; font-size: 0.875rem; }
         .login-link:hover { color: var(--fluorescent-orange); text-decoration: underline; }
         .register-prompt-text { font-size: 0.875rem; color: #9ca3af; margin-bottom: 0.5rem; }
         .register-link { font-weight: 700; color: var(--fluorescent-green); text-transform: uppercase; font-size: 0.875rem; display: inline-block; }
         .register-link:hover { color: var(--fluorescent-orange); text-decoration: underline; }
-         .checkbox-container { display: flex; align-items: center; }
-         form > div:not(.checkbox-container):not(.text-sm) { margin-bottom: 1rem; } /* Smanjen razmak */
-         .flex.justify-between + div { margin-top: 1.5rem; }
-         hr { margin-top: 1.5rem; margin-bottom: 1.5rem; border-color: rgba(128, 255, 0, 0.2); border-top-width: 1px; border-style: dashed; }
-         .login-close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--fluorescent-green); line-height: 1; text-decoration: none; opacity: 0.7; transition: opacity 0.2s ease, color 0.2s ease; }
-         .login-close-btn:hover { color: var(--fluorescent-orange); opacity: 1; }
+        .checkbox-container { display: flex; align-items: center; }
+        form > div:not(.checkbox-container):not(.text-sm) { margin-bottom: 1rem; }
+        .flex.justify-between + div { margin-top: 1.5rem; }
+        hr { margin: 1.5rem 0; border-color: rgba(128, 255, 0, 0.2); border-top-width: 1px; border-style: dashed; }
+        .login-close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--fluorescent-green); line-height: 1; text-decoration: none; opacity: 0.7; transition: opacity 0.2s ease, color 0.2s ease; }
+        .login-close-btn:hover { color: var(--fluorescent-orange); opacity: 1; }
 
-         /* Stilovi za Navigaciju (preuzeto iz style.css za potrebe ove stranice) */
+         /* Stilovi za Navigaciju */
          .logo-nav { font-size: 1.75rem; line-height: 1; display: flex; flex-direction: column; align-items: center; }
          .logo-nav .small-text { font-size: 0.75rem; color: #d1d5db; font-weight: normal; margin-bottom: -0.2em; }
          .text-logo-orange { color: var(--fluorescent-green); }
          nav.fixed { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background-color: rgba(13, 1, 24, 0.8); border-bottom: 1px solid var(--fluorescent-green); box-shadow: 0 2px 10px rgba(128, 255, 0, 0.3); }
-         /* Smanjenje gumba u nav */
          nav a.btn-primary, nav button.btn-primary, nav a.btn-outline, nav button.btn-outline { padding: 6px 16px !important; font-size: 0.75rem !important; line-height: 1.4 !important; }
-         /* Hamburger i mobilni meni */
          .hamburger { display: none; cursor: pointer; } .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px 0; background-color: white; transition: all 0.3s ease; }
          .nav-menu { display: none; }
-         @media (max-width: 768px) { .nav-menu { position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); background-color: #0d0118; flex-direction: column; transition: all 0.5s ease; padding: 20px; z-index: 100; border-right: 1px solid var(--fluorescent-green); display: flex; } .nav-menu.active { left: 0; } .nav-menu a { color: white; display: block; padding: 0.75rem 1.5rem; text-align: center; transition: background-color 0.3s ease; } .nav-menu a:hover { color: var(--fluorescent-green); background-color: rgba(128, 255, 0, 0.1); } .hamburger { display: block; } .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); } .hamburger.active .bar:nth-child(2) { opacity: 0; } .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); } }
+         
+         @media (max-width: 768px) {
+            .nav-menu { position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); background-color: #0d0118; flex-direction: column; transition: all 0.5s ease; padding: 20px; z-index: 100; border-right: 1px solid var(--fluorescent-green); display: flex; }
+            .nav-menu.active { left: 0; }
+            .nav-menu a, .nav-menu button:not(#theme-toggle-mobile) {
+                display: block; padding: 0.75rem 1.5rem; text-align: center; transition: background-color 0.3s ease;
+            }
+            .nav-menu a:not(.btn-primary), .nav-menu button.btn-outline {
+                color: white;
+            }
+            .nav-menu a:hover, .nav-menu button:not(#theme-toggle-mobile):hover { color: var(--fluorescent-green); background-color: rgba(128, 255, 0, 0.1); }
+            .hamburger { display: block; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+         }
 
-        /* DODANI STILOVI ZA ANIMACIJU POZADINE */
-        #network-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Postavlja platno iza svog sadržaja */
+        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        body:not(.light-mode) nav button.btn-outline[disabled] { color: var(--fluorescent-green) !important; border-color: var(--fluorescent-green) !important; opacity: 1 !important; }
+        body.light-mode nav button.btn-outline[disabled] { opacity: 1 !important; }
+        
+        /* ISPRAVCI ZA LIGHT MODE U MOBILNOM MENIJU */
+        body.light-mode .nav-menu {
+            background-color: #f9fafb;
+            border-right-color: rgba(106, 27, 154, 0.2);
+        }
+        body.light-mode .nav-menu a:not(.btn-primary), body.light-mode .nav-menu button:not(#theme-toggle-mobile), body.light-mode .nav-menu #theme-toggle-mobile {
+            color: var(--primary-color);
+        }
+        body.light-mode .nav-menu a:hover, body.light-mode .nav-menu button:not(#theme-toggle-mobile):hover, body.light-mode .nav-menu #theme-toggle-mobile:hover {
+            background-color: var(--primary-color);
+            color: white;
         }
 
-        /* ISPRAVAK: Onemogućeni "Prijava" gumb u headeru - zeleno i bez prozirnosti u dark modu */
-body:not(.light-mode) nav button.btn-outline[disabled] {
-    color: var(--fluorescent-green) !important;
-    border-color: var(--fluorescent-green) !important;
-    opacity: 1 !important; /* Ovo poništava 'opacity-50' klasu */
-}
-
-/* ISPRAVAK: Onemogućeni "Prijava" gumb u headeru - puna ljubičasta boja u light modu */
-body.light-mode nav button.btn-outline[disabled] {
-    opacity: 1 !important; /* Poništava 'opacity-50' klasu */
-}
+        /* FINALNI ISPRAVAK ZA BOJU TEKSTA NA GUMBU U DARK MODU */
+        body:not(.light-mode) .nav-menu a.btn-primary { color: var(--dark-color); }
 
     </style>
 
     <style>
     /* U tamnom (default) modu, sakrij ikonu mjeseca, prikaži sunce */
-    #theme-toggle-dark-icon,
-    #theme-toggle-dark-icon-mobile {
-        display: none !important;
-    }
-    #theme-toggle-light-icon,
-    #theme-toggle-light-icon-mobile {
-        display: inline-block !important;
-    }
-
-    /* Kada je light-mode aktivan na BODY elementu: */
-    body.light-mode #theme-toggle-dark-icon,
-    body.light-mode #theme-toggle-dark-icon-mobile {
-        display: inline-block !important; /* Prikaži mjesec */
-    }
-
-    body.light-mode #theme-toggle-light-icon,
-    body.light-mode #theme-toggle-light-icon-mobile {
-        display: none !important; /* Sakrij sunce */
-    }
-</style>
+    #theme-toggle-dark-icon, #theme-toggle-dark-icon-mobile { display: none !important; }
+    #theme-toggle-light-icon, #theme-toggle-light-icon-mobile { display: inline-block !important; }
+    /* Kada je light-mode aktivan */
+    body.light-mode #theme-toggle-dark-icon, body.light-mode #theme-toggle-dark-icon-mobile { display: inline-block !important; }
+    body.light-mode #theme-toggle-light-icon, body.light-mode #theme-toggle-light-icon-mobile { display: none !important; }
+    </style>
 </head>
 
 <body class="login-page">
     
-    <!-- Platno za animaciju pozadine -->
     <canvas id="network-canvas"></canvas>
-
     <div class="custom-cursor"></div>
 
     <nav class="fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto px-6 py-4">
-            <!-- GLAVNI RED HEADERA: LOGO LIJEVO, GUMBI/HAMBURGER DESNO -->
             <div class="flex justify-between items-center">
-                <!-- Lijeva strana: Logo (Slika + Tekst) -->
+                <!-- Lijeva strana: Logo -->
                 <div class="flex items-center">
                     <img src="img/IFIG-logo.png" alt="InFace Invest Group logo" id="site-logo" class="h-auto w-12 mr-4">
                     <a href="index.html" class="flex flex-col logo-nav">
@@ -298,76 +251,47 @@ body.light-mode nav button.btn-outline[disabled] {
                     </a>
                 </div>
 
-                <!-- Desna strana: Desktop Navigacija i Gumbi -->
+                <!-- Desna strana: Desktop Navigacija -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <!-- Odabir jezika - Desktop -->
                     <div class="language-selector relative">
                         <button id="theme-toggle" type="button" class="text-white hover:text-fluorescent-green transition-colors duration-300 text-xl p-2 rounded-full">
-                        <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
-                        <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+                            <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
+                            <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
                         </button>
                         <button id="desktop-lang-trigger" class="language-trigger text-white hover:text-fluorescent-green transition-colors duration-300 text-xl">
                             <i class="fas fa-globe"></i>
                         </button>
-<div id="desktop-lang-dropdown" class="language-dropdown">
-    <a href="login_en.html" class="language-item"> <img src="https://flagcdn.com/w20/gb.png" alt="Engleski" class="flag-image"> <span>ENG</span> </a>
-    <a href="login.html" class="language-item"> <img src="https://flagcdn.com/w20/hr.png" alt="Hrvatski" class="flag-image"> <span>HRV</span> </a>
-                             <!--<a href="#" class="language-item"> <img src="https://flagcdn.com/w20/rs.png" alt="Srpski" class="flag-image"> <span>SRB</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/si.png" alt="Slovenski" class="flag-image"> <span>SLO</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/ro.png" alt="Rumunjski" class="flag-image"> <span>ROU</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/it.png" alt="Talijanski" class="flag-image"> <span>ITA</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/de.png" alt="Njemački" class="flag-image"> <span>DEU</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/hu.png" alt="Mađarski" class="flag-image"> <span>HUN</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/fr.png" alt="Francuski" class="flag-image"> <span>FRA</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/es.png" alt="Španjolski" class="flag-image"> <span>ESP</span> </a> -->
+                        <div id="desktop-lang-dropdown" class="language-dropdown">
+                            <a href="login_en.html" class="language-item"> <img src="https://flagcdn.com/w20/gb.png" alt="Engleski" class="flag-image"> <span>ENG</span> </a>
+                            <a href="login.html" class="language-item"> <img src="https://flagcdn.com/w20/hr.png" alt="Hrvatski" class="flag-image"> <span>HRV</span> </a>
                         </div>
                     </div>
-                     <!-- Gumb Prijava (onemogućen na login stranici) -->
                      <button class="btn-outline text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
-                     <!-- Gumb Registracija -->
                      <a href="register.html" class="btn-primary text-xs">Registracija</a>
                 </div>
 
-                <!-- Desna strana: Mobilni Hamburger (vidljiv samo na md i manjim ekranima) -->
+                <!-- Mobilni Hamburger -->
                 <div class="md:hidden">
                     <div class="hamburger"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </div>
                 </div>
             </div>
         </div>
 
-        <!-- Mobilni Navigacijski Meni (Skriven na desktopu, prikazan na mobilnom) -->
+        <!-- Mobilni Navigacijski Meni -->
         <div class="nav-menu md:hidden">
             <div class="mb-4">
-    <button id="theme-toggle-mobile" type="button" class="text-white hover:text-fluorescent-green transition-colors duration-300 text-2xl p-2 rounded-full">
-        <i id="theme-toggle-dark-icon-mobile" class="fas fa-moon"></i>
-        <i id="theme-toggle-light-icon-mobile" class="fas fa-sun hidden"></i>
-    </button>
-</div>
-             <!-- Mobilni Odabir jezika -->
-             <div class="flex flex-col space-y-3 mt-5 px-6">
-                 <div class="sft21-nav-item dropdown mobile-language-selector mb-3 border-t border-b border-gray-700 py-2">
-                     <a href="#" id="mobile-lang-trigger" class="block text-center transition-colors duration-300 sft21-nav-link mobile-language-trigger text-gray-300 hover:text-fluorescent-green">
-                         <i class="fas fa-globe mr-2"></i> Odaberi jezik <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                     </a>
-<div id="mobile-lang-dropdown" class="language-dropdown-mobile">
-    <a href="login_en.html" class="language-item"> <img src="https://flagcdn.com/w20/gb.png" alt="Engleski" class="flag-image"> <span>ENG</span> </a>
-    <a href="login.html" class="language-item"> <img src="https://flagcdn.com/w20/hr.png" alt="Hrvatski" class="flag-image"> <span>HRV</span> </a>
-                           <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/rs.png" alt="Srpski" class="flag-image"> <span>SRB</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/si.png" alt="Slovenski" class="flag-image"> <span>SLO</span> </a>
-                             <!--<a href="#" class="language-item"> <img src="https://flagcdn.com/w20/ro.png" alt="Rumunjski" class="flag-image"> <span>ROU</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/it.png" alt="Talijanski" class="flag-image"> <span>ITA</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/de.png" alt="Njemački" class="flag-image"> <span>DEU</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/hu.png" alt="Mađarski" class="flag-image"> <span>HUN</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/fr.png" alt="Francuski" class="flag-image"> <span>FRA</span> </a>
-                            <a href="#" class="language-item"> <img src="https://flagcdn.com/w20/es.png" alt="Španjolski" class="flag-image"> <span>ESP</span> </a>-->
-                    </div>
-                 </div>
-                <!-- Gumbi u mobilnom meniju -->
-                <button class="btn-outline text-center text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
-                <a href="register.html" class="btn-primary text-center text-xs">Registracija</a>
+                <button id="theme-toggle-mobile" type="button" class="text-white hover:text-fluorescent-green transition-colors duration-300 text-2xl p-2 rounded-full">
+                    <i id="theme-toggle-dark-icon-mobile" class="fas fa-moon"></i>
+                    <i id="theme-toggle-light-icon-mobile" class="fas fa-sun hidden"></i>
+                </button>
             </div>
-        </nav>
-
+             <!-- Gumbi u mobilnom meniju -->
+             <div class="flex flex-col mt-5 px-6 pt-4 border-t border-gray-700">
+                <button class="btn-outline w-full text-center text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
+                <a href="register.html" class="btn-primary w-full text-center text-xs mt-3">Registracija</a>
+            </div>
+        </div>
+    </nav>
    
     <main class="login-main">
         <div class="login-card">
@@ -492,14 +416,10 @@ body.light-mode nav button.btn-outline[disabled] {
             const body = document.body;
             const desktopLangTrigger = document.getElementById('desktop-lang-trigger');
             const desktopLangDropdown = document.getElementById('desktop-lang-dropdown');
-            const mobileLangTrigger = document.getElementById('mobile-lang-trigger');
-            const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
-            const mobileLangIcon = mobileLangTrigger?.querySelector('i.fas.fa-chevron-down');
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
-            // =================================================================
-            // === KOD ZA CUSTOM CURSOR ========================================
-            // =================================================================
+            
+            // Custom Cursor
             const cursor = document.querySelector('.custom-cursor');
             if (cursor && body) {
                 let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
@@ -520,32 +440,115 @@ body.light-mode nav button.btn-outline[disabled] {
                     el.addEventListener('mouseleave', () => { if (cursor && typeof gsap !== 'undefined') gsap.to(cursor, { duration: 0.3, scale: 1, backgroundColor: 'rgba(106, 27, 154, 0.6)' }); });
                 });
             }
-            const closeAllLanguageDropdowns = () => { if (desktopLangDropdown?.classList.contains('active')) { desktopLangDropdown.classList.remove('active'); } if (mobileLangDropdown?.classList.contains('active')) { mobileLangDropdown.classList.remove('active'); if (mobileLangIcon) { mobileLangIcon.classList.remove('fa-chevron-up'); mobileLangIcon.classList.add('fa-chevron-down'); } } };
-            const toggleLanguageDropdown = (dropdownElement, otherDropdownElement, triggerIcon) => { if (!dropdownElement) return; const isActive = dropdownElement.classList.contains('active'); if (otherDropdownElement?.classList.contains('active')) { otherDropdownElement.classList.remove('active'); const otherIcon = document.getElementById('mobile-lang-trigger')?.querySelector('i.fas'); if (otherDropdownElement.id === 'mobile-lang-dropdown' && otherIcon?.classList.contains('fa-chevron-up')){ otherIcon.classList.replace('fa-chevron-up', 'fa-chevron-down'); } } dropdownElement.classList.toggle('active', !isActive); if (triggerIcon && dropdownElement.id === 'mobile-lang-dropdown') { triggerIcon.classList.toggle('fa-chevron-down', !isActive); triggerIcon.classList.toggle('fa-chevron-up', isActive); } };
 
-            if (desktopLangTrigger && desktopLangDropdown) { desktopLangTrigger.addEventListener('click', (event) => { event.stopPropagation(); toggleLanguageDropdown(desktopLangDropdown, mobileLangDropdown); }); desktopLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); }); desktopLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); }); }
-            if (mobileLangTrigger && mobileLangDropdown) { mobileLangTrigger.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); toggleLanguageDropdown(mobileLangDropdown, desktopLangDropdown, mobileLangIcon); }); mobileLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); }); mobileLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); }); }
-            if (hamburger && navMenu && body) { hamburger.addEventListener('click', () => { const isActive = hamburger.classList.toggle('active'); navMenu.classList.toggle('active', isActive); body.classList.toggle('overflow-hidden', isActive); closeAllLanguageDropdowns(); }); document.querySelectorAll('.nav-menu a').forEach(link => { link.addEventListener('click', (event) => { if (!link.closest('.mobile-language-selector')) { if (hamburger.classList.contains('active')) { hamburger.classList.remove('active'); navMenu.classList.remove('active'); body.classList.remove('overflow-hidden'); } } }); }); }
-            document.addEventListener('click', (event) => { const isClickInsideLangDesktop = desktopLangDropdown?.contains(event.target); const isClickInsideLangMobile = mobileLangDropdown?.contains(event.target); const isClickOnLangDesktopTrigger = desktopLangTrigger?.contains(event.target); const isClickOnLangMobileTrigger = mobileLangTrigger?.contains(event.target); if (!isClickInsideLangDesktop && !isClickInsideLangMobile && !isClickOnLangDesktopTrigger && !isClickOnLangMobileTrigger) { closeAllLanguageDropdowns(); } });
-            document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if (hamburger?.classList.contains('active')) { hamburger.classList.remove('active'); navMenu.classList.remove('active'); body?.classList.remove('overflow-hidden'); } closeAllLanguageDropdowns(); } });
+            const closeAllDropdowns = () => {
+                if (desktopLangDropdown?.classList.contains('active')) {
+                    desktopLangDropdown.classList.remove('active');
+                }
+            };
+            
+            // Desktop Language Dropdown
+            if (desktopLangTrigger && desktopLangDropdown) {
+                desktopLangTrigger.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    desktopLangDropdown.classList.toggle('active');
+                });
+                desktopLangDropdown.addEventListener('click', (event) => event.stopPropagation());
+            }
+            
+            // Hamburger Menu
+            if (hamburger && navMenu && body) {
+                hamburger.addEventListener('click', () => {
+                    const isActive = hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active', isActive);
+                    body.classList.toggle('overflow-hidden', isActive);
+                    closeAllDropdowns();
+                });
+                document.querySelectorAll('.nav-menu a, .nav-menu button').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (hamburger.classList.contains('active')) {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            body.classList.remove('overflow-hidden');
+                        }
+                    });
+                });
+            }
 
-            // =================================================================
-            // === LOGIKA ZA VALIDACIJU FORME ==================================
-            // =================================================================
+            // Global listeners to close dropdowns
+            document.addEventListener('click', (event) => {
+                const isClickOnLangDesktopTrigger = desktopLangTrigger?.contains(event.target);
+                if (!isClickOnLangDesktopTrigger) {
+                    closeAllDropdowns();
+                }
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    if (hamburger?.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        body?.classList.remove('overflow-hidden');
+                    }
+                    closeAllDropdowns();
+                }
+            });
+
+            // Login Form Validation
             const loginForm = document.getElementById('login-form');
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            const usernameError = document.getElementById('username-error');
-            const passwordError = document.getElementById('password-error');
-
             if (loginForm) {
-                loginForm.addEventListener('submit', function(event) {
+                const usernameInput = document.getElementById('username');
+                const passwordInput = document.getElementById('password');
+                const usernameError = document.getElementById('username-error');
+                const passwordError = document.getElementById('password-error');
+
+                const validateUsername = () => {
+                    const username = usernameInput.value.trim();
+                    const usernameRegex = /^[a-zA-Z0-9]+$/;
+                    usernameError.textContent = '';
+                    usernameInput.classList.remove('invalid');
+                    if (username.length < 4 || username.length > 21) {
+                        usernameError.textContent = 'Korisničko ime mora imati između 4 i 21 znaka.';
+                        usernameInput.classList.add('invalid'); return false;
+                    }
+                    if (!usernameRegex.test(username)) {
+                        usernameError.textContent = 'Dozvoljena su samo slova i brojevi.';
+                        usernameInput.classList.add('invalid'); return false;
+                    }
+                    return true;
+                };
+
+                const validatePassword = () => {
+                    const password = passwordInput.value;
+                    const allAllowedCharsRegex = /^[a-zA-Z0-9!"#$%&/_+~=?]+$/;
+                    const hasLowercase = /[a-z]/;
+                    const hasUppercase = /[A-Z]/;
+                    const hasNumber = /\d/;
+                    const hasSpecialChar = /[!"#$%&/_+~=?]/;
+                    passwordError.textContent = '';
+                    passwordInput.classList.remove('invalid');
+                    if (password.length < 7 || password.length > 21) {
+                        passwordError.textContent = 'Lozinka mora imati između 7 i 21 znaka.';
+                        passwordInput.classList.add('invalid'); return false;
+                    }
+                    if (!allAllowedCharsRegex.test(password)) {
+                        passwordError.textContent = 'Lozinka sadrži nedozvoljene znakove.';
+                        passwordInput.classList.add('invalid'); return false;
+                    }
+                    const missing = [];
+                    if (!hasLowercase.test(password)) missing.push('malo slovo');
+                    if (!hasUppercase.test(password)) missing.push('VELIKO slovo');
+                    if (!hasNumber.test(password)) missing.push('broj');
+                    if (!hasSpecialChar.test(password)) missing.push('poseban znak');
+                    if (missing.length > 0) {
+                        passwordError.textContent = `Lozinka mora sadržavati barem: ${missing.join(', ')}.`;
+                        passwordInput.classList.add('invalid'); return false;
+                    }
+                    return true;
+                };
+
+                loginForm.addEventListener('submit', (event) => {
                     event.preventDefault();
-
-                    let isUsernameValid = validateUsername();
-                    let isPasswordValid = validatePassword();
-
-                    if (isUsernameValid && isPasswordValid) {
+                    if (validateUsername() && validatePassword()) {
                         console.log('Forma je ispravna. Preusmjeravam...');
                         window.location.href = 'sfured.html';
                     } else {
@@ -553,75 +556,6 @@ body.light-mode nav button.btn-outline[disabled] {
                     }
                 });
             }
-
-            function validateUsername() {
-                const username = usernameInput.value.trim();
-                const usernameRegex = /^[a-zA-Z0-9]+$/;
-                
-                usernameError.textContent = '';
-                usernameInput.classList.remove('invalid');
-
-                if (username.length < 4 || username.length > 21) {
-                    usernameError.textContent = 'Korisničko ime mora imati između 4 i 21 znaka.';
-                    usernameInput.classList.add('invalid');
-                    return false;
-                }
-                
-                if (!usernameRegex.test(username)) {
-                    usernameError.textContent = 'Dozvoljena su samo slova i brojevi.';
-                    usernameInput.classList.add('invalid');
-                    return false;
-                }
-
-                return true;
-            }
-
-            // === AŽURIRANA FUNKCIJA ZA VALIDACIJU LOZINKE ===
-            function validatePassword() {
-                const password = passwordInput.value;
-                const allAllowedCharsRegex = /^[a-zA-Z0-9!"#$%&/_+~=?]+$/;
-
-                // Regex za provjeru prisutnosti svake vrste znaka
-                const hasLowercase = /[a-z]/;
-                const hasUppercase = /[A-Z]/;
-                const hasNumber = /\d/;
-                const hasSpecialChar = /[!"#$%&/_+~=?]/;
-
-                passwordError.textContent = '';
-                passwordInput.classList.remove('invalid');
-
-                // 1. Provjera duljine
-                if (password.length < 7 || password.length > 21) {
-                    passwordError.textContent = 'Lozinka mora imati između 7 i 21 znaka.';
-                    passwordInput.classList.add('invalid');
-                    return false;
-                }
-
-                // 2. Provjera da li postoje nedozvoljeni znakovi
-                if (!allAllowedCharsRegex.test(password)) {
-                    passwordError.textContent = 'Lozinka sadrži nedozvoljene znakove.';
-                    passwordInput.classList.add('invalid');
-                    return false;
-                }
-
-                // 3. Provjera da li su sve potrebne vrste znakova prisutne
-                const missing = [];
-                if (!hasLowercase.test(password)) missing.push('malo slovo');
-                if (!hasUppercase.test(password)) missing.push('VELIKO slovo');
-                if (!hasNumber.test(password)) missing.push('broj');
-                if (!hasSpecialChar.test(password)) missing.push('poseban znak');
-                
-                if (missing.length > 0) {
-                    passwordError.textContent = `Lozinka mora sadržavati barem: ${missing.join(', ')}.`;
-                    passwordInput.classList.add('invalid');
-                    return false;
-                }
-                
-                // Ako su sve provjere prošle, lozinka je ispravna
-                return true;
-            }
-            
-            console.log("Login JS inicijaliziran.");
         });
     </script>
     
@@ -629,212 +563,107 @@ body.light-mode nav button.btn-outline[disabled] {
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const canvas = document.getElementById('network-canvas');
-        if (!canvas) return; // Zaštita ako canvas ne postoji
+        if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
         let particles = [];
         let mouse = { x: null, y: null };
 
         const darkOptions = {
-            particleColorRGB: '128, 255, 0',
-            lineColorRGB: '170, 0, 255',
-            particleAmount: 120,
-            defaultRadius: 1.3,
-            linkRadius: 150,
-            particleSpeed: 0.25,
-            lineWidth: 0.4,
-            mouseInteractionRadius: 150,
-            mouseEffectStrength: 2,
+            particleColorRGB: '128, 255, 0', lineColorRGB: '170, 0, 255', particleAmount: 120,
+            defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4,
+            mouseInteractionRadius: 150, mouseEffectStrength: 2,
         };
-
         const lightOptions = {
-            particleColorRGB: '106, 27, 154', // Primarna ljubičasta boja
-            lineColorRGB: '171, 71, 188',     // Sekundarna, svjetlija 
-            particleAmount: 120,
-            defaultRadius: 1.3,
-            linkRadius: 150,
-            particleSpeed: 0.25,
-            lineWidth: 0.4,
-            mouseInteractionRadius: 150,
-            mouseEffectStrength: 2,
+            particleColorRGB: '106, 27, 154', lineColorRGB: '171, 71, 188', particleAmount: 120,
+            defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4,
+            mouseInteractionRadius: 150, mouseEffectStrength: 2,
         };
-        
-        let currentOptions = document.body.classList.contains('light-mode') ? lightOptions : darkOptions;
+        let currentOptions = document.documentElement.classList.contains('light-mode') ? lightOptions : darkOptions;
 
-
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
+        const resizeCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-        window.addEventListener('mouseout', () => {
-             mouse.x = null;
-             mouse.y = null;
-        });
-
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.z = Math.random() * 2 - 1; // Z-os za parallax efekt
-                this.radius = currentOptions.defaultRadius * (1 + this.z * 0.5);
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.z = Math.random() * 2 - 1; this.radius = currentOptions.defaultRadius * (1 + this.z * 0.5);
                 this.vx = (Math.random() - 0.5) * currentOptions.particleSpeed;
                 this.vy = (Math.random() - 0.5) * currentOptions.particleSpeed;
             }
-
             draw() {
-                let finalRadius = this.radius;
-                let opacity = 1;
-
+                let finalRadius = this.radius; let opacity = 1;
                 if (mouse.x !== null) {
-                    const dx = this.x - mouse.x;
-                    const dy = this.y - mouse.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
+                    const dist = Math.sqrt(Math.pow(this.x - mouse.x, 2) + Math.pow(this.y - mouse.y, 2));
                     if (dist < currentOptions.mouseInteractionRadius) {
                         const effect = (1 - dist / currentOptions.mouseInteractionRadius);
-                        finalRadius += effect * currentOptions.mouseEffectStrength;
-                        opacity += effect * 0.5;
+                        finalRadius += effect * currentOptions.mouseEffectStrength; opacity += effect * 0.5;
                     }
                 }
-                
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, finalRadius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${currentOptions.particleColorRGB}, ${opacity * 0.85})`;
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(this.x, this.y, finalRadius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${currentOptions.particleColorRGB}, ${opacity * 0.85})`; ctx.fill();
             }
-
             update() {
-                this.x += this.vx * (1 + this.z * 0.5); 
-                this.y += this.vy * (1 + this.z * 0.5);
-
-                if (this.x > canvas.width + 5) this.x = -5;
-                else if (this.x < -5) this.x = canvas.width + 5;
-                if (this.y > canvas.height + 5) this.y = -5;
-                else if (this.y < -5) this.y = canvas.height + 5;
+                this.x += this.vx * (1 + this.z * 0.5); this.y += this.vy * (1 + this.z * 0.5);
+                if (this.x > canvas.width + 5) this.x = -5; else if (this.x < -5) this.x = canvas.width + 5;
+                if (this.y > canvas.height + 5) this.y = -5; else if (this.y < -5) this.y = canvas.height + 5;
             }
         }
-
-        const initParticles = () => {
-            particles = [];
-            for (let i = 0; i < currentOptions.particleAmount; i++) {
-                particles.push(new Particle());
-            }
-        };
-
+        const initParticles = () => { particles = []; for (let i = 0; i < currentOptions.particleAmount; i++) { particles.push(new Particle()); } };
         const drawLines = () => {
-            let pulse = Math.sin(Date.now() * 0.001) * 0.2 + 0.8; 
+            let pulse = Math.sin(Date.now() * 0.001) * 0.2 + 0.8;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
-                    const p1 = particles[i];
-                    const p2 = particles[j];
-                    
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
+                    const dist = Math.sqrt(Math.pow(particles[i].x - particles[j].x, 2) + Math.pow(particles[i].y - particles[j].y, 2));
                     if (dist < currentOptions.linkRadius) {
-                        let opacity = 1 - (dist / currentOptions.linkRadius);
-                        opacity *= pulse; 
-
+                        let opacity = (1 - (dist / currentOptions.linkRadius)) * pulse;
                         if (mouse.x !== null) {
-                           const distToMouse1 = Math.sqrt(Math.pow(p1.x - mouse.x, 2) + Math.pow(p1.y - mouse.y, 2));
-                           const distToMouse2 = Math.sqrt(Math.pow(p2.x - mouse.x, 2) + Math.pow(p2.y - mouse.y, 2));
-                           if(distToMouse1 < currentOptions.mouseInteractionRadius || distToMouse2 < currentOptions.mouseInteractionRadius) {
-                               opacity = Math.min(1, opacity + 0.5);
-                           }
+                           const distToMouse1 = Math.sqrt(Math.pow(particles[i].x - mouse.x, 2) + Math.pow(particles[i].y - mouse.y, 2));
+                           const distToMouse2 = Math.sqrt(Math.pow(particles[j].x - mouse.x, 2) + Math.pow(particles[j].y - mouse.y, 2));
+                           if(distToMouse1 < currentOptions.mouseInteractionRadius || distToMouse2 < currentOptions.mouseInteractionRadius) { opacity = Math.min(1, opacity + 0.5); }
                         }
-
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(${currentOptions.lineColorRGB}, ${opacity * 0.5})`;
-                        ctx.lineWidth = currentOptions.lineWidth;
-                        ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(${currentOptions.lineColorRGB}, ${opacity * 0.5})`; ctx.lineWidth = currentOptions.lineWidth; ctx.stroke();
                     }
                 }
             }
         };
-        
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => p.update());
-            drawLines();
-            particles.forEach(p => p.draw());
+            particles.forEach(p => p.update()); drawLines(); particles.forEach(p => p.draw());
             requestAnimationFrame(animate);
         };
-
-        // Globalna funkcija za promjenu teme animacije
-        window.setAnimationTheme = (theme) => {
-            if (theme === 'light') {
-                currentOptions = lightOptions;
-            } else {
-                currentOptions = darkOptions;
-            }
-            initParticles();
-        };
-
-        initParticles();
-        animate();
+        window.setAnimationTheme = (theme) => { currentOptions = theme === 'light' ? lightOptions : darkOptions; initParticles(); };
+        initParticles(); animate();
     });
     </script>
 
-    <!-- ISPRAVLJENI SCRIPT ZA UPRAVLJANJE TEMAMA -->
+    <!-- SCRIPT ZA UPRAVLJANJE TEMAMA -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const themeToggleBtns = [
-            document.getElementById('theme-toggle'),
-            document.getElementById('theme-toggle-mobile')
-        ];
+        const themeToggleBtns = [ document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile') ];
         const logoImg = document.getElementById('site-logo');
 
-        // Funkcija koja samo ažurira izgled (ikonice, logo) na temelju klase na <html> elementu
         function updateThemeUI() {
             const isLight = document.documentElement.classList.contains('light-mode');
-            
-            // Ažuriraj body klasu za svaki slučaj (zbog starih CSS pravila)
             document.body.classList.toggle('light-mode', isLight);
-
-            if (isLight) {
-                if(logoImg) logoImg.src = 'img/IFIG-logo_purple.png';
-            } else {
-                if(logoImg) logoImg.src = 'img/IFIG-logo.png';
-            }
-             // Pozovi funkciju za promjenu teme animacije
-            if (window.setAnimationTheme) {
-                window.setAnimationTheme(isLight ? 'light' : 'dark');
-            }
+            if(logoImg) logoImg.src = isLight ? 'img/IFIG-logo_purple.png' : 'img/IFIG-logo.png';
+            if (window.setAnimationTheme) { window.setAnimationTheme(isLight ? 'light' : 'dark'); }
         }
 
-        // Funkcija koja se poziva na klik gumba
         function handleThemeToggle() {
-            // Promijeni temu (dodaj/ukloni klasu)
             document.documentElement.classList.toggle('light-mode');
             const isNowLight = document.documentElement.classList.contains('light-mode');
-            
-            // Spremi novu temu u localStorage pod ISPRAVNIM imenom
             localStorage.setItem('sft21_theme', isNowLight ? 'light' : 'dark');
-            
-            // Ažuriraj izgled stranice
             updateThemeUI();
         }
 
-        // 1. Inicijalno ažuriraj izgled stranice na temelju teme koju je postavio skript u <head>
         updateThemeUI();
-        
-        // 2. Dodaj event listenere na gumbe za promjenu teme
-        themeToggleBtns.forEach(btn => {
-            if (btn) {
-                btn.addEventListener('click', handleThemeToggle);
-            }
-        });
+        themeToggleBtns.forEach(btn => { if (btn) { btn.addEventListener('click', handleThemeToggle); } });
     });
     </script>
 
