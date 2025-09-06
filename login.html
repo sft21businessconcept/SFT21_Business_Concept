@@ -523,12 +523,87 @@ body.light-mode nav button.btn-outline[disabled] {
             const closeAllLanguageDropdowns = () => { if (desktopLangDropdown?.classList.contains('active')) { desktopLangDropdown.classList.remove('active'); } if (mobileLangDropdown?.classList.contains('active')) { mobileLangDropdown.classList.remove('active'); if (mobileLangIcon) { mobileLangIcon.classList.remove('fa-chevron-up'); mobileLangIcon.classList.add('fa-chevron-down'); } } };
             const toggleLanguageDropdown = (dropdownElement, otherDropdownElement, triggerIcon) => { if (!dropdownElement) return; const isActive = dropdownElement.classList.contains('active'); if (otherDropdownElement?.classList.contains('active')) { otherDropdownElement.classList.remove('active'); const otherIcon = document.getElementById('mobile-lang-trigger')?.querySelector('i.fas'); if (otherDropdownElement.id === 'mobile-lang-dropdown' && otherIcon?.classList.contains('fa-chevron-up')){ otherIcon.classList.replace('fa-chevron-up', 'fa-chevron-down'); } } dropdownElement.classList.toggle('active', !isActive); if (triggerIcon && dropdownElement.id === 'mobile-lang-dropdown') { triggerIcon.classList.toggle('fa-chevron-down', !isActive); triggerIcon.classList.toggle('fa-chevron-up', isActive); } };
 
-            if (desktopLangTrigger && desktopLangDropdown) { desktopLangTrigger.addEventListener('click', (event) => { event.stopPropagation(); toggleLanguageDropdown(desktopLangDropdown, mobileLangDropdown); }); desktopLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); }); desktopLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); }); }
-            if (mobileLangTrigger && mobileLangDropdown) { mobileLangTrigger.addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); toggleLanguageDropdown(mobileLangDropdown, desktopLangDropdown, mobileLangIcon); }); mobileLangDropdown.querySelectorAll('.language-item').forEach(item => { item.addEventListener('click', (event) => { event.stopPropagation(); closeAllLanguageDropdowns(); }); }); mobileLangDropdown.addEventListener('click', (event) => { event.stopPropagation(); }); }
-            if (hamburger && navMenu && body) { hamburger.addEventListener('click', () => { const isActive = hamburger.classList.toggle('active'); navMenu.classList.toggle('active', isActive); body.classList.toggle('overflow-hidden', isActive); closeAllLanguageDropdowns(); }); document.querySelectorAll('.nav-menu a').forEach(link => { link.addEventListener('click', (event) => { if (!link.closest('.mobile-language-selector')) { if (hamburger.classList.contains('active')) { hamburger.classList.remove('active'); navMenu.classList.remove('active'); body.classList.remove('overflow-hidden'); } } }); }); }
-            document.addEventListener('click', (event) => { const isClickInsideLangDesktop = desktopLangDropdown?.contains(event.target); const isClickInsideLangMobile = mobileLangDropdown?.contains(event.target); const isClickOnLangDesktopTrigger = desktopLangTrigger?.contains(event.target); const isClickOnLangMobileTrigger = mobileLangTrigger?.contains(event.target); if (!isClickInsideLangDesktop && !isClickInsideLangMobile && !isClickOnLangDesktopTrigger && !isClickOnLangMobileTrigger) { closeAllLanguageDropdowns(); } });
-            document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if (hamburger?.classList.contains('active')) { hamburger.classList.remove('active'); navMenu.classList.remove('active'); body?.classList.remove('overflow-hidden'); } closeAllLanguageDropdowns(); } });
+            if (desktopLangTrigger && desktopLangDropdown) {
+                desktopLangTrigger.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleLanguageDropdown(desktopLangDropdown, mobileLangDropdown);
+                });
+                desktopLangDropdown.querySelectorAll('.language-item').forEach(item => {
+                    item.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        closeAllLanguageDropdowns();
+                    });
+                });
+                desktopLangDropdown.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                });
+            }
+            if (mobileLangTrigger && mobileLangDropdown) {
+                mobileLangTrigger.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    toggleLanguageDropdown(mobileLangDropdown, desktopLangDropdown, mobileLangIcon);
+                });
+                mobileLangDropdown.querySelectorAll('.language-item').forEach(item => {
+                    item.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        closeAllLanguageDropdowns();
+                    });
+                });
+                mobileLangDropdown.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                });
+            }
+            
+            // =======================================================
+            // === NOVI I ISPRAVLJENI KOD ZA HAMBURGER I MENI ===
+            // =======================================================
+            if (hamburger && navMenu && body) {
+                hamburger.addEventListener('click', () => {
+                    const isActive = hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active', isActive);
+                    body.classList.toggle('overflow-hidden', isActive);
+                    closeAllLanguageDropdowns();
+                });
 
+                // KONAČNA I ISPRAVNA LOGIKA ZA ZATVARANJE MENIJA
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    // Ako link NIJE onaj koji otvara jezik meni
+                    if (link.id !== 'mobile-lang-trigger') {
+                        link.addEventListener('click', () => {
+                            // Zatvori glavni meni
+                            if (hamburger.classList.contains('active')) {
+                                hamburger.classList.remove('active');
+                                navMenu.classList.remove('active');
+                                body.classList.remove('overflow-hidden');
+                            }
+                        });
+                    }
+                });
+            }
+            // =======================================================
+            // === KRAJ NOVOG KODA ZA HAMBURGER I MENI ===
+            // =======================================================
+
+            document.addEventListener('click', (event) => {
+                const isClickInsideLangDesktop = desktopLangDropdown?.contains(event.target);
+                const isClickInsideLangMobile = mobileLangDropdown?.contains(event.target);
+                const isClickOnLangDesktopTrigger = desktopLangTrigger?.contains(event.target);
+                const isClickOnLangMobileTrigger = mobileLangTrigger?.contains(event.target);
+                if (!isClickInsideLangDesktop && !isClickInsideLangMobile && !isClickOnLangDesktopTrigger && !isClickOnLangMobileTrigger) {
+                    closeAllLanguageDropdowns();
+                }
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    if (hamburger?.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        body?.classList.remove('overflow-hidden');
+                    }
+                    closeAllLanguageDropdowns();
+                }
+            });
             // =================================================================
             // === LOGIKA ZA VALIDACIJU FORME ==================================
             // =================================================================
