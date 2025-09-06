@@ -641,12 +641,14 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
              <a href="#license-packages" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">License Packages</a>
              <a href="#startni-paketi" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Starter Packages</a>
              <a href="#kontakt" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300">Contact</a>
-        <div class="sft21-nav-item dropdown">
-            <a href="#" id="mobile-platform-trigger" class="block py-3 ... mobile-dropdown-toggle"> Platforme ... </a>
-        <div id="mobile-platform-menu" class="dropdown-menu">
-                    <a href="sfured_en.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFoffice</a>
-                    <a href="sfalgoritam_en.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFalgorithm</a>
-                    <a href="video_player_en.html?from=index_en.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">Video Player</a>
+             <div class="sft21-nav-item dropdown">
+                <a href="#" id="mobile-platform-trigger" class="block py-3 text-center hover:text-purple-400 transition-colors duration-300 flex justify-center items-center">
+                    Platforme <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                </a>
+                <div id="mobile-platform-menu" class="dropdown-menu" style="display: none;">
+                    <a href="sfured.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFured</a>
+                    <a href="sfalgoritam.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFalgoritam</a>
+                    <a href="video_player.html?from=index.html" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">Video player</a>
                     <a href="#" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFnet</a>
                     <a href="#" class="dropdown-item block py-2 text-center text-sm bg-gray-800 hover:bg-purple-700 text-gray-300 hover:text-white">SFshop</a>
                 </div>
@@ -2161,33 +2163,47 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                 });
             });
         }
-        mobileDropdownToggles.forEach(toggle => {
-            if (toggle.id === 'mobile-lang-trigger') return;
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                const dropdownItem = toggle.closest('.sft21-nav-item.dropdown');
-                const dropdownMenu = dropdownItem?.querySelector('.dropdown-menu');
-                if (dropdownItem && dropdownMenu) {
-                    document.querySelectorAll('.nav-menu .sft21-nav-item.dropdown.open:not(.mobile-language-selector)').forEach(openDropdown => {
-                        if (openDropdown !== dropdownItem) {
-                            openDropdown.classList.remove('open');
-                            const otherIcon = openDropdown.querySelector('.mobile-dropdown-toggle i');
-                            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                            const otherMenu = openDropdown.querySelector('.dropdown-menu');
-                            if (otherMenu) otherMenu.style.display = 'none';
-                        }
-                    });
-                    dropdownItem.classList.toggle('open');
-                    dropdownMenu.style.display = dropdownItem.classList.contains('open') ? 'block' : 'none';
-                    const icon = toggle.querySelector('i.fas');
-                    if (icon) {
-                        icon.style.transform = dropdownItem.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            // =======================================================
+    // KONAČNA I UNIVERZALNA LOGIKA ZA SVE MOBILNE DROPDOWNOVE
+    // =======================================================
+    const allMobileDropdowns = document.querySelectorAll('.nav-menu .sft21-nav-item.dropdown');
+
+    allMobileDropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('a'); // Link koji otvara meni
+        const menu = dropdown.querySelector('.dropdown-menu, .language-dropdown-mobile'); // Meni koji se otvara
+        const icon = trigger.querySelector('i.fa-chevron-down');
+
+        if (trigger && menu) {
+            trigger.addEventListener('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const isCurrentlyOpen = dropdown.classList.contains('open');
+
+                // 1. Prvo zatvori SVE ostale otvorene dropdownove
+                allMobileDropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('open');
+                        const otherMenu = otherDropdown.querySelector('.dropdown-menu, .language-dropdown-mobile');
+                        if (otherMenu) otherMenu.style.display = 'none';
+                        const otherIcon = otherDropdown.querySelector('i.fa-chevron-down');
+                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
                     }
-                    closeAllLanguageDropdowns();
+                });
+
+                // 2. Sada otvori ili zatvori TRENUTNI dropdown
+                if (isCurrentlyOpen) {
+                    dropdown.classList.remove('open');
+                    menu.style.display = 'none';
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    dropdown.classList.add('open');
+                    menu.style.display = 'block';
+                    if (icon) icon.style.transform = 'rotate(180deg)';
                 }
             });
-        });
-
+        }
+    });
         if (accordionItems.length > 0) {
             accordionItems.forEach(item => {
                 const header = item.querySelector('.accordion-header');

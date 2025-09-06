@@ -407,14 +407,25 @@ if (cursor && body) {
         });
 
         
-        document.querySelectorAll('.nav-menu a:not([id*="lang-trigger"]):not(.mobile-dropdown-toggle)').forEach(link => {
-            link.addEventListener('click', () => {
-                if (hamburger.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    body?.classList.remove('nav-menu-open');                }
-            });
-        });
+document.querySelectorAll('.nav-menu a:not([id*="lang-trigger"]):not(.mobile-dropdown-toggle)').forEach(link => {
+    link.addEventListener('click', (event) => {
+        // Zaustavljamo defaultnu akciju da bismo mi preuzeli kontrolu
+        event.preventDefault();
+        const destination = link.href;
+
+        // Zatvaramo hamburger meni
+        if (hamburger.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('overflow-hidden');
+        }
+
+        // Nakon kratke odgode (da se animacija zatvaranja dovrši), preusmjeravamo
+        setTimeout(() => {
+            window.location.href = destination;
+        }, 300); // 300 milisekundi je dovoljno za glatku tranziciju
+    });
+});
     }
     
     // =======================================================
