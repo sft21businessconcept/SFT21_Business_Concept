@@ -113,8 +113,7 @@ initializeAppLogic();
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const mobileDropdownToggles = document.querySelectorAll('.nav-menu .mobile-dropdown-toggle:not(.mobile-language-trigger)');
-    // <<< NOVO: VRAĆAMO LOGIKU ZA KURSOR OVDJE >>>
-const cursor = document.querySelector('.custom-cursor');
+
 
 // Logika za Custom Kursor
 if (cursor && body) {
@@ -179,9 +178,6 @@ if (cursor && body) {
     const navHeight = fixedNav ? fixedNav.offsetHeight : 80;
     const accordionItems = document.querySelectorAll('.accordion-item');
     const extraScrollMarginAccordion = 10;
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav .nav-link:not(.mobile-dropdown-toggle)');
-    const cursor = document.querySelector('.custom-cursor');
     const popupOverlay = document.getElementById('popup-overlay');
     const validationPopup = document.getElementById('validation-popup');
     const contactFormPopup = document.getElementById('contact-form-popup');
@@ -517,8 +513,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
             }
         });
-    }
-});
 
     // Accordion
     if (accordionItems.length > 0) {
@@ -587,49 +581,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Smooth scroll i aktivni linkovi u navigaciji
-    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const hrefAttribute = this.getAttribute('href');
-            const targetElement = document.querySelector(hrefAttribute);
-            if (targetElement) {
-                e.preventDefault();
-                const getAbsoluteOffsetTop = (el) => el.offsetTop + (el.offsetParent ? getAbsoluteOffsetTop(el.offsetParent) : 0);
-                const targetAbsOffsetTop = getAbsoluteOffsetTop(targetElement);
-                const targetPosition = targetAbsOffsetTop - navHeight - 10;
-                window.scrollTo({ top: Math.max(0, targetPosition), behavior: 'smooth' });
-                if (hamburger?.classList.contains('active')) { hamburger.classList.remove('active'); navMenu.classList.remove('active'); body?.classList.remove('overflow-hidden'); }
-            }
-        });
-    });
 
-    if (sections.length > 0 && navLinks.length > 0) {
-        const updateActiveNavLink = () => {
-            let currentSectionId = null;
-            const scrollY = window.scrollY + navHeight + 50;
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-                currentSectionId = sections[sections.length - 1]?.getAttribute('id') || currentSectionId;
-            } else if (window.scrollY < (sections[0]?.offsetTop || 0) - navHeight - 50) {
-                currentSectionId = 'pocetna';
-            }
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkHref = link.getAttribute('href');
-                if (linkHref === `#${currentSectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        };
-        window.addEventListener('scroll', updateActiveNavLink, { passive: true });
-        updateActiveNavLink();
-    }
     
     // Zatvaranje popup-a i dropdowna klikom izvan ili Esc tipkom
     document.addEventListener('click', (event) => {
@@ -899,11 +851,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     return; 
                 } 
                 const countries = [ { code: 'hr', name: 'Croatia' }, { code: 'rs', name: 'Serbia' }, { code: 'ba', name: 'Bosnia' }, { code: 'si', name: 'Slovenia' }, { code: 'de', name: 'Germany' }, { code: 'at', name: 'Austria' }, { code: 'it', name: 'Italy' }, { code: 'hu', name: 'Hungary' }, { code: 'cz', name: 'Czech Republic' }, { code: 'sk', name: 'Slovakia' } ]; 
-                const firstNames = ['Ivan', 'Marko', 'Ana', 'Petra', 'Nikola', 'Luka', 'Maja', 'Sara', 'Josip', 'Tomislav', 'Milan', 'Stefan', 'Amina', 'Jan', 'Matej', 'Zoran', 'Goran']; 
-                const lastNames = ['Horvat', 'Novak', 'Kovačević', 'Petrović', 'Jurić', 'Marić', 'Pavlović', 'Knežević', 'Babić', 'Vuković', 'Marković', 'Popović']; 
-                const randomCountry = countries[Math.floor(Math.random() * countries.length)]; 
-                const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)]; 
-                const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)]; 
+                const firstNames = ['Ivan', 'Marko', 'Ana', 'Petra', 'Nikola', 'Luka', 'Maja', 'Sara', 'Josip', 'Tomislav', 'Milan', 'Stefan', 'Amina', 'Jan', 'Matej', 'Zoran', 'Goran', 'Stefan', 'Dragana']; 
+                const lastNames = ['Horvat', 'Novak', 'Kovačević', 'Petrović', 'Jurić', 'Marić', 'Pavlović', 'Knežević', 'Babić', 'Vuković', 'Marković', 'Popović', 'Jovanović', 'Mirković']; 
+                
+                // --- POČETAK IZMJENE ---
+                // Prvo nasumično odaberemo ime, prezime i državu
+                let randomCountry = countries[Math.floor(Math.random() * countries.length)]; 
+                let randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)]; 
+                let randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)]; 
+
+                // Zatim, ako smo izvukli 'Stefan' ili 'Dragana', ispravimo podatke
+                if (randomFirstName === 'Stefan') {
+                    randomLastName = 'Jovanović';
+                    randomCountry = { code: 'rs', name: 'Serbia' }; // Postavi srpsku zastavu
+                } else if (randomFirstName === 'Dragana') {
+                    randomLastName = 'Mirković';
+                    randomCountry = { code: 'rs', name: 'Serbia' }; // Postavi srpsku zastavu
+                }
+                // --- KRAJ IZMJENE ---
+
                 const username = `${randomFirstName}_${randomLastName.substring(0,3)}`.toLowerCase(); 
                 const placeholder = userCounterList.querySelector('.user-counter-placeholder'); 
                 if (placeholder) placeholder.remove(); 
@@ -923,7 +889,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             } 
                         } 
                     } 
-                }); 
+                });
                 while (userCounterList.children.length > 6) { 
                     userCounterList.removeChild(userCounterList.lastChild); 
                 } 
@@ -1025,74 +991,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // =================================================================
-// KONAČNO I NAJPOUZDANIJE SCROLLSPY RJEŠENJE (DIREKTNA MANIPULACIJA STILOM)
-// =================================================================
-try {
-    console.log("Pokrećem KONAČNO Scrollspy rješenje...");
-
-    const navLinks = document.querySelectorAll('nav a.nav-link[href^="#"]');
-    const sections = document.querySelectorAll('section[id]');
-    const navHeight = document.querySelector('nav.fixed')?.offsetHeight || 80;
-
-    if (navLinks.length === 0 || sections.length === 0) {
-        console.error("Scrollspy greška: Navigacijski linkovi ili sekcije nisu pronađeni.");
-        return; // Prekini izvođenje ako nema elemenata
-    }
-
-    // Funkcija koja RESETIRA stilove svih linkova
-    const resetAllLinkStyles = () => {
-        navLinks.forEach(link => {
-            // Uklanjamo 'active' klasu
-            link.classList.remove('active');
-            
-            // DIREKTNO RESETIRAMO STIL PODCRTAVANJA
-            // Ovo je jače od bilo kojeg CSS pravila
-            const afterElement = window.getComputedStyle(link, '::after');
-            link.style.setProperty('--after-width', '0%'); // Koristimo CSS varijablu
-        });
-    };
-
-    const observerOptions = {
-        root: null,
-        rootMargin: `-${navHeight + 1}px 0px -60% 0px`, // Malo agresivniji margin
-        threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const id = entry.target.getAttribute('id');
-            const correspondingLink = document.querySelector(`nav a.nav-link[href="#${id}"]`);
-
-            if (!correspondingLink) return;
-
-            if (entry.isIntersecting) {
-                // Kada sekcija postane vidljiva:
-                // 1. Resetiraj sve ostale linkove
-                resetAllLinkStyles();
-                
-                // 2. Dodaj 'active' klasu na pravi link
-                correspondingLink.classList.add('active');
-                
-                // 3. DIREKTNO POSTAVI ŠIRINU PODCRTAVANJA
-                correspondingLink.style.setProperty('--after-width', '100%');
-                
-                console.log(`Aktiviran link za: #${id}`);
-            }
-        });
-
-    }, observerOptions);
-
-    // Pokreni promatranje
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    console.log(`Scrollspy uspješno postavljen za ${sections.length} sekcija.`);
-
-} catch (error) {
-    console.error("Došlo je do kritične greške u Scrollspy skripti:", error);
-}
 
 
 // --- POKRENI APLIKACIJU ---
@@ -1434,31 +1332,7 @@ function initializeSFteamNetworkCanvas() {
     });
 }
 
-/**
- * Custom cursor za SFteam stranicu
- */
-function initializeSFteamCustomCursor() {
-    const cursor = document.querySelector('.custom-cursor');
-    if (!cursor) return;
-    
-    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-    const speed = 0.1;
-    
-    function updateCursorPosition() {
-        cursorX += (mouseX - cursorX) * speed;
-        cursorY += (mouseY - cursorY) * speed;
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-        requestAnimationFrame(updateCursorPosition);
-    }
-    
-    updateCursorPosition();
-    
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-    
+   
     // Hover efekti
     const hoverElements = document.querySelectorAll(
         'a, button, .team-member-card, .career-member-card, .pulsing-circle, .testimonial-video'
@@ -1550,3 +1424,72 @@ initializeAppLogic = function() {
     originalInitializeAppLogic2();
     initializeIndexPulsingCircle();
 };
+
+// =======================================================
+// JEDINSTVENI KOD ZA CUSTOM CURSOR - RADI NA SVIM STRANICAMA
+// =======================================================
+document.addEventListener('DOMContentLoaded', () => {
+
+    const cursor = document.querySelector('.custom-cursor');
+    const body = document.body;
+
+    if (cursor && body) {
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+        const speed = 0.1;
+
+        const updateCursorPosition = () => {
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            requestAnimationFrame(updateCursorPosition);
+        };
+        requestAnimationFrame(updateCursorPosition);
+
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+        document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+
+        // Određivanje elemenata za hover ovisno o stranici
+        let hoverSelector = '';
+        if (window.location.pathname.includes('sfteam.html')) {
+            // Ako smo na SFteam stranici
+            hoverSelector = 'a, button, .team-member-card, .career-member-card, .pulsing-circle, .testimonial-video, .swiper-button-next, .swiper-button-prev';
+        } else {
+            // Za sve ostale stranice (uključujući index.html)
+            hoverSelector = 'a, button, .accordion-header, .hamburger, input, textarea, select, .language-trigger, .language-item, label[for], .interactive-card, .starter-package-select-btn, .trigger-choose-investor-type-popup, .open-investment-details-popup';
+        }
+        
+        // Funkcija za vraćanje kursora na zadanu boju ovisno o temi
+        const resetCursorColor = () => {
+            if (typeof gsap !== 'undefined') {
+                const isLightMode = document.documentElement.classList.contains('light-mode');
+                const targetColor = isLightMode ? '#0e076a' : '#d9ff00';
+                gsap.to(cursor, { 
+                    duration: 0.3, 
+                    scale: 1, 
+                    backgroundColor: targetColor
+                });
+            }
+        };
+
+        // Primijeni hover efekte
+        document.querySelectorAll(hoverSelector).forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if (typeof gsap !== 'undefined') {
+                    const isLightMode = document.documentElement.classList.contains('light-mode');
+                    const hoverColor = isLightMode ? 'rgba(171, 71, 188, 0.8)' : 'rgba(128, 255, 0, 0.5)';
+                    gsap.to(cursor, { 
+                        duration: 0.3, 
+                        scale: 1.5, 
+                        backgroundColor: hoverColor
+                    });
+                }
+            });
+            el.addEventListener('mouseleave', resetCursorColor);
+        });
+
+        // Inicijalna boja
+        resetCursorColor();
+    }
+});

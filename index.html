@@ -197,49 +197,7 @@
     color: #0e076a !important; /* Duboko ljubičasta boja, ista kao na desktop gumbima */
 }
 
-/* ========================================= */
-/* SCROLLSPY - AKTIVNI NAVIGACIJSKI LINKOVI */
-/* ========================================= */
-.nav-link {
-    position: relative;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--fluorescent-green, #39ff14);
-    transition: width 0.3s ease, left 0.3s ease;
-    transform: translateX(-50%);
-}
-
-/* Aktivni link - zelena linija uvijek vidljiva */
-.nav-link.active::after {
-    width: 100%;
-}
-
-/* Hover efekt - zelena linija na hover */
-.nav-link:hover::after {
-    width: 100%;
-}
-
-/* Aktivni link - također promijeni boju teksta */
-.nav-link.active {
-    color: var(--fluorescent-green, #39ff14) !important;
-}
-
-/* Light mode prilagodbe */
-body.light-mode .nav-link.active {
-    color: #6a1b9a !important;
-}
-
-body.light-mode .nav-link.active::after {
-    background: #6a1b9a;
-}
 
 /* ========================================================= */
 /* NOVO RJEŠENJE: Responzivni stil za IP7 polje (bez izmjene HTML-a) */
@@ -329,25 +287,39 @@ body.light-mode .icon-box:hover .icon-glow i {
 }
 
 /* ======================================================= */
-/* NOVO: Rješenje za stabilan hover efekt (bez nestajanja) */
+/* NOVO JEDNOSTAVNO RJEŠENJE: Samo sjaj na hover (bez pomaka) */
 /* ======================================================= */
 .hover-card-stable {
-    border-color: transparent !important; /* Sakrijemo originalni border */
-    outline: 1px solid rgba(128, 255, 0, 0.2); /* Kreiramo outline koji izgleda kao border */
-    outline-offset: 0px;
-    transition: outline-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    /* Uklanjamo originalni border da se ne vidi ispod outline-a */
+    border-color: transparent !important;
+    
+    /* Postavljamo početni, suptilni okvir pomoću outline-a */
+    outline: 1px solid rgba(128, 255, 0, 0.2);
+    outline-offset: 0; /* Osigurava da je outline na samom rubu */
+    
+    /* Početni, blagi sjaj */
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+    
+    /* Definiramo tranziciju samo za outline i box-shadow, BEZ transform-a */
+    transition: outline-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hover-card-stable:hover {
-    outline-color: rgba(128, 255, 0, 0.5);
+    /* Na hover, pojačavamo boju okvira */
+    outline-color: rgba(128, 255, 0, 0.6);
+    
+    /* I pojačavamo sjaj */
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
 }
 
 /* Light mode prilagodba */
 body.light-mode .hover-card-stable {
     outline-color: rgba(106, 27, 154, 0.2);
+    box-shadow: 0 0 15px rgba(106, 27, 154, 0.1);
 }
 body.light-mode .hover-card-stable:hover {
-    outline-color: rgba(106, 27, 154, 0.5);
+    outline-color: rgba(106, 27, 154, 0.6);
+    box-shadow: 0 0 30px rgba(106, 27, 154, 0.3);
 }
 
 /* ======================================================= */
@@ -404,6 +376,55 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
             }
         }
 
+        /* ======================================================= */
+/* NOVO: Stilovi za skrivanje i prikaz FAQ sekcije         */
+/* ======================================================= */
+#faq-accordion-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+#faq-accordion-container.faq-visible {
+    opacity: 1;
+    /* Postavite dovoljno veliku vrijednost koja će sigurno biti veća od visine sadržaja */
+    max-height: 8000px; 
+}
+
+/* Rotacija strelice na gumbu */
+#toggle-faq-btn.active .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* ======================================================= */
+/* NOVO: Stilovi za skrivanje i prikaz Startnih Paketa     */
+/* ======================================================= */
+#starter-packages-content-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    /* Duža tranzicija jer ima više sadržaja */
+    transition: max-height 0.9s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+#starter-packages-content-container.starter-visible {
+    opacity: 1;
+    /* Velika vrijednost da stane sav sadržaj */
+    max-height: 10000px; 
+}
+
+/* Rotacija strelice na gumbu */
+#toggle-starter-btn.active .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* ======================================================= */
+/* NOVO: Ispravak boje ikone unutar .btn-primary gumba   */
+/* ======================================================= */
+.btn-primary i {
+    color: inherit !important; /* !important osigurava da ikona UVIJEK naslijedi boju teksta gumba */
+}
 </style>
 </head>
 
@@ -417,15 +438,15 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
         <p>S obzirom na činjenicu da nastavljamo poslovanje nakon prekida koji je trajao tri godine, svjesni da će se u toj situaciji pratiti svaki naš korak i sve što činimo te kako bi održali transparentnost uz iznošenje istine, pravih i relevantnih informacija, želimo da napomenemo slijedeće;</p>
         
         <ul style="list-style-type: disc; text-align: justify; padding-left: 20px; margin-bottom: 1rem;">
-            <li><span style="color: #39FF14;">Ovaj projekt je STATIČKA LINEARNA DEMO WEB STRANICA, dizajnirana je kao vizualni i informativni temelj za SFT21 poslovni koncept tvrtke InFace Invest Group. Svrha stranice je na jasan i vizualno privlačan način informirati postojeće i nove članove o trenutnoj fazi razvoja, o pravilima novog poslovnog modela i prikupiti podatke o interesu za nastavak poslovanja i kupnju Licencnih paketa.</span></li>
+            <li><span style="color: #39FF14;">Ovo je STATIČKA LINEARNA DEMO WEB STRANICA... dizajnirana je kao vizualni i informativni temelj za SFT21 poslovni koncept tvrtke InFace Invest Group. Svrha stranice je na jasan i vizualno privlačan način informirati prvenstveno postojeće, ali i nove potencijalne članove o trenutnoj fazi razvoja, o pravilima novog poslovnog modela kako bi prikupili podatke o interesu za nastavak poslovanja i kupnji Licencnih paketa.</span></li>
             <li><span style="color: #39FF14;">Stranica je razvijena koristeći moderne front-end tehnologije, s naglaskom na responzivnost i korisničko iskustvo. Izgrađena je na modernim tehnologijama kako bi se osiguralo da radi brzo i pouzdano na svim uređajima – od mobilnih telefona do stolnih računala. Iako nema tradicionalni backend i bazu podataka, funkcionalnost za obradu formi implementirana je putem Google Apps Scripta, koji služi kao jednostavan serverless backend za sigurno prikupljanje podataka.</span></li>
             <li><span style="color: #39FF14;">Sve kontakt forme i forme za prijavu interesa sigurno su povezane sa sustavom za prikupljanje podataka, osiguravajući da se svaka prijava uredno zabilježi. Međutim, sustav za prikupljanje podataka putem KYC forme aktivan je, što znači da možete koristiti istoga kako bi vidjeli kako funkcionira ali unos podataka (slika dokumenta i vlastita fotografija) u ovoj fazi, na ovim stranicama se ne spremaju niti se bilježe u bazu podataka.</span></li>
         </ul>
         
         <p>S obzirom da nam je primarni cilj prikupiti sredstva potrebna za izradu odnosno nadogradnju stranica kontrolne ploče (SFured), u ovoj fazi razvoja nije moguće uplatiti Startne pakete već je moguće iskazati interes za kupnju Licencnih paketa.</p>
         <p>Osim toga na stranici "Odluka o nastavku poslovanja" imate mogućnost vidjeti i proučiti opcije prema kojim ćete se izjasniti da li odustajete ili nastavljate poslovanje uz kupnju Licencnog paketa ili nastavljate bez kupnje Licencnog paketa. Odluka o nastavku poslovanja koju donesete na ovim stranicama informativne je prirode dok ćete pravu odluku imati mogućnost donijeti neposredno prije početka poslovanja sukladno novom poslovnom modelu.</p>
-        <p>Važno je napomenuti, da vašom trenutnom odlukom na ovim stranicama, ukoliko se odlučite imate mogućnost odabrati jedan ili više Licencnih paketa ali nemate mogućnost uplatiti iste. Po završetku stranica koje će biti povezane s platnim procesorima o mogućnosti uplate biti ćete pravovremeno obaviješteni.</p>
-        <p>Vaša odluka o nastavku poslovanja i kupnji Licencnih paketa na ovim stranicama, trebala bi nam biti pokazatelj s kojim brojem korisnika iz starog sistema možemo računati da nastavljaju dalje sa nama, kao i sa iznosom sredstava na koji bi mogli računati na osnovu iskazanog interesa za Licencne pakete.</p>
+        <p>Važno je napomenuti, da vašom trenutnom odlukom na ovim stranicama, ukoliko se odlučite imate mogućnost odabrati Licencni paket ali ga trenutno ne možete uplatiti. Po završetku stranice koja će biti povezana s platnim procesorima o mogućnosti uplate biti ćete pravovremeno obaviješteni.</p>
+        <p>Vaša odluka o nastavku poslovanja i kupnji Licencnog paketa na ovim stranicama, trebala bi nam biti pokazatelj s kojim brojem korisnika iz starog sistema možemo računati da nastavljaju dalje sa nama, kao i sa iznosom sredstava na koji bi mogli računati na osnovi iskazanog interesa za Licencne pakete.</p>
         <p>Ova stranica treba poslužiti kako starim članovima da se izjasne o nastavku i kupnji Licencnih paketa, tako i novim potencijalnim partnerima ili novim članovima da iskažu svoj interes ukoliko žele kupiti Licencne pakete i/ili započeti poslovanje. Osim toga ista je pokazatelj u kojem smjeru idemo i kako bi u konačnici moglo sve izgledati.</p>
         <p>Da li ćemo nastaviti sa dizajnom iz staroga sistema pa se prilagođavati istome, što nam je trenutno najjeftinija varijanta s obzirom na situaciju u kojom se nalazimo ili ćemo nastaviti sa novim predloženim dizajnom ili možda sa još boljim i naprednijim dizajnom i tehnologijama, pitanje je naših financijskih mogućnosti u datom trenutku.</p>
         <p>Ukratko, ova demo stranica uspješno spaja atraktivan dizajn s funkcionalnošću, služeći kao snažan temelj za budući razvoj pune SFT21 digitalne platforme.</p>
@@ -456,7 +477,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
     <p>Ukoliko ste zainteresirani za našu poslovnu ponudu i želite postati SFfranšizer, u ovoj fazi imate mogućnost kupiti Licencni paket, što je za vas <strong>bolja i isplativija opcija</strong> u odnosu na Startne pakete.</p>
     <p>Naime, Startni paketi su aktivacijski moduli korisničkog računa na osnovi kojeg dobivate SFbodove, SFkodove te vam se određuje limit maksimalne zarade.</p>
     <p>Kupovinom Licencnog paketa, koji je također aktivacijski modul korisničkog računa, dobivate SFbodove, SFkodove, određuje vam se limit maksimalne zarade ali uz to imate pravo i na dodatni bonus kroz dvije Bonus Faze.</p>
-    <p>Razlika je u tome što vlasnici Licenci nemaju nikakvih radnih obaveza prema kompaniji i sudjeluju u bonus programu sukladno Ugovoru o kupnji licence, ali imaju mogućnost, kada god požele, besplatno nadograditi svoj status na SFAlicenca (aktivni Vlasnik licence/Franšizer) i nastaviti franšizno poslovanje sukladno odredbama Franšiznog ugovora.</p>
+    <p>Razlika je u tome što vlasnici Licenci nemaju nikakvih radnih obaveza prema kompaniji i sudjeluju u bonus programu sukladno Ugovoru o kupnji licence, ali imaju mogućnost, kada god požele, besplatno nadograditi svoj status na SFAlicenca (aktivni vlasnik licence/Franšizer) i nastaviti franšizno poslovanje sukladno odredbama Franšiznog ugovora.</p>
     <p>To znači, ako želite postati SFfranšizer, isplativija Vam je opcija u ovom trenutku izabrati Licencni paket... ali odluka je vaša.</p>
     <p>Kupnjom npr. sedmog Startnog paketa (SP7) vrijednosti 1.450 € dobivate 1450 SFbodova, 21 SFkod te vam je određen limit maksimalne zarade 2.100 €.</p>
     <p>Kupnjom npr. četvrtog licencnog paketa (LP4) po cijeni od 1.000 € dobivate 2000 SFbodova, 10 SFkodova te vam je određen limit maksimalne zarade 2.000 €. Kada započne poslovanje, ukoliko želite podići maksimalni mogući limit zarade na 2.100 € dovoljno je da uplatite dva pretplatnička perioda (2 x 50 €).</p>
@@ -621,7 +642,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
     </div>
 </div>
 
-<!-- Hamburger ikona - SADA JE ISPRAVNO POZICIONIRANA -->
+<!-- Hamburger ikona -->
 <div class="md:hidden">
     <div class="hamburger">
         <span class="bar"></span>
@@ -704,7 +725,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                      <div class="glass-card p-8 fade-in feature-card interactive-card" style="animation-delay: 0.1s;">
                          <h3 class="text-2xl font-bold mb-4">InFace Invest Group</h3>
-                         <p class="text-gray-300 text-justify"> Inovativna tehnološka kompanija registrirana u Rovinju (Hrvatska), koja donosi revoluciju u svijet online poslovanja kroz jedinstveni franšizni model – SFT21 Business Concept. <br><br> Naš projekt postavlja nove standarde stvaranjem jedinstvene online zajednice koja ima za cilj povezati moć društvene mreže i umrežavanje njezinih korisnika sa online trgovinom, direktnom prodajom, mrežnim marketingom i franšiznim poslovanjem, u jedan integrirani i međusobno povezani sistem poslovanja. <br><br> Našim korisnicima, partnerima, članovima i franšizerima te svim drugim zainteresiranim poslovnim subjektima, fizičkim i pravnim osobama, nudimo jedinstvenu poslovnu priliku i ponudu u vidu suradnje na više načina. </p>
+                         <p class="text-gray-300 text-justify"> Inovativna tehnološka kompanija koja donosi revoluciju u svijet online poslovanja kroz jedinstveni franšizni model – SFT21 Business Concept. <br><br> Naš projekt postavlja nove standarde stvaranjem jedinstvene online zajednice koja ima za cilj povezati moć društvene mreže i umrežavanje njezinih korisnika sa online trgovinom, direktnom prodajom, mrežnim marketingom i franšiznim poslovanjem, u jedan integrirani i međusobno povezani sistem poslovanja. <br><br> Našim korisnicima, partnerima, članovima i franšizerima te svim drugim zainteresiranim poslovnim subjektima, fizičkim i pravnim osobama, nudimo jedinstvenu poslovnu priliku i ponudu u vidu suradnje na više načina. </p>
                      </div>
                      <div class="glass-card p-8 fade-in feature-card interactive-card" style="animation-delay: 0.2s;">
                          <div class="text-purple-400 text-4xl mb-6"><i class="fas fa-lightbulb"></i></div>
@@ -730,8 +751,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
              </div>
         </section>
 
-        <div id="poslovni-koncept"></div>
-        <section class="py-16 relative overflow-hidden">
+        <section id="poslovni-koncept" class="py-16 relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16 fade-in">
                     <h2 class="text-3xl md:text-5xl font-bold mb-4">SFT21 Business Concept</h2>
@@ -813,7 +833,8 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                         <div class="flex items-start"><i class="fas fa-check-circle text-purple-400 mr-3 mt-1 flex-shrink-0"></i><span class="text-gray-200">Transparentnost u poslovanju</span></div>
                         <div class="flex items-start"><i class="fas fa-check-circle text-purple-400 mr-3 mt-1 flex-shrink-0"></i><span class="text-gray-200">Pravična raspodjela sredstava</span></div>
                         <div class="flex items-start"><i class="fas fa-check-circle text-purple-400 mr-3 mt-1 flex-shrink-0"></i><span class="text-gray-200">Zajedništvo i sinergijski rad</span></div>
-                        <div class="flex items-start sm:col-span-2 sm:justify-center"><i class="fas fa-check-circle text-purple-400 mr-3 mt-1 flex-shrink-0"></i><span class="text-gray-200">Kontinuirana edukacija i podrška</span></div>
+                        <div class="flex items-start"><i class="fas fa-check-circle text-purple-400 mr-3 mt-1 flex-shrink-0"></i><span class="text-gray-200">Kontinuirana edukacija i podrška</span></div>
+                        <div class="flex items-start"><i class="fas fa-check-circle text-purple-400 mr-3 mt-1 flex-shrink-0"></i><span class="text-gray-200">Globalni doseg s lokalnim utjecajem</span></div>
                     </div>
                 </div>
             </div>
@@ -1000,8 +1021,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
     </div>
 </section>
 
-<div id="licencni-paketi"></div>
-<section class="py-10 relative overflow-hidden">
+<section id="licencni-paketi" class="py-10 relative overflow-hidden">
     <div class="container mx-auto px-6 relative z-10">
         <div class="text-center mb-16 fade-in">
             <h2 class="text-3xl md:text-5xl font-bold mb-4">LICENCNI PAKETI</h2>
@@ -1127,15 +1147,18 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                 <p>Pravo na Bonus za preporuku ima svaki postojeći registrirani korisnik i Vlasnik Licence koji će na osnovi vlastite preporuke dovesti novog Kupca.</p>
                 <p>Na osnovi vaše uspješne preporuke, odnosno kupnje Licencnog paketa od strane preporučene osobe, ostvarujete pravo na bonus za preporuku u iznosu od <strong class="text-white">10% (deset posto)</strong> od plaćene cijene Licence.</p>
                 <p>Važno je napomenuti da ukupan iznos ostvaren temeljem bonusa za preporuku ne može biti veći od deset (10) puta većeg iznosa od cijene vaše početno kupljene Licence.</p>
-                <p>Na primjer, ukoliko Vi kao Vlasnik Licence kupite LP3 po cijeni od 500 €, maksimalni iznos bonusa za preporuku koji možete ostvariti iznosi 5.000 € (10 x 500 €).</p>
+                <p>Na primjer, ukoliko Vi kao vlasnik Licence kupite LP3 po cijeni od 500 €, maksimalni iznos bonusa za preporuku koji možete ostvariti iznosi 5.000 € (10 x 500 €).</p>
                 <p>Po istoj logici, ako dovedete novog Kupca koji kupi licencu za npr. 100.000 €, od mogućih 10% bonusa preporuke (10.000 €), Vi biste primili samo 5.000 € bonusa zbog postojećeg limita.</p>
-                <p>Međutim, kako biste izbjegli gubitak dijela potencijalnog bonusa, imate mogućnost povećati svoj vlastiti limit kupnjom dodatnih Licenci prije nego što preporučeni kupac izvrši uplatu većeg iznosa.</p>
+                <p>Međutim, kako biste izbjegli gubitak dijela potencijalnog bonusa, imate mogućnost povećati svoj limit nadoplatom Licence prije nego što preporučeni kupac izvrši uplatu većeg iznosa.</p>
                 <p>Iznos ostvaren putem bonusa za preporuku bit će vidljiv na vašem korisničkom računu u SFuredu i dostupan na raspolaganje nakon nadogradnje i puštanja u rad temeljnog SFT21 softvera.</p>
                 <p>Dobiveni iznos bonusa za preporuku raspoređuje se u omjeru 50% (pedeset posto) u vaš “Novčanik“ i 50% (pedeset posto) u vaš “Webshop Novčanik“.</p>
                 <p>Sredstva u “Novčaniku“ moći ćete koristiti po vlastitom izboru: povući ih putem dostupnih platnih procesora, koristiti za plaćanje proizvoda i usluga unutar sustava Kompanije ili ih proslijediti drugoj osobi.</p>
                 <p>Sredstva u “Webshop Novčaniku“ moći ćete iskoristiti isključivo za kupovinu proizvoda i usluga kod poslovnih partnera u SFshopu ili ih poslati drugoj registriranoj osobi.</p><br></br>
                 <h4 class="text-xl font-semibold text-fluorescent-green mt-6 mb-3">NADOGRADNJA RAČUNA (OPCIONALNO)</h4>                        
-                <p>Kao preduvjet za kupnju Licencnog paketa, kupac ima obvezu izvršiti registraciju i potvrdu identiteta, čime uz pogodnosti navedene u Ugovoru o kupnji licence, stječe pravo otvaranja računa i statusa “Vlasnik Licence“.</p><p>Kupnjom odabranog Licencnog paketa, račun dobiva određeni broj SFbodova, na osnovi kojih zauzima poziciju u SFalgoritmu, kao i broj SFkodova s kojima sudjeluje u nagradnim igrama.</p><p>Po završetku nadogradnje i izrade temeljnog SFT21 softvera i njegovim puštanjem u rad, započinje i SFT21 Business Concept, franšizni poslovni model.</p><p><strong>Vlasnik Licence ima formalno pravo i mogućnost, po vlastitom izboru, kada god poželi besplatno nadograditi svoj račun na franšizerski status.</strong></p><p>Nadogradnjom računa na status “SFAlicenca“, Vlasnik Licence potpisuje Franšizni ugovor, čime stječe sva prava i obveze propisane tim ugovorom (uz prijateljski bonus, stječe pravo na direktni, sponzorski i rabat bonus), te započinje franšizno poslovanje, zadržavajući pritom sva prava i potencijalne bonuse stečene kupnjom Licence.</p><p>Na osnovi cijene kupljene Licence, određuje se limit maksimalne zarade koju "SFAlicenca" može ostvariti unutar jednog pretplatničkog perioda. Limit zarade jednak je broju SFbodova.</p>
+                <p>Kao preduvjet za kupnju Licencnog paketa, kupac ima obvezu izvršiti registraciju i potvrdu identiteta, čime uz pogodnosti navedene u Ugovoru o kupnji licence, stječe pravo otvaranja računa i statusa “Vlasnik Licence“.</p>
+                <p>Kupnjom odabranog Licencnog paketa, račun dobiva određeni broj SFbodova, na osnovi kojih zauzima poziciju u SFalgoritmu, kao i broj SFkodova s kojima sudjeluje u nagradnim igrama.</p>
+                <p>Po završetku nadogradnje i izrade temeljnog SFT21 softvera i njegovim puštanjem u rad, započinje i SFT21 Business Concept, franšizni poslovni model.</p><p><strong>Vlasnik Licence ima formalno pravo i mogućnost, po vlastitom izboru, kada god poželi besplatno nadograditi svoj račun na franšizerski status.</strong></p>
+                <p>Nadogradnjom računa na status “SFAlicenca“, vlasnik Licence potpisuje Franšizni ugovor, čime stječe sva prava i obveze propisane tim ugovorom (uz prijateljski bonus, stječe pravo na direktni, sponzorski i rabat bonus), te započinje franšizno poslovanje, zadržavajući pritom sva prava i potencijalne bonuse stečene kupnjom Licence.</p><p>Na osnovi cijene kupljene Licence, određuje se limit maksimalne zarade koju "SFAlicenca" može ostvariti unutar jednog pretplatničkog perioda. Limit zarade jednak je broju SFbodova.</p>
                 <p>Na primjer:</p>
                 <p>Kupnjom <strong>LP1</strong> po cijeni <strong>100 €</strong>, dobiva <strong>200 SFbodova</strong> i <strong>200 €</strong> limit zarade. </p>
                 <p>Kupnjom <strong>LP2</strong> po cijeni <strong>200 €</strong>, dobiva <strong>400 SFbodova</strong> i <strong>400 €</strong> limit zarade. </p>
@@ -1143,9 +1166,9 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                 <p>Kupnjom <strong>LP4</strong> po cijeni <strong>1000 €</strong>, dobiva <strong>2000 SFbodova</strong> i <strong>2000 €</strong> limit zarade. </p>
                 <p>Kupnjom <strong>LP5</strong> po cijeni <strong>1500 €</strong>, dobiva <strong>3000 SFbodova</strong> i <strong>2100 €</strong> limit zarade, što je ujedno maksimalni mogući limit zarade u SFT21 Business Conceptu, koji se može ostvariti kupnjom Licencnih paketa. </p>
                 <p>Sukladno navedenom, kupnjom <strong>LP6</strong> po cijeni <strong>2100 €</strong>, dobiva <strong>4200 SFbodova</strong> dok kupnjom <strong>LP7</strong> veće vrijednosti dobiva dvostruko više SFbodova u odnosu na plaćenu cijenu, međutim limit zarade je maksimalnih <strong>2100 €</strong>.</p>
-                <p><strong>Nadogradnja računa Vlasnika Licence je BESPLATNA.</strong></p>
-                <p><strong>Kao što je već spomenuto, Vlasnik Licence nema nikakvih radnih obaveza prema kompaniji ili zajednici. Međutim, ukoliko odluči, ima mogućnost nadograditi svoj status na “SFAlicenca“ (aktivni Vlasnik Licence / Franšizer), čime pristaje na sva prava i obveze navedene u Franšiznom ugovoru.</strong></p>
-                <p>Po isplati Maksimalnog Ukupnog Bonusa, prestaje pravo na daljnje sudjelovanje u bonus programu temeljem tog Ugovora. Vlasnik Licence gubi pravo na zadržavanje računa i pozicije u SFalgoritmu ukoliko ne odluči nadograditi svoj korisnički račun. Ako nadogradi račun, zadržava poziciju i nastavlja poslovanje kao SFstarter ili SFfranšizer.</p>
+                <p><strong>Nadogradnja računa vlasnika Licence je BESPLATNA.</strong></p>
+                <p><strong>Kao što je već spomenuto, vlasnik Licence nema nikakvih radnih obaveza prema kompaniji ili zajednici. Međutim, ukoliko odluči, ima mogućnost nadograditi svoj status na “SFAlicenca“ (aktivni vlasnik Licence / Franšizer), čime pristaje na sva prava i obveze navedene u Franšiznom ugovoru.</strong></p>
+                <p>Po isplati maksimalnog ukupnog bonusa (MUB), prestaje pravo na daljnje sudjelovanje u bonus programu temeljem tog Ugovora. Međutim, vlasnik Licence zadržava korisnički račun i poziciju u SFalgoritmu, nakon čega ima mogućnost, nadograditi svoj korisnički račun i nastaviti poslovanje kao SFstarter ili SFfranšizer, prodati ili pokloniti svoju Licencu ili je jednostavno zadržati i profitirati povećanjem njezine vrijednosti.</p>
             </div>
         </div>
     </div>
@@ -1291,7 +1314,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                     <div class="info-box-icon"><i class="fas fa-user-circle"></i></div>
                     <div class="info-box-content">
                         <h5>Korisnički račun</h5>
-                        <p>Otvoren korisnički račun unutar SFT21 Ekosustava, što vam omogućava daljnje sudjelovanje u razvoju zajednice.</p>
+                        <p>Otvoren korisnički račun unutar SFT21 ekosustava, što vam omogućava daljnje sudjelovanje u razvoju zajednice.</p>
                     </div>
                 </div>
                 <div class="info-box">
@@ -1345,7 +1368,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                 </div>
             </div>
            <div class="investor-note mt-6 mb-6 px-4 text-gray-300 text-base italic leading-relaxed text-center fade-in" style="animation-delay: 0.3s;">
-             <p>*Napomena: Navedene pogodnosti su na dobrovoljnoj bazi. Vi kao Vlasnik Licence, ukoliko ne želite, ne morate ih koristiti i možete ostati pasivni sudionik, bez ikakvih obaveza prema kompaniji, uz mogućnost da aktivirate nadogradnju svog statusa naknadno, kada god poželite.</p>
+             <p>*Napomena: Navedene pogodnosti su na dobrovoljnoj bazi. Vi kao vlasnik Licence, ukoliko ne želite, ne morate ih koristiti i možete ostati pasivni sudionik, bez ikakvih obaveza prema kompaniji, uz mogućnost da aktivirate nadogradnju svog statusa naknadno, kada god poželite.</p>
         </div>
         </div>
     </section>
@@ -1354,44 +1377,60 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                 <div class="animated-background" style="display:none;">
                     <div class="bg-dots"></div><div class="glow" style="top: 70%; left: 80%; opacity: 0.08;"></div>
                 </div>
-                    <div class="fade-in glass-card p-8 md:p-12 mb-12 interactive-card hover-card-stable w-full md:w-5/6 mx-auto">
-                    <h2 class="text-xl md:text-2xl mb-6 text-purple-300 text-center">U trenutnoj fazi izgradnje osnovne infrastrukture što uključuje razvoj ključnih platformi (SFured, SFnet, SFshop), pristup našoj zajednici s ovim pogodnostima moguć je isključivo kupnjom jednog ili više Licencnih paketa.<br></br>Završetkom nadogradnje i puštanjem u rad temeljnog softvera, započinjemo s franšiznim poslovanjem te će mogućnost kupnje Licencnih paketa pod ovim uvjetima biti ukinuta.<br></br>Nakon toga, poslovanje nastavljamo uz mogućnost kupovine Startnih paketa za aktivne članove ili besplatnom registracijom za sve korisnike naše društvene mreže i webshopa. </h2>
+                    <div class="fade-in glass-card p-8 md:p-12 mb-12 hover-card-stable w-full md:w-5/6 mx-auto">
+                    <h2 class="text-xl md:text-2xl mb-6 text-purple-300 text-center">U trenutnoj fazi izgradnje osnovne infrastrukture što uključuje razvoj ključnih platformi (SFured, SFnet, SFshop), pristup našoj zajednici s ovim pogodnostima moguć je isključivo kupnjom Licencnog paketa.<br></br>Završetkom nadogradnje i puštanjem u rad temeljnog softvera, započinjemo s franšiznim poslovanjem te će mogućnost kupnje Licencnih paketa pod ovim uvjetima biti ukinuta.<br></br>Nakon toga, poslovanje nastavljamo uz mogućnost kupovine Startnih paketa za aktivne članove ili besplatnom registracijom za sve korisnike naše društvene mreže i webshopa. </h2>
                     <div class="text-gray-300 space-y-4 text-justify leading-relaxed"></div>
                 </div>
             </section>
         
 <section id="startni-paketi" class="pt-10 pb-12 relative overflow-hidden">
-<div class="container mx-auto px-6 relative z-10">
-    <div class="text-center mb-16 fade-in">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4">Startni paketi</h2>
-        <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
-    </div>
-    <div class="glass-card p-8 interactive-card fade-in">
-    <div class="overflow-x-auto fade-in">
-      <div class="overflow-x-auto">
-        <table class="pricing-table mx-auto"> 
-    <thead><tr><th>Startni paket</th><th class="px-2">Cijena (€)</th><th class="px-2">Pretplatnički periodi</th><th>Limit max. zarade / Max. mogući limit</th><th class="px-2">SFbodovi</th><th class="px-2">SFkodovi</th><th>Akcija</th></tr></thead>
-            <tbody>
-                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP1</td><td>50</td><td>1</td><td>50 SFC / 1050 SFC</td><td>50</td><td>1</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP2</td><td>200</td><td>4</td><td>400 SFC / 1250 SFC</td><td>200</td><td>4</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP3</td><td>350</td><td>7</td><td>700 SFC / 1400 SFC</td><td>350</td><td>7</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP4</td><td>500</td><td>10</td><td>1000 SFC / 1550 SFC</td><td>500</td><td>10</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP5</td><td>650</td><td>13</td><td>1300 SFC / 1700 SFC</td><td>650</td><td>13</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP6</td><td>1050</td><td>17</td><td>1700 SFC / 1900 SFC</td><td>1050</td><td>17</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                    <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP7</td><td>1450</td><td>21</td><td>2100 SFC</td><td>1450</td><td>21</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
-                </tbody>
-            </table>
-        </div>
-</section>
-
-
-<section id="paket-info" class="py-4 relative overflow-hidden">
     <div class="container mx-auto px-6 relative z-10">
-     <div class="glass-card p-8 md:p-12 fade-in interactive-card max-w-7xl w-full mx-auto">
-            <p class="text-gray-200 text-lg leading-relaxed mb-6 text-center font-bold">Startni paket je aktivacijski modul korisničkog računa prema kojemu se određuje broj uplaćenih pretplatničkih perioda, limit maksimalne zarade, najveći mogući limit, broj SFbodova i broj SFKodova.</p>
-            <p class="text-gray-200 text-lg leading-relaxed text-justify">Cijena SFT21 franšize iznosi 1.450 €. Plaćanje će biti moguće putem platnih procesora ili prebacivanjem sredstava sa računa drugog korisnika. Platiti se može jednokratno uplatom SP7, što vam donosi najbolje pogodnosti ili uplatom manjih Startnih paketa. Uplatom manjih Startnih paketa preostali dio pretplatničkih perioda imati ćete mogućnost naknadno nadoplaćivati ili će ih sistem s vremenom uplatiti novcem od zarade. Uplatom posljednjeg 21. pretplatničkog perioda smatra se da je SFT21 franšiza uplaćena u potpunosti.</p>
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Startni paketi</h2>
+            <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
+            <!-- NOVI GUMB ZA PRIKAZ SADRŽAJA -->
+            <button id="toggle-starter-btn" class="btn-primary text-lg mx-auto">
+                Upoznaj Startne Pakete
+                <i class="fas fa-chevron-down ml-2 transition-transform duration-300"></i>
+            </button>
         </div>
-                         <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+        <!-- NOVI KONTEJNER KOJI SKRIVA SAV SADRŽAJ ISPOD -->
+        <div id="starter-packages-content-container">
+            <div class="glass-card p-8 interactive-card fade-in">
+                <div class="overflow-x-auto fade-in">
+                    <table class="pricing-table mx-auto">
+                        <thead>
+                            <tr>
+                                <th>Startni paket</th>
+                                <th class="px-2">Cijena (€)</th>
+                                <th class="px-2">Pretplatnički periodi</th>
+                                <th>Limit max. zarade / Max. mogući limit</th>
+                                <th class="px-2">SFbodovi</th>
+                                <th class="px-2">SFkodovi</th>
+                                <th>Akcija</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP1</td><td>50</td><td>1</td><td>50 SFC / 1050 SFC</td><td>50</td><td>1</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP2</td><td>200</td><td>4</td><td>400 SFC / 1250 SFC</td><td>200</td><td>4</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP3</td><td>350</td><td>7</td><td>700 SFC / 1400 SFC</td><td>350</td><td>7</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP4</td><td>500</td><td>10</td><td>1000 SFC / 1550 SFC</td><td>500</td><td>10</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock-open"></i></span> SP5</td><td>650</td><td>13</td><td>1300 SFC / 1700 SFC</td><td>650</td><td>13</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP6</td><td>1050</td><td>17</td><td>1700 SFC / 1900 SFC</td><td>1050</td><td>17</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                            <tr><td class="font-semibold"><span class="lock-icon"><i class="fas fa-lock"></i></span> SP7</td><td>1450</td><td>21</td><td>2100 SFC</td><td>1450</td><td>21</td><td><a href="javascript:void(0)" class="btn-primary py-2 px-4 text-sm starter-package-select-btn">Odaberi</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SADRŽAJ IZ BIVŠE SEKCIJE 'paket-info' -->
+            <div class="container mx-auto px-6 relative z-10 py-12">
+                <div class="glass-card p-8 md:p-12 fade-in interactive-card max-w-7xl w-full mx-auto">
+                    <p class="text-gray-200 text-lg leading-relaxed mb-6 text-center font-bold">Startni paket je aktivacijski modul korisničkog računa prema kojemu se određuje broj uplaćenih pretplatničkih perioda, limit maksimalne zarade, najveći mogući limit, broj SFbodova i broj SFKodova.</p>
+                    <p class="text-gray-200 text-lg leading-relaxed text-justify">Cijena SFT21 franšize iznosi 1.450 €. Plaćanje će biti moguće putem platnih procesora ili prebacivanjem sredstava sa računa drugog korisnika. Platiti se može jednokratno uplatom SP7, što vam donosi najbolje pogodnosti ili uplatom manjih Startnih paketa. Uplatom manjih Startnih paketa preostali dio pretplatničkih perioda imati ćete mogućnost naknadno nadoplaćivati ili će ih sistem s vremenom uplatiti novcem od zarade. Uplatom posljednjeg 21. pretplatničkog perioda smatra se da je SFT21 franšiza uplaćena u potpunosti.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <div class="glass-card p-8 fade-in feature-card interactive-card" style="animation-delay: 0.1s;">
                         <div class="text-purple-400 text-4xl mb-6"><i class="fas fa-star"></i></div>
                         <h3 class="text-2xl font-bold mb-4">Prednosti</h3>
@@ -1402,7 +1441,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                             <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Podrška 24/7</li>
                         </ul>
                     </div>
-                        <div class="glass-card p-8 fade-in feature-card interactive-card" style="animation-delay: 0.2s;">
+                    <div class="glass-card p-8 fade-in feature-card interactive-card" style="animation-delay: 0.2s;">
                         <div class="text-purple-400 text-4xl mb-6"><i class="fas fa-shield-alt"></i></div>
                         <h3 class="text-2xl font-bold mb-4">Sigurnost</h3>
                         <p class="text-gray-300 mb-6 text-justify">Naša platforma dizajnirana je s fokusom na sigurnost i privatnost korisnika.</p>
@@ -1411,24 +1450,24 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                     </div>
                 </div>
             </div>
-        </section>
-        
-<section id="vazna-napomena" class="py-12 relative overflow-hidden">
-    <div class="glass-card p-8 md:p-12 fade-in max-w-5xl mx-auto interactive-card">
-        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-300 uppercase">Važna napomena</h3>
-        <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
-            <p>Uplatom odabranog Startnog paketa određuje vam se limit maksimalne zarade koju možete ostvariti unutar jednog pretplatničkog perioda.</p>
-            <p>Od 50 € ukoliko odaberete SP1 do maksimalnih 2.100 € odabirom SP7, što je ujedno najveći mogući limit maksimalne zarade koju možete ostvariti uplatom Startnog paketa ili uplatom Licencnog paketa.</p>
-            <p>Međutim, bez obzira sa kojim Startnim paketom započeli poslovanje limit maksimalne zarade uvijek možete povećavati nadoplatama pretplatničkih perioda ili gradeći karijerni status, registracijom novih članova - SFstartera i SFfranšizera.</p>
-            <p>Upravo je to činjenica, koju kada ljudi shvate, nikoga ne ostavlja ravnodušnim jer ovaj projekt za razliku od ostalih nudi istu mogućnost napredovanja i ostvarivanja maksimalnih zarada bez obzira na početni iznos uplate Licencnog ili Startnog paketa.</p>
-            <p>Limit maksimalne zarade dobiven na osnovi karijernog statusa može biti od minimalnih 2.200 €, do maksimalnih 100.000 €, što se određuje prema broju direktnih i indirektnih članova. </p>
-            <p>Izgradnja karijere nije obavezna, što znači da korisnik ukoliko ne želi, ne mora raditi na registraciji novih korisnika.</p>
-        </div>
-    </div>
-</section>
 
-        <section id="vasa-odluka" class="pt-8 pb-24 relative overflow-hidden">
-            <div class="container mx-auto px-6 relative z-10">
+            <!-- SADRŽAJ IZ BIVŠE SEKCIJE 'vazna-napomena' -->
+            <div class="container mx-auto px-6 relative z-10 py-12">
+                <div class="glass-card p-8 md:p-12 fade-in max-w-5xl mx-auto interactive-card">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-300 uppercase">Važna napomena</h3>
+                    <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
+                        <p>Uplatom odabranog Startnog paketa određuje vam se limit maksimalne zarade koju možete ostvariti unutar jednog pretplatničkog perioda.</p>
+                        <p>Od 50 € ukoliko odaberete SP1 do maksimalnih 2.100 € odabirom SP7, što je ujedno najveći mogući limit maksimalne zarade koju možete ostvariti uplatom Startnog paketa ili uplatom Licencnog paketa.</p>
+                        <p>Međutim, bez obzira sa kojim Startnim paketom započeli poslovanje limit maksimalne zarade uvijek možete povećavati nadoplatama pretplatničkih perioda ili gradeći karijerni status, registracijom novih članova - SFstartera i SFfranšizera.</p>
+                        <p>Upravo je to činjenica, koju kada ljudi shvate, nikoga ne ostavlja ravnodušnim jer ovaj projekt za razliku od ostalih nudi istu mogućnost napredovanja i ostvarivanja maksimalnih zarada bez obzira na početni iznos uplate Licencnog ili Startnog paketa.</p>
+                        <p>Limit maksimalne zarade dobiven na osnovi karijernog statusa može biti od minimalnih 2.200 €, do maksimalnih 100.000 €, što se određuje prema broju direktnih i indirektnih članova. </p>
+                        <p>Izgradnja karijere nije obavezna, što znači da korisnik ukoliko ne želi, ne mora raditi na registraciji novih korisnika.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SADRŽAJ IZ BIVŠE SEKCIJE 'vasa-odluka' -->
+            <div class="container mx-auto px-6 relative z-10 pt-8 pb-24">
                 <div class="text-center mb-16 fade-in">
                     <h2 class="text-3xl md:text-5xl font-bold mb-4 uppercase text-fluorescent-green">Vaša odluka</h2>
                     <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
@@ -1439,34 +1478,41 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                         <hr class="border-t-2 border-dashed border-gray-600 my-4">
                         <p class="text-gray-300 text-center leading-relaxed text-justify"> Ako ste novi u online poslovanju i želite isprobati SFT21 koncept s minimalnim ulaganjem bez ikakvog rizika, preporučujemo Startni paket SP1 (50 €) ili SP2 (200 €). Ovi paketi omogućuju vam da se upoznate s platformom i poslovnim modelom te započnete poslovanje uz malu početnu investiciju. </p>
                     </div>
-                     <div class="glass-card p-8 fade-in flex flex-col interactive-card" style="animation-delay: 0.2s;">
+                    <div class="glass-card p-8 fade-in flex flex-col interactive-card" style="animation-delay: 0.2s;">
                         <h4 class="text-2xl font-bold mb-4 text-center text-white">Za ambiciozne poduzetnike</h4>
-                         <hr class="border-t-2 border-dashed border-gray-600 my-4">
-                         <p class="text-gray-300 text-center leading-relaxed text-justify"> Ako imate iskustva u online poslovanju, mrežnom marketingu, direktnoj prodaji i sličnim poslovima te želite brže napredovati, preporučujemo Startne pakete SP3 (350 €), SP4 (500 €) ili SP5 (650 €). Ovi paketi nude bolji omjer cijene i vrijednosti te vam omogućuju bolju poziciju u raspodjeli sredstava. </p>
-                     </div>
-                     <div class="glass-card p-8 fade-in flex flex-col interactive-card" style="animation-delay: 0.3s;">
-                         <h4 class="text-2xl font-bold mb-4 text-center text-white">Za profesionalce</h4>
-                          <hr class="border-t-2 border-dashed border-gray-600 my-4">
-                         <p class="text-gray-300 text-center leading-relaxed text-justify"> Ako ste ozbiljni poduzetnik s iskustvom u navedenom poslovanju ili bi to voljeli biti i želite maksimizirati svoje mogućnosti zarade, preporučujemo Startne pakete SP6 (1.050 €) ili SP7 (1.450 €). Ovi paketi nude najveći limit zarade, najviše pretplatničkih perioda, najveći broj SFbodova i SFkodova, što vam omogućuje brži napredak i veće pogodnosti. </p>
-                     </div>
+                        <hr class="border-t-2 border-dashed border-gray-600 my-4">
+                        <p class="text-gray-300 text-center leading-relaxed text-justify"> Ako imate iskustva u online poslovanju, mrežnom marketingu, direktnoj prodaji i sličnim poslovima te želite brže napredovati, preporučujemo Startne pakete SP3 (350 €), SP4 (500 €) ili SP5 (650 €). Ovi paketi nude bolji omjer cijene i vrijednosti te vam omogućuju bolju poziciju u raspodjeli sredstava. </p>
+                    </div>
+                    <div class="glass-card p-8 fade-in flex flex-col interactive-card" style="animation-delay: 0.3s;">
+                        <h4 class="text-2xl font-bold mb-4 text-center text-white">Za profesionalce</h4>
+                        <hr class="border-t-2 border-dashed border-gray-600 my-4">
+                        <p class="text-gray-300 text-center leading-relaxed text-justify"> Ako ste ozbiljni poduzetnik s iskustvom u navedenom poslovanju ili bi to voljeli biti i želite maksimizirati svoje mogućnosti zarade, preporučujemo Startne pakete SP6 (1.050 €) ili SP7 (1.450 €). Ovi paketi nude najveći limit zarade, najviše pretplatničkih perioda, najveći broj SFbodova i SFkodova, što vam omogućuje brži napredak i veće pogodnosti. </p>
+                    </div>
                 </div>
             </div>
-        </section>
-        </div> 
+
+        </div> <!-- Kraj novog kontejnera -->
+    </div>
+</section> 
 
 <section id="faq" class="pt-24 pb-12 relative overflow-hidden">
     <div class="container mx-auto px-6 relative z-10">
         <div class="text-center mb-16 fade-in">
             <h2 class="text-3xl md:text-5xl font-bold mb-4">Često postavljana pitanja</h2>
             <div class="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">Odgovori na najčešća pitanja o SFT21 zajednici</p>
+            <!-- ZAMIJENJENI DIO: SADA JE GUMB -->
+            <button id="toggle-faq-btn" class="btn-primary text-lg mx-auto">
+                Prikaži pitanja i odgovore
+                <i class="fas fa-chevron-down ml-2 transition-transform duration-300"></i>
+            </button>
         </div>
-        <div class="max-w-4xl mx-auto space-y-4">
+        <!-- DODAN ID ZA SKRIVANJE -->
+        <div id="faq-accordion-container" class="max-w-4xl mx-auto space-y-4">
 
             <!-- 1. Što je InFace Invest Group? -->
             <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.1s;">
                 <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">Što je InFace Invest Group?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
-                <div class="accordion-content"><div><p>"InFace Invest Group" je naziv naše kompanije.<p>Tvrtka je registrirana pod punim nazivom; In Face Invest Group, društvo s ograničenom odgovornošću za informatičko poslovanje.</p><p>Adresa: ulica Ivana Zajca - via Ivan Zajc 1, 52210 Rovinj - Rovigno <p> OIB: 42684322542 / Matični broj: 05443407<p><p>Osnivači i vlasnici: Zoran Lazarević i Mladen Pejić.</p><p>Kompanija InFace Invest Group po prvi puta započinje poslovanje 2018. godine sa registracijom na Sejšelima, maloj otočnoj državi u zapadnom Indijskom oceanu. S obzirom da je naše poslovanje zamišljeno da se širi diljem svijeta, Sejšeli su odabrani prvenstveno iz razloga što je u datom trenutku vlasnicima tvrtke, administrativno i financijski to bila najisplativija opcija.</p> <p>Godinu dana poslije toga, nakon svih potrebnih priprema službeno smo započeli sa poslovanjem, te nedugo poslije toga otvaramo poslovnicu InFace Invest Group d.o.o. i prve uredske prostorije u Beogradu (Srbija), za potrebe korisničke podrške i tehnološkog razvoja.</p><p>S obzirom na nedostatak financijski sredstava potrebnih za ostvarivanje poslovnog koncepta na način kako su ga osnivaći osmislili, poslovanje je započeto sa osnovnim softverom dok su drugi softveri i aplikacije bile u početku razvojne faze. Od prvoga dana poslovanja osnivači su javno i transparentno, kako uživo na mnogobrojnim seminarima i prezentacijama tako i online putem webinara, stranica portala i drugih medija, predstavljali način razvoja i viziju onoga što žele postići. </p><p>Naime, namjera je bila započeti franšizno poslovanje i razvijati brend SFT21, te se postepeno uz rad, prema mogućnostima dalje razvijati sa ciljem završetka softvera i aplikacija neophodnih za daljni razvoj poslovnog koncepta i online zajednice.</p><p>Ideju poslovnog koncepta i viziju koju on donosi sa sobom prepoznali su u kratkom vremenu mnogobrojni članovi iz desetak zemalja koji su nam se pridružili u razvoju. </p><p>Međutim, zbog nadolazeće kovid krize i svih problema koji su uz nju stigli, što se poklopilo sa nepravilnim radom jednog dijela korisnika (što je bilo moguće iz razloga što potrebne aplikacije nisu bile  završene) te ponajviše zbog javno iznesenih lažnih uvreda, kleveta i optužbi protiv vlasnika kompanije (od strane dvojice članova sa kojima je kompanija prekinula suradnju zbog teških povreda poslovanja), broj novih članova se postepeno počeo smanjivati što je u konačnici rezultiralo prekidom poslovanja. </p><p>U tom periodu prekida, u kojem su se osnivači kompanije našli u nezavidnoj situaciji, zbog činjenice da ne mogu nastaviti sa razvojem i ponovnim pokretanjem poslovanja, radili su na usavršavanju poslovnog koncepta kako bi eliminirali gotovo sve nedostatke i bili spremni za trenutak ponovnog vraćanja na tržište.</p><p>Tri godine kasnije, u rujnu 2025. godine kompanija ponovo otvara vrata i poziva svoje vjerne članove i sve druge zainteresirane da se pridruže na početku novog poslovanja, ovaj puta na malo drugačiji način, o čemu se detaljnije možete upoznati na stranicama portala naše kompanije. </p> <p> Usprkos svemu, znajući što imamo u rukama i što želimo postići, ponajviše zbog svojih vjernih članova i vizije koju nosimo sa sobom, kompanija nakon teških i pretrpljenih "ozljeda“ ponovo staje na noge i ponosno kreće dalje svojim zacrtanim putem. </p>  <p><strong>InFace Invest Group - idemo dalje časno, pošteno i transparentno...</strong></p> </div></div>
+                <div class="accordion-content"><div><p>"InFace Invest Group" je naziv naše kompanije.<p>Osnivači i vlasnici: Zoran Lazarević (Beograd, Srbija) i Mladen Pejić (Rovinj, Hrvatska).</p><p>Kompanija InFace Invest Group po prvi puta započinje poslovanje 2018. godine sa registracijom na Sejšelima, maloj otočnoj državi u zapadnom Indijskom oceanu. S obzirom da je naše poslovanje zamišljeno da se širi diljem svijeta, Sejšeli su odabrani prvenstveno iz razloga što je u datom trenutku vlasnicima tvrtke, administrativno i financijski to bila najisplativija opcija.</p> <p>Godinu dana poslije, nakon svih potrebnih priprema službeno smo započeli sa poslovanjem, da bi nedugo poslije toga otvarili poslovnicu InFace Invest Group d.o.o. i prve uredske prostorije u Beogradu (Srbija), za potrebe korisničke podrške i tehnološkog razvoja, te naknadno i poslovnicu InFace Invest Group d.o.o u Rovinju (Hrvatska).</p><p>S obzirom na nedostatak financijski sredstava potrebnih za ostvarivanje poslovnog koncepta na način kako su ga osnivaći osmislili, poslovanje je započeto sa osnovnim softverom dok su drugi softveri i aplikacije bile u početku razvojne faze. Od prvoga dana poslovanja osnivači su javno i transparentno, kako uživo na mnogobrojnim seminarima i prezentacijama tako i online putem webinara, stranica portala i drugih medija, predstavljali način razvoja i viziju onoga što žele postići. </p><p>Naime, namjera je bila započeti franšizno poslovanje i razvijati brend SFT21, te se postepeno uz rad, prema mogućnostima dalje razvijati sa ciljem završetka softvera i aplikacija neophodnih za daljni razvoj poslovnog koncepta i online zajednice.</p><p>Ideju poslovnog koncepta i viziju koju on donosi sa sobom prepoznali su u kratkom vremenu mnogobrojni članovi iz desetak zemalja koji su nam se pridružili u razvoju. </p><p>Međutim, zbog nadolazeće kovid krize i svih problema koji su uz nju stigli, što se poklopilo sa nepravilnim radom jednog dijela korisnika (što je bilo moguće iz razloga što potrebne aplikacije nisu bile  završene) te ponajviše zbog javno iznesenih lažnih uvreda, kleveta i optužbi protiv vlasnika kompanije (od strane dvojice članova sa kojima je kompanija prekinula suradnju zbog teških povreda poslovanja), broj novih članova se postepeno počeo smanjivati što je u konačnici rezultiralo prekidom poslovanja. </p><p>U tom periodu prekida, u kojem su se osnivači kompanije našli u nezavidnoj situaciji, zbog činjenice da ne mogu nastaviti sa razvojem i ponovnim pokretanjem poslovanja, radili su na usavršavanju poslovnog koncepta kako bi eliminirali gotovo sve nedostatke i bili spremni za trenutak ponovnog vraćanja na tržište.</p><p>Tri godine kasnije, u rujnu 2025. godine kompanija ponovo otvara vrata i poziva svoje vjerne članove i sve druge zainteresirane da se pridruže na početku novog poslovanja, ovaj puta na malo drugačiji način, o čemu se detaljnije možete upoznati na stranicama portala naše kompanije. </p> <p> Usprkos svemu, znajući što imamo u rukama i što želimo postići, ponajviše zbog svojih vjernih članova i vizije koju nosimo sa sobom, kompanija nakon teških i pretrpljenih "ozljeda“ ponovo staje na noge i ponosno kreće dalje svojim zacrtanim putem. </p>  <p><strong>InFace Invest Group - idemo dalje časno, pošteno i transparentno...</strong></p> </div></div>
             </div>
             
             <!-- 2. Što znači SFT21 i koja je svrha SFT21 zajednice? -->
@@ -1490,7 +1536,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
             <!-- 5. Što je SFT21 Licenca? -->
             <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.4s;">
                 <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">Što je SFT21 Licenca?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
-                <div class="accordion-content"><div><p>SFT21 Licenca je digitalni proizvod koji kupujete od kompanije InFace Invest Group. Njena primarna svrha u trenutnoj, razvojnoj fazi, je podrška projektu i prikupljanje sredstava za dovršetak platforme.</p><p>Kupnjom Licence stječete nekoliko ključnih prava:</p><p><strong>1.	Pravo na pasivni bonus:</strong> Ovo je najvažnija karakteristika. Kao vlasnik Licence, imate pravo sudjelovati u raspodjeli dijela profita koji kompanija ostvari, putem bonusa koji ne ovise o vašem osobnom radu, već o cjelokupnom komercijalnom uspjehu SFT21 platforme (SFnet, SFshop, itd.).</p><p><strong>2.	Vlasništvo nad digitalnom imovinom:</strong> Licenca je vaše vlasništvo. To znači da ćete je u budućnosti moći prodati ili prenijeti na drugu osobu, sukladno pravilima kompanije. Njena tržišna vrijednost može rasti s rastom i uspjehom cijele zajednice.</p><p><strong>3.	Pravo na besplatnu nadogradnju:</strong> Svaka Licenca vam daje trajno pravo da, kada god to poželite, besplatno nadogradite svoj status i postanete aktivni SFfranšizer.</p><p><strong>4.	Pristup ekosustavu:</strong>Licenca vam otključava korisnički račun i pristup svim dijelovima SFT21 projekta. </p><p><strong>Ukratko, Licenca je idealna za:</strong></p><p>•	Osobe koje vjeruju u viziju projekta i žele ga podržati u ranoj fazi.</p><p>•	Pojedince koji žele pasivno sudjelovati u potencijalnom uspjehu, bez radnih obaveza.</p><p>•	One koji vide dugoročnu vrijednost u vlasništvu nad ograničenim brojem licenci.</p></div></div>
+                <div class="accordion-content"><div><p>SFT21 Licenca je digitalni proizvod koji kupujete od kompanije InFace Invest Group. Njena primarna svrha u trenutnoj, razvojnoj fazi, je podrška projektu i prikupljanje sredstava za dovršetak platforme.</p><p>Kupnjom Licence stječete nekoliko ključnih prava:</p><p><strong>1.	Pravo na pasivni bonus:</strong> Ovo je najvažnija karakteristika. Kao vlasnik Licence, imate pravo sudjelovati u raspodjeli dijela profita koji kompanija ostvari, putem bonusa koji ne ovise o vašem osobnom radu, već o cjelokupnom komercijalnom uspjehu SFT21 platforme (SFnet, SFshop, itd.).</p><p><strong>2.	Vlasništvo nad digitalnom imovinom:</strong> Licenca je vaše vlasništvo. To znači da ćete je u budućnosti moći prodati ili prenijeti na drugu osobu, sukladno pravilima kompanije. Njena tržišna vrijednost može rasti s rastom i uspjehom cijele zajednice.</p><p><strong>3.	Pravo na besplatnu nadogradnju:</strong> Svaka Licenca vam daje trajno pravo da, kada god to poželite, besplatno nadogradite svoj status i postanete aktivni SFfranšizer.</p><p><strong>4.	Pristup ekosustavu:</strong> Licenca vam otključava korisnički račun i pristup svim dijelovima SFT21 projekta. </p><p><strong>Ukratko, Licenca je idealna za:</strong></p><p>•	Osobe koje vjeruju u viziju projekta i žele ga podržati u ranoj fazi.</p><p>•	Pojedince koji žele pasivno sudjelovati u potencijalnom uspjehu, bez radnih obaveza.</p><p>•	One koji vide dugoročnu vrijednost u vlasništvu nad ograničenim brojem licenci.</p></div></div>
             </div>
             
             <!-- 6. Što točno kupujem uplatom Licencnog paketa? -->
@@ -1502,7 +1548,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                     <p>1. Trajna prava (koja Vam ostaju zauvijek)</p>
                     <p>Pravo na pristup i korištenje: Dobivate trajni pristup svom korisničkom računu i svim dostupnim alatima unutar SFT21 platforme (SFured, SFnet, SFshop itd.).</p>
                     <p>Pravo na nadogradnju: Stječete trajno pravo da, ako to želite, postanete aktivni franšizer sklapanjem dodatnog ugovora, čime otključavate nove poslovne mogućnosti.</p>
-                    <p>Pravo na prijenos: Licenca je Vaše vlasništvo i imate je pravo prodati ili prenijeti na drugu osobu, u skladu s pravilima Kompanije.</p>
+                    <p>Pravo na prijenos: Licenca je vaše vlasništvo i imate je pravo prodati ili prenijeti na drugu osobu, u skladu s pravilima Kompanije.</p>
                     <p>2. Ograničeno pravo (koje ima definirani kraj)</p>
                     <p>Pravo na sudjelovanje u raspodjeli bonusa: Stječete pravo na pasivno sudjelovanje u raspodjeli sredstava iz Fonda za raspodjelu bonusa, koji se puni iz dijela Neto dobiti Kompanije. Ovo pravo je ograničeno i traje sve dok ukupni iznos isplaćenih bonusa ne dosegne "Maksimalni ukupni bonus" (MUB) definiran za Vaš paket. Nakon toga, ovo pravo prestaje, ali sva Vaša trajna prava ostaju na snazi.</p>
                     <p>Ukratko, ne kupujete vlasnički udio u kompaniji, dionicu ili financijski instrument. Kupujete proizvod – ključ za ulazak i sudjelovanje u SFT21 ekosustavu s definiranim setom prava.</p>
@@ -1516,7 +1562,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                     <p>Hvala Vam na izuzetno važnom i direktnom pitanju. Odgovor je jednako direktan i iskren: <strong>Apsolutnu garanciju povrata uloženih sredstava i ostvarivanja zarade Vam nitko ne može, niti smije dati. </strong>Svaki oblik ulaganja, a pogotovo ulaganje u tehnološke projekte u ranoj fazi razvoja, nosi sa sobom određenu razinu rizika.</p>
                     <p><strong>VAŠA ODLUKA TEMELJENA NA INFORMACIJAMA</strong></p>
                     <p>Naša je primarna obaveza pružiti Vam potpunu transparentnost i sve dostupne informacije kako biste se Vi, kao potencijalni kupac, detaljno upoznali s cjelokupnim SFT21 projektom – našim poslovnim konceptom, vizijom, tehnologijom i timom koji stoji iza njega.</p>
-                    <p>Na ovim stranicama i kroz dostupne materijale, imate priliku proučiti potencijal koji ovaj jedinstveni franšizni model nudi, kako on funkcionira i zašto vjerujemo da ima kapacitet za globalni uspjeh. Konačna odluka o tome hoćete li uplatit Licencni paket i u kojem iznosu, isključivo je Vaša. Ona se donosi na temelju Vaše vlastite procjene potencijala projekta i Vaše osobne tolerancije na rizik.</p>
+                    <p>Na ovim stranicama i kroz dostupne materijale, imate priliku proučiti potencijal koji ovaj jedinstveni franšizni model nudi, kako on funkcionira i zašto vjerujemo da ima kapacitet za globalni uspjeh. Konačna odluka o tome hoćete li uplatit Licencni paket i u kojem iznosu, isključivo je vaša. Ona se donosi na temelju vaše vlastite procjene potencijala projekta i vaše osobne tolerancije na rizik.</p>
                     <p><strong>NAŠA GARANCIJA: PREDANOST I ODGOVORNO POSLOVANJE</strong></p>
                     <p>Ono što mi kao kompanija možemo i jamčimo jest da ćemo poslovati <strong>u maniri dobrog gospodarstvenika</strong>. To znači da se obvezujemo savjesno, odgovorno i transparentno uložiti sva prikupljena sredstva u završetak razvoja neophodnih softvera i aplikacija (SFured, SFnet, SFshop). Naš cilj je stvoriti funkcionalan, stabilan i napredan poslovni ekosustav.</p>
                     <p>Vjerujemo da će uspješan završetak projekta i puštanje platforme u puni pogon stvoriti ogromnu vrijednost koja bi, u konačnici, trebala donijeti navedene pogodnosti i zaradu svim sudionicima, uključujući i naše investitore.</p>
@@ -1561,7 +1607,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
             <!-- 13. Što su SFkodovi? -->
             <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.5s;">
                 <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">Što su SFkodovi?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
-                <div class="accordion-content"><div><p>SFkod je svojevrsni digitalni TIKET (dobitni listić, srećka, loz, kupon...) koji se koristi prilikom izvlačenja dobitnika nagrada i koristi se u nagradnim igrama u organizaciji kompanije.</p><p>Svaki član naše zajednice sudjeluje BESPLATNO u NAGRADNIM IGRAMA, sa minimalno jednim ili više TRAJNIH SFkodova. Izraz “trajni kod” znači da sa istim kodom korisnik sudjeluje punopravno u svakoj slijedećoj nagradnoj igri.</p><p>Prvi, besplatni SFkod dobivate nakon izvršene besplatne registracije, uz odobrenu verifikaciju identiteta i kreiranu vlastitu SFnet stranicu društvene mreže.</p><p>Ukoliko odlučite uplatiti Startni paket, dobivate dodatne SFkodove. Uplatom; SP1 - 1 SFkod, SP2 - 4 SFkoda, SP3 - 7 SFkodova, SP4 - 10 SFkodova, SP5 - 13 SFkodova, SP6 - 17 SFkodova, SP7 - 21 SFkod.</p><p>S obzirom na odabrani Startni paket dobivate broj SFkodova, koji broj možete povećavati naknadnim uplatama pretplatničkih perioda. Važno je napomenuti, sa prvim neaktivnim danom gubite pravo na daljnu mogućnost stjecanja novih kodova. Naime, Ukoliko po završetku aktivnog pretplatničkog perioda nemate u rezervnom novčaniku iznos dovoljan za aktivaciju narednog pretplatničkog perioda odnosno sami ne uplatite naredni pretplatnički period, TRAJNO zadržavate trenutno dobiveni broj SFkodova, tako da više nemate mogućnost dobivanja dodatnih SFkodova.</p><p>Dodatni 1 SFkod možete dobiti registracijom 10 besplatno registriranih korisnika te dodatna 2 SFkoda registracijom 21. besplatno registriranog korisnika.</p><p>SFfranšizer može imati maksimalno 25 SFkodova (1 besplatnom registracijom + 21 jednokratnom uplatom SP7 + 3 registracijom 21 besplatnog korisnika)</p><p>SFkorisnik / BPR (besplatno registrirani korisnici) mogu imati maksimalno 4 SFkoda (1 besplatnom registracijom + 3 registracijom 21 besplatnog korisnika)</p><p>Trajni SFkodovi vrijede i koriste se u besplatnim nagradnim igrama u organizaciji kompanije stoga je važno napomenuti vrijednost kodova. Naime, kompanija će organizirati mnoge nagradne igre u kojima će nagrade biti npr. Startni paketi, vaučeri za kupovinu kod naših poslovnih partnera, mobiteli, kompjutori, tv ili drugi uređaji, bicikle ili čak automobili te mnoge druge nagrade... Osim nagrada koje će davati kompanija, svaki trgovac, proizvođač, poduzetnik ili kompanija, tvrtka veća ili manja, prilikom ulaska u kompanijski SFshop imati će priliku pripremiti svoj proizvod ili uslugu, paket proizvoda ili bilo koju vrstu nagrade koju će ponuditi kroz naš sistem nagradnih igara čime će zauzvrat dobiva svojevrsnu reklamu putem naše kompanije i uz pomoć naših franšizera. Upravo zbog toga, želimo posebno naglasiti vrijednost SFkodova s obzirom da ćete sa istima uvijek sudjelovati u mnogim besplatnim nagradnim igrama tako da prilikom odabira Startnog paketa razmislite dobro sa kojim želite započeti poslovanje.</p></div></div>
+                <div class="accordion-content"><div><p>SFkod je svojevrsni digitalni TIKET (dobitni listić, srećka, loz, kupon...) koji se koristi prilikom izvlačenja dobitnika nagrada i koristi se u nagradnim igrama u organizaciji kompanije.</p><p>Svaki član naše zajednice sudjeluje BESPLATNO u NAGRADNIM IGRAMA, sa minimalno jednim ili više TRAJNIH SFkodova. Izraz “trajni kod” znači da sa istim kodom korisnik sudjeluje punopravno u svakoj slijedećoj nagradnoj igri.</p><p>Prvi, besplatni SFkod dobivate nakon izvršene besplatne registracije, uz odobrenu verifikaciju identiteta i kreiranu vlastitu SFnet stranicu društvene mreže.</p><p>Ukoliko odlučite uplatiti Startni paket, dobivate dodatne SFkodove. Uplatom; SP1 - 1 SFkod, SP2 - 4 SFkoda, SP3 - 7 SFkodova, SP4 - 10 SFkodova, SP5 - 13 SFkodova, SP6 - 17 SFkodova, SP7 - 21 SFkod.</p><p>S obzirom na odabrani Startni paket dobivate broj SFkodova, koji broj možete povećavati naknadnim uplatama pretplatničkih perioda. Važno je napomenuti, sa prvim neaktivnim danom gubite pravo na daljnu mogućnost stjecanja novih kodova. Naime, ukoliko po završetku aktivnog pretplatničkog perioda nemate u rezervnom novčaniku iznos dovoljan za aktivaciju narednog pretplatničkog perioda odnosno sami ne uplatite naredni pretplatnički period, TRAJNO zadržavate trenutno dobiveni broj SFkodova, tako da više nemate mogućnost dobivanja dodatnih SFkodova.</p><p>Dodatni 1 SFkod možete dobiti registracijom 10 besplatno registriranih korisnika te dodatna 2 SFkoda registracijom 21. besplatno registriranog korisnika.</p><p>SFfranšizer može imati maksimalno 25 SFkodova (1 besplatnom registracijom + 21 jednokratnom uplatom SP7 + 3 registracijom 21 besplatnog korisnika)</p><p>SFkorisnik / BPR (besplatno registrirani korisnici) mogu imati maksimalno 4 SFkoda (1 besplatnom registracijom + 3 registracijom 21 besplatnog korisnika)</p><p>Trajni SFkodovi vrijede i koriste se u besplatnim nagradnim igrama u organizaciji kompanije stoga je važno napomenuti vrijednost kodova. Naime, kompanija će organizirati mnoge nagradne igre u kojima će nagrade biti npr. Startni paketi, vaučeri za kupovinu kod naših poslovnih partnera, mobiteli, kompjutori, tv ili drugi uređaji, bicikle ili čak automobili te mnoge druge nagrade... Osim nagrada koje će davati kompanija, svaki trgovac, proizvođač, poduzetnik ili kompanija, tvrtka veća ili manja, prilikom ulaska u kompanijski SFshop imati će priliku pripremiti svoj proizvod ili uslugu, paket proizvoda ili bilo koju vrstu nagrade koju će ponuditi kroz naš sistem nagradnih igara čime će zauzvrat dobiva svojevrsnu reklamu putem naše kompanije i uz pomoć naših franšizera. Upravo zbog toga, želimo posebno naglasiti vrijednost SFkodova s obzirom da ćete sa istima uvijek sudjelovati u mnogim besplatnim nagradnim igrama tako da prilikom odabira Startnog paketa razmislite dobro sa kojim želite započeti poslovanje.</p></div></div>
             </div>
 
             <!-- 14. Što je SFC? -->
@@ -1640,7 +1686,7 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
             <!-- 20. Kako se mogu besplatno registrirati i da li imam kakvih obaveza? -->
             <div class="accordion-item bg-gray-800 bg-opacity-40 rounded-lg overflow-hidden shadow-md fade-in" style="animation-delay: 0.4s;">
                 <div class="accordion-header flex justify-between items-center px-6 py-4 cursor-pointer hover:bg-gray-700 transition-colors duration-200"><span class="font-semibold text-lg text-white">Kako se mogu registrirati i da li imam kakvih obaveza?</span><i class="fas fa-chevron-down text-purple-400"></i></div>
-                <div class="accordion-content"><div><p>Registracija je BESPLATNA i vrlo jednostavna. Ukoliko si pripremite podatke za unos; *korisničko ime / *lozinka / * broj mobitela / *email adresa/, postupak registracije ćete završiti u nepunih 2 minuta, dok će onima malo spretnijima i minuta biti dovoljna.</p><p>Registracija će biti moguća putem registracijskog obrazca na službenim stranicama kompanije ili putem referalnog linka druge osobe. Ta osoba je vaš "preporučitelj" koji će vam sigurno pomoći na početku vašeg poslovanja, u skladu sa njegovim mogućnostima.</p><p>Da bi registracija bila uspješna obavezni ste potvrditi svoj identitet putem KYC protokola.</p><p>Kao besplatno registrirani korisnik sa odobrenom KYC verifikacijom obavezni ste kreirati vlastitu stranicu SFnet društvene mreže. Nakon što postavite svoju Naslovnu stranicu SFnet mreže sistem će vam odobriti pristup vašem SFuredu, čime ste uspješno završili proces registracije.</p><p>Kao besplatno registrirani korisnik osim poštivanja Uvjeta korištenja, Politike privatnosti i osnovnih pravila ponašanja koja vrijede na gotovo svakoj ozbiljnijoj web stranici, NEMATE NIKAKVIH DRUGIH OBAVEZA prema kompaniji InFace Invest Group.</p><p>Ukoliko želite na bilo koji način sudjelovati u razvoju naše zajednice, bilo da se radi samo o vremenu kojeg provodite na našim stranicama ili da se aktivno bavite marketingom sa ciljem povećanja broja novih korisnika, taj izbor je uvijek u vašim rukama.</p><p>U našoj kompaniji, bez obzira da li se radi o besplatno registriranom korisniku, vlasniku Licence ili franšizeru, nikada neće biti prisile ili zahtjeva da nešto MORATE učiniti. Nitko Vas ne može, niti će Vas itko od strane službenog osoblja kompanije zatražiti da nešto učinite ili ne učinite, pod prisilom ili prijetnjom, protiv svoje volje.</p><p>Kompanija može, što je jedna od čestih poslovnih radnji, zahtijevati putem notifikacija u SFuredu, da se naprave određene radnje ili u slučaju franšizera, radne obaveze. Međutim, neispunjenje takvih radnji u slučaju besplatno registriranih korisnika ne može se sankcionirati.</p><p>U slučaju franšizera neispunjenje radne obaveze dovodi do oduzimanja tjedne ili mjesečne zarade, ali nikada do neke druge vrste sankcija.</p></div></div>
+                <div class="accordion-content"><div><p>Registracija je BESPLATNA i vrlo jednostavna. Ukoliko si pripremite podatke za unos; *korisničko ime / *lozinka / * broj mobitela / *email adresa/, postupak registracije ćete završiti u nepunih 2 minuta, dok će onima malo spretnijima i minuta biti dovoljna.</p><p>Registracija će biti moguća putem registracijskog obrazca na službenim stranicama kompanije ili putem referalnog linka druge osobe. Ta osoba je vaš "preporučitelj" koji će vam pomoći na početku vašeg poslovanja (iako nema tu obavezu), u skladu sa njegovim mogućnostima.</p><p>Da bi registracija bila uspješna obavezni ste potvrditi svoj identitet putem KYC protokola.</p><p>Kao besplatno registrirani korisnik sa odobrenom KYC verifikacijom obavezni ste kreirati vlastitu stranicu SFnet društvene mreže. Nakon što postavite svoju Naslovnu stranicu SFnet mreže sistem će vam odobriti pristup vašem SFuredu, čime ste uspješno završili proces registracije.</p><p>Kao besplatno registrirani korisnik osim poštivanja Uvjeta korištenja, Politike privatnosti i osnovnih pravila ponašanja koja vrijede na gotovo svakoj ozbiljnijoj web stranici, NEMATE NIKAKVIH DRUGIH OBAVEZA prema kompaniji InFace Invest Group.</p><p>Ukoliko želite na bilo koji način sudjelovati u razvoju naše zajednice, bilo da se radi samo o vremenu kojeg provodite na našim stranicama ili da se aktivno bavite marketingom sa ciljem povećanja broja novih korisnika, taj izbor je uvijek u vašim rukama.</p><p>U našoj kompaniji, bez obzira da li se radi o besplatno registriranom korisniku, vlasniku Licence ili franšizeru, nikada neće biti prisile ili zahtjeva da nešto MORATE učiniti. Nitko Vas ne može, niti će Vas itko od strane službenog osoblja kompanije zatražiti da nešto učinite ili ne učinite, pod prisilom ili prijetnjom, protiv svoje volje.</p><p>Kompanija može, što je jedna od čestih poslovnih radnji, zahtijevati putem notifikacija u SFuredu, da se naprave određene radnje ili u slučaju franšizera, radne obaveze. Međutim, neispunjenje takvih radnji u slučaju besplatno registriranih korisnika ne može se sankcionirati.</p><p>U slučaju franšizera neispunjenje radne obaveze dovodi do oduzimanja tjedne ili mjesečne zarade, ali nikada do neke druge vrste sankcija.</p></div></div>
             </div>
 
             <!-- 21. Da li kao besplatno registrirani korisnik mogu zaraditi Startni paket? -->
@@ -1695,8 +1741,8 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
                         <h3 class="text-2xl font-bold mb-8">Pošaljite nam poruku</h3>
 <form class="space-y-6">
     <div>
-        <label for="name" class="block text-gray-300 mb-2">Vaše ime</label>
-        <input type="text" id="name" name="name" class="form-input" placeholder="Unesite vaše ime">
+        <label for="name" class="block text-gray-300 mb-2">Vaše ime i prezime</label>
+        <input type="text" id="name" name="name" class="form-input" placeholder="Unesite vaše ime i prezime">
     </div>
     <div>
         <label for="email" class="block text-gray-300 mb-2">Email adresa</label>
@@ -1877,8 +1923,8 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
 
     <!-- Popup za chat (OVO JE PROZOR KOJI SE OTVARA) -->
     <div id="ai-chat-popup" class="ai-chat-popup">
-        <div class="ai-chat-popup-header"> <span>SemFi Assistant</span> <button id="ai-chat-close-btn" class="ai-chat-close-btn">×</button> </div>
-        <div class="ai-chat-popup-body"> <p class="text-center text-gray-400 text-sm mt-4">Start a conversation by typing a message below.</p> </div>
+        <div class="ai-chat-popup-header"> <span>SemFi pomoćnik</span> <button id="ai-chat-close-btn" class="ai-chat-close-btn">×</button> </div>
+        <div class="ai-chat-popup-body"> <p class="text-center text-gray-400 text-sm mt-4">Započnite razgovor upisivanjem poruke ispod...</p> </div>
         <div class="ai-chat-input-container p-3 border-t border-gray-700 flex items-center gap-2">
              <button class="ai-chat-button text-gray-400 hover:text-white text-lg flex-shrink-0"> <i class="fas fa-paperclip"></i> </button>
              <input type="text" placeholder="Ask a question..." class="ai-chat-input flex-grow bg-gray-800 border border-gray-600 rounded-full py-2 px-4 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-gray-500 text-sm">
@@ -1889,13 +1935,13 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
     <!-- Widget za brojač korisnika -->
     <div id="user-counter-widget" class="user-counter-widget hidden">
         <div id="user-counter-header" class="user-counter-header">
-            <h3><i class="fas fa-users mr-2"></i>New Users</h3>
+            <h3><i class="fas fa-users mr-2"></i>Novi korisnici</h3>
             <div class="user-counter-actions">
                 <button id="user-counter-close-btn" title="Close (temporarily)">×</button>
             </div>
         </div>
         <div class="user-counter-body">
-            <div id="user-counter-number" class="user-counter-number"> 12,345 </div>
+            <div id="user-counter-number" class="user-counter-number"> 12,007 </div>
             <div id="user-counter-list" class="user-counter-list"> <div class="user-counter-placeholder">Loading...</div> </div>
         </div>
     </div>
@@ -1909,7 +1955,58 @@ body.light-mode .nav-menu .mobile-language-trigger i.fa-chevron-down {
     <button id="ai-chat-float-icon" class="ai-chat-float-icon floating-action-btn" title="Open Chat">
         <i class="fas fa-comments"></i>
     </button>
+ <!-- ============================================= -->
+<!-- STATISTIKA ZAJEDNICE - PRIVREMENO SKRIVENO -->
+<!-- ============================================= -->
+<!--
+<section id="stats" class="py-24">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-5xl font-bold mb-12">Statistika Zajednice u Realnom Vremenu</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
+            
+            <a href="counter.html" class="stat-card-link">
+                <div class="stat-card">
+                    <div class="icon-container bg-purple-500">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>Ukupno Članova</h3>
+                        <p id="member-counter" class="stat-number">0</p>
+                    </div>
+                </div>
+            </a>
+
+            
+            <a href="franchises_map.html" class="stat-card-link">
+                <div class="stat-card">
+                    <div class="icon-container bg-green-500">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>Ukupno Poslovnica</h3>
+                        <p id="franchise-counter" class="stat-number">0</p>
+                    </div>
+                </div>
+            </a>
+
+            
+            <div class="stat-card-link"> 
+                <div class="stat-card">
+                    <div class="icon-container bg-yellow-500">
+                        <i class="fas fa-id-badge"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>Ukupno Licenci</h3>
+                        <p id="license-counter" class="stat-number">0</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+-->
 <script>
     function getAbsoluteOffsetTop(element) {
         let top = 0;
@@ -3456,6 +3553,139 @@ document.addEventListener('mouseup', () => {
 <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/dist/umd/i18nextHttpBackend.min.js"></script>
 <script src="js/main.js"></script>
+
+<!-- ======================================================= -->
+<!-- ISPRAVLJENI KOD ZA SCROLLSPY - VERZIJA 4 -->
+<!-- ======================================================= -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const navLinks = document.querySelectorAll('nav a.nav-link[href^="#"]');
+    // Ciljamo sve elemente s ID-jem unutar main taga koji odgovaraju linkovima.
+    const scrollTargets = Array.from(navLinks).map(link => {
+        const id = link.getAttribute('href').substring(1);
+        return document.getElementById(id);
+    }).filter(el => el !== null); // Filtriramo ako neki link nema odgovarajući element
+
+    const nav = document.querySelector('nav.fixed');
+    // Dodajemo mali buffer na visinu navigacije za bolju preciznost
+    const navHeight = nav ? nav.offsetHeight + 10 : 90;
+
+    if (navLinks.length === 0 || scrollTargets.length === 0) {
+        console.warn("Scrollspy nije inicijaliziran: nedostaju linkovi ili sekcije.");
+        return;
+    }
+
+    // Funkcija za postavljanje aktivnog linka ostaje ista
+    const setActiveLink = (id) => {
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    };
+
+    // Postavljamo početno stanje
+    setActiveLink('pocetna');
+
+    // Kreiramo Intersection Observer s korigiranim opcijama
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Kada sekcija uđe u vidno polje, postavljamo odgovarajući link kao aktivan
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                setActiveLink(id);
+            }
+        });
+    }, {
+        // KLJUČNA PROMJENA:
+        // rootMargin definira "prozor" unutar kojeg se prati vidljivost.
+        // `-navHeight`px s vrha pomiče gornju granicu ispod fiksne navigacije.
+        // `-50%` s dna smanjuje prozor za pola, što znači da se sekcija smatra
+        // aktivnom kada je u gornjoj polovici ekrana. Ovo daje prirodniji osjećaj.
+        rootMargin: `-${navHeight}px 0px -50% 0px`,
+        threshold: 0 // Dovoljno je da 1 piksel sekcije uđe u definirani prozor
+    });
+
+    // Povezujemo observer sa svim ciljanim sekcijama
+    scrollTargets.forEach(target => {
+        observer.observe(target);
+    });
+});
+</script>
+
+<!-- ======================================================= -->
+<!-- NOVO: Skripta za prikaz/skrivanje FAQ sekcije         -->
+<!-- ======================================================= -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('toggle-faq-btn');
+    const faqContainer = document.getElementById('faq-accordion-container');
+
+    if (toggleBtn && faqContainer) {
+        // Originalni tekstovi gumba
+        const textShow = {
+            hr: 'Prikaži pitanja i odgovore',
+            en: 'Show Questions and Answers'
+        };
+        const textHide = {
+            hr: 'Sakrij pitanja i odgovore',
+            en: 'Hide Questions and Answers'
+        };
+        // Određivanje jezika stranice
+        const lang = document.documentElement.lang || 'hr';
+
+        toggleBtn.addEventListener('click', () => {
+            // Provjeri da li su pitanja trenutno vidljiva
+            const isVisible = faqContainer.classList.contains('faq-visible');
+
+            // Ukloni ili dodaj klasu za prikaz
+            faqContainer.classList.toggle('faq-visible');
+            toggleBtn.classList.toggle('active');
+
+            // Promijeni tekst na gumbu
+            if (!isVisible) {
+                // Ako nije bilo vidljivo, sada jest - postavi tekst za sakrivanje
+                toggleBtn.childNodes[0].nodeValue = textHide[lang] + ' ';
+            } else {
+                // Ako je bilo vidljivo, sada nije - postavi tekst za prikazivanje
+                toggleBtn.childNodes[0].nodeValue = textShow[lang] + ' ';
+            }
+        });
+    }
+});
+
+    // === NOVI KOD ZA STARTNE PAKETE ===
+    const toggleStarterBtn = document.getElementById('toggle-starter-btn');
+    const starterContainer = document.getElementById('starter-packages-content-container');
+
+    if (toggleStarterBtn && starterContainer) {
+        const starterTextShow = {
+            hr: 'Upoznaj Startne Pakete',
+            en: 'Explore Starter Packages'
+        };
+        const starterTextHide = {
+            hr: 'Sakrij Startne Pakete',
+            en: 'Hide Starter Packages'
+        };
+        const lang = document.documentElement.lang || 'hr';
+
+        toggleStarterBtn.addEventListener('click', () => {
+            const isVisible = starterContainer.classList.contains('starter-visible');
+            starterContainer.classList.toggle('starter-visible');
+            toggleStarterBtn.classList.toggle('active');
+
+            if (!isVisible) {
+                toggleStarterBtn.childNodes[0].nodeValue = starterTextHide[lang] + ' ';
+            } else {
+                toggleStarterBtn.childNodes[0].nodeValue = starterTextShow[lang] + ' ';
+            }
+        });
+    }
+    // === KRAJ NOVOG KODA ZA STARTNE PAKETE ===
+</script>
 
 </body>
 </html>

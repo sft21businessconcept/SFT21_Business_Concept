@@ -173,6 +173,42 @@
         body.light-mode canvas#network-canvas {
             background-color: transparent; /* U light modu je pozadina canvasa prozirna */
         }
+
+        /* === DODATAK: STILOVI ZA HAMBURGER I MOBILNI MENI === */
+.hamburger {
+    cursor: pointer;
+    display: block; /* Osigurava da je uvijek vidljiv na mobilnom */
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-menu {
+    position: fixed;
+    left: -100%; /* Počinje izvan ekrana */
+    top: 70px; /* Visina vašeg navbara */
+    flex-direction: column;
+    background-color: var(--dark-bg);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+}
+
+.nav-menu.active {
+    left: 0; /* Ulazi u ekran kada je aktivan */
+}
+
+body.light-mode .nav-menu {
+    background-color: var(--light-bg);
+}
     
 </style>
 </head>
@@ -489,7 +525,22 @@
     <script src="js/main.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
         // =========================================================
         // === KOD ZA ANIMACIJU POZADINE (S PODRŠKOM ZA TEME) ===
         // =========================================================

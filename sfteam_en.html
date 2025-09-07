@@ -231,6 +231,42 @@ body:not(.light-mode) .nav-menu .btn-primary {
 body:not(.light-mode) .nav-menu .btn-primary:hover {
     background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%) !important; /* Tamnija zelena na hover */
 }
+
+/* === DODATAK: STILOVI ZA HAMBURGER I MOBILNI MENI === */
+.hamburger {
+    cursor: pointer;
+    display: block; /* Osigurava da je uvijek vidljiv na mobilnom */
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-menu {
+    position: fixed;
+    left: -100%; /* Počinje izvan ekrana */
+    top: 70px; /* Visina vašeg navbara */
+    flex-direction: column;
+    background-color: var(--dark-bg);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+}
+
+.nav-menu.active {
+    left: 0; /* Ulazi u ekran kada je aktivan */
+}
+
+body.light-mode .nav-menu {
+    background-color: var(--light-bg);
+}
     
 </style>
 </head>
@@ -550,6 +586,22 @@ body:not(.light-mode) .nav-menu .btn-primary:hover {
     <script src="js/main.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
 
         // =========================================================
         // === CODE FOR BACKGROUND ANIMATION (WITH THEME SUPPORT) ===
@@ -694,34 +746,6 @@ body:not(.light-mode) .nav-menu .btn-primary:hover {
         });
     });
 </script>
-<!-- ============================================= -->
-<!-- NOVI KOD ZA FUNKCIONALNOST MOBILNOG IZBORNIKA -->
-<!-- ============================================= -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        const body = document.body;
 
-        if (hamburger && navMenu && body) {
-            hamburger.addEventListener('click', () => {
-                const isActive = hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active', isActive);
-                body.classList.toggle('no-scroll', isActive);
-            });
-            
-            // Dodatna logika: zatvori meni ako se klikne na link unutar njega
-            navMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (hamburger.classList.contains('active')) {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                        body.classList.remove('no-scroll');
-                    }
-                });
-            });
-        }
-    });
-</script>
 </body>
 </html>

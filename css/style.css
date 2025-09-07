@@ -85,36 +85,8 @@ nav.fixed {
 }
 
 
-.nav-link {
-    position: relative;
-    transition: all 0.3s ease;
-    color: white; /* Zadana boja linka */
-}
 
-/* Boja teksta linka kada se pređe mišem ili je aktivan */
-.nav-link:hover,
-.nav-link.active {
-     color: var(--fluorescent-green);
-}
 
-/* Definicija podcrtane linije (sakrivena po defaultu) */
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px; /* Udaljenost linije od teksta */
-    left: 0;
-    width: 0; /* Početna širina je 0 */
-    height: 2px;
-    background-color: var(--fluorescent-green);
-    transition: width 0.3s ease;
-}
-
-/* Proširi liniju na 100% KADA JE LINK AKTIVAN ili KADA SE PREĐE MIŠEM */
-/* OVO JE KLJUČNI DIO - osigurava da se linija uvijek prikaže */
-.nav-link.active::after,
-.nav-link:hover::after {
-    width: 100%;
-}
 
 
 .nav-menu {
@@ -1390,16 +1362,7 @@ body.light-mode .text-logo-orange {
 body.light-mode .logo-nav .small-text {
     color: var(--primary-color);
 }
-body.light-mode .nav-link {
-    color: var(--primary-color);
-}
-body.light-mode .nav-link:hover,
-body.light-mode .nav-link.active {
-    color: #ff00ff; /* Ljubičasto */
-}
-body.light-mode .nav-link::after {
-    background-color: #ff00ff; /* Ljubičasto */
-}
+
 body.light-mode #theme-toggle,
 body.light-mode #theme-toggle-mobile,
 body.light-mode #desktop-lang-trigger i,
@@ -1419,8 +1382,8 @@ body.light-mode .btn-outline {
     border-color: var(--primary-color); 
 }
 html.light-mode .btn-outline:hover {
-    background-color: var(--primary-color) !important; /* Ispravljeno */
-    border-color: var(--primary-color) !important; /* Dodano radi dosljednosti */
+    background-color: var(--primary-color) !important; 
+    border-color: var(--primary-color) !important; 
     color: white !important;
 }
 
@@ -2696,3 +2659,55 @@ html.light-mode body.register-page nav a.btn-outline {
     height: 100%;
     border: 0;
 }
+
+/* ======================================================= */
+/* NOVI KOD ZA NAVIGACIJSKU LINIJU (ACTIVE & HOVER)     */
+/* ======================================================= */
+
+/* Osnovna postavka za sve linkove u navigaciji */
+.nav-link {
+    position: relative;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+/* Linija ispod linka - osnovni stil (sakrivena) */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Udaljenost od teksta */
+    left: 0;
+    width: 0; /* Početna širina 0, pa je nevidljiva */
+    height: 2px;
+    background-color: var(--fluorescent-green);
+    transition: width 0.3s ease-in-out; /* Samo animacija širine */
+}
+
+/* Pravilo za HOVER: Kada pređemo mišem, linija se pojavi */
+.nav-link:hover::after {
+    width: 100%;
+}
+.nav-link:hover {
+    color: var(--fluorescent-green);
+}
+
+/* Pravilo za ACTIVE: Kada link ima klasu .active, linija je trajno vidljiva */
+.nav-link.active {
+    color: var(--fluorescent-green) !important; /* Pojačaj boju teksta */
+}
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* --- Prilagodbe za LIGHT MODE --- */
+body.light-mode .nav-link {
+    color: var(--primary-color);
+}
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+    color: var(--secondary-color) !important;
+}
+body.light-mode .nav-link::after {
+    background-color: var(--secondary-color);
+}
+
