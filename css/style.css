@@ -2711,3 +2711,44 @@ body.light-mode .nav-link::after {
     background-color: var(--secondary-color);
 }
 
+/* ============================================ */
+/*      STIL ZA LINK ZA PREUZIMANJE UGOVORA     */
+/* ============================================ */
+
+/* Kontejner koji drži sve i centrira tekst */
+.ugovor-download-container {
+    text-align: center; /* Centrira sav tekst unutar kontejnera */
+    margin-top: 50px;   /* Stvara razmak od 50px od elemenata iznad (LP7 paketa) */
+    margin-bottom: 70px;/* Stvara veći razmak od elemenata ispod (naslova "Prednosti") */
+    padding: 0 20px;    /* Dodaje malo razmaka sa strane na mobilnim uređajima */
+}
+
+/* Stil za prvi red teksta koji sadrži link */
+.ugovor-download-container .ugovor-link {
+    font-size: 1.1em; /* Malo veći font da bude uočljiv */
+    font-weight: bold; /* Podebljan tekst */
+    margin-bottom: 15px; /* Razmak između prvog i drugog reda teksta */
+}
+
+/* Stil za sam link unutar prvog reda */
+.ugovor-download-container .ugovor-link a {
+    color:  #80ff00; /* Jarka zelena boja, ista kao na vašem sajtu */
+    text-decoration: none; /* Uklanja podcrtavanje linka */
+    transition: color 0.3s ease; /* Glatka tranzicija boje na prelazak mišem */
+}
+
+/* Efekt kada se mišem pređe preko linka */
+.ugovor-download-container .ugovor-link a:hover {
+    color: #ffffff; /* Link postaje bijel na prelazak mišem */
+    text-decoration: underline; /* Dodaje podcrtavanje za bolji feedback */
+}
+
+/* Stil za drugi, informativni red teksta */
+.ugovor-download-container .ugovor-info-text {
+    color: #cccccc; /* Svjetlo siva boja, da bude malo manje naglašena od linka */
+    font-size: 0.9em; /* Malo manji font */
+    max-width: 600px; /* Ograničava širinu teksta na većim ekranima radi čitljivosti */
+    margin-left: auto;  /* Ove dvije linije centriraju tekstni blok */
+    margin-right: auto; /* koji ima ograničenu širinu (max-width) */
+    line-height: 1.6; /* Povećava prored za bolju čitljivost */
+}
