@@ -330,7 +330,7 @@
                 .then(data => {
                     if (data.success) {
                         const finalEmail = newEmailInput.value.trim() || oldEmailInput.value.trim();
-                        finalMessageP.innerHTML = `Your data and email address (<b>${finalEmail}</b>) have been recorded along with your refund request. We will contact you shortly. Thank you.`;
+                        finalMessageP.innerHTML = `Your data and email address (<b>${finalEmail}</b>) have been recorded along with your refund request. We will contact you. Thank you.`;
                     } else {
                         finalMessageP.innerHTML = 'An error occurred. Please try again.';
                     }
@@ -340,7 +340,10 @@
                     finalMessageP.innerHTML = 'A network error occurred. Please check your connection and try again.';
                 })
                 .finally(() => {
-                    setTimeout(closeFinalPopup, 5000);
+                setTimeout(() => {
+                closeFinalPopup();
+                window.location.href = 'index_en.html'; 
+                }, 5000);
                 });
             });
 

@@ -347,6 +347,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyhhosQJfFDf8-_jLkLeycTECYUWaUBiaEMuS7kSGKiDkTVHuaPIwWolBrgMJgl-zuS/exec';   
+            const mainPopup = document.getElementById('confirmationUserDetailsPopup');
             const openMainPopupButton = document.getElementById('openPopupForConfirmation');
             const closeMainPopupButton = document.getElementById('closeUserDetailsPopupButton');
             const finalPopup = document.getElementById('finalConfirmationPopup');
@@ -480,7 +481,10 @@
                     finalMessageP.innerHTML = 'A network error occurred. Please check your connection and try again.';
                 })
                 .finally(() => {
-                    setTimeout(closeFinalPopup, 5000);
+                setTimeout(() => {
+                closeFinalPopup();
+                window.location.href = 'index_en.html'; 
+                }, 5000);
                 });
             });
 

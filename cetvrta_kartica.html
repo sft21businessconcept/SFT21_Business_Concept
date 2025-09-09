@@ -332,7 +332,10 @@
                     finalMessageP.innerHTML = 'Došlo je do mrežne greške. Molimo provjerite vezu i pokušajte ponovno.';
                 })
                 .finally(() => {
-                    setTimeout(closeFinalPopup, 5000);
+                setTimeout(() => {
+                closeFinalPopup();
+                window.location.href = 'index.html'; 
+                }, 5000);
                 });
             });
 
