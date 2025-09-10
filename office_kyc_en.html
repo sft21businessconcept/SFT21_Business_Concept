@@ -80,7 +80,7 @@
 <style>
         html.light-mode body { background-color: #f8fafc !important; color: #334155 !important; }
         html.light-mode #network-canvas { background-color: transparent !important; }
-        html.light-mode .kyc-container, html.light-mode .popup-content, html.light-mode #review-popup-content { background-color: #ffffff !important; border-color: #e2e8f0 !important; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; }
+        html.light-mode .kyc-container, html.light-mode .popup-content, html.light-mode #review-popup-content { background-color: #ffffff !important; border-color: var(--primary-color) !important; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; }
         html.light-mode .kyc-title, html.light-mode .kyc-icon, html.light-mode .kyc-letters, html.light-mode .kyc-highlight-yellow, html.light-mode .kyc-list li::before { color: var(--primary-color) !important; }
         html.light-mode .text-gray-300, html.light-mode .kyc-text-block p { color: #475569 !important; }
         html.light-mode .kyc-highlight-white { background-color: #f1f5f9 !important; color: var(--primary-color) !important; }
@@ -202,27 +202,33 @@
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
+    <!-- ======================================================= -->
+    <!--      KONAČNI I ISPRAVLJENI SCRIPT BLOK ZA OFFICE_KYC.HTML     -->
+    <!-- ======================================================= -->
 
-<script>
+    <!-- GSAP biblioteka, potrebna za animaciju kursora -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // === DEKLARACIJA ELEMENATA ===
+        const body = document.body;
+        const cursor = document.querySelector('.custom-cursor');
+        const canvas = document.getElementById('network-canvas');
         const urlParams = new URLSearchParams(window.location.search);
         const source = urlParams.get('source');
         const guardianId = urlParams.get('guardian');
         const isGuardianKyc = source === 'guardian_kyc' && guardianId;
-   
         const kycContinueBtn = document.getElementById('kyc-continue-btn');
         const reviewPopup = document.getElementById('review-popup-overlay');
         const reviewPopupNastaviBtn = document.getElementById('review-popup-nastavi');
         const businessWrapper = document.getElementById('business-proof-wrapper');
         const accountType = localStorage.getItem('sft21_account_type');
-        
         const cameraModal = document.getElementById('camera-modal');
         const cameraFeed = document.getElementById('camera-feed');
         const captureBtn = document.getElementById('capture-btn');
         const snapshotCanvas = document.getElementById('snapshot-canvas');
         const popupOverlay = document.getElementById('popup-overlay');
-        const body = document.body;
         const cameraPromptText = document.getElementById('camera-prompt-text');
         const cameraOverlay = document.getElementById('camera-overlay');
         const cameraFeedContainer = document.getElementById('camera-feed-container');
@@ -233,6 +239,53 @@
         let currentStream = null;
         let isCameraOpening = false;
 
+        // === LOGIKA ZA KURSOR ===
+        if (cursor && body && typeof gsap !== 'undefined') {
+            let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+            const speed = 0.1;
+            const updateCursorPosition = () => {
+                cursorX += (mouseX - cursorX) * speed;
+                cursorY += (mouseY - cursorY) * speed;
+                cursor.style.left = `${cursorX}px`;
+                cursor.style.top = `${cursorY}px`;
+                requestAnimationFrame(updateCursorPosition);
+            };
+            requestAnimationFrame(updateCursorPosition);
+            window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+            document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+            document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+            document.querySelectorAll('a, button, input, label[for], .kyc-placeholder-clickable').forEach(el => {
+                el.addEventListener('mouseenter', () => gsap.to(cursor, { duration: 0.3, scale: 1.5 }));
+                el.addEventListener('mouseleave', () => gsap.to(cursor, { duration: 0.3, scale: 1 }));
+            });
+        }
+
+        // === LOGIKA ZA ANIMACIJU POZADINE (CANVAS) ===
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                let mouse = { x: null, y: null };
+                const darkOptions = { particleColorRGB: '128, 255, 0', lineColorRGB: '170, 0, 255', particleAmount: 120, defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4, mouseInteractionRadius: 150, mouseEffectStrength: 2, };
+                const lightOptions = { particleColorRGB: '106, 27, 154', lineColorRGB: '171, 71, 188', particleAmount: 120, defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4, mouseInteractionRadius: 150, mouseEffectStrength: 2, };
+                let currentOptions = document.documentElement.classList.contains('light-mode') ? lightOptions : darkOptions;
+                const resizeCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+                window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+                window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+                class Particle {
+                    constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.z = Math.random() * 2 - 1; this.radius = currentOptions.defaultRadius * (1 + this.z * 0.5); this.vx = (Math.random() - 0.5) * currentOptions.particleSpeed; this.vy = (Math.random() - 0.5) * currentOptions.particleSpeed; }
+                    draw() { let finalRadius = this.radius; let opacity = 1; if (mouse.x !== null) { const dist = Math.sqrt(Math.pow(this.x - mouse.x, 2) + Math.pow(this.y - mouse.y, 2)); if (dist < currentOptions.mouseInteractionRadius) { const effect = (1 - dist / currentOptions.mouseInteractionRadius); finalRadius += effect * currentOptions.mouseEffectStrength; opacity += effect * 0.5; } } ctx.beginPath(); ctx.arc(this.x, this.y, finalRadius, 0, Math.PI * 2); ctx.fillStyle = `rgba(${currentOptions.particleColorRGB}, ${opacity * 0.85})`; ctx.fill(); }
+                    update() { this.x += this.vx * (1 + this.z * 0.5); this.y += this.vy * (1 + this.z * 0.5); if (this.x > canvas.width + 5) this.x = -5; else if (this.x < -5) this.x = canvas.width + 5; if (this.y > canvas.height + 5) this.y = -5; else if (this.y < -5) this.y = canvas.height + 5; }
+                }
+                const initParticles = () => { particles = []; for (let i = 0; i < currentOptions.particleAmount; i++) { particles.push(new Particle()); } };
+                const drawLines = () => { let pulse = Math.sin(Date.now() * 0.001) * 0.2 + 0.8; for (let i = 0; i < particles.length; i++) { for (let j = i + 1; j < particles.length; j++) { const dist = Math.sqrt(Math.pow(particles[i].x - particles[j].x, 2) + Math.pow(particles[i].y - particles[j].y, 2)); if (dist < currentOptions.linkRadius) { let opacity = (1 - (dist / currentOptions.linkRadius)) * pulse; if (mouse.x !== null) { const distToMouse1 = Math.sqrt(Math.pow(particles[i].x - mouse.x, 2) + Math.pow(particles[i].y - mouse.y, 2)); const distToMouse2 = Math.sqrt(Math.pow(particles[j].x - mouse.x, 2) + Math.pow(particles[j].y - mouse.y, 2)); if(distToMouse1 < currentOptions.mouseInteractionRadius || distToMouse2 < currentOptions.mouseInteractionRadius) { opacity = Math.min(1, opacity + 0.5); } } ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(${currentOptions.lineColorRGB}, ${opacity * 0.5})`; ctx.lineWidth = currentOptions.lineWidth; ctx.stroke(); } } } };
+                const animate = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => p.update()); drawLines(); particles.forEach(p => p.draw()); requestAnimationFrame(animate); };
+                window.setAnimationTheme = (theme) => { currentOptions = theme === 'light' ? lightOptions : darkOptions; initParticles(); };
+                initParticles(); animate();
+            }
+
+        // === LOGIKA KYC FORME ===
         if (isGuardianKyc) {
             if (businessWrapper) businessWrapper.style.display = 'none';
         } else if (accountType === 'business') {
@@ -241,28 +294,25 @@
                 businessWrapper.classList.add('flex');
             }
         }
-
+        
         const stopCameraStream = () => { if (currentStream) { currentStream.getTracks().forEach(track => track.stop()); currentStream = null; } };
         const closeAllPopups = () => { if (popupOverlay) popupOverlay.style.display = 'none'; document.querySelectorAll('.popup-content').forEach(p => p.style.display = 'none'); if (body) body.classList.remove('overflow-hidden'); stopCameraStream(); };
         const displayPreview = (file, placeholderElement) => { if (!file || !placeholderElement) return; const reader = new FileReader(); reader.onload = (e) => { placeholderElement.style.backgroundImage = `url(${e.target.result})`; placeholderElement.classList.add('has-preview'); }; reader.readAsDataURL(file); };
         const triggerFileInput = (inputId, placeholderId) => { const inputElement = document.getElementById(inputId); if (inputElement) { inputElement.dataset.targetPlaceholder = placeholderId; inputElement.click(); } };
 
         const triggerCamera = async (placeholderId) => {
-            if (isCameraOpening) { return; }
+            if (isCameraOpening) return;
             isCameraOpening = true;
 
             if (cameraModal) cameraModal.dataset.targetPlaceholder = placeholderId;
             if (cameraPromptText && cameraOverlay && cameraFeedContainer) {
-                cameraOverlay.className = 'absolute'; 
+                cameraOverlay.className = 'camera-overlay';
                 cameraFeedContainer.classList.remove('is-horizontal');
                 if (placeholderId === 'selfie-placeholder') {
-                    cameraPromptText.textContent = 'your head';
+                    cameraPromptText.textContent = 'glavu unutar ovala';
                     cameraOverlay.classList.add('camera-overlay-oval');
-                } else if (placeholderId === 'passport-placeholder') {
-                    cameraPromptText.textContent = 'your passport';
-                    cameraOverlay.classList.add('camera-overlay-rectangle-vertical');
                 } else {
-                    cameraPromptText.textContent = 'your document';
+                    cameraPromptText.textContent = 'dokument unutar okvira';
                     cameraOverlay.classList.add('camera-overlay-rectangle-horizontal');
                     cameraFeedContainer.classList.add('is-horizontal');
                 }
@@ -275,7 +325,7 @@
                 currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
                 if (cameraFeed) cameraFeed.srcObject = currentStream;
             } catch (err) {
-                alert("Could not access the camera. Please check browser permissions.\n" + err.message);
+                alert("Nije moguće pristupiti kameri. Provjerite dozvole.\n" + err.message);
                 closeAllPopups();
             } finally {
                 setTimeout(() => { isCameraOpening = false; }, 300);
@@ -287,11 +337,11 @@
                 if (placeholder.classList.contains('has-preview')) { placeholder.style.backgroundImage = ''; placeholder.classList.remove('has-preview'); return; }
                 const inputId = placeholder.dataset.input; const placeholderId = placeholder.id;
                 const clickedIcon = event.target.closest('i'); const clickedUploadText = event.target.classList.contains('placeholder-upload-text');
-                if (clickedIcon && placeholder.classList.contains('kyc-camera-placeholder')) { await triggerCamera(placeholderId); } 
-                else if (clickedUploadText || !placeholder.classList.contains('kyc-camera-placeholder')) { triggerFileInput(inputId, placeholderId); }
+                if (clickedIcon) { await triggerCamera(placeholderId); } 
+                else if (clickedUploadText) { triggerFileInput(inputId, placeholderId); }
             });
         });
-
+        
         docUploadInput.addEventListener('change', (e) => { const file = e.target.files[0]; const targetId = e.target.dataset.targetPlaceholder; if(file && targetId) displayPreview(file, document.getElementById(targetId)); e.target.value = null; });
         selfieUploadInput.addEventListener('change', (e) => { const file = e.target.files[0]; const targetId = e.target.dataset.targetPlaceholder; if(file && targetId) displayPreview(file, document.getElementById(targetId)); e.target.value = null; });
         
@@ -326,14 +376,13 @@
                 }
                 
                 if (!docUploaded || !selfieUploaded) {
-                    alert("Please upload one identification document and your selfie.");
+                    alert("Molimo učitajte jedan identifikacijski dokument i Vašu fotografiju.");
                     return;
                 }
 
                 if (isGuardianKyc) {
-                    window.location.href = `register_en.html?kyc_complete=true&guardian=${guardianId}`;
-                } 
-                else {
+                    window.location.href = `register.html?kyc_complete=true&guardian=${guardianId}`;
+                } else {
                     if (reviewPopup) reviewPopup.style.display = 'flex';
                 }
             });
@@ -341,39 +390,11 @@
 
         if (reviewPopupNastaviBtn) {
             reviewPopupNastaviBtn.addEventListener('click', () => {
-                window.location.href = 'index_en.html';
+                window.location.href = 'index.html';
             });
         }
     });
-</script>
-
-<!-- Background Animation Script -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const canvas = document.getElementById('network-canvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let particles = []; let mouse = { x: null, y: null };
-        const darkOptions = { particleColorRGB: '128, 255, 0', lineColorRGB: '170, 0, 255', particleAmount: 120, defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4, mouseInteractionRadius: 150, mouseEffectStrength: 2 };
-        const lightOptions = { particleColorRGB: '106, 27, 154', lineColorRGB: '171, 71, 188', particleAmount: 120, defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4, mouseInteractionRadius: 150, mouseEffectStrength: 2 };
-        let currentOptions = document.documentElement.classList.contains('light-mode') ? lightOptions : darkOptions;
-        const resizeCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); };
-        window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
-        class Particle { constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.z = Math.random() * 2 - 1; this.radius = currentOptions.defaultRadius * (1 + this.z * 0.5); this.vx = (Math.random() - 0.5) * currentOptions.particleSpeed; this.vy = (Math.random() - 0.5) * currentOptions.particleSpeed; } draw() { let finalRadius = this.radius; let opacity = 1; if (mouse.x !== null) { const dx = this.x - mouse.x; const dy = this.y - mouse.y; const dist = Math.sqrt(dx * dx + dy * dy); if (dist < currentOptions.mouseInteractionRadius) { const effect = (1 - dist / currentOptions.mouseInteractionRadius); finalRadius += effect * currentOptions.mouseEffectStrength; opacity += effect * 0.5; } } ctx.beginPath(); ctx.arc(this.x, this.y, finalRadius, 0, Math.PI * 2); ctx.fillStyle = `rgba(${currentOptions.particleColorRGB}, ${opacity * 0.85})`; ctx.fill(); } update() { this.x += this.vx * (1 + this.z * 0.5); this.y += this.vy * (1 + this.z * 0.5); if (this.x > canvas.width + 5) this.x = -5; else if (this.x < -5) this.x = canvas.width + 5; if (this.y > canvas.height + 5) this.y = -5; else if (this.y < -5) this.y = canvas.height + 5; } }
-        const initParticles = () => { particles = []; for (let i = 0; i < currentOptions.particleAmount; i++) { particles.push(new Particle()); } };
-        const drawLines = () => { let pulse = Math.sin(Date.now() * 0.001) * 0.2 + 0.8; for (let i = 0; i < particles.length; i++) { for (let j = i + 1; j < particles.length; j++) { const p1 = particles[i]; const p2 = particles[j]; const dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)); if (dist < currentOptions.linkRadius) { let opacity = 1 - (dist / currentOptions.linkRadius); opacity *= pulse; if (mouse.x !== null) { const distToMouse1 = Math.sqrt(Math.pow(p1.x - mouse.x, 2) + Math.pow(p1.y - mouse.y, 2)); const distToMouse2 = Math.sqrt(Math.pow(p2.x - mouse.x, 2) + Math.pow(p2.y - mouse.y, 2)); if(distToMouse1 < currentOptions.mouseInteractionRadius || distToMouse2 < currentOptions.mouseInteractionRadius) { opacity = Math.min(1, opacity + 0.5); } } ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.strokeStyle = `rgba(${currentOptions.lineColorRGB}, ${opacity * 0.5})`; ctx.lineWidth = currentOptions.lineWidth; ctx.stroke(); } } } };
-        const animate = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => p.update()); drawLines(); particles.forEach(p => p.draw()); requestAnimationFrame(animate); };
-        window.setAnimationTheme = (theme) => {
-            if (theme === 'light') { currentOptions = lightOptions; } 
-            else { currentOptions = darkOptions; }
-            initParticles();
-        };
-        resizeCanvas();
-        animate();
-    });
-</script>
+    </script>
 
 </body>
 </html>

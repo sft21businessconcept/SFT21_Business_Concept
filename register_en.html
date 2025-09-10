@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Register - SFT21 InFace Invest Group</title>
+<title>Register - SFT21 Business Concept</title>
 <script>
         function applySft21Theme() {
             try {
@@ -108,32 +108,25 @@
         .image-placeholder { background-color: rgba(106, 27, 154, 0.1); border: 1px dashed var(--fluorescent-green); border-radius: 15px; display: flex; align-items: center; justify-content: center; min-height: 300px; color: rgba(255, 255, 255, 0.3); font-style: italic; background-image: url('https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center; }
         .benefits-list li { display: flex; align-items: flex-start; margin-bottom: 0.8rem; color: #e5e7eb; line-height: 1.6; }
         .benefits-list i { color: var(--fluorescent-green); margin-right: 0.8rem; margin-top: 0.25rem; flex-shrink: 0; }
-        .glass-card { background: rgba(106, 27, 154, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--fluorescent-green); border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); padding: 1.5rem; } /* Dodan padding za glass-card */
+        .glass-card { background: rgba(106, 27, 154, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--fluorescent-green); border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); padding: 1.5rem; }
 
         .registration-form-container { background-color: rgba(106, 27, 154, 0.05); border: 1px solid var(--fluorescent-green); border-radius: 15px; padding: 2rem 2.5rem; color: var(--text-color); }
         
-.btn-account-type {
-    padding: 0.6rem 1.5rem;
-    border: 1px solid var(--fluorescent-green);
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    background-color: var(--fluorescent-green);
-    color: #0e076a;
-}
-.btn-account-type.active {
-    background-color: transparent;
-    color: var(--fluorescent-green);
-}
-.btn-account-type:not(.active):hover {
-    background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%);
-}
-.btn-account-type.active:hover {
-    background-color: rgba(128, 255, 0, 0.1);
-}
-
+        .btn-account-type {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--fluorescent-green);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--fluorescent-green);
+            color: #0e076a;
+        }
+        .btn-account-type.active {
+            background-color: transparent;
+            color: var(--fluorescent-green);
+        }
         .btn-account-type:not(.active):hover {
             background-color: color-mix(in srgb, var(--fluorescent-green) 85%, black 15%);
         }
@@ -201,7 +194,7 @@
         .form-radio-register:checked::after { content: ''; display: block; width: 0.5rem; height: 0.5rem; background-color: var(--fluorescent-green); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
         .form-radio-register:focus { box-shadow: 0 0 0 2px rgba(128, 255, 0, 0.2); }
         .phone-input-wrapper { display: flex; align-items: center; border: 1px solid var(--fluorescent-green); border-radius: 8px; background-color: rgba(106, 27, 154, 0.1); overflow: hidden; }
-        .country-code-select { display: flex; align-items: center; padding: 0.75rem; background-color: rgba(106, 27, 154, 0.2); cursor: default; /* Nije više klikabilno */ border-right: 1px solid var(--fluorescent-green); color: white; }
+        .country-code-select { display: flex; align-items: center; padding: 0.75rem; background-color: rgba(106, 27, 154, 0.2); cursor: default; border-right: 1px solid var(--fluorescent-green); color: white; }
         .country-code-select img { width: 20px; height: auto; margin-right: 0.5rem; }
         .country-code-select span { font-weight: 500; margin-right: 0.3rem;}
         .form-input-register-phone { flex-grow: 1; border: none; background: none; padding: 0.75rem 1rem; color: white; }
@@ -243,14 +236,14 @@
             margin-top: 2rem !important;
         }
         
-        button:contains("Dalje"),
+        button:contains("Next"),
         .btn-primary,
         [type="submit"] {
             background-color: #80ff00 !important;
             color: #0e076a !important;
         }
         
-        div:contains("... ili nastavite popunjavanjem podataka") {
+        div:contains("... or continue by filling out the details") {
             text-align: center !important;
         }
 
@@ -485,13 +478,13 @@ html.light-mode .language-dropdown-mobile .language-item:hover {
     html.light-mode .glass-card,
     html.light-mode .registration-form-container {
         background-color: #ffffff !important;
-        border-color: #e2e8f0 !important; 
+        border-color: var(--primary-color) !important; 
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     }
     html.light-mode .image-placeholder {
-        border-color: #cbd5e1 !important; 
+        border-color: var(--primary-color) !important; 
         background-color: #f8fafc !important; 
-    } /* <--- ISPRAVAK: OVDJE JE DODANA ZAGRADA KOJA JE NEDOSTAJALA */
+    } 
 
     html.light-mode .benefits-list li {
         color: #334155 !important; 
@@ -518,7 +511,7 @@ html.light-mode .btn-account-type.active:hover {
 }
 
     html.light-mode .social-login-button {
-        border-color: #cbd5e1 !important;
+        border-color: var(--primary-color) !important;
         background-color: #f8fafc !important;
         color: #334155 !important;
     }
@@ -539,7 +532,7 @@ html.light-mode .btn-account-type.active:hover {
     html.light-mode .custom-select-trigger,
     html.light-mode .phone-input-wrapper {
         background-color: #f1f5f9 !important;
-        border-color: #cbd5e1 !important;
+        border-color: var(--primary-color) !important;
         color: #1e293b !important;    
     }
 
@@ -1031,8 +1024,8 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 <div class="container mx-auto px-6 py-4">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
-<img alt="InFace Invest Group logo" class="h-auto w-12 mr-4" id="site-logo" src="img/IFIG-logo.png"/>
-<a class="flex flex-col logo-nav" href="index_en.html" title="Go to homepage"> <span class="small-text">InFace Invest Group</span>
+<img alt="SFT21 logo" class="h-auto w-12 mr-4" id="site-logo" src="img/IFIG-logo.png"/>
+<a class="flex flex-col logo-nav" href="index_en.html" title="Go to homepage"> 
 <div class="text-white font-bold"> <span class="text-logo-orange">SFT</span>21 </div>
 </a>
 </div>
@@ -1117,7 +1110,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
                             </p>
 </div>
 </div>
-<div class="glass-card p-6">
+<div class="glass-card p-6 light-mode-border">
 <h4 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif !important;"><strong>Welcome to SFteam!</strong> </h4> <p class="text-gray-300 mb-4"><strong>Register for free and use the services of our platform:</strong></p>
 <ul class="benefits-list">
 <li><i class="fas fa-check-circle"></i>SFnet - business-social network</li>
@@ -1238,9 +1231,9 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 </label>
 </div>
 <div class="mt-6 text-xs text-gray-400 leading-relaxed">
-                              I have the right to revoke this consent for the processing of the mentioned data at any time for future use, in written form by sending a REVOCATION OF PERSONAL DATA via email to <strong>support@infaceinvestgroup.hr</strong>. Until the revocation, the data processing carried out based on this consent remains valid.</div>
+                              I have the right to revoke this consent for the processing of the mentioned data at any time for future use, in written form by sending a REVOCATION OF PERSONAL DATA via email to <strong>support@sft21.hr</strong>. Until the revocation, the data processing carried out based on this consent remains valid.</div>
 <div class="pt-6 space-y-3">
-<button class="btn-primary w-full py-3" id="dalje-button" style="background-color: #80ff00 !important; color: #0e076a !important; border-radius: 50px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 12px 24px; border: none;" type="button">Next</button> </div>
+<button class="btn-primary w-full py-3" id="dalje-button" type="button">Next</button>
 <p class="text-xs text-gray-400 mt-4">*Required fields</p>
 </form>
 </div> </div> </div>
@@ -1251,7 +1244,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 <div class="container mx-auto px-6">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
     <div class="md:col-span-1">
-        <h3 class="text-2xl font-bold mb-6 text-white">InFace Invest Group</h3>
+        <h3 class="text-2xl font-bold mb-6 text-white">SFT21</h3>
         <p class="text-gray-400 mb-8">On strong local and regional foundations, we are creating a global online community that connects people in a new, more humane, and above all, fairer way.</p>
         <div class="flex space-x-4">
             <a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#"><i class="fab fa-facebook-f text-xl"></i></a>
@@ -1275,25 +1268,25 @@ html.light-mode #theme-toggle-dark-icon-mobile {
     <div>
         <h4 class="text-lg font-bold mb-6 text-white">Contact</h4>
                     <ul class="space-y-3">
-                        <li class="text-gray-400">InFace Invest Group LLC</li>
+                        <li class="text-gray-400">SFT21 LLC</li>
                         <li class="text-gray-400">2120 Carey Ave, Cheyenne,</li>
                         <li class="text-gray-400">WY 82001</li>
                         <li class="text-gray-400">Wyoming, USA</li>
-                        <li><a href="mailto:info@sft21.com" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">info@infaceinvestgroup.com</a></li>
+                        <li><a href="mailto:info@sft21.com" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">info@sft21.com</a></li>
                     </ul>
     </div>
-    <div>
-        <h4 class="text-lg font-bold mb-6 text-white">Legal Information</h4>
-        <ul class="space-y-3">
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Terms of Use</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Privacy Policy</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">GDPR</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Business Policy</a></li>
-        </ul>
+            <div>
+                <h4 class="text-lg font-bold mb-6 text-white">Legal Information</h4>
+                <ul class="space-y-3">
+                    <li><a href="terms-of-use_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Terms of Use</a></li>
+                    <li><a href="privacy-policy_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Privacy Policy</a></li>
+                    <li><a href="privacy-policy_en.html#gdpr-rights" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">GDPR</a></li>
+                    <li><a href="business-rules_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Business Rules</a></li>
+                </ul>
+            </div>
     </div>
-</div>
 <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-    <p class="text-gray-400">© 2025 InFace Invest Group LLC - All rights reserved.</p>
+    <p class="text-gray-400">© 2025 SFT21 LLC - All rights reserved.</p>
 </div>
 </div>
 </footer>
@@ -1316,7 +1309,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
             </p>
 <h4>Business Cooperation with a Minor</h4>
 <p>
-                In accordance with the business policies of InFace Invest Group, the company permits the registration and business cooperation with a minor, specifically an older minor (16 to 18 years old), exclusively with the consent of a legal representative – parent, adopter, guardian.
+                In accordance with the SFT21 business policies, the company permits the registration and business cooperation with a minor, specifically an older minor (16 to 18 years old), exclusively with the consent of a legal representative – parent, adopter, guardian.
             </p>
 <form id="parental-consent-form">
 <h4 style="text-align: center;">LEGAL REPRESENTATIVE'S CONSENT</h4>
@@ -1339,7 +1332,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 <input class="form-input-register" id="minor-phone" name="minor_phone" readonly="" type="tel" value="+"/>
 </div>
 </div>
-<p class="mt-4">I/We agree that the above-mentioned person (older minor) registers with Inface Invest Group as a full member through the SFT21 system, and as such, I/we agree to the company's terms of use and privacy policy stated on the portal www.infaceinvestgroup.com</p>
+<p class="mt-4">I/We agree that the above-mentioned person (older minor) registers with SFT21 Company as a full member through the SFT21 system, and as such, I/we agree to the company's terms of use and privacy policy stated on the portal www.sft21.com</p>
 
 <div class="guardian-form-grid mt-6">
 <div class="guardian-column space-y-4">

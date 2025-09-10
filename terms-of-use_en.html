@@ -1,48 +1,27 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prijava - SFT21 Business Concept</title>
+    <title>SFT21 - Terms of Use</title>
 
-    <!-- ============================================= -->
-    <!-- UNIVERZALNA SKRIPTA ZA INICIJALIZACIJU TEME -->
-    <!-- Rješava "bljesak" i problem s back-forward cacheom -->
-    <!-- ============================================= -->
+    <!-- Sve CSS i skripte kao na index.html stranici -->
     <script>
-        // Funkcija za primjenu teme, da izbjegnemo ponavljanje koda
         function applySft21Theme() {
             try {
-                // Ako tema nije postavljena, zadana je 'dark'
                 const theme = localStorage.getItem('sft21_theme') || 'dark';
-
                 if (theme === 'light') {
-                    // Ako je tema 'light', DODAJ klasu
                     document.documentElement.classList.add('light-mode');
                 } else {
-                    // U svim ostalim slučajevima (ako je 'dark'), UKLONI klasu
                     document.documentElement.classList.remove('light-mode');
                 }
-            } catch (e) {
-                console.error('Greška pri primjeni teme:', e);
-            }
+            } catch (e) { console.error('Greška pri primjeni teme:', e); }
         }
-
-        // 1. Primijeni temu ODMAH pri učitavanju da se spriječi "bljesak"
         applySft21Theme();
-
-        // 2. Dodaj listener za 'pageshow' događaj. Ovo rješava problem
-        //    kada se stranica učita iz "back-forward" cachea preglednika.
-        window.addEventListener('pageshow', function(event) {
-            // event.persisted je 'true' ako je stranica učitana iz cachea
-            if (event.persisted) {
-                console.log('Stranica učitana iz bfcachea, ponovno provjeravam temu.');
-                applySft21Theme();
-            }
-        });
+        window.addEventListener('pageshow', (event) => { if (event.persisted) { applySft21Theme(); } });
     </script>
-
-    <!-- Tailwind CSS -->
+    
+     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet"/>
@@ -94,7 +73,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 140px; /* Veći odmak od headera */
+            padding-top: 80px; /* Veći odmak od headera */
             padding-bottom: 3rem;
             padding-left: 1rem; /* Padding za manje ekrane */
             padding-right: 1rem; /* Padding za manje ekrane */
@@ -219,11 +198,6 @@
             color: white;
         }
 
-                /* == STIL SAMO ZA OKVIR INPUT POLJA U LIGHT MODU == */
-        html.light-mode .form-input-login {
-            border-color: var(--primary-color) !important; 
-        }
-
         /* FINALNI ISPRAVAK ZA BOJU TEKSTA NA GUMBU U DARK MODU */
         body:not(.light-mode) .nav-menu a.btn-primary { color: var(--dark-color); }
 
@@ -239,23 +213,20 @@
     </style>
 </head>
 
-<body class="login-page">
-    
+<body class="bg-gray-900">
     <canvas id="network-canvas"></canvas>
     <div class="custom-cursor"></div>
 
+    <!-- ZAGLAVLJE (ENGLESKA VERZIJA) -->
     <nav class="fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <!-- Lijeva strana: Logo -->
                 <div class="flex items-center">
                     <img src="img/IFIG-logo.png" alt="SFT21 logo" id="site-logo" class="h-auto w-12 mr-4">
-                    <a href="index.html" class="flex flex-col logo-nav">
+                    <a href="index_en.html" class="flex flex-col logo-nav">
                          <div class="text-white font-bold"> <span class="text-logo-orange">SFT</span>21 </div>
                     </a>
                 </div>
-
-                <!-- Desna strana: Desktop Navigacija -->
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="language-selector relative">
                         <button id="theme-toggle" type="button" class="text-white hover:text-fluorescent-green transition-colors duration-300 text-xl p-2 rounded-full">
@@ -265,23 +236,19 @@
                         <button id="desktop-lang-trigger" class="language-trigger text-white hover:text-fluorescent-green transition-colors duration-300 text-xl">
                             <i class="fas fa-globe"></i>
                         </button>
-                        <div id="desktop-lang-dropdown" class="language-dropdown">
-                            <a href="login_en.html" class="language-item"> <img src="https://flagcdn.com/w20/gb.png" alt="Engleski" class="flag-image"> <span>ENG</span> </a>
-                            <a href="login.html" class="language-item"> <img src="https://flagcdn.com/w20/hr.png" alt="Hrvatski" class="flag-image"> <span>HRV</span> </a>
-                        </div>
+<div id="desktop-lang-dropdown" class="language-dropdown">
+    <a href="terms-of-use_en.html" class="language-item"> <img src="https://flagcdn.com/w20/gb.png" alt="English"> <span>ENG</span> </a>
+    <a href="terms-of-use.html" class="language-item"> <img src="https://flagcdn.com/w20/hr.png" alt="Croatian"> <span>HRV</span> </a>
+</div>
                     </div>
-                     <button class="btn-outline text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
-                     <a href="register.html" class="btn-primary text-xs">Registracija</a>
+                     <a href="login.html" class="btn-primary text-xs">Login</button>
+                     <a href="register_en.html" class="btn-primary text-xs">Register</a>
                 </div>
-
-                <!-- Mobilni Hamburger -->
                 <div class="md:hidden">
                     <div class="hamburger"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </div>
                 </div>
             </div>
         </div>
-
-        <!-- Mobilni Navigacijski Meni -->
         <div class="nav-menu md:hidden">
             <div class="mb-4">
                 <button id="theme-toggle-mobile" type="button" class="text-white hover:text-fluorescent-green transition-colors duration-300 text-2xl p-2 rounded-full">
@@ -289,134 +256,160 @@
                     <i id="theme-toggle-light-icon-mobile" class="fas fa-sun hidden"></i>
                 </button>
             </div>
-             <!-- Gumbi u mobilnom meniju -->
              <div class="flex flex-col mt-5 px-6 pt-4 border-t border-gray-700">
-                <button class="btn-outline w-full text-center text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
-                <a href="register.html" class="btn-primary w-full text-center text-xs mt-3">Registracija</a>
+                <a href="login.html" class="btn-primary w-full text-center text-xs">Login</button>
+                <a href="register_en.html" class="btn-primary w-full text-center text-xs mt-3">Register</a>
             </div>
         </div>
     </nav>
-   
-    <main class="login-main">
-        <div class="login-card">
-            <a href="index.html" title="Povratak na početnu" class="login-close-btn">×</a>
 
-            <div class="mb-8">
-                <h2 class="text-center text-3xl font-bold login-title">Prijava</h2>
-                <p class="mt-2 text-center text-sm login-subtitle">
-                    <strong>Dobrodošli u SFteam!</strong>
-                </p>
-            </div>
+    <!-- GLAVNI SADRŽAJ STRANICE -->
+    <main class="legal-content-wrapper">
+        <div class="legal-content glass-card interactive-card">
+            
+            <h1>Terms of Use</h1>
+            <p class="last-updated">Last Updated: September 10, 2025</p>
 
-            <form id="login-form" method="POST" novalidate>
-                <div>
-                    <label for="username" class="login-label">Korisničko ime ili email</label>
-                    <input id="username" name="username" type="text" autocomplete="username" required
-                           class="form-input-login"
-                           placeholder="Unesite korisničko ime ili email">
-                    <div id="username-error" class="error-message"></div>
-                </div>
-                
-                <div class="text-right text-sm -mt-2 mb-2"> 
-                    <a href="#" class="login-link">
-                        Zaboravili ste korisničko ime/email?
-                    </a>
-                </div>
+            <h2>Introduction</h2>
+            <p>Welcome to SFT21! These Terms of Use ("Terms") constitute a legally binding agreement between you, as a user ("you", "your", "User"), and **SFT21 LLC** ("Company", "we", "us", "our"), with its registered office at 2120 Carey Ave, Cheyenne, WY 82001, Wyoming, USA.</p>
+            <p>By accessing, registering, or using any part of the website [sft21.github.io/SFT21_Business_Concept/](https://sft21.github.io/SFT21_Business_Concept/) and its associated platforms within the SFT21 Ecosystem (including, but not limited to, SFured, SFnet, and SFshop), you acknowledge that you have read, understood, and agree to be bound by these Terms and our **Privacy Policy**. If you do not agree with these Terms, please do not use our Services.</p>
 
-                <div>
-                    <label for="password" class="login-label">Lozinka</label>
-                    <input id="password" name="password" type="password" autocomplete="current-password" required
-                           class="form-input-login"
-                           placeholder="Unesite lozinku">
-                    <div id="password-error" class="error-message"></div>
-                </div>
+            <h2>1. Definitions of Key Terms</h2>
+            <ul>
+                <li><strong>Services:</strong> All websites, platforms (including, but not limited to, SFured, SFnet, and SFshop), applications, content, and functionalities that the Company currently offers or may offer in the future within the SFT21 Ecosystem.</li>
+                <li><strong>User:</strong> Any person who accesses or uses the Services, whether registered or not.</li>
+                <li><strong>Registered User:</strong> A User who has successfully created a user account.</li>
+                <li><strong>License Holder:</strong> A Registered User who has purchased an SFT21 License Package.</li>
+                <li><strong>SFfranchisee:</strong> A License Holder or other buyer who has entered into a Franchise Agreement.</li>
+                <li><strong>Content:</strong> All text, graphics, images, software, video, audio, and other information available through the Services.</li>
+                <li><strong>User Content:</strong> All content that Users post, upload, or share through the Services (e.g., posts on SFnet, product reviews).</li>
+            </ul>
 
-                <div class="flex items-center justify-between">
-                    <div class="checkbox-container">
-                        <input id="remember-me" name="remember-me" type="checkbox"
-                               class="form-checkbox-login">
-                        <label for="remember-me" class="checkbox-label-login">
-                            Zapamti me
-                        </label>
-                    </div>
+            <h2>2. Eligibility and Account Registration</h2>
+            <ul>
+                <li><strong>Age Requirement and Consent:</strong> Use of our Services is permitted for individuals who are at least **16 years of age**.
+                    <ul>
+                        <li>If you are **18 years of age or older**, you accept these Terms on your own behalf.</li>
+                        <li>If you are **between 16 and 18 years of age** (considered a minor under applicable law), the consent of a parent or legal guardian ("Guardian") is required to create an account and use the Services. During registration, you will be asked to provide information about the Guardian and a consent form that the Guardian must sign. By accepting these Terms, you confirm that you have obtained valid consent. The Guardian providing consent also accepts these Terms on your behalf and assumes responsibility for your activities on the platform.</li>
+                    </ul>
+                </li>
+                <li><strong>Accuracy of Information:</strong> When registering, you agree to provide accurate, complete, and current information, including information about the Guardian if applicable. You are responsible for maintaining the accuracy of this information.</li>
+                <li><strong>Account Security:</strong> You are solely responsible for the security of your password and for all activities that occur under your user account. You agree to immediately notify the Company of any unauthorized use of your account.</li>
+                <li><strong>Identity Verification (KYC - Know Your Customer):</strong> The creation of a user account and access to functionalities within the SFT21 Ecosystem, including SFured, SFnet, and SFshop, is conditional upon the successful completion of a mandatory identity verification process (KYC). This process is necessary for the security of all users, fraud prevention, and regulatory compliance. As part of the KYC process, you will be required to submit accurate personal data and valid documentation, which may include, but is not limited to, a photograph of an identity document and a "selfie" photograph. Refusal or failure to pass the KYC procedure will result in the inability to use Services that require a registered account.</li>
+            </ul>
+            
+            <h2>3. User Conduct and Rules of Use</h2>
+            <p>By using our Services, you agree not to:</p>
+            <ul>
+                <li>Post false, misleading, illegal, defamatory, offensive, or discriminatory information.</li>
+                <li>Use the Services for any unlawful purpose or in violation of any local, state, national, or international law.</li>
+                <li>Impersonate any person or entity.</li>
+                <li>Distribute spam, unsolicited messages, chain letters, or pyramid schemes.</li>
+                <li>Upload viruses, malicious code, or anything that could harm the functionality of the Services.</li>
+                <li>Attempt to gain unauthorized access to our systems, other Users' accounts, or collect their personal information.</li>
+                <li>Infringe upon the intellectual property rights of the Company or third parties.</li>
+            </ul>
 
-                    <div class="text-sm">
-                        <a href="#" class="login-link">
-                            Zaboravili ste lozinku?
-                        </a>
-                    </div>
-                </div>
+            <h2>4. Proprietary Rights and Intellectual Property</h2>
+            <ul>
+                <li><strong>Company's Ownership:</strong> All Services, including the SFT21 brand, logos, software (including the SFalgorithm), design, and Content, are the exclusive property of the Company and its licensors, protected by copyright and other intellectual property laws.</li>
+                <li><strong>License to Use:</strong> We grant you a limited, non-exclusive, non-transferable, and revocable license to access and use the Services solely for your personal, non-commercial purposes (unless otherwise defined in a Franchise Agreement), in accordance with these Terms.</li>
+                <li><strong>User Content:</strong> You retain ownership of your User Content. However, by posting User Content, you grant the Company a worldwide, non-exclusive, royalty-free license to use, copy, modify, distribute, and display that content for the purpose of providing and promoting the Services.</li>
+            </ul>
 
-                <div class="mt-6">
-                    <button type="submit" class="login-submit-button">
-                        Prijavi se
-                    </button>
-                </div>
-            </form>
+            <h2>5. Specific Product Terms</h2>
+            <ul>
+                <li><strong>Purchase of License Packages:</strong> The purchase of an SFT21 License is governed by a separate **License Purchase Agreement**. In the event of a conflict between these Terms and the License Purchase Agreement, the provisions of the License Purchase Agreement shall prevail.</li>
+                <li><strong>Franchise Business:</strong> Participation in the SFT21 Business Concept as an SFfranchisee is governed by a separate **Franchise Agreement**. In the event of a conflict, the provisions of the Franchise Agreement shall prevail.</li>
+            </ul>
 
-            <hr>
+            <h2>6. Disclaimer of Warranties and Limitation of Liability</h2>
+            <ul>
+                <li><strong>"AS IS":</strong> The Services are provided "as is" and "as available", without any warranties, express or implied. The Company does not warrant that the Services will be uninterrupted, secure, or error-free.</li>
+                <li><strong>LIMITATION OF LIABILITY:</strong> To the fullest extent permitted by law, the Company, its directors, employees, and partners shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, goodwill, or other intangible losses, resulting from your access to or use of the Services.</li>
+                <li><strong>RISKS:</strong> As stated in the License Purchase Agreement, the realization of any financial benefits is not guaranteed and depends on a range of business and market risks.</li>
+            </ul>
 
-            <div class="text-center">
-                <p class="register-prompt-text">Nemate korisnički račun?</p>
-                <a href="register.html" class="register-link">
-                    REGISTRIRAJ SE
-                </a>
-            </div>
+            <h2>7. Termination</h2>
+            <ul>
+                <li><strong>By You:</strong> You may stop using our Services at any time. For permanent deletion of your account, please follow the procedures outlined in the Privacy Policy.</li>
+                <li><strong>By Us:</strong> We reserve the right, at our sole discretion, to temporarily suspend or permanently terminate your user account and access to the Services if we determine that you have breached these Terms or other applicable agreements (such as the License Purchase Agreement or Franchise Agreement). In the event of such a decision, we will make reasonable efforts to notify you by email of the action taken. The notice will state the reason for the suspension or termination of the account, and where applicable and possible, you will be informed of your rights and the steps you can take, such as the right to appeal or seek clarification, in accordance with our internal procedures. The Company reserves the right to take immediate action without prior notice in cases of serious violations, such as illegal activities, or endangering the security of the platform or other Users.</li>
+            </ul>
+
+            <h2>8. Changes to the Terms</h2>
+            <p>The Company reserves the right, at its sole discretion, to modify or supplement these Terms at any time. We will notify you of any changes by posting the updated version of the Terms on this page, along with updating the "Last Updated" date at the top of the document. Additionally, we will make reasonable efforts to inform all **Registered Users** (including License Holders and SFfranchisees) of significant changes via a notification within their SFured user interface or by email. Your continued use of the Services after the changes take effect will be considered your acceptance of such modified Terms. If you do not agree with the new Terms, you must stop using the Services. We recommend that you regularly review these Terms to stay informed of any changes.</p>
+
+            <h2>9. Governing Law and Dispute Resolution</h2>
+            <p>These Terms of Use shall be governed by and construed in accordance with the substantive law of **Switzerland**, excluding the application of the United Nations Convention on Contracts for the International Sale of Goods (CISG).</p>
+            <p>All disputes, controversies, or claims arising out of or in connection with these Terms of Use, including the breach, termination, or validity thereof, shall be finally settled by **arbitration** in accordance with the Swiss Rules of International Arbitration of the Swiss Arbitration Centre.</p>
+            <p>The number of arbitrators shall be one.<br>The seat of the arbitration shall be Zurich, Switzerland.<br>The language of the arbitral proceedings shall be English.</p>
+
+            <h2>10. Contact</h2>
+            <p>If you have any questions about these Terms, please contact us at: legal@sft21.com.</p>
+
         </div>
     </main>
 
-<footer class="py-16 bg-gray-900 border-t border-gray-800">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="md:col-span-1">
-                <h3 class="text-2xl font-bold mb-6 text-white">SFT21</h3>
-                <p class="text-gray-400 mb-8">Na jakim lokalnim i regionalnim temeljima stvaramo globalnu online zajednica koja povezuje ljude na jedan novi, humaniji i prije svega pošteniji način.</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-x-twitter text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-linkedin-in text-xl"></i></a>
+    <!-- PODNOŽJE (ENGLESKA VERZIJA) -->
+    <footer class="py-16 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-white">SFT21</h3>
+                    <p class="text-gray-400 mb-8">On strong local and regional foundations, we create a global online community that connects people in a new, more humane, and fairer way.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-x-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-linkedin-in text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index_en.html#home" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Home</a></li>
+                        <li><a href="index_en.html#business-concept" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Business Concept</a></li>
+                        <li><a href="index_en.html#license-packages" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">License Packages</a></li>
+                        <li><a href="index_en.html#starter-packages" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Starter Packages</a></li>
+                        <li><a href="register_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Registration</a></li>
+                        <li><a href="login_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Login</a></li>
+                        <li><a href="index_en.html#contact" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Contact</h4>
+                        <ul class="space-y-3">
+                            <li class="text-gray-400">SFT21 LLC</li>
+                            <li class="text-gray-400">2120 Carey Ave, Cheyenne,</li>
+                            <li class="text-gray-400">WY 82001</li>
+                            <li class="text-gray-400">Wyoming, USA</li>
+                            <li><a href="mailto:info@sft21.com" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">info@sft21.com</a></li>
+                        </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Legal Information</h4>
+                    <ul class="space-y-3">
+                        <li><a href="terms-of-use_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Terms of Use</a></li>
+                        <li><a href="privacy-policy_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="privacy-policy_en.html#gdpr-rights" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">GDPR</a></li>
+                        <li><a href="business-rules_en.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Business Rules</a></li>
+                    </ul>
                 </div>
             </div>
-            <div>
-                <h4 class="text-lg font-bold mb-6 text-white">Brzi linkovi</h4>
-                <ul class="space-y-3">
-                    <li><a href="index.html#pocetna" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Početna</a></li>
-                    <li><a href="index.html#poslovni-koncept" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Poslovni koncept</a></li>
-                    <li><a href="index.html#investicija" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Inicijalni paketi</a></li>
-                    <li><a href="index.html#startni-paketi" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Startni paketi</a></li>
-                    <li><a href="register.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Registracija</a></li>
-                    <li><a href="login.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Prijava</a></li>
-                    <li><a href="index.html#kontakt" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Kontakt</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-lg font-bold mb-6 text-white">Kontakt</h4>
-                    <ul class="space-y-3">
-                        <li class="text-gray-400">SFT21 LLL</li>
-                        <li class="text-gray-400">2120 Carey Ave, Cheyenne</li>
-                        <li class="text-gray-400">WY 82001</li>
-                        <li class="text-gray-400">Wyoming, USA</li>
-                        <li><a href="mailto:info@sft21.com" class="text-gray-400 hover:text-purple-400">info@sft21.com</a></li>
-                    </ul>
-            </div>
-            <div>
-                <h4 class="text-lg font-bold mb-6 text-white">Pravne informacije</h4>
-                <ul class="space-y-3">
-                    <li><a href="terms-of-use.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Uvjeti korištenja</a></li>
-                    <li><a href="privacy-policy.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Politika privatnosti</a></li>
-                    <li><a href="privacy-policy.html#gdpr-rights" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">GDPR</a></li>
-                    <li><a href="business-rules.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Pravila poslovanja</a></li>
-                </ul>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">© 2025 SFT21 LLC - All rights reserved.</p>
             </div>
         </div>
-        <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p class="text-gray-400">© 2025 SFT21 LLC  -   Sva prava pridržana.</p>
-        </div>
-    </div>
-</footer>
+        <a href="sfteam_en.html" title="Visit the SFteam page" class="pulsating-circle">
+            <div class="circle-content">
+                <span class="circle-line line-i">I</span>
+                <span class="circle-line heart-symbol">❤️</span>
+                <span class="circle-line line-sfteam">SFteam</span>
+            </div>
+        </a>
+    </footer>
 
-    <script>
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
             const desktopLangTrigger = document.getElementById('desktop-lang-trigger');

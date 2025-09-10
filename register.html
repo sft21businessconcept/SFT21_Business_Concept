@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Registracija - SFT21 InFace Invest Group</title>
+<title>Registracija - SFT21 Business Concept</title>
 <!-- ============================================= -->
 <!-- UNIVERZALNA SKRIPTA ZA INICIJALIZACIJU TEME (ISPRAVLJENO) -->
 <!-- Rješava "bljesak" i problem s back-forward cacheom -->
@@ -555,12 +555,12 @@ html.light-mode .language-dropdown-mobile .language-item:hover {
     html.light-mode .glass-card,
     html.light-mode .registration-form-container {
         background-color: #ffffff !important;
-        border-color: #e2e8f0 !important; /* Svijetliji obrub */
+        border-color: var(--primary-color) !important; 
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     }
     html.light-mode .image-placeholder {
-        border-color: #cbd5e1 !important; /* Obrub slike */
-        background-color: #f8fafc !important; /* Pozadina slike */
+        border-color: var(--primary-color) !important; 
+        background-color: #f8fafc !important; 
     }
 
     /* Lista prednosti i ikone */
@@ -591,7 +591,7 @@ html.light-mode .btn-account-type.active:hover {
 
     /* Social media gumbi */
     html.light-mode .social-login-button {
-        border-color: #cbd5e1 !important;
+        border-color: var(--primary-color) !important; 
         background-color: #f8fafc !important;
         color: #334155 !important;
     }
@@ -613,7 +613,7 @@ html.light-mode .btn-account-type.active:hover {
     html.light-mode .custom-select-trigger,
     html.light-mode .phone-input-wrapper {
         background-color: #f1f5f9 !important;
-        border-color: #cbd5e1 !important;
+        border-color: var(--primary-color) !important; /* <--- OVO JE IZMIJENJENO */
         color: #1e293b !important;    
     }
 
@@ -1137,8 +1137,8 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 <div class="container mx-auto px-6 py-4">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
-<img alt="InFace Invest Group logo" class="h-auto w-12 mr-4" id="site-logo" src="img/IFIG-logo.png"/>
-<a class="flex flex-col logo-nav" href="index.html" title="Idi na početnu stranicu"> <span class="small-text">InFace Invest Group</span>
+<img alt="SFT21 logo" class="h-auto w-12 mr-4" id="site-logo" src="img/IFIG-logo.png"/>
+<a class="flex flex-col logo-nav" href="index.html" title="Idi na početnu stranicu">
 <div class="text-white font-bold"> <span class="text-logo-orange">SFT</span>21 </div>
 </a>
 </div>
@@ -1223,7 +1223,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
                             </p>
 </div>
 </div>
-<div class="glass-card p-6">
+<div class="glass-card p-6 light-mode-border">
 <h4 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif !important;"><strong>Dobro došli u SFteam!</strong> </h4> <p class="text-gray-300 mb-4"><strong>Besplatno se registriraj i koristi usluge naše platforme:</strong></p>
 <ul class="benefits-list">
 <li><i class="fas fa-check-circle"></i>SFnet - poslovno-društvena mreža</li>
@@ -1344,9 +1344,9 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 </label>
 </div>
 <div class="mt-6 text-xs text-gray-400 leading-relaxed">
-                              Ovu suglasnost za obradu nevedenih podataka imam pravo u bilo kojem trenutku opozvati za daljnje korištenje, u pisanom obliku slanjem OPOZIVA OSOBNIH PODATAKA putem emaila na adresu <strong>support@infaceinvestgroup.hr</strong>. Do opoziva izvršena obrada podataka temeljem ove suglasnosti ostaje pravovaljana.</div>
+                              Ovu suglasnost za obradu nevedenih podataka imam pravo u bilo kojem trenutku opozvati za daljnje korištenje, u pisanom obliku slanjem OPOZIVA OSOBNIH PODATAKA putem emaila na adresu <strong>support@sft21.hr</strong>. Do opoziva izvršena obrada podataka temeljem ove suglasnosti ostaje pravovaljana.</div>
 <div class="pt-6 space-y-3">
-<button class="btn-primary w-full py-3" id="dalje-button" style="background-color: #80ff00 !important; color: #0e076a !important; border-radius: 50px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 12px 24px; border: none;" type="button">Dalje</button> </div>
+<button class="btn-primary w-full py-3" id="dalje-button" type="button">DALJE</button>
 <p class="text-xs text-gray-400 mt-4">*Obvezna polja</p>
 </form>
 </div> </div> </div>
@@ -1359,7 +1359,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 <div class="container mx-auto px-6">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
     <div class="md:col-span-1">
-        <h3 class="text-2xl font-bold mb-6 text-white">InFace Invest Group</h3>
+        <h3 class="text-2xl font-bold mb-6 text-white">SFT21</h3>
         <p class="text-gray-400 mb-8">Na jakim lokalnim i regionalnim temeljima stvaramo globalnu online zajednica koja povezuje ljude na jedan novi, humaniji i prije svega pošteniji način.</p>
         <div class="flex space-x-4">
             <a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#"><i class="fab fa-facebook-f text-xl"></i></a>
@@ -1383,25 +1383,25 @@ html.light-mode #theme-toggle-dark-icon-mobile {
     <div>
         <h4 class="text-lg font-bold mb-6 text-white">Kontakt</h4>
                     <ul class="space-y-3">
-                        <li class="text-gray-400">InFace Invest Group LLC</li>
+                        <li class="text-gray-400">SFT21 LLC</li>
                         <li class="text-gray-400">2120 Carey Ave, Cheyenne,</li>
                         <li class="text-gray-400">WY 82001</li>
                         <li class="text-gray-400">Wyoming, USA</li>
-                        <li><a href="mailto:info@sft21.com" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">info@infaceinvestgroup.com</a></li>
+                        <li><a href="mailto:info@sft21.com" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">info@sft21.com</a></li>
                     </ul>
     </div>
-    <div>
-        <h4 class="text-lg font-bold mb-6 text-white">Pravne informacije</h4>
-        <ul class="space-y-3">
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Uvjeti korištenja</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Politika privatnosti</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">GDPR</a></li>
-            <li><a class="text-gray-400 hover:text-purple-400 transition-colors duration-300" href="#">Pravila poslovanja</a></li>
-        </ul>
-    </div>
+            <div>
+                <h4 class="text-lg font-bold mb-6 text-white">Pravne informacije</h4>
+                <ul class="space-y-3">
+                    <li><a href="terms-of-use.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Uvjeti korištenja</a></li>
+                    <li><a href="privacy-policy.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Politika privatnosti</a></li>
+                    <li><a href="privacy-policy.html#gdpr-rights" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">GDPR</a></li>
+                    <li><a href="business-rules.html" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">Pravila poslovanja</a></li>
+                </ul>
+            </div>
 </div>
 <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-    <p class="text-gray-400">© 2025 InFace Invest Group LLC - Sva prava pridržana.</p>
+    <p class="text-gray-400">© 2025 SFT21 LLC - Sva prava pridržana.</p>
 </div>
 </div>
 </footer>
@@ -1428,7 +1428,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
             </p>
 <h4>Poslovna suradnja sa maloljetnom osobom</h4>
 <p>
-                Sukladno pravilima poslovanja kompanija InFace Invest Group dozvoljava registraciju i poslovnu suradnju sa maloljetnom osobom odnosno registraciju starijeg maloljetnika (16 do 18 godina) isključivo uz suglasnost zakonskog zastupnika – roditelja, posvojitelja, skrbnika.
+                Sukladno pravilima poslovanja kompanija SFT21 dozvoljava registraciju i poslovnu suradnju sa maloljetnom osobom odnosno registraciju starijeg maloljetnika (16 do 18 godina) isključivo uz suglasnost zakonskog zastupnika – roditelja, posvojitelja, skrbnika.
             </p>
 <form id="parental-consent-form">
 <h4 style="text-align: center;">SUGLASNOST ZAKONSKOG ZASTUPNIKA</h4>
@@ -1451,7 +1451,7 @@ html.light-mode #theme-toggle-dark-icon-mobile {
 <input class="form-input-register" id="minor-phone" name="minor_phone" readonly="" type="tel" value="+"/>
 </div>
 </div>
-<p class="mt-4">Suglasan/na/ni sam/smo da se gore navedena osoba (stariji maloljetnik) registrira u kompaniju Inface Invest Group kao punopravni član kroz sistem SFT21 te kao takvi pristajem/o na kompanijske uvjete korištenja i pravila privatnosti navedena na stranicama portala www.infaceinvestgroup.com</p>
+<p class="mt-4">Suglasan/na/ni sam/smo da se gore navedena osoba (stariji maloljetnik) registrira u SFT21 kompaniju kao punopravni član kroz sistem SFT21 te kao takvi pristajem/o na kompanijske uvjete korištenja i pravila privatnosti navedena na stranicama portala www.sft21.com</p>
 
 <div class="guardian-form-grid mt-6">
 <div class="guardian-column space-y-4">

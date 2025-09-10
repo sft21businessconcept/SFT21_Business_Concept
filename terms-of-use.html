@@ -3,24 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prijava - SFT21 Business Concept</title>
+    <title>Uvjeti korištenja - SFT21 Business Concept</title>
 
-    <!-- ============================================= -->
-    <!-- UNIVERZALNA SKRIPTA ZA INICIJALIZACIJU TEME -->
-    <!-- Rješava "bljesak" i problem s back-forward cacheom -->
-    <!-- ============================================= -->
     <script>
-        // Funkcija za primjenu teme, da izbjegnemo ponavljanje koda
         function applySft21Theme() {
             try {
-                // Ako tema nije postavljena, zadana je 'dark'
                 const theme = localStorage.getItem('sft21_theme') || 'dark';
 
                 if (theme === 'light') {
-                    // Ako je tema 'light', DODAJ klasu
                     document.documentElement.classList.add('light-mode');
                 } else {
-                    // U svim ostalim slučajevima (ako je 'dark'), UKLONI klasu
                     document.documentElement.classList.remove('light-mode');
                 }
             } catch (e) {
@@ -94,7 +86,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 140px; /* Veći odmak od headera */
+            padding-top: 80px; /* Veći odmak od headera */
             padding-bottom: 3rem;
             padding-left: 1rem; /* Padding za manje ekrane */
             padding-right: 1rem; /* Padding za manje ekrane */
@@ -219,11 +211,6 @@
             color: white;
         }
 
-                /* == STIL SAMO ZA OKVIR INPUT POLJA U LIGHT MODU == */
-        html.light-mode .form-input-login {
-            border-color: var(--primary-color) !important; 
-        }
-
         /* FINALNI ISPRAVAK ZA BOJU TEKSTA NA GUMBU U DARK MODU */
         body:not(.light-mode) .nav-menu a.btn-primary { color: var(--dark-color); }
 
@@ -265,12 +252,12 @@
                         <button id="desktop-lang-trigger" class="language-trigger text-white hover:text-fluorescent-green transition-colors duration-300 text-xl">
                             <i class="fas fa-globe"></i>
                         </button>
-                        <div id="desktop-lang-dropdown" class="language-dropdown">
-                            <a href="login_en.html" class="language-item"> <img src="https://flagcdn.com/w20/gb.png" alt="Engleski" class="flag-image"> <span>ENG</span> </a>
-                            <a href="login.html" class="language-item"> <img src="https://flagcdn.com/w20/hr.png" alt="Hrvatski" class="flag-image"> <span>HRV</span> </a>
-                        </div>
+                    <div id="desktop-lang-dropdown" class="language-dropdown">
+                        <a href="terms-of-use_en.html" class="language-item"> <img src="https://flagcdn.com/w20/gb.png" alt="English"> <span>ENG</span> </a>
+                        <a href="terms-of-use.html" class="language-item"> <img src="https://flagcdn.com/w20/hr.png" alt="Croatian"> <span>HRV</span> </a>
                     </div>
-                     <button class="btn-outline text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
+                    </div>
+                     <a href="login.html" class="btn-primary text-xs">Prijava</a>
                      <a href="register.html" class="btn-primary text-xs">Registracija</a>
                 </div>
 
@@ -291,85 +278,110 @@
             </div>
              <!-- Gumbi u mobilnom meniju -->
              <div class="flex flex-col mt-5 px-6 pt-4 border-t border-gray-700">
-                <button class="btn-outline w-full text-center text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
+                <a href="login.html" class="btn-primary w-full text-center text-xs">
+                    
+                </a><button class="btn-outline w-full text-center text-xs opacity-50 cursor-not-allowed" disabled>Prijava</button>
                 <a href="register.html" class="btn-primary w-full text-center text-xs mt-3">Registracija</a>
             </div>
         </div>
     </nav>
    
-    <main class="login-main">
-        <div class="login-card">
-            <a href="index.html" title="Povratak na početnu" class="login-close-btn">×</a>
+<main class="legal-content-wrapper">
+            <div class="legal-content glass-card interactive-card">
+        
+<h1>Uvjeti korištenja</h1>
+            <p class="last-updated">Datum zadnje izmjene: 10. rujna 2025.</p>
 
-            <div class="mb-8">
-                <h2 class="text-center text-3xl font-bold login-title">Prijava</h2>
-                <p class="mt-2 text-center text-sm login-subtitle">
-                    <strong>Dobrodošli u SFteam!</strong>
-                </p>
-            </div>
+            <h2>Uvod</h2>
+            <p>Dobrodošli na SFT21! Ovi Uvjeti korištenja ("Uvjeti") predstavljaju pravno obvezujući sporazum između vas, kao korisnika ("vi", "vaš", "Korisnik"), i tvrtke SFT21 LLC ("Kompanija", "mi", "naš"), sa sjedištem na adresi 2120 Carey Ave, Cheyenne, WY 82001, Wyoming, USA.</p>
+            <p>Pristupanjem, registracijom ili korištenjem bilo kojeg dijela web stranice sft21.github.io/SFT21_Business_Concept/ i povezanih platformi unutar SFT21 Ekosustava (uključujući, ali ne ograničavajući se na SFured, SFnet i SFshop), potvrđujete da ste pročitali, razumjeli i da se slažete s ovim Uvjetima i našom Politikom privatnosti. Ako se ne slažete s ovim Uvjetima, molimo vas da ne koristite naše usluge.</p>
 
-            <form id="login-form" method="POST" novalidate>
-                <div>
-                    <label for="username" class="login-label">Korisničko ime ili email</label>
-                    <input id="username" name="username" type="text" autocomplete="username" required
-                           class="form-input-login"
-                           placeholder="Unesite korisničko ime ili email">
-                    <div id="username-error" class="error-message"></div>
-                </div>
-                
-                <div class="text-right text-sm -mt-2 mb-2"> 
-                    <a href="#" class="login-link">
-                        Zaboravili ste korisničko ime/email?
-                    </a>
-                </div>
+            <h2>1. Definicije ključnih pojmova</h2>
+            <ul>
+                <li><strong>Usluge:</strong> Sve web stranice, platforme (uključujući, ali ne ograničavajući se na SFured, SFnet i SFshop), aplikacije, sadržaj i funkcionalnosti koje Kompanija trenutno nudi ili će ponuditi u budućnosti unutar SFT21 Ekosustava.</li>
+                <li><strong>Korisnik:</strong> Svaka osoba koja pristupa ili koristi Usluge, bez obzira na to je li registrirana.</li>
+                <li><strong>Registrirani korisnik:</strong> Korisnik koji je uspješno kreirao korisnički račun.</li>
+                <li><strong>Vlasnik Licence:</strong> Registrirani korisnik koji je kupio SFT21 Licencni Paket.</li>
+                <li><strong>SFfranšizer:</strong> Vlasnik Licence ili drugi kupac koji je sklopio Franšizni ugovor.</li>
+                <li><strong>Sadržaj:</strong> Sav tekst, grafika, slike, softver, video, audio i druge informacije dostupne putem Usluga.</li>
+                <li><strong>Korisnički sadržaj:</strong> Sav sadržaj koji Korisnici objavljuju, prenose ili dijele putem Usluga (npr. postovi na SFnetu, recenzije proizvoda).</li>
+            </ul>
 
-                <div>
-                    <label for="password" class="login-label">Lozinka</label>
-                    <input id="password" name="password" type="password" autocomplete="current-password" required
-                           class="form-input-login"
-                           placeholder="Unesite lozinku">
-                    <div id="password-error" class="error-message"></div>
-                </div>
+            <h2>2. Prihvatljivost i registracija računa</h2>
+            <ul>
+                <li><strong>Dobna granica i suglasnost:</strong> Korištenje naših Usluga dopušteno je osobama koje imaju najmanje 16 godina.
+                    <ul>
+                        <li>Ako imate 18 ili više godina, samostalno prihvaćate ove Uvjete.</li>
+                        <li>Ako imate između 16 i 18 godina (smatrate se maloljetnikom prema mjerodavnom pravu), za kreiranje računa i korištenje Usluga nužna je suglasnost roditelja ili zakonskog skrbnika ("Zastupnik"). Prilikom registracije, od vas će se tražiti da dostavite podatke o Zastupniku te obrazac suglasnosti koji Zastupnik mora potpisati. Prihvaćanjem ovih Uvjeta, potvrđujete da ste dobili valjanu suglasnost. Zastupnik koji daje suglasnost također prihvaća ove Uvjete u vaše ime i preuzima odgovornost za vaše aktivnosti na platformi.</li>
+                    </ul>
+                </li>
+                <li><strong>Točnost informacija:</strong> Prilikom registracije, obvezujete se pružiti točne, potpune i ažurne informacije, uključujući i podatke o Zastupniku ako je primjenjivo. Vi ste odgovorni za održavanje točnosti tih informacija.</li>
+                <li><strong>Sigurnost računa:</strong> Vi ste isključivo odgovorni za sigurnost svoje lozinke i za sve aktivnosti koje se događaju pod vašim korisničkim računom. Obvezujete se odmah obavijestiti Kompaniju o bilo kakvom neovlaštenom korištenju vašeg računa.</li>
+                <li><strong>Provjera identiteta (KYC - Know Your Customer):</strong> Kreiranje korisničkog računa i pristup funkcionalnostima unutar SFT21 Ekosustava, uključujući SFured, SFnet i SFshop, uvjetovano je uspješnim završetkom obveznog postupka provjere identiteta (KYC). Ovaj postupak je nužan radi sigurnosti svih korisnika, sprječavanja prijevara i usklađenosti s regulatornim zahtjevima. U sklopu KYC procesa, od vas će se tražiti da dostavite točne osobne podatke te važeću dokumentaciju, što može uključivati, ali nije ograničeno na, fotografiju osobnog dokumenta i "selfie" fotografiju. Odbijanje ili neuspjeh u prolasku KYC procedure rezultirat će nemogućnošću korištenja Usluga koje zahtijevaju registrirani račun.</li>
+            </ul>
+            
+            <h2>3. Pravila korištenja i ponašanja Korisnika</h2>
+            <p>Korištenjem naših Usluga, obvezujete se da nećete:</p>
+            <ul>
+                <li>Objavljivati lažne, obmanjujuće, ilegalne, klevetničke, uvredljive ili diskriminirajuće informacije.</li>
+                <li>Koristiti Usluge za bilo kakve nezakonite svrhe ili kršenje bilo kojih lokalnih, državnih, nacionalnih ili međunarodnih zakona.</li>
+                <li>Lažno se predstavljati kao druga osoba ili entitet.</li>
+                <li>Distribuirati spam, neželjene poruke, lančana pisma ili piramidalne sheme.</li>
+                <li>Učitavati viruse, zlonamjerni kod ili bilo što što bi moglo naštetiti funkcionalnosti Usluga.</li>
+                <li>Pokušavati neovlašteno pristupiti našim sustavima, računima drugih Korisnika ili prikupljati njihove osobne podatke.</li>
+                <li>Kršiti prava intelektualnog vlasništva Kompanije ili trećih strana.</li>
+            </ul>
 
-                <div class="flex items-center justify-between">
-                    <div class="checkbox-container">
-                        <input id="remember-me" name="remember-me" type="checkbox"
-                               class="form-checkbox-login">
-                        <label for="remember-me" class="checkbox-label-login">
-                            Zapamti me
-                        </label>
-                    </div>
+            <h2>4. Vlasnička prava i intelektualno vlasništvo</h2>
+            <ul>
+                <li><strong>Vlasništvo Kompanije:</strong> Sve Usluge, uključujući SFT21 brend, logotipe, softver (uključujući SFalgoritam), dizajn i Sadržaj, isključivo su vlasništvo Kompanije i njenih davatelja licenci, zaštićeni zakonima o autorskim pravima i drugim zakonima o intelektualnom vlasništvu.</li>
+                <li><strong>Licenca za korištenje:</strong> Dajemo vam ograničenu, neekskluzivnu, neprenosivu i opozivu licencu za pristup i korištenje Usluga isključivo za vaše osobne, nekomercijalne svrhe (osim ako nije drugačije definirano Franšiznim ugovorom), u skladu s ovim Uvjetima.</li>
+                <li><strong>Korisnički sadržaj:</strong> Vi zadržavate vlasništvo nad svojim Korisničkim sadržajem. Međutim, objavljivanjem Korisničkog sadržaja, dajete Kompaniji globalnu, neekskluzivnu, besplatnu licencu za korištenje, kopiranje, modificiranje, distribuciju i prikazivanje tog sadržaja u svrhu pružanja i promocije Usluga.</li>
+            </ul>
 
-                    <div class="text-sm">
-                        <a href="#" class="login-link">
-                            Zaboravili ste lozinku?
-                        </a>
-                    </div>
-                </div>
+            <h2>5. Specifični uvjeti za proizvode</h2>
+            <ul>
+                <li><strong>Kupnja Licencnih Paketa:</strong> Kupnja SFT21 Licence regulirana je zasebnim Ugovorom o kupnji licence. U slučaju sukoba između ovih Uvjeta i Ugovora o kupnji licence, odredbe Ugovora o kupnji licence imaju prednost.</li>
+                <li><strong>Franšizno poslovanje:</strong> Sudjelovanje u SFT21 Business Conceptu kao SFfranšizer regulirano je zasebnim Franšiznim ugovorom. U slučaju sukoba, odredbe Franšiznog ugovora imaju prednost.</li>
+            </ul>
 
-                <div class="mt-6">
-                    <button type="submit" class="login-submit-button">
-                        Prijavi se
-                    </button>
-                </div>
-            </form>
+            <h2>6. Odricanje od jamstva i ograničenje odgovornosti</h2>
+            <ul>
+                <li><strong>"KAKAV JEST":</strong> Usluge se pružaju "takve kakve jesu" i "prema dostupnosti", bez ikakvih jamstava, izričitih ili prešutnih. Kompanija ne jamči da će Usluge biti neprekinute, sigurne ili bez grešaka.</li>
+                <li><strong>OGRANIČENJE ODGOVORNOSTI:</strong> U najvećoj mjeri dopuštenoj zakonom, Kompanija, njeni direktori, zaposlenici i partneri neće biti odgovorni za bilo kakvu neizravnu, slučajnu, posebnu, posljedičnu ili kaznenu štetu, uključujući gubitak profita, podataka, dobre volje ili druge nematerijalne gubitke, koji proizlaze iz vašeg pristupa ili korištenja Usluga.</li>
+                <li><strong>RIZICI:</strong> Kao što je navedeno u Ugovoru o kupnji licence, ostvarivanje bilo kakvih financijskih benefita nije garantirano i ovisi o nizu poslovnih i tržišnih rizika.</li>
+            </ul>
 
-            <hr>
+            <h2>7. Prestanak korištenja</h2>
+            <ul>
+                <li><strong>Vašom odlukom:</strong> Možete prestati koristiti naše Usluge u bilo kojem trenutku. Za trajno brisanje računa, molimo slijedite procedure navedene u Politici privatnosti.</li>
+                <li><strong>Našom odlukom:</strong> Zadržavamo pravo, prema vlastitom nahođenju, privremeno suspendirati ili trajno ukinuti vaš korisnički račun i pristup Uslugama ako utvrdimo da ste prekršili ove Uvjete ili druge važeće ugovore (poput Ugovora o kupnji licence ili Franšiznog ugovora).</li>
+            </ul>
+            <p>U slučaju takve odluke, uložit ćemo razumne napore da vas obavijestimo putem e-pošte o poduzetoj mjeri. U obavijesti će biti naveden razlog za suspenziju ili ukidanje računa te ćete, gdje je to primjenjivo i moguće, biti upućeni na vaša prava i korake koje možete poduzeti, poput prava na žalbu ili pojašnjenje, u skladu s našim internim procedurama.</p>
+            <p>Kompanija zadržava pravo poduzeti trenutne mjere bez prethodne najave u slučajevima teških kršenja, poput ilegalnih aktivnosti, ugrožavanja sigurnosti platforme ili drugih Korisnika.</p>
 
-            <div class="text-center">
-                <p class="register-prompt-text">Nemate korisnički račun?</p>
-                <a href="register.html" class="register-link">
-                    REGISTRIRAJ SE
-                </a>
-            </div>
-        </div>
+            <h2>8. Izmjene Uvjeta</h2>
+            <p>Kompanija zadržava pravo, prema vlastitom nahođenju, izmijeniti ili dopuniti ove Uvjete u bilo kojem trenutku.</p>
+            <p>O svim izmjenama obavijestit ćemo vas objavom ažurirane verzije Uvjeta na ovoj stranici, uz ažuriranje "Datuma zadnje izmjene" na vrhu dokumenta.</p>
+            <p>Dodatno, uložit ćemo razumne napore da sve Registrirane korisnike (uključujući Vlasnike Licenci i SFfranšizere) o značajnim izmjenama obavijestimo putem notifikacije unutar njihovog SFured korisničkog sučelja ili putem e-pošte.</p>
+            <p>Vaš nastavak korištenja Usluga nakon što izmjene stupe na snagu smatrat će se vašim prihvaćanjem takvih izmijenjenih Uvjeta. Ako se ne slažete s novim Uvjetima, morate prestati koristiti Usluge. Preporučujemo da redovito pregledavate ove Uvjete kako biste bili upoznati s eventualnim promjenama.</p>
+
+            <h2>9. Mjerodavno pravo i rješavanje sporova</h2>
+            <p>Na ove Uvjete korištenja primjenjivat će se i tumačiti materijalno pravo Švicarske, isključujući primjenu Konvencije Ujedinjenih naroda o ugovorima o međunarodnoj prodaji robe (CISG).</p>
+            <p>Svi sporovi, nesuglasice ili zahtjevi koji proizlaze iz ovih Uvjeta korištenja ili su u vezi s njima, uključujući njihovo kršenje, prestanak ili valjanost, konačno će se riješiti arbitražom u skladu sa Švicarskim pravilima o međunarodnoj arbitraži Švicarskog arbitražnog centra.</p>
+            <p>Broj arbitara bit će jedan.<br>Mjesto arbitraže bit će Zürich, Švicarska.<br>Jezik arbitražnog postupka bit će engleski.</p>
+
+            <h2>10. Kontakt</h2>
+            <p>Ako imate bilo kakvih pitanja o ovim Uvjetima, molimo kontaktirajte nas na: legal@sft21.com.</p>
+
+    </div>
     </main>
 
 <footer class="py-16 bg-gray-900 border-t border-gray-800">
     <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="md:col-span-1">
-                <h3 class="text-2xl font-bold mb-6 text-white">SFT21</h3>
+                <h3 class="text-2xl font-bold mb-6 text-white">SFT21 </h3>
                 <p class="text-gray-400 mb-8">Na jakim lokalnim i regionalnim temeljima stvaramo globalnu online zajednica koja povezuje ljude na jedan novi, humaniji i prije svega pošteniji način.</p>
                 <div class="flex space-x-4">
                     <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors duration-300"><i class="fab fa-facebook-f text-xl"></i></a>
@@ -393,7 +405,7 @@
             <div>
                 <h4 class="text-lg font-bold mb-6 text-white">Kontakt</h4>
                     <ul class="space-y-3">
-                        <li class="text-gray-400">SFT21 LLL</li>
+                        <li class="text-gray-400">SFT21 LLC</li>
                         <li class="text-gray-400">2120 Carey Ave, Cheyenne</li>
                         <li class="text-gray-400">WY 82001</li>
                         <li class="text-gray-400">Wyoming, USA</li>

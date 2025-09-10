@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SFured - InFace Invest Group</title>
+    <title>SFured - SFT21 Business Concept</title>
 
     <script>
         (function() {
@@ -158,7 +158,7 @@ html.light-mode .text-logo-orange {
     color: var(--primary-color) !important;
 }
 
-/* Promjena boje ostatka teksta ("ured" i "Inface Invest Group") u tamno sivu */
+/* Promjena boje ostatka teksta ("ured") u tamno sivu */
 html.light-mode .text-white,
 html.light-mode .logo-nav .small-text {
     color: #4b5563 !important; 
@@ -172,6 +172,67 @@ html.light-mode .sfured-header .status-timer .status {
 /* Promjena boje brojeva tajmera */
 html.light-mode .sfured-header .status-timer .timer-display {
     color: #4b5563 !important;
+}
+
+/* === POSEBNI STILOVI ZA SFKOD U LIGHT MODE-U === */
+/* Promjena boje naslova "Generator SFkodova" */
+html.light-mode .sfkod-generator-container h1 {
+    color: var(--primary-color);
+}
+
+/* Promjena boje "i" info ikonice */
+html.light-mode .info-icon {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: rgba(106, 27, 154, 0.1);
+}
+
+/* Promjena stila klikabilnog gumba u tablici (npr. broj 1) */
+html.light-mode .sfkod-index-cell.clickable {
+    background-color: var(--primary-color);
+    color: white !important; /* !important osigurava da prebriše druge boje teksta */
+    border-color: var(--primary-color);
+}
+
+/* Promjena boje aktivnog gumba u tablici (kada se uređuje) */
+html.light-mode .sfkod-index-cell.active {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color) !important; 
+}
+
+/* Promjena boje strelica za brojeve */
+html.light-mode .sfkod-arrow {
+    color: var(--primary-color);
+}
+
+/* === STILOVI ZA POPUP PROZORE U LIGHT MODE-U === */
+/* Promjena boje naslova u popupu */
+html.light-mode .popup-content h4 {
+    color: var(--primary-color);
+}
+
+/* Promjena stila gumba u popupu */
+html.light-mode .popup-button {
+    background-color: rgba(106, 27, 154, 0.1); /* Svijetlo ljubičasta pozadina */
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Promjena stila gumba u popupu na hover */
+html.light-mode .popup-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Promjena boje checkboxa */
+html.light-mode #ne-prikazuj-ponovo {
+    accent-color: var(--primary-color);
+}
+
+/* Promjena boje teksta labela uz checkbox */
+html.light-mode .popup-content label {
+    color: #64748b; /* Tamnije siva za bolji kontrast */
 }
 /* === KRAJ STILOVA ZA LIGHT MODE === */
 
@@ -285,7 +346,105 @@ tr.hidden-row { display: none; }
 .personal-info-data-panel > div:last-child { margin-bottom: 0; }
 .panel-value-subtext { font-size: 0.75rem; color: #fff; margin-top: 0.25rem; display: block; text-align: center; }
 .text-fluorescent-orange { color: var(--fluorescent-orange); }
+.avatar-upload-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: none; /* Inicijalno sakriven */
+    justify-content: center;
+    align-items: center;
+}
+.avatar-upload-modal-content {
+    background: #1f2937;
+    border: 1px solid var(--fluorescent-green);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 32px 0 rgba(128, 255, 0, 0.3);
+    color: var(--text-color);
+}
+.avatar-upload-modal-content h4 {
+    color: var(--fluorescent-green);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+.avatar-upload-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.avatar-upload-button {
+    background-color: rgba(128, 255, 0, 0.1);
+    color: var(--fluorescent-green);
+    border: 1px solid var(--fluorescent-green);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+.avatar-upload-button i {
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    color: var(--fluorescent-green);
+}
+.avatar-upload-button:hover {
+    background-color: var(--fluorescent-green);
+    color: #0e076a;
+}
+.avatar-upload-button:hover i {
+    color: #0e076a;
+}
+.avatar-upload-input {
+    display: none; /* Input polje je skriveno */
+}
+/* Popravak pozicije modal-close gumba koji je već definiran */
+.avatar-upload-modal-content .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: #d1d5db;
+    cursor: pointer;
+}
 
+/* Light mode stilovi za modal */
+html.light-mode .avatar-upload-modal-content {
+    background: #ffffff;
+    border-color: var(--primary-color);
+    color: #334155;
+}
+html.light-mode .avatar-upload-modal-content h4 {
+    color: var(--primary-color);
+}
+html.light-mode .avatar-upload-button {
+    background-color: rgba(106, 27, 154, 0.1);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+html.light-mode .avatar-upload-button i {
+    color: var(--primary-color);
+}
+html.light-mode .avatar-upload-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+html.light-mode .avatar-upload-button:hover i {
+    color: white;
+}
 .avatar-upload-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); z-index: 9999; display: none; justify-content: center; align-items: center; }
 .avatar-upload-modal-content { background: #1f2937; border: 1px solid var(--fluorescent-green); border-radius: 15px; padding: 2rem; max-width: 400px; width: 90%; text-align: center; position: relative; box-shadow: 0 8px 32px 0 rgba(128, 255, 0, 0.3); color: var(--text-color); }
 .avatar-upload-modal-content h4 { color: var(--fluorescent-green); margin-bottom: 1.5rem; font-size: 1.5rem; }
@@ -354,19 +513,23 @@ tr.hidden-row { display: none; }
 </head>
 <body>
 
+    <!-- Elementi za animiranu pozadinu i kursor -->
+    <div id="particles-js"></div>
+    <div class="custom-cursor"></div>
+
     <!-- Top Fixed Header -->
     <header class="sfured-header">
-        <!-- === IZMIJENJENI DIO ZA LOGO U HEADERU - POČETAK === -->
-<a href="index.html" class="flex items-center" id="logo-link">
-    <img src="img/IFIG-logo.png" alt="InFace Invest Group logo" id="site-logo" class="h-auto w-12 mr-2">
+
+    <!-- === IZMIJENJENI DIO ZA LOGO U HEADERU - POČETAK === -->
+    <a href="index.html" class="flex items-center" id="logo-link">
+    <img src="img/IFIG-logo.png" alt="SFT21 logo" id="site-logo" class="h-auto w-12 mr-2">
     <div class="flex flex-col logo-nav">
-         <span class="small-text">InFace Invest Group</span>
          <div class="font-bold text-xl"> 
             <span class="text-logo-orange">SF</span><span class="text-white">ured</span>
          </div>
     </div>
-</a>
-</div>
+    </a>
+    </div>
 
         <!-- Status/Timer (Hidden on mobile) -->
         <div class="status-timer hidden md:flex">
@@ -402,7 +565,8 @@ tr.hidden-row { display: none; }
              <!-- Lijevo polje: Video Player Icon -->
             <div class="video-player-icon-area">
             <div class="video-player-icon-area"><a href="video_player.html?from=sfured.html" class="icon-link" title="Video Player"><i class="fas fa-play-circle"></i></a>
-</div>            </div>
+            </div>
+            </div>
             <!-- Desno polje: Notification Icon i Brojač -->
             <div class="notification-icon-area">
                 <div class="notification-icon" title="Obavijesti">
@@ -791,14 +955,7 @@ tr.hidden-row { display: none; }
 
     </main> <!-- End Main Content Area -->
 
-    <!-- Simple Footer -->
-    <footer class="py-8 bg-gray-900 text-center text-gray-400 text-sm">
-        <div class="container mx-auto px-6">
-            © 2025 InFace Invest Group LLC - Sva prava pridržana.
-        </div>
-    </footer>
-
-    <!-- === MODAL ZA AVATAR UPLOAD/SLIKANJE - POČETAK === -->
+        <!-- === MODAL ZA AVATAR UPLOAD/SLIKANJE - POČETAK === -->
     <div id="avatar-upload-modal-overlay" class="avatar-upload-modal-overlay">
         <div id="avatar-upload-modal-content" class="avatar-upload-modal-content">
             <button class="modal-close" aria-label="Zatvori">×</button>
@@ -821,12 +978,20 @@ tr.hidden-row { display: none; }
         </div>
     </div>
      <!-- === MODAL ZA AVATAR UPLOAD/SLIKANJE - KRAJ === -->
+
+    <!-- Simple Footer -->
+    <footer class="py-8 bg-gray-900 text-center text-gray-400 text-sm">
+        <div class="container mx-auto px-6">
+            © 2025 SFT21 LLC - Sva prava pridržana.
+        </div>
+    </footer>
+
     
         <div id="sfkod-vrijednost-popup" class="popup">
         <div class="popup-content">
             <button class="modal-close" aria-label="Zatvori">×</button>
             <h4>Vrijednost SFkodova</h4>
-            <p>Kao besplatno registriranom korisniku u znak dobrodošlice Kompanija Vam poklanja jedan trajni SFkod, sa kojim možete sudjelovati besplatno u gotovo svakoj nagradnoj igri u organizaciji Kompanije, stoga je važno napomenuti vrijednost SFkodova.<br><br>Naime, Kompanija će organizirati mnoge nagradne igre u kojima će nagrade biti npr. startni paketi, mobiteli, kompjutori ili mnoge druge vrijedne nagrade...<br><br>Osim nagrada koje će davati Kompanija, svaki trgovac, proizvođač, poduzetnik ili kompanija, tvrtka veća ili manja, prilikom ulaska u kompanijski SFshop imati će priliku pripremiti svoj proizvod ili uslugu, paket proizvoda ili bilo koju vrstu nagrade koju će ponuditi kroz naš sistem nagradnih igara čime zauzvrat dobiva svojevrsnu reklamu putem naše kompanije i uz pomoć naših franšizera.<br><br>SFkod možete sami odabrati (Kreiraj ručno) ili možete izabrati automatski generiran SFkod (Kreiraj automatski). Klikom na POTVRDI KOD, trajno ćete spremiti SFkod, kojega nakon toga više ne možete mijenjati.<br><br>Vrlo je važno napomenuti da će SFfranšizer može imati maksimalno 25 SFkodova. (1 besplatnom registracijom + 21 jednokratnom uplatom SP7 + 3 registracijom 21 besplatnog korisnika)<br><br>SFkorisnik / BPR (besplatno registrirani korisnici) mogu imati maksimalno 4 SFkoda. (1 besplatnom registracijom + 3 registracijom 21 besplatnog korisnika)<br><br>Ukoliko započnete sa SP1 ili drugim manjim paketima dobivate određeni broj SFkodova, koje možete povećavati nadogradnjama odnosno uplatama pretplatničkih perioda, pod uvjetom da vam račun nema neaktivnih dana između pretplatničkih perioda.<br><br>Sa većim brojem SFkodova veće su i Vaše mogućnosti dobivanja nagrade, što ne znači da nagradu ne možete dobiti i sa samo jednim kodom. To je već pitanje sreće na koju nitko ne može utjecati.<br><br>Bez obzira sa koliko kodova krenuli i koliko ih na kraju imali od srca Vam želimo sreću prilikom izvlaćenja sretnih dobitnika.</p>
+            <p>Kao besplatno registriranom korisniku u znak dobrodošlice Kompanija Vam poklanja jedan trajni SFkod, s kojim možete sudjelovati besplatno u gotovo svakoj nagradnoj igri u organizaciji Kompanije, stoga je važno napomenuti vrijednost SFkodova.<br><br>Naime, Kompanija će organizirati mnoge nagradne igre u kojima će nagrade biti npr. startni paketi, mobiteli, kompjutori ili mnoge druge vrijedne nagrade...<br><br>Osim nagrada koje će davati Kompanija, svaki trgovac, proizvođač, poduzetnik ili kompanija, tvrtka veća ili manja, prilikom ulaska u kompanijski SFshop imat će priliku pripremiti svoj proizvod ili uslugu, paket proizvoda ili bilo koju vrstu nagrade koju će ponuditi kroz naš sistem nagradnih igara čime, zauzvrat dobiva svojevrsnu reklamu putem naše kompanije i uz pomoć naših franšizera.<br><br>SFkod možete sami odabrati (Kreiraj ručno) ili možete izabrati automatski generiran SFkod (Kreiraj automatski). Klikom na POTVRDI KOD, trajno ćete spremiti SFkod, kojega nakon toga više ne možete mijenjati.<br><br>Vrlo je važno napomenuti da će SFfranšizer može imati maksimalno 25 SFkodova. (1 besplatnom registracijom + 21 jednokratnom uplatom SP7 + 3 registracijom 21 besplatnog korisnika)<br><br>SFkorisnik / BPR (besplatno registrirani korisnici) mogu imati maksimalno 4 SFkoda. (1 besplatnom registracijom + 3 registracijom 21 besplatnog korisnika)<br><br>Ukoliko započnete sa SP1 ili drugim manjim paketima dobivate određeni broj SFkodova, koje možete povećavati nadogradnjama odnosno uplatama pretplatničkih perioda, pod uvjetom da vam račun nema neaktivnih dana između pretplatničkih perioda.<br><br>Sa većim brojem SFkodova veće su i Vaše mogućnosti dobivanja nagrade, što ne znači da nagradu ne možete dobiti i sa samo jednim kodom. To je već pitanje sreće na koju nitko ne može utjecati.<br><br>Bez obzira s koliko kodova krenuli i koliko ih na kraju imali od srca Vam želimo sreću prilikom izvlaćenja sretnih dobitnika.</p>
             
             <!-- ====== POČETAK IZMJENE: GUMB I CHECKBOX ====== -->
             <div class="flex flex-col items-center mt-6">
@@ -859,38 +1024,121 @@ tr.hidden-row { display: none; }
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // === ZAJEDNIČKE VARIJABLE ===
+    // ===================================================
+    // === GLOBALNE VARIJABLE I ELEMENTI
+    // ===================================================
     const hamburger = document.querySelector('.hamburger');
     const verticalNav = document.querySelector('.sfured-nav-vertical');
     const navLinksVertical = document.querySelectorAll('.nav-link-vertical');
     const logoutButton = document.querySelector('.logout-icon');
 
-    // === VARIJABLE ZA PANELE ===
-    const dashboardGrid = document.getElementById('dashboard-grid');
-    const mojRacunContent = document.getElementById('moj-racun-content');
-    const novcanikContent = document.getElementById('novcanik-content');
-    const sftimContent = document.getElementById('sftim-content');
-    const sfkodContent = document.getElementById('sfkod-content');
-
-    // === VARIJABLE ZA SFKOD GENERATOR ===
-    const vrijednostPopup = document.getElementById('sfkod-vrijednost-popup');
-    const uputePopup = document.getElementById('sfkod-upute-popup');
-    const infoIcon = document.getElementById('sfkod-info-icon');
-    const tableBody = document.getElementById('sfkod_codesTableBody');
-    const generatorButtonsEl = document.getElementById('sfkod_generatorButtons');
-    const numberInputsEl = document.getElementById('sfkod_numberInputs');
-    const confirmButtonEl = document.getElementById('sfkod_confirmButton');
-    const createManualButton = document.getElementById('sfkod_createManual');
-    const createAutoButton = document.getElementById('sfkod_createAuto');
-    const packageButtonsContainer = document.getElementById('sfkod_packageButtons');
-    const kycOptionsEl = document.getElementById('sfkod_kycOptions');
-    const packageButtons = document.querySelectorAll('.sfkod-package-button');
-    const kyc10Checkbox = document.getElementById('sfkod_kyc10');
-    const kyc21Checkbox = document.getElementById('sfkod_kyc21');
+    // Elementi za logo
+    const logoLink = document.getElementById('logo-link');
+    const logoImg = document.getElementById('site-logo');
+    const lightModeLogo = 'img/IFIG-logo_purple.png'; // Ažurirano na ljubičastu verziju
+    const darkModeLogo = 'img/IFIG-logo.png';
     
-    let sfkodInitialized = false;
-    let sfkodPopupShown = false;
+    // Elementi za panele
+    const panelMap = {
+        'kontrolna-ploca': document.getElementById('dashboard-grid'),
+        'moj-racun': document.getElementById('moj-racun-content'),
+        'novcanik': document.getElementById('novcanik-content'),
+        'sftim': document.getElementById('sftim-content'),
+        'sfkod': document.getElementById('sfkod-content')
+    };
 
+    // Elementi za Avatar Modal
+    const avatarPlaceholder = document.getElementById('avatar-placeholder');
+    const avatarModalOverlay = document.getElementById('avatar-upload-modal-overlay');
+    const avatarModalClose = avatarModalOverlay.querySelector('.modal-close');
+    const uploadPhotoButton = document.getElementById('upload-photo-button');
+    const avatarFileInput = document.getElementById('avatar-file-input');
+
+    // Varijable za SFKOD Generator
+    let sfkodInitialized = false;
+
+    // ===================================================
+    // === UPRAVLJANJE TEMOM I LOGOTIPOM
+    // ===================================================
+    function updateLogoAndVisibility() {
+        if (document.documentElement.classList.contains('light-mode')) {
+            if (logoImg) logoImg.src = lightModeLogo;
+        } else {
+            if (logoImg) logoImg.src = darkModeLogo;
+        }
+        // Učini logo vidljivim nakon što je slika postavljena (rješava "flash")
+        if (logoLink) logoLink.style.visibility = 'visible';
+    }
+
+    // Pozovi odmah da se ispravi izgled nakon što se sve učita
+    updateLogoAndVisibility();
+
+    // Slušaj promjene teme s drugih stranica
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'sft21_theme' && typeof applySft21Theme === 'function') {
+            applySft21Theme(); // Funkcija iz <head>
+            updateLogoAndVisibility();
+        }
+    });
+
+    // ===================================================
+    // === UČITAVANJE SPREMLJENOG AVATARA
+    // ===================================================
+    function loadAvatar() {
+        const savedAvatar = localStorage.getItem('sft21_avatar');
+        if (savedAvatar && avatarPlaceholder) {
+            avatarPlaceholder.style.backgroundImage = `url(${savedAvatar})`;
+            avatarPlaceholder.style.backgroundSize = 'cover';
+            avatarPlaceholder.style.backgroundPosition = 'center';
+            avatarPlaceholder.innerHTML = ''; // Ukloni eventualne ikone unutra
+        }
+    }
+    loadAvatar(); // Pozovi pri učitavanju stranice
+
+    // ===================================================
+    // === LOGIKA ZA AVATAR MODAL
+    // ===================================================
+    if (avatarPlaceholder) {
+        avatarPlaceholder.addEventListener('click', () => {
+            if (avatarModalOverlay) avatarModalOverlay.style.display = 'flex';
+        });
+    }
+
+    function closeAvatarModal() {
+        if (avatarModalOverlay) avatarModalOverlay.style.display = 'none';
+    }
+
+    if (avatarModalClose) avatarModalClose.addEventListener('click', closeAvatarModal);
+    if (avatarModalOverlay) avatarModalOverlay.addEventListener('click', (e) => {
+        if (e.target === avatarModalOverlay) closeAvatarModal();
+    });
+
+    if (uploadPhotoButton) {
+        uploadPhotoButton.addEventListener('click', () => {
+            if (avatarFileInput) avatarFileInput.click();
+        });
+    }
+
+    if (avatarFileInput) {
+        avatarFileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const imageUrl = e.target.result;
+                    localStorage.setItem('sft21_avatar', imageUrl); // Spremi u localStorage
+                    loadAvatar(); // Ponovo učitaj avatar da se prikaže
+                    closeAvatarModal();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+    
+    // ===================================================
+    // === GLAVNA NAVIGACIJA I OSTALE FUNKCIJE
+    // ===================================================
+    
     // --- Mobile Menu Toggle ---
     if (hamburger && verticalNav) {
         hamburger.addEventListener('click', () => {
@@ -899,57 +1147,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Navigacija i Prikaz Panela (ISPRAVLJENA LOGIKA) ---
-    const panelMap = {
-        'kontrolna-ploca': dashboardGrid,
-        'moj-racun': mojRacunContent,
-        'novcanik': novcanikContent,
-        'sftim': sftimContent,
-        'sfkod': sfkodContent
-    };
-
+    // --- Navigacija i Prikaz Panela ---
     navLinksVertical.forEach(link => {
         link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
+            e.preventDefault();
             const targetPanelId = link.getAttribute('data-panel-target');
 
-            // Ako link vodi na vanjsku stranicu, pusti ga da radi normalno
-            if (href && href !== '#' && href.includes('.html')) {
-                return;
-            }
-
-            // Za sve interne linkove, zaustavi defaultno ponašanje
-            e.preventDefault();
-            
             navLinksVertical.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
 
-            // Sakrij sve panele
             Object.values(panelMap).forEach(panel => {
                 if (panel) panel.style.display = 'none';
             });
 
-            // Prikaži ciljani panel
             const panelToShow = panelMap[targetPanelId];
             if (panelToShow) {
-                panelToShow.style.display = (targetPanelId === 'kontrolna-ploca') ? 'grid' : 'block';
-                
-                // Specijalna logika za SFKOD
-                if (targetPanelId === 'sfkod') {
-                    if (!sfkodInitialized) {
-                        initializeSfkodGenerator();
-                        sfkodInitialized = true;
-                    }
-                    if (!sfkodPopupShown) {
-                        setTimeout(() => {
-                            if(vrijednostPopup) vrijednostPopup.style.display = 'flex';
-                            sfkodPopupShown = true;
-                        }, 300);
-                    }
+                panelToShow.style.display = (targetPanelId === 'kontrolna-ploca' || targetPanelId === 'sftim') ? 'grid' : 'block';
+                if (targetPanelId === 'sftim') panelToShow.style.display = 'block'; // SFTIM je block, ne grid
+
+                if (targetPanelId === 'sfkod' && !sfkodInitialized) {
+                    initializeSfkodGenerator();
+                    sfkodInitialized = true;
                 }
             }
 
-            // Zatvori hamburger meni ako je otvoren
             if (hamburger.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 verticalNav.classList.remove('active');
@@ -963,19 +1184,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================================
-    // === SFKOD GENERATOR LOGIKA
+    // === SFKOD GENERATOR LOGIKA (Nepromijenjena)
     // ===================================================
     function initializeSfkodGenerator() {
-        const resetGeneratorButtons = () => {
-            if (createManualButton) createManualButton.classList.remove('active-mode');
-            if (createAutoButton) createAutoButton.classList.remove('active-mode');
-        };
-
+        const vrijednostPopup = document.getElementById('sfkod-vrijednost-popup');
+        const uputePopup = document.getElementById('sfkod-upute-popup');
+        const infoIcon = document.getElementById('sfkod-info-icon');
+        const tableBody = document.getElementById('sfkod_codesTableBody');
+        const generatorButtonsEl = document.getElementById('sfkod_generatorButtons');
+        const numberInputsEl = document.getElementById('sfkod_numberInputs');
+        const confirmButtonEl = document.getElementById('sfkod_confirmButton');
+        const createManualButton = document.getElementById('sfkod_createManual');
+        const createAutoButton = document.getElementById('sfkod_createAuto');
+        const packageButtonsContainer = document.getElementById('sfkod_packageButtons');
+        const kycOptionsEl = document.getElementById('sfkod_kycOptions');
+        const packageButtons = document.querySelectorAll('.sfkod-package-button');
+        const kyc10Checkbox = document.getElementById('sfkod_kyc10');
+        const kyc21Checkbox = document.getElementById('sfkod_kyc21');
+        
+        // Prikaz pop-upa samo prvi put
+        if (!localStorage.getItem('sfkod_vrijednost_popup_seen')) {
+             setTimeout(() => {
+                if(vrijednostPopup) vrijednostPopup.style.display = 'flex';
+            }, 300);
+        }
+        
         const closeAllPopups = () => {
             if(vrijednostPopup) vrijednostPopup.style.display = 'none';
             if(uputePopup) uputePopup.style.display = 'none';
         };
-        document.querySelectorAll('.popup .modal-close, .popup .popup-button').forEach(btn => btn.addEventListener('click', closeAllPopups));
+        
+        document.querySelectorAll('.popup .modal-close').forEach(btn => btn.addEventListener('click', closeAllPopups));
+        
+        const razumijemButton = document.querySelector('.popup-button');
+        if (razumijemButton) {
+            razumijemButton.addEventListener('click', () => {
+                const nePrikazujCheckbox = document.getElementById('ne-prikazuj-ponovo');
+                if (nePrikazujCheckbox && nePrikazujCheckbox.checked) {
+                    localStorage.setItem('sfkod_vrijednost_popup_seen', 'true');
+                }
+                closeAllPopups();
+            });
+        }
+        
         if (infoIcon) infoIcon.addEventListener('click', () => uputePopup.style.display = 'flex');
 
         let currentCode = Array(10).fill(0);
@@ -1015,16 +1266,14 @@ document.addEventListener('DOMContentLoaded', () => {
             firstIndexCell.classList.add('clickable');
             addClickEventToIndexCell(firstIndexCell);
         };
-
         const addClickEventToIndexCell = (cell) => {
             if (!cell || cell.hasListener) return;
             cell.addEventListener('click', function() { if (this.classList.contains('clickable')) activateRowForEditing(parseInt(this.dataset.row)); });
             cell.hasListener = true;
         };
-
         const activateRowForEditing = (rowIndex) => {
             if (completedRows.includes(rowIndex)) return;
-            resetGeneratorButtons();
+            [createManualButton, createAutoButton].forEach(b => b.classList.remove('active-mode'));
             const activeCell = tableBody.querySelector(`.sfkod-index-cell.active`);
             if(activeCell) activeCell.classList.remove('active');
             activeRowIndex = rowIndex;
@@ -1036,9 +1285,7 @@ document.addEventListener('DOMContentLoaded', () => {
             numberInputsEl.style.display = 'flex';
             confirmButtonEl.style.display = 'block';
         };
-        
         const updateNumberInputs = () => document.querySelectorAll('.sfkod-number-input').forEach((input, i) => input.value = currentCode[i]);
-        
         const unlockNextRows = (count, suffixText) => {
             for(let i = 0; i < count; i++) {
                 if(tableBody.rows[nextAvailableRow - 1]) {
@@ -1052,7 +1299,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         };
-
         const handleArrowClick = function() {
             const index = parseInt(this.dataset.index);
             currentCode[index] = (currentCode[index] + (this.classList.contains('fa-chevron-up') ? 1 : -1) + 10) % 10;
@@ -1063,9 +1309,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         confirmButtonEl.addEventListener('click', function() {
             if (activeRowIndex === null) return;
-            if (!createManualButton.classList.contains('active-mode') && !createAutoButton.classList.contains('active-mode')) {
-                alert("Molimo prvo odaberite 'Kreiraj ručno' ili 'Kreiraj automatski'."); return;
-            }
+            if (!createManualButton.classList.contains('active-mode') && !createAutoButton.classList.contains('active-mode')) { alert("Molimo prvo odaberite 'Kreiraj ručno' ili 'Kreiraj automatski'."); return; }
             const codeStr = currentCode.join('');
             if (allConfirmedCodes.includes(codeStr)) { alert("Ovaj kod je već korišten."); return; }
             
@@ -1088,14 +1332,11 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmButtonEl.style.display = 'none';
             activeRowIndex = null;
         });
-
+        
         packageButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 if (this.disabled) return;
-                if (completedRows.length === 0) {
-                    alert('Morate prvo potvrditi svoj prvi besplatni SFkod.');
-                    return;
-                }
+                if (completedRows.length === 0) { alert('Morate prvo potvrditi svoj prvi besplatni SFkod.'); return; }
                 unlockNextRows(packageCodesCount[this.id], this.id.toUpperCase());
                 packageButtons.forEach(b => { b.disabled = true; b.classList.remove('selected'); });
                 this.classList.add('selected');
@@ -1104,7 +1345,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         kyc10Checkbox.addEventListener('change', function() { if(this.checked) { unlockNextRows(1, '10 KYC'); this.disabled = true; } });
         kyc21Checkbox.addEventListener('change', function() { if(this.checked) { if(!kyc10Checkbox.checked) { kyc10Checkbox.checked = true; kyc10Checkbox.dispatchEvent(new Event('change')); } unlockNextRows(2, '21 KYC'); this.disabled = true; } });
-
+        
         [createManualButton, createAutoButton].forEach(btn => btn.addEventListener('click', function(){
             createManualButton.classList.remove('active-mode');
             createAutoButton.classList.remove('active-mode');
@@ -1123,76 +1364,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // ... vaš postojeći JavaScript kod unutar ovog event listenera ...
-    });
-    </script>
-
-    <!-- === KORAK 3: DODAJTE OVAJ NOVI SCRIPT BLOK OVDJE === -->
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const logoImg = document.getElementById('site-logo'); // ID logotipa
-        const lightModeLogo = 'img/IFIG-logo_orange.png'; // PREPTPOSTAVLJAM da se narančasti logo ovako zove
-        const darkModeLogo = 'img/IFIG-logo.png'; // Putanja do originalnog zelenog logotipa
-
-        // Funkcija koja provjerava temu i mijenja logo
-        function updateLogoBasedOnTheme() {
-            if (document.documentElement.classList.contains('light-mode')) {
-                if(logoImg) logoImg.src = lightModeLogo;
-            } else {
-                if(logoImg) logoImg.src = darkModeLogo;
-            }
-        }
-
-        // Pozovi funkciju odmah da postavi ispravan logo pri učitavanju
-        updateLogoBasedOnTheme();
-
-        // Ovo osigurava da se logo ažurira i ako se tema promijeni na drugoj stranici
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'sft21_theme') {
-                 if(typeof applySft21Theme === 'function') {
-                    applySft21Theme();
-                    updateLogoBasedOnTheme();
-                 }
-            }
-        });
-    });
-    </script>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // ... vaš postojeći JS kod (za navigaciju, popupe, itd.) ostaje ovdje ...
-
-        // === LOGIKA ZA PROMJENU LOGOTIPA ===
-        const logoLink = document.getElementById('logo-link');
-        const logoImg = document.getElementById('site-logo');
-        const lightModeLogo = 'img/IFIG-logo_purple.png';
-        const darkModeLogo = 'img/IFIG-logo.png';
-
-        function updateLogoAndVisibility() {
-            if (document.documentElement.classList.contains('light-mode')) {
-                if (logoImg) logoImg.src = lightModeLogo;
-            } else {
-                if (logoImg) logoImg.src = darkModeLogo;
-            }
-            // Učini logo vidljivim nakon što je slika postavljena
-            if (logoLink) logoLink.style.visibility = 'visible';
-        }
-
-        // Pozovi odmah da se ispravi izgled nakon što se sve učita
-        updateLogoAndVisibility();
-
-        // Ako dodate gumb za promjenu teme, on će raditi
-        const themeSwitcher = document.getElementById('theme-switcher');
-        if (themeSwitcher) {
-            themeSwitcher.addEventListener('click', () => {
-                setTimeout(updateLogoAndVisibility, 50);
-            });
-        }
-    });
-    </script>
 
 </body>
 </html>

@@ -2752,3 +2752,148 @@ body.light-mode .nav-link::after {
     margin-right: auto; /* koji ima ograničenu širinu (max-width) */
     line-height: 1.6; /* Povećava prored za bolju čitljivost */
 }
+
+/*      BOJE LINKA ZA UGOVOR U LIGHT MODU       */
+body.light-mode .ugovor-download-container .ugovor-link a {
+    color: var(--primary-color) !important; /* Postavlja boju na ljubičastu */
+}
+
+body.light-mode .ugovor-download-container .ugovor-link a:hover {
+    color: var(--secondary-color) !important; /* Postavlja boju na svjetliju ljubičastu na hover */
+}
+
+/* ======================================================= */
+/*      STILOVI ZA PRAVNE DOKUMENTE (UVJETI, PRIVATNOST...)  */
+/* ======================================================= */
+
+.legal-content-wrapper {
+    padding-top: 120px; /* Dovoljan odmak od fiksiranog headera */
+    padding-bottom: 80px;
+    padding-left: 1rem; /* Padding za mobilne uređaje */
+    padding-right: 1rem;
+    color: var(--text-color);
+}
+
+.legal-content {
+    max-width: 900px; /* Optimalna širina za čitanje teksta */
+    margin: 0 auto;
+    
+    /* Preuzima postojeći glass-card stil, ali dodajemo specifične prilagodbe */
+    padding: clamp(1.5rem, 4vw, 3rem); /* Više prostora unutar kartice */
+    text-align: justify;
+    
+    /* Dodatni sjaj za "magličasti" efekt */
+    box-shadow: 0 8px 32px 0 rgba(13, 1, 24, 0.37), 
+                0 0 40px rgba(128, 255, 0, 0.2); /* Neonski zeleni sjaj */
+}
+
+.legal-content h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responzivna veličina naslova */
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--fluorescent-green);
+    font-weight: 700;
+}
+
+.legal-content .last-updated {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-bottom: 3rem;
+}
+
+.legal-content h2 {
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(128, 255, 0, 0.2);
+    color: white;
+    font-weight: 600;
+}
+
+.legal-content p, .legal-content li {
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    color: #d1d5db; /* Malo svjetliji tekst za bolju čitljivost */
+}
+
+.legal-content ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+}
+
+.legal-content a {
+    color: var(--fluorescent-green);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.legal-content a:hover {
+    color: var(--fluorescent-orange);
+}
+
+/* Prilagodbe za Light Mode */
+body.light-mode .legal-content {
+    background-color: #ffffff;
+    border-color: var(--primary-color); 
+    color: #334155;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07),
+                0 0 40px rgba(106, 27, 154, 0.1); 
+}
+body.light-mode .legal-content h1 {
+    color: var(--primary-color);
+}
+body.light-mode .legal-content .last-updated {
+    color: #64748b;
+}
+body.light-mode .legal-content h2 {
+    color: #1e293b;
+    border-bottom-color: #cbd5e1;
+}
+body.light-mode .legal-content p, 
+body.light-mode .legal-content li {
+    color: #475569;
+}
+body.light-mode .legal-content a {
+    color: var(--primary-color);
+}
+body.light-mode .legal-content a:hover {
+    color: var(--secondary-color);
+}
+body.light-mode .glass-card,
+body.light-mode .info-box,
+body.light-mode .login-card,
+body.light-mode .faze-card,
+body.light-mode .feature-card,
+body.light-mode .legal-content,
+body.light-mode .ip-card,
+body.light-mode .ip-wide-card,
+body.light-mode .decision-content-box,
+body.light-mode .selection-box,
+body.light-mode .option-card,
+body.light-mode .card-main-content,
+body.light-mode .registration-form-container,
+body.light-mode .kyc-container,
+body.light-mode .username-selection-card,
+body.light-mode .info-card-register,       /* << NOVO: Za donji lijevi okvir */
+body.light-mode .recommendation-card {     /* << NOVO: Za gornji lijevi okvir */
+    border-color: var(--primary-color) !important;
+}
+
+body.light-mode .form-input-register,
+body.light-mode .custom-select-trigger,
+body.light-mode .phone-input-wrapper {
+    border-color: var(--primary-color) !important;
+}
+
+/* ======================================================= */
+/*      PROMJENA BOJE IKONA U KARTICAMA (LIGHT MODE)       */
+/* ======================================================= */
+
+body.light-mode .glass-card .fas,
+body.light-mode .glass-card .fab {
+    color: var(--accent-color) !important; /* Fluorescentno ljubičasta */
+}
+

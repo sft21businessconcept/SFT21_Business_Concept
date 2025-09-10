@@ -664,7 +664,7 @@
         html.light-mode .popup-content,
         html.light-mode #review-popup-content {
             background-color: #ffffff !important;
-            border-color: #e2e8f0 !important;
+            border-color: var(--primary-color) !important; 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
         }
         html.light-mode .kyc-title,
@@ -829,35 +829,33 @@
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js"></script>
+    <!-- ======================================================= -->
+    <!--      KONAČNI I ISPRAVLJENI SCRIPT BLOK ZA OFFICE_KYC.HTML     -->
+    <!-- ======================================================= -->
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'939857bf3deab0b8',t:'MTc0NjE5NzU1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <!-- GSAP biblioteka, potrebna za animaciju kursora -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-<script>
-    // =======================================================================
-    // === ISPRAVLJENI SCRIPT ZA office_kyc.html (RJEŠAVA POVRATAK NA REGISTER) ===
-    // =======================================================================
+    <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- PROVJERA URL-a DA VIDIMO JE LI OVO KYC ZA SKRBNIKA ---
+        // === DEKLARACIJA ELEMENATA ===
+        const body = document.body;
+        const cursor = document.querySelector('.custom-cursor');
+        const canvas = document.getElementById('network-canvas');
         const urlParams = new URLSearchParams(window.location.search);
         const source = urlParams.get('source');
         const guardianId = urlParams.get('guardian');
         const isGuardianKyc = source === 'guardian_kyc' && guardianId;
-   
-        // --- DEKLARACIJA ELEMENATA ---
         const kycContinueBtn = document.getElementById('kyc-continue-btn');
         const reviewPopup = document.getElementById('review-popup-overlay');
         const reviewPopupNastaviBtn = document.getElementById('review-popup-nastavi');
         const businessWrapper = document.getElementById('business-proof-wrapper');
         const accountType = localStorage.getItem('sft21_account_type');
-        
         const cameraModal = document.getElementById('camera-modal');
         const cameraFeed = document.getElementById('camera-feed');
         const captureBtn = document.getElementById('capture-btn');
         const snapshotCanvas = document.getElementById('snapshot-canvas');
         const popupOverlay = document.getElementById('popup-overlay');
-        const body = document.body;
         const cameraPromptText = document.getElementById('camera-prompt-text');
         const cameraOverlay = document.getElementById('camera-overlay');
         const cameraFeedContainer = document.getElementById('camera-feed-container');
@@ -868,40 +866,80 @@
         let currentStream = null;
         let isCameraOpening = false;
 
-        // --- LOGIKA PRIKAZA POLJA ---
+        // === LOGIKA ZA KURSOR ===
+        if (cursor && body && typeof gsap !== 'undefined') {
+            let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+            const speed = 0.1;
+            const updateCursorPosition = () => {
+                cursorX += (mouseX - cursorX) * speed;
+                cursorY += (mouseY - cursorY) * speed;
+                cursor.style.left = `${cursorX}px`;
+                cursor.style.top = `${cursorY}px`;
+                requestAnimationFrame(updateCursorPosition);
+            };
+            requestAnimationFrame(updateCursorPosition);
+            window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+            document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+            document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+            document.querySelectorAll('a, button, input, label[for], .kyc-placeholder-clickable').forEach(el => {
+                el.addEventListener('mouseenter', () => gsap.to(cursor, { duration: 0.3, scale: 1.5 }));
+                el.addEventListener('mouseleave', () => gsap.to(cursor, { duration: 0.3, scale: 1 }));
+            });
+        }
+
+        // === LOGIKA ZA ANIMACIJU POZADINE (CANVAS) ===
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                let mouse = { x: null, y: null };
+                const darkOptions = { particleColorRGB: '128, 255, 0', lineColorRGB: '170, 0, 255', particleAmount: 120, defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4, mouseInteractionRadius: 150, mouseEffectStrength: 2, };
+                const lightOptions = { particleColorRGB: '106, 27, 154', lineColorRGB: '171, 71, 188', particleAmount: 120, defaultRadius: 1.3, linkRadius: 150, particleSpeed: 0.25, lineWidth: 0.4, mouseInteractionRadius: 150, mouseEffectStrength: 2, };
+                let currentOptions = document.documentElement.classList.contains('light-mode') ? lightOptions : darkOptions;
+                const resizeCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+                window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+                window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+                class Particle {
+                    constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.z = Math.random() * 2 - 1; this.radius = currentOptions.defaultRadius * (1 + this.z * 0.5); this.vx = (Math.random() - 0.5) * currentOptions.particleSpeed; this.vy = (Math.random() - 0.5) * currentOptions.particleSpeed; }
+                    draw() { let finalRadius = this.radius; let opacity = 1; if (mouse.x !== null) { const dist = Math.sqrt(Math.pow(this.x - mouse.x, 2) + Math.pow(this.y - mouse.y, 2)); if (dist < currentOptions.mouseInteractionRadius) { const effect = (1 - dist / currentOptions.mouseInteractionRadius); finalRadius += effect * currentOptions.mouseEffectStrength; opacity += effect * 0.5; } } ctx.beginPath(); ctx.arc(this.x, this.y, finalRadius, 0, Math.PI * 2); ctx.fillStyle = `rgba(${currentOptions.particleColorRGB}, ${opacity * 0.85})`; ctx.fill(); }
+                    update() { this.x += this.vx * (1 + this.z * 0.5); this.y += this.vy * (1 + this.z * 0.5); if (this.x > canvas.width + 5) this.x = -5; else if (this.x < -5) this.x = canvas.width + 5; if (this.y > canvas.height + 5) this.y = -5; else if (this.y < -5) this.y = canvas.height + 5; }
+                }
+                const initParticles = () => { particles = []; for (let i = 0; i < currentOptions.particleAmount; i++) { particles.push(new Particle()); } };
+                const drawLines = () => { let pulse = Math.sin(Date.now() * 0.001) * 0.2 + 0.8; for (let i = 0; i < particles.length; i++) { for (let j = i + 1; j < particles.length; j++) { const dist = Math.sqrt(Math.pow(particles[i].x - particles[j].x, 2) + Math.pow(particles[i].y - particles[j].y, 2)); if (dist < currentOptions.linkRadius) { let opacity = (1 - (dist / currentOptions.linkRadius)) * pulse; if (mouse.x !== null) { const distToMouse1 = Math.sqrt(Math.pow(particles[i].x - mouse.x, 2) + Math.pow(particles[i].y - mouse.y, 2)); const distToMouse2 = Math.sqrt(Math.pow(particles[j].x - mouse.x, 2) + Math.pow(particles[j].y - mouse.y, 2)); if(distToMouse1 < currentOptions.mouseInteractionRadius || distToMouse2 < currentOptions.mouseInteractionRadius) { opacity = Math.min(1, opacity + 0.5); } } ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(${currentOptions.lineColorRGB}, ${opacity * 0.5})`; ctx.lineWidth = currentOptions.lineWidth; ctx.stroke(); } } } };
+                const animate = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => p.update()); drawLines(); particles.forEach(p => p.draw()); requestAnimationFrame(animate); };
+                window.setAnimationTheme = (theme) => { currentOptions = theme === 'light' ? lightOptions : darkOptions; initParticles(); };
+                initParticles(); animate();
+            }
+
+        // === LOGIKA KYC FORME ===
         if (isGuardianKyc) {
-            // Ako je skrbnički KYC, sakrij polje za poslovni dokaz bez obzira na sve
             if (businessWrapper) businessWrapper.style.display = 'none';
         } else if (accountType === 'business') {
-            // Inače, prikaži ga ako je tip računa "poslovni"
             if (businessWrapper) {
                 businessWrapper.classList.remove('hidden');
                 businessWrapper.classList.add('flex');
             }
         }
-
-        // --- FUNKCIJE ZA UPRAVLJANJE KAMEROM I POPUP-ima ---
+        
         const stopCameraStream = () => { if (currentStream) { currentStream.getTracks().forEach(track => track.stop()); currentStream = null; } };
         const closeAllPopups = () => { if (popupOverlay) popupOverlay.style.display = 'none'; document.querySelectorAll('.popup-content').forEach(p => p.style.display = 'none'); if (body) body.classList.remove('overflow-hidden'); stopCameraStream(); };
         const displayPreview = (file, placeholderElement) => { if (!file || !placeholderElement) return; const reader = new FileReader(); reader.onload = (e) => { placeholderElement.style.backgroundImage = `url(${e.target.result})`; placeholderElement.classList.add('has-preview'); }; reader.readAsDataURL(file); };
         const triggerFileInput = (inputId, placeholderId) => { const inputElement = document.getElementById(inputId); if (inputElement) { inputElement.dataset.targetPlaceholder = placeholderId; inputElement.click(); } };
 
         const triggerCamera = async (placeholderId) => {
-            if (isCameraOpening) { return; }
+            if (isCameraOpening) return;
             isCameraOpening = true;
 
             if (cameraModal) cameraModal.dataset.targetPlaceholder = placeholderId;
             if (cameraPromptText && cameraOverlay && cameraFeedContainer) {
-                cameraOverlay.className = 'absolute'; 
+                cameraOverlay.className = 'camera-overlay';
                 cameraFeedContainer.classList.remove('is-horizontal');
                 if (placeholderId === 'selfie-placeholder') {
-                    cameraPromptText.textContent = 'glavu';
+                    cameraPromptText.textContent = 'glavu unutar ovala';
                     cameraOverlay.classList.add('camera-overlay-oval');
-                } else if (placeholderId === 'passport-placeholder') {
-                    cameraPromptText.textContent = 'putovnicu';
-                    cameraOverlay.classList.add('camera-overlay-rectangle-vertical');
                 } else {
-                    cameraPromptText.textContent = 'dokument';
+                    cameraPromptText.textContent = 'dokument unutar okvira';
                     cameraOverlay.classList.add('camera-overlay-rectangle-horizontal');
                     cameraFeedContainer.classList.add('is-horizontal');
                 }
@@ -911,29 +949,26 @@
                 if (popupOverlay) popupOverlay.style.display = 'flex';
                 if (cameraModal) cameraModal.style.display = 'block';
                 if (body) body.classList.add('overflow-hidden');
-
                 currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
                 if (cameraFeed) cameraFeed.srcObject = currentStream;
-
             } catch (err) {
-                alert("Nije moguće pristupiti kameri. Provjerite dozvole u pregledniku.\n" + err.message);
+                alert("Nije moguće pristupiti kameri. Provjerite dozvole.\n" + err.message);
                 closeAllPopups();
             } finally {
                 setTimeout(() => { isCameraOpening = false; }, 300);
             }
         };
 
-        // --- EVENT LISTENERI ---
         clickablePlaceholders.forEach(placeholder => {
             placeholder.addEventListener('click', async (event) => {
                 if (placeholder.classList.contains('has-preview')) { placeholder.style.backgroundImage = ''; placeholder.classList.remove('has-preview'); return; }
                 const inputId = placeholder.dataset.input; const placeholderId = placeholder.id;
                 const clickedIcon = event.target.closest('i'); const clickedUploadText = event.target.classList.contains('placeholder-upload-text');
-                if (clickedIcon && placeholder.classList.contains('kyc-camera-placeholder')) { await triggerCamera(placeholderId); } 
-                else if (clickedUploadText || !placeholder.classList.contains('kyc-camera-placeholder')) { triggerFileInput(inputId, placeholderId); }
+                if (clickedIcon) { await triggerCamera(placeholderId); } 
+                else if (clickedUploadText) { triggerFileInput(inputId, placeholderId); }
             });
         });
-
+        
         docUploadInput.addEventListener('change', (e) => { const file = e.target.files[0]; const targetId = e.target.dataset.targetPlaceholder; if(file && targetId) displayPreview(file, document.getElementById(targetId)); e.target.value = null; });
         selfieUploadInput.addEventListener('change', (e) => { const file = e.target.files[0]; const targetId = e.target.dataset.targetPlaceholder; if(file && targetId) displayPreview(file, document.getElementById(targetId)); e.target.value = null; });
         
@@ -954,7 +989,6 @@
 
         document.querySelectorAll('.popup-close').forEach(btn => btn.addEventListener('click', closeAllPopups));
         
-        // --- KLJUČNA IZMJENA: LOGIKA GUMBA "POTVRDI UNOS" ---
         if (kycContinueBtn) {
             kycContinueBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -973,13 +1007,9 @@
                     return;
                 }
 
-                // AKO JE OVO KYC ZA SKRBNIKA, VRATI SE NA REGISTER.HTML
                 if (isGuardianKyc) {
-                    // Preusmjeri natrag s parametrima koji govore da je KYC završen
                     window.location.href = `register.html?kyc_complete=true&guardian=${guardianId}`;
-                } 
-                // INAČE, NASTAVI S NORMALNIM PROCESOM (PRIKAŽI POPUP ZA PREGLED)
-                else {
+                } else {
                     if (reviewPopup) reviewPopup.style.display = 'flex';
                 }
             });
@@ -991,7 +1021,7 @@
             });
         }
     });
-</script>
+    </script>
 
 </body>
 </html>
