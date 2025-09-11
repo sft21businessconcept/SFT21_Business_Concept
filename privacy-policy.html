@@ -122,6 +122,47 @@
         nav a.btn-primary, nav a.btn-outline { padding: 6px 16px !important; font-size: 0.75rem !important; }
         .hamburger { display: none; } .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px 0; background-color: white; transition: all 0.3s ease; }
         .nav-menu { display: none; }
+
+                /* ISPRAVCI ZA LIGHT MODE U MOBILNOM MENIJU (Verzija 2 - Ispravno) */
+        html.light-mode .nav-menu {
+            background-color: #f9fafb; /* Svijetla pozadina */
+            border-right-color: rgba(106, 27, 154, 0.2); /* Svijetlo ljubičasti obrub */
+        }
+        html.light-mode .nav-menu #theme-toggle-mobile {
+            color: var(--primary-color);
+        }
+        html.light-mode .nav-menu #theme-toggle-mobile:hover {
+            color: var(--primary-color);
+            background-color: rgba(106, 27, 154, 0.1);
+        }
+        html.light-mode .nav-menu a.btn-primary {
+            background-color: var(--primary-color); /* Ljubičasta pozadina */
+            color: white !important; /* Bijeli tekst, !important za sigurnost */
+            border-color: var(--primary-color);
+        }
+        html.light-mode .nav-menu a.btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        /* Promjena boje crtica hamburgera u light modu */
+        html.light-mode .hamburger .bar {
+            background-color: var(--primary-color);
+        }
+
+        /* FINALNI ISPRAVAK ZA BOJU TEKSTA NA GUMBU U DARK MODU */
+        html:not(.light-mode) .nav-menu a.btn-primary {
+            color: var(--dark-color);
+        }
+
+        html.light-mode nav.fixed {
+            background-color: white;/
+            border-bottom-color: var(--secondary-color); /* Mijenja boju donjeg obruba */
+        }
+        
+        /* 2. Prilagodba boje "SFT" dijela logotipa u headeru */
+        html.light-mode nav .text-logo-orange {
+            color: white; /* Osigurava da je i "SFT" dio bijele boje */
+        }
         
         @media (max-width: 768px) {
            .nav-menu { position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); background-color: #0d0118; flex-direction: column; transition: all 0.5s ease; padding: 20px; z-index: 100; border-right: 1px solid var(--fluorescent-green); display: flex; }
@@ -174,6 +215,17 @@
             </div>
         </div>
         <div class="nav-menu md:hidden">
+            <div class="mb-4">
+                <button id="theme-toggle-mobile" type="button" class="text-white hover:text-fluorescent-green transition-colors duration-300 text-2xl p-2 rounded-full">
+                    <i id="theme-toggle-dark-icon-mobile" class="fas fa-moon"></i>
+                    <i id="theme-toggle-light-icon-mobile" class="fas fa-sun hidden"></i>
+                </button>
+            </div>
+             <!-- Gumbi u mobilnom meniju -->
+             <div class="flex flex-col mt-5 px-6 pt-4 border-t border-gray-700">
+                <a href="login.html" class="btn-primary w-full text-center text-xs">Prijava</a>
+                <a href="register.html" class="btn-primary w-full text-center text-xs mt-3">Registracija</a>
+            </div>
         </div>
     </nav>
    

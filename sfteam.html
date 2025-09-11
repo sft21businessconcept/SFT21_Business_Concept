@@ -175,22 +175,22 @@
         }
 
         /* === DODATAK: STILOVI ZA HAMBURGER I MOBILNI MENI === */
-.hamburger {
-    cursor: pointer;
-    display: block; /* Osigurava da je uvijek vidljiv na mobilnom */
-}
+        .hamburger {
+            cursor: pointer;
+            display: block; /* Osigurava da je uvijek vidljiv na mobilnom */
+        }
 
-.hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-}
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
 
-.nav-menu {
+        .nav-menu {
     position: fixed;
     left: -100%; /* Počinje izvan ekrana */
     top: 70px; /* Visina vašeg navbara */
@@ -202,13 +202,17 @@
     box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
 }
 
-.nav-menu.active {
-    left: 0; /* Ulazi u ekran kada je aktivan */
+        .nav-menu.active {
+            left: 0; /* Ulazi u ekran kada je aktivan */
 }
 
-body.light-mode .nav-menu {
-    background-color: var(--light-bg);
-}
+        body.light-mode .nav-menu {
+            background-color: var(--light-bg);
+        }
+
+        body:not(.light-mode) .nav-menu a.btn-primary {
+            color: var(--dark-color);
+        }
     
 </style>
 </head>
@@ -228,8 +232,9 @@ body.light-mode .nav-menu {
                     </div>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="index.html" class="nav-link transition-colors duration-300">Početna stranica</a>
-                    <a href="register.html" class="btn-primary text-xs">Registracija</a>
+                    <a href="index.html" class="nav-link transition-colors duration-300">Početna</a>
+                    <a href="login.html" class="btn-primary text-xs">PRIJAVA</a>
+                    <a href="register.html" class="btn-primary text-xs">REGISTRACIJA</a>
                 </div>
                 <div class="md:hidden">
                     <div class="hamburger">
